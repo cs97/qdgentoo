@@ -8,7 +8,8 @@ floating_modifier $mod
 # AUTORUN #
 ###########
 
-exec feh --bg-center ~/tpbh.png
+
+#exec feh --bg-center ~/tpbh.png
 #exec conky -c ~/conky.conf
 
 font pango:awesome 7
