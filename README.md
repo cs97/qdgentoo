@@ -1,4 +1,4 @@
-### quick &amp; dirty getoo
+### quick &amp; dirty gentoo
 
 * pre-Alpha 
 
