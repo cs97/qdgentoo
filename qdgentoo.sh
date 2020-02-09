@@ -1,9 +1,9 @@
 #! /bin/bash
 
-SERVERURL="192.168.13.4:8000"
+SERVERURL="x.x.x.x:8000"
 STAGE=''
-STAGE3URL='192.168.1.122:8000/stage3.tar.xz'
-USER='l3f7s1d3'
+STAGE3URL='x.x.x.x:8000/stage3.tar.xz'
+USER='user'
 
 
 if [ -z "$1" ]; then
@@ -73,7 +73,6 @@ if [ $1 == '0' ]; then
 	mkfs.ext4 /dev/sda2							#/dev/sdx
 	mount /dev/sda2 /mnt/gentoo					#/dev/sdx
 	cd /mnt/gentoo
-#	wget 192.168.13.4:8000/stage3.tar.xz
 	wget $STAGE3URL
 	tar xpvf stage3.tar.xz --xattrs-include='*.*' --numeric-owner
 	nano -w /mnt/gentoo/etc/portage/make.conf
@@ -285,7 +284,6 @@ fi
 if [ $1 == 'custom' ]; then
 	cd ~/
 	wget $SERVERURL/tpbh.png
-#	wget 192.168.13.4:8000/conky.conf
 #	cd ~/.config/i3/config
 	wget $SERVERURL/config
 	mv .config/i3/config .config/i3/config.old
