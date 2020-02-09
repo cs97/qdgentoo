@@ -1,6 +1,6 @@
 #! /bin/bash
 
-SERVERURL="x.x.x.x:8000"
+SERVERURL="https://raw.githubusercontent.com/l3f7s1d3/qdgentoo/master/"
 STAGE=''
 STAGE3URL='x.x.x.x:8000/stage3.tar.xz'
 USER='user'
