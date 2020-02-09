@@ -1,1 +1,4 @@
-# qdgentoo
+### quick &amp; dirty getoo
+
+* pre-Alpha 
+
