@@ -3,7 +3,7 @@
 SERVERURL="https://raw.githubusercontent.com/l3f7s1d3/qdgentoo/master/"
 STAGE=''
 STAGE3URL='distfiles.gentoo.org/releases/amd64/autobuilds/20200205T214502Z/stage3-amd64-20200205T214502Z.tar.xz'
-USER='user'
+USER=$2
 
 
 if [ -z "$1" ]; then
@@ -44,7 +44,7 @@ if [ -z "$1" ]; then
 	echo "# 26. stuff                          #"
 	echo "# 27. firefox                        #"
 	echo "# 28. virtualbox                     #"
-	echo "# 29. makeuser                       #"
+	echo "# 29. makeuser <username>            #"
 	echo "# 30. wifi                           #"
 	echo "#                                    #"
 	echo "# 99. update                         #"
