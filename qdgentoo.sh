@@ -102,9 +102,7 @@ fi
 
 ################################	2
 if [ $1 == '2' ]; then
-	etc-update
-	emerge --ask --verbose --update --deep --newuse @world				#wenn es net geht "etc-update"
-	etc-update
+	emerge --ask --verbose --update --deep --newuse @world			
 	echo "##########################################"
 	echo "now 3"
 	exit
