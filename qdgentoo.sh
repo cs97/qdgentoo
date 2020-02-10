@@ -15,7 +15,7 @@ if [ -z "$1" ]; then
 	echo "#       ######################       #"
 	echo "#       #                    #       #"
 	echo "#       #      qdgentoo      #       #"
-	echo "#       #      v0.1          #       #"
+	echo "#       #      v0.2          #       #"
 	echo "#       ######################       #"
 	echo "#     #                        #     #"
 	echo "#   #                            #   #"
@@ -192,6 +192,15 @@ if [ $1 == '8' ]; then
 #	if [ $1 == '1' ]; then emerge --ask net-wireless/iw net-wireless/wpa_supplica
 
 
+
+	echo "##########################################"
+	echo "now 9"
+	exit
+fi
+
+################################	9
+if [ $1 == '9' ]; then
+
 	emerge --ask --verbose sys-boot/grub:2
 	grub-install /dev/sda
 	grub-mkconfig -o /boot/grub/grub.cfg
@@ -202,12 +211,11 @@ if [ $1 == '8' ]; then
 
 	echo "##########################################"
 	echo "now exit"
-	echo "now 9"
-	exit
+	echo "now 10"
 fi
 
-################################	9
-if [ $1 == '9' ]; then
+################################	10
+if [ $1 == '10' ]; then
 	cd
 	umount -l /mnt/gentoo/dev{/shm,/pts,}
 	umount -R /mnt/gentoo
