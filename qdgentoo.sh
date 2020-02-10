@@ -14,7 +14,7 @@ if [ -z "$1" ]; then
 	echo "#     #                        #     #"
 	echo "#       ######################       #"
 	echo "#       #                    #       #"
-	echo "#       #   qdgentoo tool    #       #"
+	echo "#       #      qdgentoo      #       #"
 	echo "#       #                    #       #"
 	echo "#       ######################       #"
 	echo "#     #                        #     #"
@@ -22,7 +22,6 @@ if [ -z "$1" ]; then
 	echo "# #                                # #"
 	echo "######################################"
 	echo "#                                    #"
-	echo "# serv = httpserver                  #"
 	echo "# chsda = old system mounting        #"
 	echo "#                                    #"
 	echo "# 0. makefs                          #"
@@ -51,19 +50,6 @@ if [ -z "$1" ]; then
 	echo "######################################"
 	echo ""
 	exit
-fi
-
-
-if [ $1 == 'ip' ]; then
-	sudo ip address add 192.168.1.122/24 dev enp2s0
-	sudo ip link set up dev enp2s0
-	echo "ip address add 192.168.1.1/24 dev enp2s0"
-	echo "ip link set up dev enp2s0"
-fi
-
-
-if [ $1 == 'serv' ]; then
-	python -m http.server 8000 
 fi
 
 ################################	0
@@ -183,7 +169,7 @@ fi
 ################################	8
 if [ $1 == '8' ]; then
 	etc-update
-	emerge --ask sys-kernel/linux-firmware							#wenn es net geht "etc-update"
+	emerge --ask sys-kernel/linux-firmware
 	etc-update
 	#nano -w /etc/fstab
 	echo "/dev/sda2		/root		ext4		defaults        0 1" >> /etc/fstab						#/dev/sdx
@@ -229,9 +215,6 @@ if [ $1 == '9' ]; then
 	reboot
 	exit
 fi
-
-################################################################################################
-# after installer
 
 
 if [ $1 == '20' ]; then
@@ -301,12 +284,6 @@ if [ $1 == '28' ]; then
 	emerge --ask app-emulation/virtualbox
 fi
 
-#######################################################################################################################################################
-#######################################################################################################################################################
-
-
-
-#######################################################################################################################################################
 if [ $1 == '99' ]; then
 	mv qdgentoo.sh qdgentoo.old
 	wget $SERVERURL/qdgentoo.sh
@@ -316,31 +293,6 @@ fi
 
 exit
 
-
-#nano -w /mnt/gentoo/etc/portage/make.conf
-	# CFLAGS="-O2 -march=znver1"	#ryzen
-	# USE="X"
-	# VIDEO_CARDS="intel i965"
-
-	#COMMON_FLAGS="-march=native -O2 -pipe"
-	#MAKEOPTS="-j2"				# anzahl kerne +1 oder thred=j
-
-	#INPU_DEVICE="virtualbox evdev keyboard mous"
-	#VIDEO_CARDS="virtualbox"
-	
-	#input devices insterlieren
-	#kernel
-	#Device Drivers --->
- 	#	Input device support --->
-  	#	<*>  Event interface
-	#INPUT_DEVICES="libinput keyboard mous"
-	#emerge --ask --changed-use --deep @world
-	#dev-libs/libinput and x11-drivers/xf86-input-libinput should be installed. 
-
-#special funtionnen
-
-######################################################################################################################################
-######################################################################################################################################
 
 
 
