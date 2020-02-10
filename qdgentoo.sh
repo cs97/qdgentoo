@@ -15,7 +15,7 @@ if [ -z "$1" ]; then
 	echo "#       ######################       #"
 	echo "#       #                    #       #"
 	echo "#       #      qdgentoo      #       #"
-	echo "#       #      v0.2          #       #"
+	echo "#       #      v0.3          #       #"
 	echo "#       ######################       #"
 	echo "#     #                        #     #"
 	echo "#   #                            #   #"
@@ -205,17 +205,27 @@ if [ $1 == '9' ]; then
 	grub-install /dev/sda
 	grub-mkconfig -o /boot/grub/grub.cfg
 
-
 #	emerge --ask sys-boot/syslinux
 #	syslinux --install /dev/sda1 
 
 	echo "##########################################"
-	echo "now exit"
 	echo "now 10"
-fi
+
+
 
 ################################	10
 if [ $1 == '10' ]; then
+
+	lsmod > /lsmod.txt
+
+	echo "##########################################"
+	echo "now exit"
+	echo "now 11"
+	
+fi
+
+################################	11
+if [ $1 == '11' ]; then
 	cd
 	umount -l /mnt/gentoo/dev{/shm,/pts,}
 	umount -R /mnt/gentoo
