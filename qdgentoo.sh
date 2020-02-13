@@ -17,7 +17,7 @@ if [ -z "$1" ]; then
 	echo "#       ######################       #"
 	echo "#       #                    #       #"
 	echo "#       #      qdgentoo      #       #"
-	echo "#       #      v0.3          #       #"
+	echo "#       #      v0.4          #       #"
 	echo "#       ######################       #"
 	echo "#     #                        #     #"
 	echo "#   #                            #   #"
@@ -49,6 +49,9 @@ if [ -z "$1" ]; then
 	echo "# 29. makeuser <username>            #"
 	echo "# 30. wifi                           #"
 	echo "# 31. i3config                       #
+	echo "# 32. pulseaudio                     #"
+	echo "# 33. alsa-mixer                     #"
+	echo "# 34. alsa-utils                     #"
 	echo "#                                    #"
 	echo "# 99. update                         #"
 	echo "######################################"
