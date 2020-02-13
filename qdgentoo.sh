@@ -290,7 +290,9 @@ if [ $1 == '31' ]; then
 	mv ~/.config/i3/config ~/.config/i3/config.old
 	mv ~/config ~/.config/i3/config
 fi
-
+if [ $1 == '32' ]; then emerge --ask pulseaudio; fi
+if [ $1 == '33' ]; then emerge --ask alsa-mixer; fi
+if [ $1 == '34' ]; then emerge --ask alsa-utils; fi
 
 if [ $1 == '27' ]; then
 	etc-update
