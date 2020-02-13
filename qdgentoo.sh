@@ -4,7 +4,8 @@ SERVERURL="https://raw.githubusercontent.com/l3f7s1d3/qdgentoo/master/"
 STAGE=''
 STAGE3URL='distfiles.gentoo.org/releases/amd64/autobuilds/20200205T214502Z/stage3-amd64-20200205T214502Z.tar.xz'
 USER=$2
-
+boot='/dev/sda1'
+root='/dev/sda2'
 
 if [ -z "$1" ]; then
 	clear
@@ -22,16 +23,15 @@ if [ -z "$1" ]; then
 	echo "# #                                # #"
 	echo "######################################"
 	echo "#                                    #"
-	echo "# chsda = old system mounting        #"
-	echo "#                                    #"
 	echo "# 0. makefs                          #"
 	echo "# 1. do in chroot                    #"
 	echo "# 2. @world                          #"
-	echo "# 4. install kernel                  #"
+	echo "# 3. locale                          #"
+	echo "# 4. env-update                      #"
 	echo "# 5. gentoo-sources                  #"
 	echo "# 6. pciutils                        #"
 	echo "# 7. genkernel                       #"
-	echo "# 8. fstab                           #"
+	echo "# 8. fstab & Stuff                   #"
 	echo "# 9. grub                            #"
 	echo "# 10.lsmod > /lsmod.txt              #"
 	echo "# 11.reboot                          #"
