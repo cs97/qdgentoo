@@ -91,7 +91,7 @@ fi
 if [ $1 == '1' ]; then
 	source /etc/profile
 	export PS1="(chroot) ${PS1}"
-	mount /dev/sda1 /boot										#/dev/sdx
+	mount $boot /boot
 	emerge-webrsync
 	emerge --sync
 	clear
@@ -209,7 +209,7 @@ if [ $1 == '9' ]; then
 	grub-mkconfig -o /boot/grub/grub.cfg
 
 #	emerge --ask sys-boot/syslinux
-#	syslinux --install /dev/sda1 
+#	syslinux --install $boot 
 
 	echo "##########################################"
 	echo "now 10"
