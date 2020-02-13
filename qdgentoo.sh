@@ -287,8 +287,8 @@ fi
 
 if [ $1 == '31' ]; then
 	wget $SERVERURL/config
-	mv .config/i3/config .config/i3/config.old
-	mv config .config/i3/config
+	mv ~/.config/i3/config ~/.config/i3/config.old
+	mv ~/config ~/.config/i3/config
 fi
 
 
