@@ -196,7 +196,6 @@ if [ $1 == '8' ]; then
 	rc-update add sysklogd default
 #	if [ $1 == '1' ]; then rc-update add sshd default
 	emerge --ask net-misc/dhcpcd
-#	if [ $1 == '1' ]; then emerge --ask net-wireless/iw net-wireless/wpa_supplica
 
 
 
@@ -251,8 +250,6 @@ if [ $1 == '22' ]; then	echo "exec i3" >> ~/.xinitrc; fi
 if [ $1 == '23' ]; then	emerge --ask-enter-invalid x11-terms/xterm; fi
 if [ $1 == '24' ]; then	emerge --ask-enter-invalid x11-misc/i3status; fi
 if [ $1 == '25' ]; then	emerge --ask-enter-invalid x11-misc/i3lock; fi
-
-#	etc-update
 
 
 
