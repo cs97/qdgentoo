@@ -48,6 +48,7 @@ if [ -z "$1" ]; then
 	echo "# 28. virtualbox                     #"
 	echo "# 29. makeuser <username>            #"
 	echo "# 30. wifi                           #"
+	echo "# 31. i3config                       #
 	echo "#                                    #"
 	echo "# 99. update                         #"
 	echo "######################################"
@@ -284,10 +285,7 @@ fi
 #/etc/init.d/wpa_supplicant start
 
 
-if [ $1 == 'custom' ]; then
-	cd ~/
-	wget $SERVERURL/tpbh.png
-#	cd ~/.config/i3/config
+if [ $1 == '31' ]; then
 	wget $SERVERURL/config
 	mv .config/i3/config .config/i3/config.old
 	mv config .config/i3/config
