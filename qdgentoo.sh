@@ -157,6 +157,7 @@ fi
 
 ################################	7
 if [ $1 == '7' ]; then
+	echo "sys-kernel/gentoo-sources" >> /etc/portage/package.use
 	emerge --ask genkernel
 	etc-update
 
