@@ -4,6 +4,7 @@ SERVERURL="https://raw.githubusercontent.com/l3f7s1d3/qdgentoo/master/"
 STAGE=''
 STAGE3URL='distfiles.gentoo.org/releases/amd64/autobuilds/20200205T214502Z/stage3-amd64-20200205T214502Z.tar.xz'
 USER=$2
+disk='/dev/sda'
 boot='/dev/sda1'
 root='/dev/sda2'
 
@@ -56,10 +57,10 @@ fi
 
 ################################	0
 if [ $1 == '0' ]; then
-	cfdisk /dev/sda								#/dev/sdx
-	mkfs.ext4 /dev/sda1
-	mkfs.ext4 /dev/sda2							#/dev/sdx
-	mount /dev/sda2 /mnt/gentoo					#/dev/sdx
+	cfdisk $disk	
+	mkfs.ext4 $boot
+	mkfs.ext4 $root
+	mount $root /mnt/gentoo
 	cd /mnt/gentoo
 	wget -O stage3.tar.xz $STAGE3URL
 	tar xpvf stage3.tar.xz --xattrs-include='*.*' --numeric-owner
@@ -172,8 +173,8 @@ if [ $1 == '8' ]; then
 	emerge --ask sys-kernel/linux-firmware
 	etc-update
 	#nano -w /etc/fstab
-	echo "/dev/sda2		/root		ext4		defaults        0 1" >> /etc/fstab						#/dev/sdx
-	echo "/dev/sda1		/boot		ext4		defaults        0 2" >> /etc/fstab						#/dev/sdx
+	echo "$root		/root		ext4		defaults        0 1" >> /etc/fstab						#/dev/sdx
+	echo "$boot		/boot		ext4		defaults        0 2" >> /etc/fstab						#/dev/sdx
 	nano -w /etc/fstab
 	
 	echo 'hostname="gentoo-pc"' >> /etc/conf.d/hostname
@@ -203,7 +204,7 @@ fi
 if [ $1 == '9' ]; then
 
 	emerge --ask --verbose sys-boot/grub:2
-	grub-install /dev/sda
+	grub-install $disk
 	grub-mkconfig -o /boot/grub/grub.cfg
 
 #	emerge --ask sys-boot/syslinux
