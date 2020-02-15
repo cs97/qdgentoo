@@ -52,6 +52,8 @@ if [ -z "$1" ]; then
 	echo "# 32. pulseaudio                     #"
 	echo "# 33. alsa-mixer                     #"
 	echo "# 34. alsa-utils                     #"
+	echo "# 35.thunar                          #"
+	echo "# 36.mc                              #"
 	echo "#                                    #"
 	echo "# 99. update                         #"
 	echo "######################################"
@@ -287,6 +289,10 @@ fi
 if [ $1 == '32' ]; then emerge --ask pulseaudio; fi
 if [ $1 == '33' ]; then emerge --ask alsa-mixer; fi
 if [ $1 == '34' ]; then emerge --ask alsa-utils; fi
+if [ $1 == '35' ]; then emerge --ask thunar; fi
+if [ $1 == '36' ]; then emerge --ask mc; fi
+
+
 if [ $1 == '27' ]; then	emerge --ask www-client/firefox; fi
 if [ $1 == '28' ]; then	emerge --ask app-emulation/virtualbox; fi
 
