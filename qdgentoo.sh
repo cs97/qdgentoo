@@ -17,7 +17,7 @@ if [ -z "$1" ]; then
 	echo "#       ######################       #"
 	echo "#       #                    #       #"
 	echo "#       #      qdgentoo      #       #"
-	echo "#       #      v0.4          #       #"
+	echo "#       #      v0.5          #       #"
 	echo "#       ######################       #"
 	echo "#     #                        #     #"
 	echo "#   #                            #   #"
@@ -48,7 +48,7 @@ if [ -z "$1" ]; then
 	echo "# 28. virtualbox                     #"
 	echo "# 29. makeuser <username>            #"
 	echo "# 30. wifi                           #"
-	echo "# 31. i3config                       #
+	echo "# 31. i3config                       #"
 	echo "# 32. pulseaudio                     #"
 	echo "# 33. alsa-mixer                     #"
 	echo "# 34. alsa-utils                     #"
@@ -61,7 +61,8 @@ fi
 
 ################################	0
 if [ $1 == '0' ]; then
-	cfdisk $disk	
+	cfdisk $disk
+	sleep 1
 	mkfs.ext4 $boot
 	mkfs.ext4 $root
 	mount $root /mnt/gentoo
@@ -142,6 +143,8 @@ fi
 
 ################################	5
 if [ $1 == '5' ]; then
+	echo "=sys-kernel/gentoo-sources-5.1.14 ~amd64"
+	echo "=sys-kernel/gentoo-sources-5.1.14 ~amd64" > /etc/portage/package.accept_keywords
 	emerge --ask sys-kernel/gentoo-sources
 	etc-update
 	echo "##########################################"
@@ -161,7 +164,6 @@ fi
 
 ################################	7
 if [ $1 == '7' ]; then
-	echo "sys-kernel/gentoo-sources" >> /etc/portage/package.use
 	emerge --ask genkernel
 	etc-update
 
@@ -276,15 +278,7 @@ if [ $1 == '29' ]; then
 fi
 
 #wifi
-if [ $1 == '30' ]; then
-	emerge --ask-enter-invalid net-wireless/iw net-wireless/wpa_supplicant
-fi
-#wifi
-#wpa_passphrase <ssid> [passphrase] > /etc/wpa_supplicant/wpa_supplicant.conf
-#rc-update add wpa_supplicant default
-#/etc/init.d/wpa_supplicant start
-
-
+if [ $1 == '30' ]; then emerge --ask-enter-invalid net-wireless/iw net-wireless/wpa_supplicant; fi
 if [ $1 == '31' ]; then
 	wget $SERVERURL/config
 	mv ~/.config/i3/config ~/.config/i3/config.old
@@ -293,16 +287,8 @@ fi
 if [ $1 == '32' ]; then emerge --ask pulseaudio; fi
 if [ $1 == '33' ]; then emerge --ask alsa-mixer; fi
 if [ $1 == '34' ]; then emerge --ask alsa-utils; fi
-
-if [ $1 == '27' ]; then
-	etc-update
-	emerge --ask www-client/firefox
-fi
-
-if [ $1 == '28' ]; then
-	etc-update
-	emerge --ask app-emulation/virtualbox
-fi
+if [ $1 == '27' ]; then	emerge --ask www-client/firefox; fi
+if [ $1 == '28' ]; then	emerge --ask app-emulation/virtualbox; fi
 
 if [ $1 == '99' ]; then
 	mv qdgentoo.sh qdgentoo.old
@@ -312,7 +298,6 @@ fi
 
 
 exit
-
 
 
 
