@@ -3,7 +3,7 @@
 SERVERURL="https://raw.githubusercontent.com/l3f7s1d3/qdgentoo/master/"
 STAGE=''
 STAGE3URL='distfiles.gentoo.org/releases/amd64/autobuilds/20200205T214502Z/stage3-amd64-20200205T214502Z.tar.xz'
-USER=$2
+USER='user'
 disk='/dev/sda'
 boot='/dev/sda1'
 root='/dev/sda2'
@@ -46,7 +46,7 @@ if [ -z "$1" ]; then
 	echo "# 26. stuff                          #"
 	echo "# 27. firefox                        #"
 	echo "# 28. virtualbox                     #"
-	echo "# 29. makeuser <username>            #"
+	echo "# 29. makeuser                       #"
 	echo "# 30. wifi                           #"
 	echo "# 31. i3config                       #"
 	echo "# 32. pulseaudio                     #"
@@ -55,6 +55,7 @@ if [ -z "$1" ]; then
 	echo "# 35. thunar                         #"
 	echo "# 36. file-roller                    #"
 	echo "# 37. mc                             #"
+	echo "# 38 no root xorg-server             #"
 	echo "#                                    #"
 	echo "# 99. update                         #"
 	echo "######################################"
@@ -297,6 +298,13 @@ if [ $1 == '37' ]; then emerge --ask mc; fi
 
 if [ $1 == '27' ]; then	emerge --ask www-client/firefox; fi
 if [ $1 == '28' ]; then	emerge --ask app-emulation/virtualbox; fi
+
+if [ $1 == '38' ]; then
+USE="-suid" emerge --update --deep --newuse --verbose --ask xorg-server
+echo 'SUBSYSTEM=="input", ACTION=="add", GROUP="input"' >> /etc/udev/rules.d/99-dev-input-group.rules
+usermod -a -G input, video $user
+fi
+
 
 if [ $1 == '99' ]; then
 	mv qdgentoo.sh qdgentoo.old
