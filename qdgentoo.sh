@@ -4,6 +4,7 @@ SERVERURL="https://raw.githubusercontent.com/l3f7s1d3/qdgentoo/master/"
 STAGE=''
 STAGE3URL='distfiles.gentoo.org/releases/amd64/autobuilds/20200205T214502Z/stage3-amd64-20200205T214502Z.tar.xz'
 USER='user'
+kernel='=sys-kernel/gentoo-sources-5.5.4 ~amd64'
 disk='/dev/sda'
 boot='/dev/sda1'
 root='/dev/sda2'
@@ -147,10 +148,8 @@ fi
 
 ################################	5
 if [ $1 == '5' ]; then
-	#echo "=sys-kernel/gentoo-sources-5.1.14 ~amd64"
-	#echo "=sys-kernel/gentoo-sources-5.1.14 ~amd64" > /etc/portage/package.accept_keywords
-	echo "=sys-kernel/gentoo-sources-5.5.4 ~amd64"
-	echo "=sys-kernel/gentoo-sources-5.5.4 ~amd64" > /etc/portage/package.accept_keywords
+	echo "$kernel"
+	echo "$kernel" > /etc/portage/package.accept_keywords
 	emerge --ask sys-kernel/gentoo-sources
 	etc-update
 	echo "##########################################"
