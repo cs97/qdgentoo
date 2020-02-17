@@ -147,8 +147,10 @@ fi
 
 ################################	5
 if [ $1 == '5' ]; then
-	echo "=sys-kernel/gentoo-sources-5.1.14 ~amd64"
-	echo "=sys-kernel/gentoo-sources-5.1.14 ~amd64" > /etc/portage/package.accept_keywords
+	#echo "=sys-kernel/gentoo-sources-5.1.14 ~amd64"
+	#echo "=sys-kernel/gentoo-sources-5.1.14 ~amd64" > /etc/portage/package.accept_keywords
+	echo "=sys-kernel/gentoo-sources-5.5.4 ~amd64"
+	echo "=sys-kernel/gentoo-sources-5.5.4 ~amd64" > /etc/portage/package.accept_keywords
 	emerge --ask sys-kernel/gentoo-sources
 	etc-update
 	echo "##########################################"
