@@ -269,8 +269,9 @@ if [ $1 == '26' ]; then
 #	emerge --ask-enter-invalid app-admin/conky
 	emerge --ask-enter-invalid sys-power/cpupower	#cpupower frequency-set -g powersave
 	emerge --ask-enter-invalid x11-apps/xbacklight	#xbacklight -set 50
-
 fi
+if [ $1 == '27' ]; then	emerge --ask www-client/firefox; fi
+if [ $1 == '28' ]; then	emerge --ask app-emulation/virtualbox; fi
 
 #user
 if [ $1 == '29' ]; then
@@ -297,8 +298,6 @@ if [ $1 == '36' ]; then emerge --ask file-roller; fi
 if [ $1 == '37' ]; then emerge --ask mc; fi
 
 
-if [ $1 == '27' ]; then	emerge --ask www-client/firefox; fi
-if [ $1 == '28' ]; then	emerge --ask app-emulation/virtualbox; fi
 
 if [ $1 == '38' ]; then
 USE="-suid" emerge --update --deep --newuse --verbose --ask xorg-server
