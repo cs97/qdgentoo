@@ -8,6 +8,7 @@ kernel='=sys-kernel/gentoo-sources-5.5.4 ~amd64'
 disk='/dev/sda'
 boot='/dev/sda1'
 root='/dev/sda2'
+home='/dev/sda3'
 
 if [ -z "$1" ]; then
 	clear
@@ -70,6 +71,7 @@ if [ $1 == '0' ]; then
 	sleep 1
 	mkfs.ext4 $boot
 	mkfs.ext4 $root
+	mkfs.ext4 $home
 	mount $root /mnt/gentoo
 	cd /mnt/gentoo
 	wget -O stage3.tar.xz $STAGE3URL
@@ -184,9 +186,11 @@ if [ $1 == '8' ]; then
 	etc-update
 	emerge --ask sys-kernel/linux-firmware
 	etc-update
-	#nano -w /etc/fstab
-	echo "$root		/root		ext4		defaults        0 1" >> /etc/fstab						#/dev/sdx
-	echo "$boot		/boot		ext4		defaults        0 2" >> /etc/fstab						#/dev/sdx
+	
+	echo "$root		/root		ext4		defaults        0 1" >> /etc/fstab
+	echo "$boot		/boot		ext4		defaults        0 2" >> /etc/fstab
+	echo "$home		/home		ext4		defaults	0 3" >> /etc/fstab
+	
 	nano -w /etc/fstab
 	
 	echo 'hostname="gentoo-pc"' >> /etc/conf.d/hostname
@@ -201,10 +205,7 @@ if [ $1 == '8' ]; then
 #	nano -w /etc/conf.d/hwclock
 	emerge --ask app-admin/sysklogd
 	rc-update add sysklogd default
-#	if [ $1 == '1' ]; then rc-update add sshd default
 	emerge --ask net-misc/dhcpcd
-
-
 
 	echo "##########################################"
 	echo "now 9"
@@ -249,7 +250,6 @@ fi
 
 if [ $1 == '20' ]; then
 	emerge --ask-enter-invalid x11-base/xorg-server
-	etc-update
 	source /etc/profile
 fi
 if [ $1 == '21' ]; then	emerge --ask-enter-invalid x11-wm/i3; fi
@@ -283,7 +283,7 @@ if [ $1 == '29' ]; then
 #	passwd -l root
 fi
 
-#wifi
+
 if [ $1 == '30' ]; then emerge --ask-enter-invalid net-wireless/iw net-wireless/wpa_supplicant; fi
 if [ $1 == '31' ]; then
 	wget $SERVERURL/config
