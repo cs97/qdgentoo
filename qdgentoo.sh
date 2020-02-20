@@ -302,7 +302,8 @@ if [ $1 == '37' ]; then emerge --ask mc; fi
 if [ $1 == '38' ]; then
 USE="-suid" emerge --update --deep --newuse --verbose --ask xorg-server
 echo 'SUBSYSTEM=="input", ACTION=="add", GROUP="input"' >> /etc/udev/rules.d/99-dev-input-group.rules
-usermod -a -G input, video $user
+usermod -a -G video $user
+usermod -a -G input $user
 fi
 
 
