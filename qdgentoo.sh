@@ -57,7 +57,8 @@ if [ -z "$1" ]; then
 	echo "# 35. thunar                         #"
 	echo "# 36. file-roller                    #"
 	echo "# 37. mc                             #"
-	echo "# 38 no root xorg-server             #"
+	echo "# 38. no root xorg-server            #"
+	echo "# 39. cdrtools                       #"
 	echo "#                                    #"
 	echo "# 99. update                         #"
 	echo "######################################"
@@ -297,14 +298,14 @@ if [ $1 == '35' ]; then emerge --ask thunar; fi
 if [ $1 == '36' ]; then emerge --ask file-roller; fi
 if [ $1 == '37' ]; then emerge --ask mc; fi
 
-
-
-if [ $1 == '38' ]; then
+if [ $1 == '38' ]; then		#modprobe vboxdrv
 USE="-suid" emerge --update --deep --newuse --verbose --ask xorg-server
 echo 'SUBSYSTEM=="input", ACTION=="add", GROUP="input"' >> /etc/udev/rules.d/99-dev-input-group.rules
 usermod -a -G video $user
 usermod -a -G input $user
 fi
+if [ $1 == '39' ]; then emerge --ask cdrtools; fi
+
 
 
 if [ $1 == '99' ]; then
