@@ -100,6 +100,54 @@ if [ $1 == '0' ]; then
 	chroot /mnt/gentoo /bin/bash
 fi
 
+################################	0.1
+if [ $1 == '0.1' ]; then
+cd /mnt/gentoo
+	cfdisk $disk
+	sleep 1
+	mkfs.ext4 $boot
+	modprobe dm-crypt
+	cryptsetup luksFormat -c aes-xts-plain64:sha256 -s 256 /def/sda2
+	cryptsetup luksOpen /def/sda2 lvm
+	lvm pvcreate /dev/mapper/lvm
+	vgcreate vg0 /dev/mapper/lvm
+	lvcreate -L 25G -n root vg0
+#	lvcreate -L 40G -n var vg0
+	lvcreate -l 100%FREE -n home vg0
+	mkfs.ext4 /def/mapper/vg0-root
+#	mkfs-ext4 /def/mapper/vg0-var
+	mkfs.ext4 /def/mapper/vg0-home
+#	mkdir /mnt/gentoo
+	mount /def/mapper/vg0-root /mnt/gentoo
+	mkdir /mnt/gentoo/var
+	mount /dev/mapper/vg0-var /mnt/gentoo/var
+	cd /mnt/gentoo
+
+	wget -O stage3.tar.xz $STAGE3URL
+	tar xpvf stage3.tar.xz --xattrs-include='*.*' --numeric-owner
+	nano -w /mnt/gentoo/etc/portage/make.conf
+	#COMMON_FLAGS="-march=native -O2 -pipe" 
+	#MAKEOPTS="-j3"			
+	mirrorselect -i -o >> /mnt/gentoo/etc/portage/make.conf
+	mkdir --parents /mnt/gentoo/etc/portage/repos.conf
+	cp /mnt/gentoo/usr/share/portage/config/repos.conf /mnt/gentoo/etc/portage/repos.conf/gentoo.conf
+	cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
+	mount --types proc /proc /mnt/gentoo/proc
+	sleep 1
+	mount --rbind /sys /mnt/gentoo/sys
+	sleep 1
+	mount --make-rslave /mnt/gentoo/sys
+	sleep 1
+	mount --rbind /dev /mnt/gentoo/dev
+	sleep 1
+	mount --make-rslave /mnt/gentoo/dev
+	sleep 1
+	cp ~/qdgentoo.sh /mnt/gentoo/qdgentoo.sh
+	echo "##########################################"
+	echo "now 1"
+	chroot /mnt/gentoo /bin/bash
+fi
+
 ################################	1
 if [ $1 == '1' ]; then
 	source /etc/profile
