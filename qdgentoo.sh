@@ -240,6 +240,13 @@ if [ $1 == '8' ]; then
 	echo "$boot		/boot		ext4		defaults        0 2" >> /etc/fstab
 	echo "$home		/home		ext4		defaults	0 3" >> /etc/fstab
 	
+#	echo "/def/mapper/vg0-root		/		ext4		defaults	0 1" >> /etc/fstab
+#	echo "$boot		/boot		ext4		defaults        0 2" >> /etc/fstab
+#	echo "/def/mapper/vg0-home		/home		ext4		defaults	0 3" >> /etc/fstab
+#	echo "tmpfs		/tmp		tmpfs		size=4Gb	0 0" >> /etc/fstab
+
+	
+	
 	nano -w /etc/fstab
 	
 	echo 'hostname="gentoo-pc"' >> /etc/conf.d/hostname
