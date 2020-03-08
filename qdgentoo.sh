@@ -181,6 +181,7 @@ if [ $1 == '3' ]; then
 #	 echo>>
 	locale-gen
 	clear
+	eselect locale set 6
 	eselect locale list
 	echo "##########################################"
 	echo "eselect locale set X"
