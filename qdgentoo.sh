@@ -107,20 +107,20 @@ cd /mnt/gentoo
 	sleep 1
 	mkfs.ext4 $boot
 	modprobe dm-crypt
-	cryptsetup luksFormat -c aes-xts-plain64:sha256 -s 256 /def/sda2
-	cryptsetup luksOpen /def/sda2 lvm
+	cryptsetup luksFormat -c aes-xts-plain64:sha256 -s 256 /dev/sda2
+	cryptsetup luksOpen /dev/sda2 lvm
 	lvm pvcreate /dev/mapper/lvm
 	vgcreate vg0 /dev/mapper/lvm
 	lvcreate -L 25G -n root vg0
 #	lvcreate -L 40G -n var vg0
 	lvcreate -l 100%FREE -n home vg0
-	mkfs.ext4 /def/mapper/vg0-root
-#	mkfs-ext4 /def/mapper/vg0-var
-	mkfs.ext4 /def/mapper/vg0-home
+	mkfs.ext4 /dev/mapper/vg0-root
+#	mkfs-ext4 /dev/mapper/vg0-var
+	mkfs.ext4 /dev/mapper/vg0-home
 #	mkdir /mnt/gentoo
-	mount /def/mapper/vg0-root /mnt/gentoo
-	mkdir /mnt/gentoo/var
-	mount /dev/mapper/vg0-var /mnt/gentoo/var
+	mount /dev/mapper/vg0-root /mnt/gentoo
+#	mkdir /mnt/gentoo/var
+#	mount /dev/mapper/vg0-var /mnt/gentoo/var
 	cd /mnt/gentoo
 
 	wget -O stage3.tar.xz $STAGE3URL
