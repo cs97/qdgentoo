@@ -37,7 +37,7 @@ if [ -z "$1" ]; then
 	echo "# 7.   genkernel                     #"
 	echo "# 7.1. genkernel (AES)               #"
 	echo "# 8.   fstab & Stuff                 #"
-	echo "# 8.1  fstab & Stuff (AES)           #"
+	echo "# 8.1.  fstab & Stuff (AES)           #"
 	echo "# 9.   grub                          #"
 	echo "# 9.1. grub (AES)                    #"
 	echo "# 10.  lsmod > /lsmod.txt            #"
