@@ -55,9 +55,7 @@ if [ -z "$1" ]; then
 	echo "# 29. makeuser                       #"
 	echo "# 30. wifi                           #"
 	echo "# 31. i3config                       #"
-	echo "# 32. pulseaudio                     #"
-	echo "# 33. alsa-mixer                     #"
-	echo "# 34. alsa-utils                     #"
+	echo "# 32. audio                          #"
 	echo "# 35. thunar                         #"
 	echo "# 36. file-roller                    #"
 	echo "# 37. mc                             #"
@@ -410,9 +408,11 @@ if [ $1 == '31' ]; then
 	mv ~/.config/i3/config ~/.config/i3/config.old
 	mv ~/config ~/.config/i3/config
 fi
-if [ $1 == '32' ]; then emerge --ask pulseaudio; fi
-if [ $1 == '33' ]; then emerge --ask alsa-mixer; fi
-if [ $1 == '34' ]; then emerge --ask alsa-utils; fi
+if [ $1 == '32' ]; then
+	emerge --ask pulseaudio
+	emerge --ask alsa-mixer
+	emerge --ask alsa-utils
+fi
 if [ $1 == '35' ]; then emerge --ask thunar; fi
 if [ $1 == '36' ]; then emerge --ask file-roller; fi
 if [ $1 == '37' ]; then emerge --ask mc; fi
