@@ -274,7 +274,7 @@ fi
 if [ $1 == '9' ]; then
 #	echo "sys-boot/boot:2 device-mapper" >> /etc/portage/package.use/sys-boot
 	emerge --ask --verbose sys-boot/grub:2
-#	echo 'GRUB_CMDLINE_LINUX="dolvm crypt_root=UUID=6a7a642a-3262-4f87-9540-bcd53969343b root=/dev/mapper/vg0-root"' >> /etc/default/gub
+#	echo 'GRUB_CMDLINE_LINUX="dolvm crypt_root=UUID=$2 root=/dev/mapper/vg0-root"' >> /etc/default/gub
 #	nano /etc/default/grub	
 	grub-install $disk
 	grub-mkconfig -o /boot/grub/grub.cfg
