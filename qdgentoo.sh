@@ -385,6 +385,7 @@ if [ $1 == '29' ]; then
 	echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 	passwd $USER
 #	passwd -l root
+	cp qdgentoo.sh /home/$USER/qdgentoo.sh
 fi
 
 
