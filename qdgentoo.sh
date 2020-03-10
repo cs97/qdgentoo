@@ -109,8 +109,8 @@ cd /mnt/gentoo
 	sleep 1
 	mkfs.ext4 $boot
 	modprobe dm-crypt
-	cryptsetup luksFormat -c aes-xts-plain64:sha256 -s 256 /dev/sda2
-	cryptsetup luksOpen /dev/sda2 lvm
+	cryptsetup luksFormat -c aes-xts-plain64:sha256 -s 256 $root
+	cryptsetup luksOpen $root lvm
 	lvm pvcreate /dev/mapper/lvm
 	vgcreate vg0 /dev/mapper/lvm
 	lvcreate -L 25G -n root vg0
