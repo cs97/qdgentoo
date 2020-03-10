@@ -406,8 +406,8 @@ if [ $1 == '37' ]; then emerge --ask mc; fi
 if [ $1 == '38' ]; then		#modprobe vboxdrv
 	USE="-suid" emerge --update --deep --newuse --verbose --ask xorg-server
 	echo 'SUBSYSTEM=="input", ACTION=="add", GROUP="input"' >> /etc/udev/rules.d/99-dev-input-group.rules
-	usermod -a -G video $user
-	usermod -a -G input $user
+	usermod -a -G video $USER
+	usermod -a -G input $USER
 fi
 if [ $1 == '39' ]; then emerge --ask cdrtools; fi
 
