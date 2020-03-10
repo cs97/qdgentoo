@@ -37,7 +37,7 @@ if [ -z "$1" ]; then
 	echo "# 7.   genkernel                     #"
 	echo "# 7.1. genkernel (AES)               #"
 	echo "# 8.   fstab & Stuff                 #"
-	echo "# 8.1.  fstab & Stuff (AES)          #"
+	echo "# 8.1. fstab & Stuff (AES)           #"
 	echo "# 9.   grub                          #"
 	echo "# 9.1. grub (AES)                    #"
 	echo "# 10.  lsmod > /lsmod.txt            #"
@@ -228,7 +228,6 @@ if [ $1 == '7' ]; then
 
 #	genkernel all
 	genkernel --menuconfig all
-#	genkernel --luks --lvm --no-zfs --menuconfig all
 	echo "##########################################"
 	echo "now 8"
 	exit
@@ -253,14 +252,7 @@ if [ $1 == '8' ]; then
 	echo "$root		/root		ext4		defaults        0 1" >> /etc/fstab
 	echo "$boot		/boot		ext4		defaults        0 2" >> /etc/fstab
 	echo "$home		/home		ext4		defaults	0 3" >> /etc/fstab
-	
-#	echo "/dev/mapper/vg0-root		/		ext4		defaults	0 1" >> /etc/fstab
-#	echo "$boot		/boot		ext4		defaults        0 2" >> /etc/fstab
-#	echo "/dev/mapper/vg0-home		/home		ext4		defaults	0 3" >> /etc/fstab
-#	echo "tmpfs		/tmp		tmpfs		size=4Gb	0 0" >> /etc/fstab
-
-	
-	
+		
 	nano -w /etc/fstab
 	
 	echo 'hostname="gentoo-pc"' >> /etc/conf.d/hostname
@@ -316,16 +308,10 @@ fi
 
 ################################	9
 if [ $1 == '9' ]; then
-#	echo "sys-boot/boot:2 device-mapper" >> /etc/portage/package.use/sys-boot
 	emerge --ask --verbose sys-boot/grub:2
-#	echo 'GRUB_CMDLINE_LINUX="dolvm crypt_root=UUID=$2 root=/dev/mapper/vg0-root"' >> /etc/default/gub
-#	nano /etc/default/grub	
 	grub-install $disk
 	grub-mkconfig -o /boot/grub/grub.cfg
-
-#	emerge --ask sys-boot/syslinux
-#	syslinux --install $boot 
-
+	
 	echo "##########################################"
 	echo "now 10"
 fi
