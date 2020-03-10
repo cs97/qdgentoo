@@ -96,7 +96,7 @@ if [ $1 == '0' ]; then
 	sleep 1
 	mount --make-rslave /mnt/gentoo/dev
 	sleep 1
-	cp ~/qdgentoo.sh /mnt/gentoo/qdgentoo.sh
+	cp ~/qdgentoo.sh /mnt/gentoo/root/qdgentoo.sh
 	echo "##########################################"
 	echo "now 1"
 	chroot /mnt/gentoo /bin/bash
@@ -404,10 +404,10 @@ if [ $1 == '36' ]; then emerge --ask file-roller; fi
 if [ $1 == '37' ]; then emerge --ask mc; fi
 
 if [ $1 == '38' ]; then		#modprobe vboxdrv
-USE="-suid" emerge --update --deep --newuse --verbose --ask xorg-server
-echo 'SUBSYSTEM=="input", ACTION=="add", GROUP="input"' >> /etc/udev/rules.d/99-dev-input-group.rules
-usermod -a -G video $user
-usermod -a -G input $user
+	USE="-suid" emerge --update --deep --newuse --verbose --ask xorg-server
+	echo 'SUBSYSTEM=="input", ACTION=="add", GROUP="input"' >> /etc/udev/rules.d/99-dev-input-group.rules
+	usermod -a -G video $user
+	usermod -a -G input $user
 fi
 if [ $1 == '39' ]; then emerge --ask cdrtools; fi
 
