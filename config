@@ -9,7 +9,7 @@ floating_modifier $mod
 ###########
 
 
-#exec feh --bg-center ~/tpbh.png
+#exec feh --bg-center ~/gentoo.png
 #exec conky -c ~/conky.conf
 
 font pango:awesome 7
@@ -25,7 +25,7 @@ bindsym $mod+b exec firefox
 bindsym $mod+t exec thunar
 bindsym $mod+m exec mc
 bindsym $mod+g exec gedit
-bindsym $mod+Shift+l exec i3lock -i ~/tpbh.png
+bindsym $mod+Shift+l exec i3lock -i ~/gentoo.png
 #bindsym $mod+Shift+l exec i3lock --colour=ff66cc
 bindsym $mod+h exec virtualbox
 bindsym $mod+Shift+t exec transmission-gtk
