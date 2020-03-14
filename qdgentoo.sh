@@ -2,7 +2,7 @@
 
 SERVERURL="https://raw.githubusercontent.com/l3f7s1d3/qdgentoo/master/"
 STAGE=''
-STAGE3URL='distfiles.gentoo.org/releases/amd64/autobuilds/20200205T214502Z/stage3-amd64-20200205T214502Z.tar.xz'
+#STAGE3URL='distfiles.gentoo.org/releases/amd64/autobuilds/20200205T214502Z/stage3-amd64-20200205T214502Z.tar.xz'
 USER='user'
 kernel='=sys-kernel/gentoo-sources-5.5.8 ~amd64'
 disk='/dev/sda'
@@ -77,7 +77,7 @@ if [ $1 == '0' ]; then
 	mkfs.ext4 $home
 	mount $root /mnt/gentoo
 	cd /mnt/gentoo
-	wget -O stage3.tar.xz $STAGE3URL
+#	wget -O stage3.tar.xz $STAGE3URL
 	tar xpvf stage3.tar.xz --xattrs-include='*.*' --numeric-owner
 	nano -w /mnt/gentoo/etc/portage/make.conf
 	#COMMON_FLAGS="-march=native -O2 -pipe" 
@@ -125,7 +125,7 @@ cd /mnt/gentoo
 #	mount /dev/mapper/vg0-var /mnt/gentoo/var
 	cd /mnt/gentoo
 
-	wget -O stage3.tar.xz $STAGE3URL
+#	wget -O stage3.tar.xz $STAGE3URL
 	tar xpvf stage3.tar.xz --xattrs-include='*.*' --numeric-owner
 	nano -w /mnt/gentoo/etc/portage/make.conf
 	#COMMON_FLAGS="-march=native -O2 -pipe" 
