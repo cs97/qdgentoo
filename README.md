@@ -10,7 +10,7 @@ copy qdgentoo.sh to sdX3
 
 copy stage3.tar.xz to sdX3
 
-chmod +x qdgentoo.sh
+> chmod +x qdgentoo.sh
 
 boot from sdX
 
