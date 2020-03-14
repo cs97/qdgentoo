@@ -76,6 +76,7 @@ if [ $1 == '0' ]; then
 	mkfs.ext4 $root
 	mkfs.ext4 $home
 	mount $root /mnt/gentoo
+	cp /root/stage3.tar.xz /mnt/gentoo/stage3.tar.xz
 	cd /mnt/gentoo
 #	wget -O stage3.tar.xz $STAGE3URL
 	tar xpvf stage3.tar.xz --xattrs-include='*.*' --numeric-owner
@@ -123,6 +124,7 @@ cd /mnt/gentoo
 	mount /dev/mapper/vg0-root /mnt/gentoo
 #	mkdir /mnt/gentoo/var
 #	mount /dev/mapper/vg0-var /mnt/gentoo/var
+	cp /root/stage3.tar.xz /mnt/gentoo/stage3.tar.xz
 	cd /mnt/gentoo
 
 #	wget -O stage3.tar.xz $STAGE3URL
