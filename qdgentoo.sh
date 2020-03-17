@@ -70,11 +70,12 @@ banner(){
 	exit
 }
 if [ -z "$1" ]; then
-banner
+	banner
 fi
 
 ################################	0
-if [ $1 == '0' ]; then
+#if [ $1 == '0' ]; then
+makefs(){
 	cfdisk $disk
 	sleep 1
 	mkfs.ext4 $boot
@@ -106,11 +107,15 @@ if [ $1 == '0' ]; then
 	echo "##########################################"
 	echo "now 1"
 	chroot /mnt/gentoo /bin/bash
+}
+if [ $1 == '0' ]; then
+	makefs
 fi
 
 ################################	0.1
-if [ $1 == '0.1' ]; then
-cd /mnt/gentoo
+#if [ $1 == '0.1' ]; then
+makefs_aes(){
+	cd /mnt/gentoo
 	cfdisk $disk
 	sleep 1
 	mkfs.ext4 $boot
@@ -155,10 +160,14 @@ cd /mnt/gentoo
 	echo "##########################################"
 	echo "now 1"
 	chroot /mnt/gentoo /bin/bash
+}
+if [ $1 == '0.1' ]; then
+	makefs_aes
 fi
 
 ################################	1
-if [ $1 == '1' ]; then
+#if [ $1 == '1' ]; then
+do_in_chroot(){
 	source /etc/profile
 	export PS1="(chroot) ${PS1}"
 	mount $boot /boot
@@ -171,18 +180,26 @@ if [ $1 == '1' ]; then
 	echo "eselect profile set X"		#skipt
 	echo "now 2"
 	exit
+}
+if [ $1 == '1' ]; then
+	do_in_chroot
 fi
 
 ################################	2
-if [ $1 == '2' ]; then
+#if [ $1 == '2' ]; then
+at_world(){
 	emerge --ask --verbose --update --deep --newuse @world			
 	echo "##########################################"
 	echo "now 3"
 	exit
+}
+if [ $1 == '2' ]; then
+	at_world
 fi
 
 ################################	3
-if [ $1 == '3' ]; then
+#if [ $1 == '3' ]; then
+make_locale(){
 #	portageq envvar ACCEPT_LICENSE @FREE
 	echo "Europe/Berlin" > /etc/timezone
 	emerge --config sys-libs/timezone-data
@@ -196,19 +213,27 @@ if [ $1 == '3' ]; then
 	echo "eselect locale set X"
 	echo "now 4"
 	exit
+	}
+if [ $1 == '3' ]; then
+	make_locale
 fi
 
 ################################	4
-if [ $1 == '4' ]; then
+#if [ $1 == '4' ]; then
+env_update(){
 	env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
 	etc-update
 	echo "##########################################"
 	echo "now 5"
 	exit
+}
+if [ $1 == '4' ]; then
+	env_update
 fi
 
 ################################	5
-if [ $1 == '5' ]; then
+#if [ $1 == '5' ]; then
+gentoo_sources(){
 	echo "$kernel"
 	echo "$kernel" > /etc/portage/package.accept_keywords
 	emerge --ask sys-kernel/gentoo-sources
@@ -216,20 +241,28 @@ if [ $1 == '5' ]; then
 	echo "##########################################"
 	echo "now 6"
 	exit
+}
+if [ $1 == '5' ]; then
+	gentoo_sources
 fi
 
 ################################	6
-if [ $1 == '6' ]; then
+#if [ $1 == '6' ]; then
+pci_utils(){
 	emerge --ask sys-apps/pciutils
 #	lspci
 	etc-update
 	echo "##########################################"
 	echo "now 7"
 	exit
+}
+if [ $1 == '6' ]; then
+	pci_utils
 fi
 
 ################################	7
-if [ $1 == '7' ]; then
+#if [ $1 == '7' ]; then
+gentoo_genkernel(){
 	emerge --ask genkernel
 	etc-update
 
@@ -238,20 +271,26 @@ if [ $1 == '7' ]; then
 	echo "##########################################"
 	echo "now 8"
 	exit
+if [ $1 == '7' ]; then
+	gentoo_genkernel
 fi
 
 ################################	7.1
-if [ $1 == '7.1' ]; then
+#if [ $1 == '7.1' ]; then
+gentoo_genkernel_aes()
 	emerge --ask genkernel
 	etc-update
 	genkernel --luks --lvm --no-zfs --menuconfig all
 	echo "##########################################"
 	echo "now 8"
 	exit
+if [ $1 == '7.1' ]; then
+	gentoo_genkernel_aes()
 fi
 
 ################################	8
-if [ $1 == '8' ]; then
+#if [ $1 == '8' ]; then
+fstab_stuff(){
 	etc-update
 	emerge --ask sys-kernel/linux-firmware
 	etc-update
@@ -279,10 +318,15 @@ if [ $1 == '8' ]; then
 	echo "##########################################"
 	echo "now 9"
 	exit
+}
+if [ $1 == '8' ]; then
+	fstab_stuff
 fi
 
 ################################	8.1
-if [ $1 == '8.1' ]; then
+
+#if [ $1 == '8.1' ]; then
+fstab_stuff_aes(){
 	etc-update
 	emerge --ask sys-kernel/linux-firmware
 	etc-update
@@ -311,20 +355,28 @@ if [ $1 == '8.1' ]; then
 	echo "##########################################"
 	echo "now 9"
 	exit
+}
+if [ $1 == '8.1' ]; then
+	fstab_stuff_aes(){
 fi
 
 ################################	9
-if [ $1 == '9' ]; then
+#if [ $1 == '9' ]; then
+install_grub(){
 	emerge --ask --verbose sys-boot/grub:2
 	grub-install $disk
 	grub-mkconfig -o /boot/grub/grub.cfg
 	
 	echo "##########################################"
 	echo "now 10"
+}
+if [ $1 == '9' ]; then
+	install_grub
 fi
 
 ################################	9.1
-if [ $1 == '9.1' ]; then
+#if [ $1 == '9.1' ]; then
+install_grub_aes(){
 	echo "sys-boot/boot:2 device-mapper" >> /etc/portage/package.use/sys-boot
 	emerge --ask --verbose sys-boot/grub:2
 	echo 'GRUB_CMDLINE_LINUX="dolvm crypt_root='$root' root=/dev/mapper/vg0-root"' >> /etc/default/grub
@@ -334,28 +386,36 @@ if [ $1 == '9.1' ]; then
 
 	echo "##########################################"
 	echo "now 10"
+	}
+if [ $1 == '9.1' ]; then
+	install_grub_aes
 fi
 
 
 
 ################################	10
-if [ $1 == '10' ]; then
-
+#if [ $1 == '10' ]; then
+lsmod_lsmod.txt(){
 	lsmod > /lsmod.txt
 
 	echo "##########################################"
 	echo "now exit"
 	echo "now 11"
-	
+}
+if [ $1 == '10' ]; then
+	lsmod_lsmod.txt(){	
 fi
 
 ################################	11
-if [ $1 == '11' ]; then
+#if [ $1 == '11' ]; then
+reboot_now(){
 	cd
 	umount -l /mnt/gentoo/dev{/shm,/pts,}
 	umount -R /mnt/gentoo
 	reboot
 	exit
+if [ $1 == '11' ]; then
+	reboot_now
 fi
 
 
