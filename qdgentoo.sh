@@ -56,6 +56,7 @@ if [ -z "$1" ]; then
 	echo "# 30. wifi                           #"
 	echo "# 31. i3config                       #"
 	echo "# 32. audio                          #"
+	echo "# 33. powersave                      #"
 	echo "# 35. thunar                         #"
 	echo "# 36. file-roller                    #"
 	echo "# 37. mc                             #"
@@ -373,7 +374,6 @@ if [ $1 == '26' ]; then
 #	emerge --ask-enter-invalid sys-apps/lm-sensors
 	emerge --ask-enter-invalid sys-process/htop
 #	emerge --ask-enter-invalid app-admin/conky
-	emerge --ask-enter-invalid sys-power/cpupower	#cpupower frequency-set -g powersave
 	emerge --ask-enter-invalid x11-apps/xbacklight	#xbacklight -set 50
 fi
 if [ $1 == '27' ]; then	emerge --ask www-client/firefox; fi
@@ -401,6 +401,13 @@ if [ $1 == '32' ]; then
 	emerge --ask pulseaudio
 	emerge --ask alsa-mixer
 	emerge --ask alsa-utils
+fi
+if [ $1 == '33' ]; then
+	emerge sys-power/cpupower
+	echo '#!/bin/bash' > /etc/local.d/powersave.start
+	echo 'cpupower frequency-set -g powersave' >> /etc/local.d/powersave.start
+	chmod +x /etc/local.d/powersave.start
+	rc-update add local default
 fi
 if [ $1 == '35' ]; then emerge --ask thunar; fi
 if [ $1 == '36' ]; then emerge --ask file-roller; fi
