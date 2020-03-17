@@ -10,7 +10,8 @@ boot='/dev/sda1'
 root='/dev/sda2'
 home='/dev/sda3'
 
-if [ -z "$1" ]; then
+#if [ -z "$1" ]; then
+banner(){
 	clear
 	echo "######################################"
 	echo "# #                                # #"
@@ -67,6 +68,8 @@ if [ -z "$1" ]; then
 	echo "######################################"
 	echo ""
 	exit
+}
+if [ -z "$1" ]; then
 fi
 
 ################################	0
