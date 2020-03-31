@@ -271,21 +271,23 @@ gentoo_genkernel(){
 	echo "##########################################"
 	echo "now 8"
 	exit
+}
 if [ $1 == '7' ]; then
 	gentoo_genkernel
 fi
 
 ################################	7.1
 #if [ $1 == '7.1' ]; then
-gentoo_genkernel_aes()
+gentoo_genkernel_aes(){
 	emerge --ask genkernel
 	etc-update
 	genkernel --luks --lvm --no-zfs --menuconfig all
 	echo "##########################################"
 	echo "now 8"
 	exit
+}
 if [ $1 == '7.1' ]; then
-	gentoo_genkernel_aes()
+	gentoo_genkernel_aes
 fi
 
 ################################	8
