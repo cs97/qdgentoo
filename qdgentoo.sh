@@ -405,7 +405,7 @@ lsmod_lsmod.txt(){
 	echo "now 11"
 }
 if [ $1 == '10' ]; then
-	lsmod_lsmod.txt(){	
+	lsmod_lsmod.txt
 fi
 
 ################################	11
