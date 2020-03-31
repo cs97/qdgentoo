@@ -359,7 +359,7 @@ fstab_stuff_aes(){
 	exit
 }
 if [ $1 == '8.1' ]; then
-	fstab_stuff_aes(){
+	fstab_stuff_aes
 fi
 
 ################################	9
