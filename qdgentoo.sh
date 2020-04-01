@@ -277,59 +277,23 @@ reboot_now(){
 }
 
 
-if [ -z "$1" ]; then
-	banner
-fi
-if [ $1 == '0' ]; then
-	makefs
-fi
-if [ $1 == '0.1' ]; then
-	makefs_aes
-fi
-if [ $1 == '1' ]; then
-	do_in_chroot
-fi
-if [ $1 == '2' ]; then
-	at_world
-fi
-if [ $1 == '3' ]; then
-	make_locale
-fi
-if [ $1 == '4' ]; then
-	env_update
-fi
-if [ $1 == '5' ]; then
-	gentoo_sources
-fi
-if [ $1 == '6' ]; then
-	pci_utils
-fi
-if [ $1 == '7' ]; then
-	gentoo_genkernel
-fi
-if [ $1 == '7.1' ]; then
-	gentoo_genkernel_aes
-fi
-if [ $1 == '8' ]; then
-	fstab_stuff
-fi
-if [ $1 == '8.1' ]; then
-	fstab_stuff_aes
-fi
-if [ $1 == '9' ]; then
-	install_grub
-fi
-if [ $1 == '9.1' ]; then
-	install_grub_aes
-fi
-if [ $1 == '10' ]; then
-	lsmod_lsmod.txt
-fi
-if [ $1 == '11' ]; then
-	reboot_now
-fi
-
-
+if [ -z "$1" ]; then banner; fi
+if [ $1 == '0' ]; then makefs; fi
+if [ $1 == '0.1' ]; then makefs_aes; fi
+if [ $1 == '1' ]; then do_in_chroot; fi
+if [ $1 == '2' ]; then at_world; fi
+if [ $1 == '3' ]; then make_locale; fi
+if [ $1 == '4' ]; then env_update; fi
+if [ $1 == '5' ]; then gentoo_sources; fi
+if [ $1 == '6' ]; then pci_utils; fi
+if [ $1 == '7' ]; then gentoo_genkernel; fi
+if [ $1 == '7.1' ]; then gentoo_genkernel_aes; fi
+if [ $1 == '8' ]; then fstab_stuff; fi
+if [ $1 == '8.1' ]; then fstab_stuff_aes; fi
+if [ $1 == '9' ]; then install_grub; fi
+if [ $1 == '9.1' ]; then install_grub_aes; fi
+if [ $1 == '10' ]; then lsmod_lsmod.txt; fi
+if [ $1 == '11' ]; then reboot_now; fi
 
 
 if [ $1 == '20' ]; then
