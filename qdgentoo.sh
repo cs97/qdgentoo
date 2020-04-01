@@ -263,7 +263,7 @@ install_grub_aes(){
 }
 
 ################################	10
-lsmod_lsmod.txt(){
+lsmod_lsmod_txt(){
 	lsmod > /lsmod.txt
 }
 
@@ -291,7 +291,7 @@ if [ $1 == '8' ]; then fstab_stuff; fi
 if [ $1 == '8.1' ]; then fstab_stuff_aes; fi
 if [ $1 == '9' ]; then install_grub; fi
 if [ $1 == '9.1' ]; then install_grub_aes; fi
-if [ $1 == '10' ]; then lsmod_lsmod.txt; fi
+if [ $1 == '10' ]; then lsmod_lsmod_txt; fi
 if [ $1 == '11' ]; then reboot_now; fi
 
 if [ $1 == '20' ]; then emerge --ask-enter-invalid x11-base/xorg-server; source /etc/profile; fi
