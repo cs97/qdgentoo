@@ -294,19 +294,12 @@ if [ $1 == '9.1' ]; then install_grub_aes; fi
 if [ $1 == '10' ]; then lsmod_lsmod.txt; fi
 if [ $1 == '11' ]; then reboot_now; fi
 
-
-if [ $1 == '20' ]; then
-	emerge --ask-enter-invalid x11-base/xorg-server
-	source /etc/profile
-fi
+if [ $1 == '20' ]; then emerge --ask-enter-invalid x11-base/xorg-server; source /etc/profile; fi
 if [ $1 == '21' ]; then	emerge --askx11-wm/i3; fi
 if [ $1 == '22' ]; then	echo "exec i3" >> ~/.xinitrc; fi
 if [ $1 == '23' ]; then	--ask emerge x11-terms/xterm; fi
 if [ $1 == '24' ]; then	--ask emerge x11-misc/i3status; fi
 if [ $1 == '25' ]; then	--ask emerge x11-misc/i3lock; fi
-
-
-
 if [ $1 == '26' ]; then
 	emerge media-gfx/feh
 	emerge app-misc/mc
@@ -318,9 +311,7 @@ if [ $1 == '26' ]; then
 fi
 if [ $1 == '27' ]; then	emerge --ask www-client/firefox; fi
 if [ $1 == '28' ]; then	emerge --ask app-emulation/virtualbox; fi
-
-#user
-if [ $1 == '29' ]; then
+if [ $1 == '29' ]; then #user
 	emerge --ask app-admin/sudo
 	useradd -m -G users,wheel,audio -s /bin/bash $USER
 	echo "exec i3" >> /home/$USER/.xinitrc
@@ -329,19 +320,13 @@ if [ $1 == '29' ]; then
 #	passwd -l root
 	cp qdgentoo.sh /home/$USER/qdgentoo.sh
 fi
-
-
 if [ $1 == '30' ]; then emerge --ask net-wireless/iw net-wireless/wpa_supplicant; fi
 if [ $1 == '31' ]; then
 	wget $SERVERURL/config
 	mv ~/.config/i3/config ~/.config/i3/config.old
 	mv ~/config ~/.config/i3/config
 fi
-if [ $1 == '32' ]; then
-	emerge --ask pulseaudio
-	emerge --ask alsa-mixer
-	emerge --ask alsa-utils
-fi
+if [ $1 == '32' ]; then emerge pulseaudio; emerge alsa-mixer; emerge alsa-utils; fi
 if [ $1 == '33' ]; then
 	emerge sys-power/cpupower
 	echo '#!/bin/bash' > /etc/local.d/powersave.start
@@ -352,7 +337,6 @@ fi
 if [ $1 == '35' ]; then emerge --ask thunar; fi
 if [ $1 == '36' ]; then emerge --ask file-roller; fi
 if [ $1 == '37' ]; then emerge --ask mc; fi
-
 if [ $1 == '38' ]; then		#modprobe vboxdrv
 	USE="-suid" emerge --update --deep --newuse --verbose --ask xorg-server
 	echo 'SUBSYSTEM=="input", ACTION=="add", GROUP="input"' >> /etc/udev/rules.d/99-dev-input-group.rules
@@ -361,16 +345,9 @@ if [ $1 == '38' ]; then		#modprobe vboxdrv
 fi
 if [ $1 == '39' ]; then emerge --ask cdrtools; fi
 
-
-
 if [ $1 == '99' ]; then
 	mv qdgentoo.sh qdgentoo.old
 	wget $SERVERURL/qdgentoo.sh
 	chmod +x qdgentoo.sh
 fi
-
-
 exit
-
-
-
