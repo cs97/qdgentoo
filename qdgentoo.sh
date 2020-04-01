@@ -2,7 +2,6 @@
 
 SERVERURL="https://raw.githubusercontent.com/l3f7s1d3/qdgentoo/master/"
 STAGE=''
-#STAGE3URL='distfiles.gentoo.org/releases/amd64/autobuilds/20200205T214502Z/stage3-amd64-20200205T214502Z.tar.xz'
 USER='user'
 kernel='=sys-kernel/gentoo-sources-5.6.0 ~amd64'
 disk='/dev/sda'
