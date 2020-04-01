@@ -276,82 +276,72 @@ reboot_now(){
 }
 
 case $1 in
-"0") makefs;;
-"0.1") makefs_aes;;
-"1") do_in_chroot;;
-"2") at_world;;
-"3") make_locale;;
-"4") env_update;;
-"5'") gentoo_sources;;
-"6") pci_utils;;
-"7") gentoo_genkernel;;
-"7.1") gentoo_genkernel_aes;;
-"8") fstab_stuff;;
-"8.1") fstab_stuff_aes;;
-"9") install_grub;;
-"9.1") install_grub_aes;;
-"10") lsmod_lsmod_txt;;
-"11") reboot_now;;
+	"0") makefs;;
+	"0.1") makefs_aes;;
+	"1") do_in_chroot;;
+	"2") at_world;;
+	"3") make_locale;;
+	"4") env_update;;
+	"5'") gentoo_sources;;
+	"6") pci_utils;;
+	"7") gentoo_genkernel;;
+	"7.1") gentoo_genkernel_aes;;
+	"8") fstab_stuff;;
+	"8.1") fstab_stuff_aes;;
+	"9") install_grub;;
+	"9.1") install_grub_aes;;
+	"10") lsmod_lsmod_txt;;
+	"11") reboot_now;;
 
-"20") emerge --ask-enter-invalid x11-base/xorg-server; source /etc/profile; fi
-"21") emerge --askx11-wm/i3; fi
-"22") echo "exec i3" >> ~/.xinitrc; fi
-"23") emerge --ask x11-terms/xterm; fi
-"24") emerge --ask x11-misc/i3status; fi
-"25") emerge --ask x11-misc/i3lock; fi
+	"20") emerge --ask-enter-invalid x11-base/xorg-server; source /etc/profile;;
+	"21") emerge --askx11-wm/i3;;
+	"22") echo "exec i3" >> ~/.xinitrc;;
+	"23") emerge --ask x11-terms/xterm;;
+	"24") emerge --ask x11-misc/i3status;;
+	"25") emerge --ask x11-misc/i3lock;;
+	"26") #stuff
+		emerge media-gfx/feh
+		emerge app-misc/mc
+		emerge app-misc/screenfetch
+		emerge sys-apps/lm-sensors
+		emerge sys-process/htop
+		emerge x11-apps/xbacklight;;	#xbacklight -set 50
+	"27") emerge --ask www-client/firefox;;
+	"28") emerge --ask app-emulation/virtualbox;;
+	"29") #user
+		emerge --ask app-admin/sudo
+		useradd -m -G users,wheel,audio -s /bin/bash $USER
+		echo "exec i3" >> /home/$USER/.xinitrc
+		echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
+		passwd $USER
+#		passwd -l root
+		cp qdgentoo.sh /home/$USER/qdgentoo.sh;;
+	"30") emerge --ask net-wireless/iw net-wireless/wpa_supplicant;;
+	"31")
+		wget $SERVERURL/config
+		mv ~/.config/i3/config ~/.config/i3/config.old
+		mv ~/config ~/.config/i3/config;;
+	"32")  emerge pulseaudio; emerge alsa-mixer; emerge alsa-utils;;
+	"33")
+		emerge sys-power/cpupower
+		echo '#!/bin/bash' > /etc/local.d/powersave.start
+		echo 'cpupower frequency-set -g powersave' >> /etc/local.d/powersave.start
+		chmod +x /etc/local.d/powersave.start
+		rc-update add local default;;
+	"35") emerge --ask thunar; ;;
+	"36") emerge --ask file-roller;;
+	"37") emerge --ask mc;;
+	"38") #modprobe vboxdrv
+		USE="-suid" emerge --update --deep --newuse --verbose --ask xorg-server
+		echo 'SUBSYSTEM=="input", ACTION=="add", GROUP="input"' >> /etc/udev/rules.d/99-dev-input-group.rules
+		usermod -a -G video $USER
+		usermod -a -G input $USER;;
+	"39") emerge --ask cdrtools;;
 
-*) banner;;
+	"99")
+		mv qdgentoo.sh qdgentoo.old
+		wget $SERVERURL/qdgentoo.sh
+		chmod +x qdgentoo.sh;;
+	*) banner;;
 esac
-
-
-if [ $1 == '26' ]; then
-	emerge media-gfx/feh
-	emerge app-misc/mc
-	emerge app-misc/screenfetch
-#	emerge sys-apps/lm-sensors
-	emerge sys-process/htop
-#	emerge app-admin/conky
-	emerge x11-apps/xbacklight	#xbacklight -set 50
-fi
-if [ $1 == '27' ]; then	emerge --ask www-client/firefox; fi
-if [ $1 == '28' ]; then	emerge --ask app-emulation/virtualbox; fi
-if [ $1 == '29' ]; then #user
-	emerge --ask app-admin/sudo
-	useradd -m -G users,wheel,audio -s /bin/bash $USER
-	echo "exec i3" >> /home/$USER/.xinitrc
-	echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
-	passwd $USER
-#	passwd -l root
-	cp qdgentoo.sh /home/$USER/qdgentoo.sh
-fi
-if [ $1 == '30' ]; then emerge --ask net-wireless/iw net-wireless/wpa_supplicant; fi
-if [ $1 == '31' ]; then
-	wget $SERVERURL/config
-	mv ~/.config/i3/config ~/.config/i3/config.old
-	mv ~/config ~/.config/i3/config
-fi
-if [ $1 == '32' ]; then emerge pulseaudio; emerge alsa-mixer; emerge alsa-utils; fi
-if [ $1 == '33' ]; then
-	emerge sys-power/cpupower
-	echo '#!/bin/bash' > /etc/local.d/powersave.start
-	echo 'cpupower frequency-set -g powersave' >> /etc/local.d/powersave.start
-	chmod +x /etc/local.d/powersave.start
-	rc-update add local default
-fi
-if [ $1 == '35' ]; then emerge --ask thunar; fi
-if [ $1 == '36' ]; then emerge --ask file-roller; fi
-if [ $1 == '37' ]; then emerge --ask mc; fi
-if [ $1 == '38' ]; then		#modprobe vboxdrv
-	USE="-suid" emerge --update --deep --newuse --verbose --ask xorg-server
-	echo 'SUBSYSTEM=="input", ACTION=="add", GROUP="input"' >> /etc/udev/rules.d/99-dev-input-group.rules
-	usermod -a -G video $USER
-	usermod -a -G input $USER
-fi
-if [ $1 == '39' ]; then emerge --ask cdrtools; fi
-
-if [ $1 == '99' ]; then
-	mv qdgentoo.sh qdgentoo.old
-	wget $SERVERURL/qdgentoo.sh
-	chmod +x qdgentoo.sh
-fi
 exit
