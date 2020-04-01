@@ -108,9 +108,7 @@ makefs(){
 	echo "now 1"
 	chroot /mnt/gentoo /bin/bash
 }
-if [ $1 == '0' ]; then
-	makefs
-fi
+
 
 ################################	0.1
 #if [ $1 == '0.1' ]; then
@@ -161,9 +159,7 @@ makefs_aes(){
 	echo "now 1"
 	chroot /mnt/gentoo /bin/bash
 }
-if [ $1 == '0.1' ]; then
-	makefs_aes
-fi
+
 
 ################################	1
 #if [ $1 == '1' ]; then
@@ -181,9 +177,7 @@ do_in_chroot(){
 	echo "now 2"
 	exit
 }
-if [ $1 == '1' ]; then
-	do_in_chroot
-fi
+
 
 ################################	2
 #if [ $1 == '2' ]; then
@@ -193,9 +187,7 @@ at_world(){
 	echo "now 3"
 	exit
 }
-if [ $1 == '2' ]; then
-	at_world
-fi
+
 
 ################################	3
 #if [ $1 == '3' ]; then
@@ -214,9 +206,7 @@ make_locale(){
 	echo "now 4"
 	exit
 	}
-if [ $1 == '3' ]; then
-	make_locale
-fi
+
 
 ################################	4
 #if [ $1 == '4' ]; then
@@ -227,9 +217,7 @@ env_update(){
 	echo "now 5"
 	exit
 }
-if [ $1 == '4' ]; then
-	env_update
-fi
+
 
 ################################	5
 #if [ $1 == '5' ]; then
@@ -242,9 +230,7 @@ gentoo_sources(){
 	echo "now 6"
 	exit
 }
-if [ $1 == '5' ]; then
-	gentoo_sources
-fi
+
 
 ################################	6
 #if [ $1 == '6' ]; then
@@ -256,9 +242,7 @@ pci_utils(){
 	echo "now 7"
 	exit
 }
-if [ $1 == '6' ]; then
-	pci_utils
-fi
+
 
 ################################	7
 #if [ $1 == '7' ]; then
@@ -272,9 +256,7 @@ gentoo_genkernel(){
 	echo "now 8"
 	exit
 }
-if [ $1 == '7' ]; then
-	gentoo_genkernel
-fi
+
 
 ################################	7.1
 #if [ $1 == '7.1' ]; then
@@ -286,9 +268,7 @@ gentoo_genkernel_aes(){
 	echo "now 8"
 	exit
 }
-if [ $1 == '7.1' ]; then
-	gentoo_genkernel_aes
-fi
+
 
 ################################	8
 #if [ $1 == '8' ]; then
@@ -321,9 +301,7 @@ fstab_stuff(){
 	echo "now 9"
 	exit
 }
-if [ $1 == '8' ]; then
-	fstab_stuff
-fi
+
 
 ################################	8.1
 
@@ -358,9 +336,7 @@ fstab_stuff_aes(){
 	echo "now 9"
 	exit
 }
-if [ $1 == '8.1' ]; then
-	fstab_stuff_aes
-fi
+
 
 ################################	9
 #if [ $1 == '9' ]; then
@@ -372,9 +348,7 @@ install_grub(){
 	echo "##########################################"
 	echo "now 10"
 }
-if [ $1 == '9' ]; then
-	install_grub
-fi
+
 
 ################################	9.1
 #if [ $1 == '9.1' ]; then
@@ -389,9 +363,7 @@ install_grub_aes(){
 	echo "##########################################"
 	echo "now 10"
 	}
-if [ $1 == '9.1' ]; then
-	install_grub_aes
-fi
+
 
 
 
@@ -404,9 +376,7 @@ lsmod_lsmod.txt(){
 	echo "now exit"
 	echo "now 11"
 }
-if [ $1 == '10' ]; then
-	lsmod_lsmod.txt
-fi
+
 
 ################################	11
 #if [ $1 == '11' ]; then
@@ -416,9 +386,60 @@ reboot_now(){
 	umount -R /mnt/gentoo
 	reboot
 	exit
+
+
+
+######################################################################################################################
+if [ $1 == '0' ]; then
+	makefs
+fi
+if [ $1 == '0.1' ]; then
+	makefs_aes
+fi
+if [ $1 == '1' ]; then
+	do_in_chroot
+fi
+if [ $1 == '2' ]; then
+	at_world
+fi
+if [ $1 == '3' ]; then
+	make_locale
+fi
+if [ $1 == '4' ]; then
+	env_update
+fi
+if [ $1 == '5' ]; then
+	gentoo_sources
+fi
+if [ $1 == '6' ]; then
+	pci_utils
+fi
+if [ $1 == '7' ]; then
+	gentoo_genkernel
+fi
+if [ $1 == '7.1' ]; then
+	gentoo_genkernel_aes
+fi
+if [ $1 == '8' ]; then
+	fstab_stuff
+fi
+if [ $1 == '8.1' ]; then
+	fstab_stuff_aes
+fi
+if [ $1 == '9' ]; then
+	install_grub
+fi
+if [ $1 == '9.1' ]; then
+	install_grub_aes
+fi
+if [ $1 == '10' ]; then
+	lsmod_lsmod.txt
+fi
 if [ $1 == '11' ]; then
 	reboot_now
 fi
+
+
 
 
 if [ $1 == '20' ]; then
