@@ -99,8 +99,6 @@ makefs(){
 	mount --make-rslave /mnt/gentoo/dev
 	sleep 1
 	cp ~/qdgentoo.sh /mnt/gentoo/root/qdgentoo.sh
-	echo "##########################################"
-	echo "now 1"
 	chroot /mnt/gentoo /bin/bash
 }
 
@@ -148,8 +146,6 @@ makefs_aes(){
 	mount --make-rslave /mnt/gentoo/dev
 	sleep 1
 	cp ~/qdgentoo.sh /mnt/gentoo/qdgentoo.sh
-	echo "##########################################"
-	echo "now 1"
 	chroot /mnt/gentoo /bin/bash
 }
 
@@ -165,16 +161,11 @@ do_in_chroot(){
 	eselect profile list
 	echo "##########################################"
 	echo "eselect profile set X"		#skipt
-	echo "now 2"
-	exit
 }
 
 ################################	2
 at_world(){
 	emerge --ask --verbose --update --deep --newuse @world			
-	echo "##########################################"
-	echo "now 3"
-	exit
 }
 
 ################################	3
@@ -190,17 +181,12 @@ make_locale(){
 	eselect locale list
 	echo "##########################################"
 	echo "eselect locale set X"
-	echo "now 4"
-	exit
 	}
 
 ################################	4
 env_update(){
 	env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
 	etc-update
-	echo "##########################################"
-	echo "now 5"
-	exit
 }
 
 ################################	5
@@ -209,9 +195,6 @@ gentoo_sources(){
 	echo "$kernel" > /etc/portage/package.accept_keywords
 	emerge --ask sys-kernel/gentoo-sources
 	etc-update
-	echo "##########################################"
-	echo "now 6"
-	exit
 }
 
 ################################	6
@@ -219,21 +202,13 @@ pci_utils(){
 	emerge --ask sys-apps/pciutils
 #	lspci
 	etc-update
-	echo "##########################################"
-	echo "now 7"
-	exit
 }
 
 ################################	7
 gentoo_genkernel(){
 	emerge --ask genkernel
 	etc-update
-
-#	genkernel all
 	genkernel --menuconfig all
-	echo "##########################################"
-	echo "now 8"
-	exit
 }
 
 ################################	7.1
@@ -241,9 +216,6 @@ gentoo_genkernel_aes(){
 	emerge --ask genkernel
 	etc-update
 	genkernel --luks --lvm --no-zfs --menuconfig all
-	echo "##########################################"
-	echo "now 8"
-	exit
 }
 
 ################################	8
@@ -271,10 +243,6 @@ fstab_stuff(){
 	emerge --ask app-admin/sysklogd
 	rc-update add sysklogd default
 	emerge --ask net-misc/dhcpcd
-
-	echo "##########################################"
-	echo "now 9"
-	exit
 }
 
 ################################	8.1
@@ -303,10 +271,6 @@ fstab_stuff_aes(){
 	emerge --ask app-admin/sysklogd
 	rc-update add sysklogd default
 	emerge --ask net-misc/dhcpcd
-
-	echo "##########################################"
-	echo "now 9"
-	exit
 }
 
 ################################	9
@@ -314,9 +278,6 @@ install_grub(){
 	emerge --ask --verbose sys-boot/grub:2
 	grub-install $disk
 	grub-mkconfig -o /boot/grub/grub.cfg
-	
-	echo "##########################################"
-	echo "now 10"
 }
 
 ################################	9.1
@@ -327,18 +288,11 @@ install_grub_aes(){
 	nano /etc/default/grub	
 	grub-install $disk
 	grub-mkconfig -o /boot/grub/grub.cfg
-
-	echo "##########################################"
-	echo "now 10"
 }
 
 ################################	10
 lsmod_lsmod.txt(){
 	lsmod > /lsmod.txt
-
-	echo "##########################################"
-	echo "now exit"
-	echo "now 11"
 }
 
 ################################	11
@@ -347,7 +301,7 @@ reboot_now(){
 	umount -l /mnt/gentoo/dev{/shm,/pts,}
 	umount -R /mnt/gentoo
 	reboot
-	exit
+}
 
 
 if [ -z "$1" ]; then
