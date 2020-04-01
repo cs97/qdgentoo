@@ -275,24 +275,26 @@ reboot_now(){
 	reboot
 }
 
+case $1 in
+"0") makefs;;
+"0.1") makefs_aes;;
+"1") do_in_chroot;;
+"2") at_world;;
+"3") make_locale;;
+"4") env_update;;
+"5'") gentoo_sources;;
+"6") pci_utils;;
+"7") gentoo_genkernel;;
+"7.1") gentoo_genkernel_aes;;
+"8") fstab_stuff;;
+"8.1") fstab_stuff_aes;;
+"9") install_grub;;
+"9.1") install_grub_aes;;
+"10") lsmod_lsmod_txt;;
+"11") reboot_now;;
 
-if [ -z "$1" ]; then banner; fi
-if [ $1 == '0' ]; then makefs; fi
-if [ $1 == '0.1' ]; then makefs_aes; fi
-if [ $1 == '1' ]; then do_in_chroot; fi
-if [ $1 == '2' ]; then at_world; fi
-if [ $1 == '3' ]; then make_locale; fi
-if [ $1 == '4' ]; then env_update; fi
-if [ $1 == '5' ]; then gentoo_sources; fi
-if [ $1 == '6' ]; then pci_utils; fi
-if [ $1 == '7' ]; then gentoo_genkernel; fi
-if [ $1 == '7.1' ]; then gentoo_genkernel_aes; fi
-if [ $1 == '8' ]; then fstab_stuff; fi
-if [ $1 == '8.1' ]; then fstab_stuff_aes; fi
-if [ $1 == '9' ]; then install_grub; fi
-if [ $1 == '9.1' ]; then install_grub_aes; fi
-if [ $1 == '10' ]; then lsmod_lsmod_txt; fi
-if [ $1 == '11' ]; then reboot_now; fi
+*) banner;;
+esac
 
 if [ $1 == '20' ]; then emerge --ask-enter-invalid x11-base/xorg-server; source /etc/profile; fi
 if [ $1 == '21' ]; then	emerge --askx11-wm/i3; fi
