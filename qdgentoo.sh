@@ -1,7 +1,6 @@
 #! /bin/bash
 
 GITURL="https://raw.githubusercontent.com/l3f7s1d3/qdgentoo/master/"
-STAGE=''
 USER='user'
 kernel='=sys-kernel/gentoo-sources-5.6.0 ~amd64'
 disk='/dev/sda'
