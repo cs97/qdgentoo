@@ -293,15 +293,17 @@ case $1 in
 "10") lsmod_lsmod_txt;;
 "11") reboot_now;;
 
+"20") emerge --ask-enter-invalid x11-base/xorg-server; source /etc/profile; fi
+"21") emerge --askx11-wm/i3; fi
+"22") echo "exec i3" >> ~/.xinitrc; fi
+"23") emerge --ask x11-terms/xterm; fi
+"24") emerge --ask x11-misc/i3status; fi
+"25") emerge --ask x11-misc/i3lock; fi
+
 *) banner;;
 esac
 
-if [ $1 == '20' ]; then emerge --ask-enter-invalid x11-base/xorg-server; source /etc/profile; fi
-if [ $1 == '21' ]; then	emerge --askx11-wm/i3; fi
-if [ $1 == '22' ]; then	echo "exec i3" >> ~/.xinitrc; fi
-if [ $1 == '23' ]; then	--ask emerge x11-terms/xterm; fi
-if [ $1 == '24' ]; then	--ask emerge x11-misc/i3status; fi
-if [ $1 == '25' ]; then	--ask emerge x11-misc/i3lock; fi
+
 if [ $1 == '26' ]; then
 	emerge media-gfx/feh
 	emerge app-misc/mc
