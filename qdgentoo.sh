@@ -1,6 +1,6 @@
 #! /bin/bash
 
-SERVERURL="https://raw.githubusercontent.com/l3f7s1d3/qdgentoo/master/"
+GITURL="https://raw.githubusercontent.com/l3f7s1d3/qdgentoo/master/"
 STAGE=''
 USER='user'
 kernel='=sys-kernel/gentoo-sources-5.6.0 ~amd64'
@@ -318,7 +318,7 @@ case $1 in
 		cp qdgentoo.sh /home/$USER/qdgentoo.sh;;
 	"30") emerge --ask net-wireless/iw net-wireless/wpa_supplicant;;
 	"31")
-		wget $SERVERURL/config
+		wget $GITURL/config
 		mv ~/.config/i3/config ~/.config/i3/config.old
 		mv ~/config ~/.config/i3/config;;
 	"32")  emerge pulseaudio; emerge alsa-mixer; emerge alsa-utils;;
@@ -340,7 +340,7 @@ case $1 in
 
 	"99")
 		mv qdgentoo.sh qdgentoo.old
-		wget $SERVERURL/qdgentoo.sh
+		wget $GITURL/qdgentoo.sh
 		chmod +x qdgentoo.sh;;
 	*) banner;;
 esac
