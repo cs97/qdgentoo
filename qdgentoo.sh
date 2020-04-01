@@ -363,22 +363,22 @@ if [ $1 == '20' ]; then
 	emerge --ask-enter-invalid x11-base/xorg-server
 	source /etc/profile
 fi
-if [ $1 == '21' ]; then	emerge --ask-enter-invalid x11-wm/i3; fi
+if [ $1 == '21' ]; then	emerge --askx11-wm/i3; fi
 if [ $1 == '22' ]; then	echo "exec i3" >> ~/.xinitrc; fi
-if [ $1 == '23' ]; then	emerge --ask-enter-invalid x11-terms/xterm; fi
-if [ $1 == '24' ]; then	emerge --ask-enter-invalid x11-misc/i3status; fi
-if [ $1 == '25' ]; then	emerge --ask-enter-invalid x11-misc/i3lock; fi
+if [ $1 == '23' ]; then	--ask emerge x11-terms/xterm; fi
+if [ $1 == '24' ]; then	--ask emerge x11-misc/i3status; fi
+if [ $1 == '25' ]; then	--ask emerge x11-misc/i3lock; fi
 
 
 
 if [ $1 == '26' ]; then
-	emerge --ask-enter-invalid media-gfx/feh
-	emerge --ask-enter-invalid app-misc/mc
-	emerge --ask-enter-invalid app-misc/screenfetch
-#	emerge --ask-enter-invalid sys-apps/lm-sensors
-	emerge --ask-enter-invalid sys-process/htop
-#	emerge --ask-enter-invalid app-admin/conky
-	emerge --ask-enter-invalid x11-apps/xbacklight	#xbacklight -set 50
+	emerge media-gfx/feh
+	emerge app-misc/mc
+	emerge app-misc/screenfetch
+#	emerge sys-apps/lm-sensors
+	emerge sys-process/htop
+#	emerge app-admin/conky
+	emerge x11-apps/xbacklight	#xbacklight -set 50
 fi
 if [ $1 == '27' ]; then	emerge --ask www-client/firefox; fi
 if [ $1 == '28' ]; then	emerge --ask app-emulation/virtualbox; fi
@@ -395,7 +395,7 @@ if [ $1 == '29' ]; then
 fi
 
 
-if [ $1 == '30' ]; then emerge --ask-enter-invalid net-wireless/iw net-wireless/wpa_supplicant; fi
+if [ $1 == '30' ]; then emerge --ask net-wireless/iw net-wireless/wpa_supplicant; fi
 if [ $1 == '31' ]; then
 	wget $SERVERURL/config
 	mv ~/.config/i3/config ~/.config/i3/config.old
