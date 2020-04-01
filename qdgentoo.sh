@@ -298,13 +298,7 @@ case $1 in
 	"23") emerge --ask x11-terms/xterm;;
 	"24") emerge --ask x11-misc/i3status;;
 	"25") emerge --ask x11-misc/i3lock;;
-	"26") #stuff
-		emerge media-gfx/feh
-		emerge app-misc/mc
-		emerge app-misc/screenfetch
-		emerge sys-apps/lm-sensors
-		emerge sys-process/htop
-		emerge x11-apps/xbacklight;;	#xbacklight -set 50
+	"26") emerge media-gfx/feh app-misc/screenfetch sys-apps/lm-sensors x11-apps/xbacklight sys-process/htop;;
 	"27") emerge --ask www-client/firefox;;
 	"28") emerge --ask app-emulation/virtualbox;;
 	"29") #user
