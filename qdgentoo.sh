@@ -4,13 +4,12 @@ SERVERURL="https://raw.githubusercontent.com/l3f7s1d3/qdgentoo/master/"
 STAGE=''
 #STAGE3URL='distfiles.gentoo.org/releases/amd64/autobuilds/20200205T214502Z/stage3-amd64-20200205T214502Z.tar.xz'
 USER='user'
-kernel='=sys-kernel/gentoo-sources-5.5.8 ~amd64'
+kernel='=sys-kernel/gentoo-sources-5.6.0 ~amd64'
 disk='/dev/sda'
 boot='/dev/sda1'
 root='/dev/sda2'
 home='/dev/sda3'
 
-#if [ -z "$1" ]; then
 banner(){
 	clear
 	echo "######################################"
@@ -20,7 +19,7 @@ banner(){
 	echo "#       ######################       #"
 	echo "#       #                    #       #"
 	echo "#       #      qdgentoo      #       #"
-	echo "#       #      v0.6          #       #"
+	echo "#       #      v0.7          #       #"
 	echo "#       ######################       #"
 	echo "#     #                        #     #"
 	echo "#   #                            #   #"
@@ -70,9 +69,7 @@ banner(){
 	exit
 }
 
-
 ################################	0
-#if [ $1 == '0' ]; then
 makefs(){
 	cfdisk $disk
 	sleep 1
@@ -107,9 +104,7 @@ makefs(){
 	chroot /mnt/gentoo /bin/bash
 }
 
-
 ################################	0.1
-#if [ $1 == '0.1' ]; then
 makefs_aes(){
 	cd /mnt/gentoo
 	cfdisk $disk
@@ -158,9 +153,7 @@ makefs_aes(){
 	chroot /mnt/gentoo /bin/bash
 }
 
-
 ################################	1
-#if [ $1 == '1' ]; then
 do_in_chroot(){
 	source /etc/profile
 	export PS1="(chroot) ${PS1}"
@@ -176,9 +169,7 @@ do_in_chroot(){
 	exit
 }
 
-
 ################################	2
-#if [ $1 == '2' ]; then
 at_world(){
 	emerge --ask --verbose --update --deep --newuse @world			
 	echo "##########################################"
@@ -186,9 +177,7 @@ at_world(){
 	exit
 }
 
-
 ################################	3
-#if [ $1 == '3' ]; then
 make_locale(){
 #	portageq envvar ACCEPT_LICENSE @FREE
 	echo "Europe/Berlin" > /etc/timezone
@@ -205,9 +194,7 @@ make_locale(){
 	exit
 	}
 
-
 ################################	4
-#if [ $1 == '4' ]; then
 env_update(){
 	env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
 	etc-update
@@ -216,9 +203,7 @@ env_update(){
 	exit
 }
 
-
 ################################	5
-#if [ $1 == '5' ]; then
 gentoo_sources(){
 	echo "$kernel"
 	echo "$kernel" > /etc/portage/package.accept_keywords
@@ -229,9 +214,7 @@ gentoo_sources(){
 	exit
 }
 
-
 ################################	6
-#if [ $1 == '6' ]; then
 pci_utils(){
 	emerge --ask sys-apps/pciutils
 #	lspci
@@ -241,9 +224,7 @@ pci_utils(){
 	exit
 }
 
-
 ################################	7
-#if [ $1 == '7' ]; then
 gentoo_genkernel(){
 	emerge --ask genkernel
 	etc-update
@@ -255,9 +236,7 @@ gentoo_genkernel(){
 	exit
 }
 
-
 ################################	7.1
-#if [ $1 == '7.1' ]; then
 gentoo_genkernel_aes(){
 	emerge --ask genkernel
 	etc-update
@@ -267,9 +246,7 @@ gentoo_genkernel_aes(){
 	exit
 }
 
-
 ################################	8
-#if [ $1 == '8' ]; then
 fstab_stuff(){
 	etc-update
 	emerge --ask sys-kernel/linux-firmware
@@ -300,10 +277,7 @@ fstab_stuff(){
 	exit
 }
 
-
 ################################	8.1
-
-#if [ $1 == '8.1' ]; then
 fstab_stuff_aes(){
 	etc-update
 	emerge --ask sys-kernel/linux-firmware
@@ -335,9 +309,7 @@ fstab_stuff_aes(){
 	exit
 }
 
-
 ################################	9
-#if [ $1 == '9' ]; then
 install_grub(){
 	emerge --ask --verbose sys-boot/grub:2
 	grub-install $disk
@@ -347,9 +319,7 @@ install_grub(){
 	echo "now 10"
 }
 
-
 ################################	9.1
-#if [ $1 == '9.1' ]; then
 install_grub_aes(){
 	echo "sys-boot/boot:2 device-mapper" >> /etc/portage/package.use/sys-boot
 	emerge --ask --verbose sys-boot/grub:2
@@ -360,13 +330,9 @@ install_grub_aes(){
 
 	echo "##########################################"
 	echo "now 10"
-	}
-
-
-
+}
 
 ################################	10
-#if [ $1 == '10' ]; then
 lsmod_lsmod.txt(){
 	lsmod > /lsmod.txt
 
@@ -375,9 +341,7 @@ lsmod_lsmod.txt(){
 	echo "now 11"
 }
 
-
 ################################	11
-#if [ $1 == '11' ]; then
 reboot_now(){
 	cd
 	umount -l /mnt/gentoo/dev{/shm,/pts,}
@@ -386,8 +350,6 @@ reboot_now(){
 	exit
 
 
-
-######################################################################################################################
 if [ -z "$1" ]; then
 	banner
 fi
