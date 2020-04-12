@@ -33,8 +33,8 @@ banner(){
 	echo "#  10  lsmod > /lsmod.txt            #  34                                #"
 	echo "#  11  reboot                        #  35 thunar                         #"
 	echo "#                                    #  36 file-roller                    #"
-	echo "#                                    #  37 mc                             #"
-	echo "#                                    #  38 no root xorg-server            #"
+	echo "#  13  genkernel_update              #  37 mc                             #"
+	echo "#  14  genkernel_aes_update          #  38 no root xorg-server            #"
 	echo "# 99. update                         #  39 cdrtools                       #"
 	echo "###########################################################################"
 	echo ""
@@ -274,6 +274,20 @@ reboot_now(){
 	reboot
 }
 
+################################	13
+genkernel_update(){
+	echo "$kernel" > /etc/portage/package.accept_keywords
+	emerge --ask sys-kernel/gentoo-sources
+	genkernel --menuconfig all
+}
+################################	14
+genkernel_aes_update(){
+	echo "$kernel" > /etc/portage/package.accept_keywords
+	emerge --ask sys-kernel/gentoo-sources
+	genkernel --luks --lvm --no-zfs --menuconfig all
+}
+
+
 case $1 in
 	"0") makefs;;
 	"0.1") makefs_aes;;
@@ -291,6 +305,9 @@ case $1 in
 	"9.1") install_grub_aes;;
 	"10") lsmod_lsmod_txt;;
 	"11") reboot_now;;
+	"13") genkernel_update ;;
+	"14") genkernel_aes_update ;;
+
 
 	"20") emerge --ask-enter-invalid x11-base/xorg-server; source /etc/profile;;
 	"21") emerge --askx11-wm/i3;;
