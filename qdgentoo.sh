@@ -295,7 +295,7 @@ case $1 in
 	"2") at_world;;
 	"3") make_locale;;
 	"4") env_update;;
-	"5'") gentoo_sources;;
+	"5") gentoo_sources;;
 	"6") pci_utils;;
 	"7") gentoo_genkernel;;
 	"7.1") gentoo_genkernel_aes;;
