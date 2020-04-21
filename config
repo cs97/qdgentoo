@@ -49,7 +49,7 @@ bindsym $mod+Shift+v split v
 #bindsym $mod+t split toggle
 
 # enter fullscreen mode for the focused container
-#bindsym $mod+f fullscreen toggle
+bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+w layout tabbed
@@ -112,6 +112,10 @@ bindsym $mod+Shift+e exit i3
 # brightness
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10 
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+
+# audio
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
+bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
 
 ###########
 
