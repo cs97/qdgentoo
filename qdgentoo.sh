@@ -309,7 +309,10 @@ case $1 in
 	"14") genkernel_aes_update ;;
 
 
-	"20") emerge --ask-enter-invalid x11-base/xorg-server; source /etc/profile;;
+	"20") #xorg
+		emerge --ask x11-base/xorg-server --autounmask-write; source /etc/profile
+		etc-update
+		emerge --ask x11-base/xorg-server; source /etc/profile;;
 	"21") emerge --askx11-wm/i3;;
 	"22") echo "exec i3" >> ~/.xinitrc;;
 	"23") emerge --ask x11-terms/xterm;;
