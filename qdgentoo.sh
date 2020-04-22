@@ -35,7 +35,7 @@ banner(){
 	echo "#                                    #  36 file-roller                    #"
 	echo "#  13  genkernel_update              #  37 mc                             #"
 	echo "#  14  genkernel_aes_update          #  38 no root xorg-server            #"
-	echo "#  15                                #  39 cdrtools                       #"
+	echo "#  15  nano make.conf                #  39 cdrtools                       #"
 	echo "#  99. update                        #                                    #"
 	echo "###########################################################################"
 	echo ""
