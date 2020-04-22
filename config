@@ -20,7 +20,7 @@ font pango:awesome 7
 #########
 
 #bindsym $mod+Return exec xterm -fg green -bg black
-bindsym $mod+Return exec xterm -fg white -bg black
+bindsym $mod+Return exec xterm -fg white -bg grey7 #black
 bindsym $mod+b exec firefox
 bindsym $mod+t exec thunar
 bindsym $mod+m exec mc
