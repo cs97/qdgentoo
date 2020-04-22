@@ -308,7 +308,7 @@ case $1 in
 	"11") reboot_now;;
 	"13") genkernel_update ;;
 	"14") genkernel_aes_update ;;
-	"15") nano -w /mnt/gentoo/etc/portage/make.conf ;;
+	"15") nano -w /etc/portage/make.conf ;;
 
 
 
