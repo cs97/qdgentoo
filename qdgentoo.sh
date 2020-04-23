@@ -331,7 +331,9 @@ case $1 in
 		echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 		passwd $USER
 #		passwd -l root
-		cp qdgentoo.sh /home/$USER/qdgentoo.sh;;
+		cp qdgentoo.sh /home/$USER/qdgentoo.sh
+		emerge xrandr
+		echo "user:" $USER;;
 	"30") emerge --ask net-wireless/iw net-wireless/wpa_supplicant;;
 	"31")
 		wget $GITURL/config
