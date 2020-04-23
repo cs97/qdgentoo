@@ -348,7 +348,7 @@ case $1 in
 		rc-update add local default;;
 	"35") emerge --ask thunar; ;;
 	"36") emerge --ask file-roller;;
-	"37") emerge --ask mc;;
+	"37") emerge --ask app-misc/mc;;
 	"38") #modprobe vboxdrv
 		USE="-suid" emerge --update --deep --newuse --verbose --ask xorg-server
 		echo 'SUBSYSTEM=="input", ACTION=="add", GROUP="input"' >> /etc/udev/rules.d/99-dev-input-group.rules
