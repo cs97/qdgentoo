@@ -277,13 +277,15 @@ reboot_now(){
 
 ################################	13
 genkernel_update(){
-	echo "$kernel" > /etc/portage/package.accept_keywords
+	emerge --sync
+	echo "$kernel" >> /etc/portage/package.accept_keywords
 	emerge --ask sys-kernel/gentoo-sources
 	genkernel --menuconfig all
 }
 ################################	14
 genkernel_aes_update(){
-	echo "$kernel" > /etc/portage/package.accept_keywords
+	emerge --sync
+	echo "$kernel" >> /etc/portage/package.accept_keywords
 	emerge --ask sys-kernel/gentoo-sources
 	genkernel --luks --lvm --no-zfs --menuconfig all
 }
