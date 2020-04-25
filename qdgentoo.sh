@@ -326,10 +326,10 @@ case $1 in
 	"26") emerge media-gfx/feh app-misc/screenfetch sys-apps/lm-sensors x11-apps/xbacklight sys-process/htop;;
 	"27") emerge --ask www-client/firefox;;
 	"28") 
-	echo "=app-emulation/virtualbox-6.1.6 ~amd64" > /etc/portage/package.accept_keywords
-	echo "=app-emulation/virtualbox-modules-6.1.6 ~amd64" > /etc/portage/package.accept_keywords
-	emerge --ask app-emulation/virtualbox
-	modprobe vboxdrv;;
+		echo "=app-emulation/virtualbox-6.1.6 ~amd64" > /etc/portage/package.accept_keywords
+		echo "=app-emulation/virtualbox-modules-6.1.6 ~amd64" > /etc/portage/package.accept_keywords
+		emerge --ask app-emulation/virtualbox
+		modprobe vboxdrv;;
 	"29") #user
 		emerge --ask app-admin/sudo
 		useradd -m -G users,wheel,audio -s /bin/bash $USER
@@ -355,7 +355,7 @@ case $1 in
 	"35") emerge --ask thunar; ;;
 	"36") emerge --ask file-roller;;
 	"37") emerge --ask app-misc/mc;;
-	"38") #modprobe vboxdrv
+	"38")
 		USE="-suid" emerge --update --deep --newuse --verbose --ask xorg-server
 		echo 'SUBSYSTEM=="input", ACTION=="add", GROUP="input"' >> /etc/udev/rules.d/99-dev-input-group.rules
 		usermod -a -G video $USER
