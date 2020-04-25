@@ -325,7 +325,11 @@ case $1 in
 	"25") emerge --ask x11-misc/i3lock;;
 	"26") emerge media-gfx/feh app-misc/screenfetch sys-apps/lm-sensors x11-apps/xbacklight sys-process/htop;;
 	"27") emerge --ask www-client/firefox;;
-	"28") emerge --ask app-emulation/virtualbox;;
+	"28") 
+	echo "=app-emulation/virtualbox-6.1.6 ~amd64" > /etc/portage/package.accept_keywords
+	echo "=app-emulation/virtualbox-modules-6.1.6 ~amd64" > /etc/portage/package.accept_keywords
+	emerge --ask app-emulation/virtualbox
+	modprobe vboxdrv;;
 	"29") #user
 		emerge --ask app-admin/sudo
 		useradd -m -G users,wheel,audio -s /bin/bash $USER
