@@ -326,8 +326,8 @@ case $1 in
 	"26") emerge media-gfx/feh app-misc/screenfetch sys-apps/lm-sensors x11-apps/xbacklight sys-process/htop;;
 	"27") emerge --ask www-client/firefox;;
 	"28") 
-		echo "=app-emulation/virtualbox-6.1.6 ~amd64" > /etc/portage/package.accept_keywords
-		echo "=app-emulation/virtualbox-modules-6.1.6 ~amd64" > /etc/portage/package.accept_keywords
+		echo "=app-emulation/virtualbox-6.1.6 ~amd64" >> /etc/portage/package.accept_keywords
+		echo "=app-emulation/virtualbox-modules-6.1.6 ~amd64" >> /etc/portage/package.accept_keywords
 		emerge --ask app-emulation/virtualbox
 		modprobe vboxdrv;;
 	"29") #user
