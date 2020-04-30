@@ -280,14 +280,18 @@ genkernel_update(){
 	emerge --sync
 	echo "$kernel" >> /etc/portage/package.accept_keywords
 	emerge --ask sys-kernel/gentoo-sources
-	genkernel --menuconfig all
+	eselect kernel list
+	echo "eselect kernel set X"
+	echo "genkernel --menuconfig all"
 }
 ################################	14
 genkernel_aes_update(){
 	emerge --sync
 	echo "$kernel" >> /etc/portage/package.accept_keywords
 	emerge --ask sys-kernel/gentoo-sources
-	genkernel --luks --lvm --no-zfs --menuconfig all
+	eselect kernel list
+	echo "eselect kernel set X"
+	echo "genkernel --luks --lvm --no-zfs --menuconfig all"
 }
 
 
