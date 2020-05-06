@@ -1,10 +1,13 @@
 #! /bin/bash
 
-GITURL="https://raw.githubusercontent.com/l3f7s1d3/qdgentoo/master/"
 USER='user'
-kernel='=sys-kernel/gentoo-sources-5.6.7 ~amd64'
-virtualbox='=app-emulation/virtualbox-6.1.6 ~amd64"'
-virtualbox_modules='=app-emulation/virtualbox-modules-6.1.6 ~amd64"'
+
+GITURL="https://raw.githubusercontent.com/l3f7s1d3/qdgentoo/master/"
+
+kernel='=sys-kernel/gentoo-sources-5.6.11 ~amd64'
+virtualbox='=app-emulation/virtualbox-6.1.6 ~amd64'
+virtualbox_modules='=app-emulation/virtualbox-modules-6.1.6 ~amd64'
+
 disk='/dev/sda'
 boot='/dev/sda1'
 root='/dev/sda2'
