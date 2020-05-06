@@ -3,6 +3,8 @@
 GITURL="https://raw.githubusercontent.com/l3f7s1d3/qdgentoo/master/"
 USER='user'
 kernel='=sys-kernel/gentoo-sources-5.6.7 ~amd64'
+virtualbox='=app-emulation/virtualbox-6.1.6 ~amd64"'
+virtualbox_modules='=app-emulation/virtualbox-modules-6.1.6 ~amd64"'
 disk='/dev/sda'
 boot='/dev/sda1'
 root='/dev/sda2'
@@ -16,8 +18,8 @@ banner(){
 	echo "#                                                                         #"
 	echo "###########################################################################"
 	echo "$kernel"
-	echo ""
-	echo ""
+	echo "$virtualbox"
+	echo "$virtualbox_modules"
 	echo "###########################################################################"
 	echo "#                                    #                                    #"
 	echo "#  0   makefs                        #  20 xorg-server                    #"
