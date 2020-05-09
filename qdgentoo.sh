@@ -60,27 +60,8 @@ makefs(){
 	mount $root /mnt/gentoo
 	cp /root/stage3.tar.xz /mnt/gentoo/stage3.tar.xz
 	cd /mnt/gentoo
-#	wget -O stage3.tar.xz $STAGE3URL
-	tar xpvf stage3.tar.xz --xattrs-include='*.*' --numeric-owner
-	nano -w /mnt/gentoo/etc/portage/make.conf
-	#COMMON_FLAGS="-march=native -O2 -pipe" 
-	#MAKEOPTS="-j3"			
-	mirrorselect -i -o >> /mnt/gentoo/etc/portage/make.conf
-	mkdir --parents /mnt/gentoo/etc/portage/repos.conf
-	cp /mnt/gentoo/usr/share/portage/config/repos.conf /mnt/gentoo/etc/portage/repos.conf/gentoo.conf
-	cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
-	mount --types proc /proc /mnt/gentoo/proc
-	sleep 1
-	mount --rbind /sys /mnt/gentoo/sys
-	sleep 1
-	mount --make-rslave /mnt/gentoo/sys
-	sleep 1
-	mount --rbind /dev /mnt/gentoo/dev
-	sleep 1
-	mount --make-rslave /mnt/gentoo/dev
-	sleep 1
-	cp ~/qdgentoo.sh /mnt/gentoo/root/qdgentoo.sh
-	chroot /mnt/gentoo /bin/bash
+	makefs_2
+
 }
 
 ################################	0.1
@@ -106,7 +87,10 @@ makefs_aes(){
 #	mount /dev/mapper/vg0-var /mnt/gentoo/var
 	cp /root/stage3.tar.xz /mnt/gentoo/stage3.tar.xz
 	cd /mnt/gentoo
+	makefs_2
+}
 
+makefs_2(){
 #	wget -O stage3.tar.xz $STAGE3URL
 	tar xpvf stage3.tar.xz --xattrs-include='*.*' --numeric-owner
 	nano -w /mnt/gentoo/etc/portage/make.conf
