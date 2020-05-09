@@ -98,9 +98,7 @@ makefs_2(){
 
 	tar xpvf stage3.tar.xz --xattrs-include='*.*' --numeric-owner
 	#wget $GITURL/make.conf -o /mnt/gentoo/etc/portage/make.conf
-	nano -w /mnt/gentoo/etc/portage/make.conf
-	#COMMON_FLAGS="-march=native -O2 -pipe" 
-	#MAKEOPTS="-j3"			
+	nano -w /mnt/gentoo/etc/portage/make.conf		
 	mirrorselect -i -o >> /mnt/gentoo/etc/portage/make.conf
 	mkdir --parents /mnt/gentoo/etc/portage/repos.conf
 	cp /mnt/gentoo/usr/share/portage/config/repos.conf /mnt/gentoo/etc/portage/repos.conf/gentoo.conf
