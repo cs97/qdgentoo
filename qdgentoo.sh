@@ -97,6 +97,7 @@ makefs_2(){
 #	wget -O stage3.tar.xz $STAGE3URL
 
 	tar xpvf stage3.tar.xz --xattrs-include='*.*' --numeric-owner
+	#wget $GITURL/make.conf -o /mnt/gentoo/etc/portage/make.conf
 	nano -w /mnt/gentoo/etc/portage/make.conf
 	#COMMON_FLAGS="-march=native -O2 -pipe" 
 	#MAKEOPTS="-j3"			
