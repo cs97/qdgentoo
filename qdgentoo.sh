@@ -13,6 +13,11 @@ boot='/dev/sda1'
 root='/dev/sda2'
 home='/dev/sda3'
 
+#disk='/dev/nvme0n1'
+#boot='/dev/nvme0n1p1'
+#root='/dev/nvme0n1p2'
+#home='/dev/nvme0n1p3'
+
 banner(){
 	clear
 	echo "###########################################################################"
