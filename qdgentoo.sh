@@ -196,21 +196,7 @@ fstab_stuff(){
 	echo "$boot		/boot		ext4		defaults        0 2" >> /etc/fstab
 	echo "$home		/home		ext4		defaults	0 3" >> /etc/fstab
 		
-	nano -w /etc/fstab
-	
-	echo 'hostname="gentoo-pc"' >> /etc/conf.d/hostname
-	emerge --ask --noreplace net-misc/netifrc
-#	nano -w /etc/conf.d/net; fi	# config_eth0="dhcp"
-#	cd /etc/init.d
-#	ln -s net.lo net.eth0
-#	rc-update add net.eth0 default
-	passwd
-#	nano -w /etc/rc.conf
-#	nano -w /etc/conf.d/keymaps
-#	nano -w /etc/conf.d/hwclock
-	emerge --ask app-admin/sysklogd
-	rc-update add sysklogd default
-	emerge --ask net-misc/dhcpcd
+	fstab_stuff_2
 }
 
 ################################	8.1
@@ -224,6 +210,10 @@ fstab_stuff_aes(){
 	echo "/dev/mapper/vg0-home		/home		ext4		defaults	0 3" >> /etc/fstab
 #	echo "tmpfs		/tmp		tmpfs		size=4Gb	0 0" >> /etc/fstab
 
+	fstab_stuff_2
+}
+
+fstab_stuff_2(){
 	nano -w /etc/fstab
 	
 	echo 'hostname="gentoo-pc"' >> /etc/conf.d/hostname
