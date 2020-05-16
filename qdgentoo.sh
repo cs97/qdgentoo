@@ -44,8 +44,8 @@ banner(){
 	echo "#  8.1 fstab & Stuff (AES)           #  31 i3config                       #"
 	echo "#  9   grub                          #  32 audio                          #"
 	echo "#  9.1 grub (AES)                    #  33 powersave                      #"
-	echo "#  10  lsmod > /lsmod.txt            #  34                                #"
-	echo "#  11  reboot                        #  35 thunar                         #"
+	echo "#  10  reboot                        #  34                                #"
+	echo "#  11                                #  35 thunar                         #"
 	echo "#                                    #  36 file-roller                    #"
 	echo "#  13  genkernel_update              #  37 mc                             #"
 	echo "#  14  genkernel_aes_update          #  38 no root xorg-server            #"
@@ -249,11 +249,6 @@ install_grub_aes(){
 }
 
 ################################	10
-lsmod_lsmod_txt(){
-	lsmod > /lsmod.txt
-}
-
-################################	11
 reboot_now(){
 	cd
 	umount -l /mnt/gentoo/dev{/shm,/pts,}
@@ -270,6 +265,7 @@ genkernel_update(){
 	echo "eselect kernel set X"
 	echo "genkernel --menuconfig all"
 }
+
 ################################	14
 genkernel_aes_update(){
 	emerge --sync
@@ -296,8 +292,8 @@ case $1 in
 	"8.1") fstab_stuff_aes;;
 	"9") install_grub;;
 	"9.1") install_grub_aes;;
-	"10") lsmod_lsmod_txt;;
-	"11") reboot_now;;
+	"10") reboot_now;;
+	
 	"13") genkernel_update ;;
 	"14") genkernel_aes_update ;;
 	"15") nano -w /etc/portage/make.conf ;;
