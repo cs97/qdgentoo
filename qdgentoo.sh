@@ -8,15 +8,20 @@ kernel='=sys-kernel/gentoo-sources-5.6.13 ~amd64'
 virtualbox='=app-emulation/virtualbox-6.1.6 ~amd64'
 virtualbox_modules='=app-emulation/virtualbox-modules-6.1.6 ~amd64'
 
-#disk='/dev/sda'
-#boot='/dev/sda1'
-#root='/dev/sda2'
-#home='/dev/sda3'
+case 2 in
+	"1")
+		disk='/dev/sda'
+		boot='/dev/sda1'
+		root='/dev/sda2'
+		home='/dev/sda3';;
+	"2")
+		disk='/dev/nvme0n1'
+		boot='/dev/nvme0n1p1'
+		root='/dev/nvme0n1p2'
+		home='/dev/nvme0n1p3';;
+	*) exit;;
+esac
 
-disk='/dev/nvme0n1'
-boot='/dev/nvme0n1p1'
-root='/dev/nvme0n1p2'
-home='/dev/nvme0n1p3'
 
 banner(){
 	clear
