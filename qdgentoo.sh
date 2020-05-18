@@ -283,6 +283,13 @@ genkernel_aes_update(){
 	echo "genkernel --luks --lvm --no-zfs --menuconfig all"
 }
 
+virtualbox_install(){
+	echo "$virtualbox" >> /etc/portage/package.accept_keywords
+	echo "$virtualbox_modules" >> /etc/portage/package.accept_keywords
+	emerge --ask app-emulation/virtualbox
+	modprobe vboxdrv
+}
+
 
 case $1 in
 	"0")
@@ -334,11 +341,7 @@ case $1 in
 	"25") emerge --ask x11-misc/i3lock;;
 	"26") emerge media-gfx/feh app-misc/screenfetch sys-apps/lm-sensors x11-apps/xbacklight sys-process/htop;;
 	"27") emerge --ask www-client/firefox;;
-	"28") 
-		echo "$virtualbox" >> /etc/portage/package.accept_keywords
-		echo "$virtualbox_modules" >> /etc/portage/package.accept_keywords
-		emerge --ask app-emulation/virtualbox
-		modprobe vboxdrv;;
+	"28") virtualbox_install;;
 	"29") #user
 		emerge --ask app-admin/sudo
 		useradd -m -G users,wheel,audio -s /bin/bash $USER
