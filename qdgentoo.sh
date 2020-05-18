@@ -21,6 +21,12 @@ case 2 in
 		boot='/dev/nvme0n1p1'
 		root='/dev/nvme0n1p2'
 		home='/dev/nvme0n1p3';;
+	"3")
+		disk='/dev/sda'		# 2M
+		uefi='/dev/sda1'	# 128M
+		boot='/dev/sda2'	# 25G
+		root='/dev/sda3'	# 100%FREE
+		home='/dev/sda4';;	
 	*) exit;;
 esac
 
@@ -94,6 +100,17 @@ makefs_aes(){
 #	mkdir /mnt/gentoo/var
 #	mount /dev/mapper/vg0-var /mnt/gentoo/var
 	makefs_2
+}
+################################	0.2
+makefs_efi(){
+	cfdisk $disk
+	sleep 1
+	mkfs.fat -F 32 $boot
+	mkfs.ext4 $root
+	mkfs.ext4 $home
+	mount $root /mnt/gentoo
+	makefs_2
+
 }
 makefs_2(){
 	cp /root/stage3.tar.xz /mnt/gentoo/stage3.tar.xz
@@ -236,6 +253,13 @@ install_grub_aes(){
 	echo 'GRUB_CMDLINE_LINUX="dolvm crypt_root='$root' root=/dev/mapper/vg0-root"' >> /etc/default/grub
 	nano /etc/default/grub	
 	grub-install $disk
+	grub-mkconfig -o /boot/grub/grub.cfg
+}
+################################	9.2
+install_grub_efi(){
+	echo 'GRUB_PLATFORMS="efi-64"' >> /etc/portage/make.conf
+	emerge --ask --verbose sys-boot/grub:2
+	grub-install --target=x86_64-efi --efi-directory=/boot
 	grub-mkconfig -o /boot/grub/grub.cfg
 }
 ################################	10
