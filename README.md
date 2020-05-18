@@ -22,7 +22,7 @@ boot from sdX
 
 > ./qdgentoo.sh x
 
-x --> 1,2,3,4,5,6,7,etc-update,7,8,9
+x --> 1, 2, 3, 4, 5, 6, 7+(etc-update), 7, 8, 9
 
 > exit
 
