@@ -18,7 +18,7 @@ else
 fi
 
 # 1=bios/sdx 2=bios/nvme0n1 3=efi/sdx
-case 2 in
+case 4 in
 	"1")	#DOS					#no aes		# aes
 		disk='/dev/sda'
 		boot='/dev/sda1'	# 512M		(boot)		(boot)
