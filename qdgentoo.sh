@@ -10,6 +10,8 @@ virtualbox_modules='=app-emulation/virtualbox-modules-6.1.6 ~amd64'
 
 aes_yesno=false	#true=no flase=yes
 
+efi_yesno=false
+
 case 2 in
 	"1")
 		disk='/dev/sda'
@@ -21,11 +23,12 @@ case 2 in
 		boot='/dev/nvme0n1p1'
 		root='/dev/nvme0n1p2'
 		home='/dev/nvme0n1p3';;
-	"3")
-		disk='/dev/sda'		# 2M
-		uefi='/dev/sda1'	# 128M
-		boot='/dev/sda2'	# 25G
-		root='/dev/sda3'	# 100%FREE
+		
+	"3")	# GPT
+		disk='/dev/sda'		# 2M		(bootloader)
+		uefi='/dev/sda1'	# 128M		(fat32 UEFI)
+		boot='/dev/sda2'	# 25G		(root)
+		root='/dev/sda3'	# 100%FREE	(hme)
 		home='/dev/sda4';;	
 	*) exit;;
 esac
