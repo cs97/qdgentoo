@@ -30,7 +30,7 @@ case 2 in
 		boot='/dev/sda2'	# 128M		(fat32 UEFI)
 		root='/dev/sda3'	# 25G		(root)
 		home='/dev/sda4';;	# 100%FREE	(home)
-	"3")	# GPT
+	"4")	# GPT
 		disk='/dev/nvme0n1'		
 		uefi='/dev//dev/nvme0n1p1'	# 2M		(bootloader)
 		boot='/dev//dev/nvme0n1p2'	# 128M		(fat32 UEFI)
