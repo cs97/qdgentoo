@@ -282,6 +282,12 @@ genkernel_aes_update(){
 	echo "eselect kernel set X"
 	echo "genkernel --luks --lvm --no-zfs --menuconfig all"
 }
+################################	20
+xorg_install(){
+	emerge --ask x11-base/xorg-server --autounmask-write; source /etc/profile
+	etc-update
+	emerge --ask x11-base/xorg-server; source /etc/profile
+}
 ################################	28
 virtualbox_install(){
 	echo "$virtualbox" >> /etc/portage/package.accept_keywords
@@ -338,10 +344,7 @@ case $1 in
 
 
 
-	"20") #xorg
-		emerge --ask x11-base/xorg-server --autounmask-write; source /etc/profile
-		etc-update
-		emerge --ask x11-base/xorg-server; source /etc/profile;;
+	"20") xorg_install;;
 	"21") emerge --ask x11-wm/i3;;
 	"22") echo "exec i3" >> ~/.xinitrc;;
 	"23") emerge --ask x11-terms/xterm;;
