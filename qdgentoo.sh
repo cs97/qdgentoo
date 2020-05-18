@@ -8,34 +8,34 @@ kernel='=sys-kernel/gentoo-sources-5.6.13 ~amd64'
 virtualbox='=app-emulation/virtualbox-6.1.6 ~amd64'
 virtualbox_modules='=app-emulation/virtualbox-modules-6.1.6 ~amd64'
 
-aes_yesno="0"	#0=no 1=yes 2=no+efi
+aes_yesno="0"	#0=noaes 1=aes 2=noaes+efi
 
 
 # 1=bios/sdx 2=bios/nvme0n1 3=efi/sdx
 case 2 in
-	"1")
+	"1")	#DOS					#no aes		# aes
 		disk='/dev/sda'
-		boot='/dev/sda1'
-		root='/dev/sda2'
-		home='/dev/sda3';;
+		boot='/dev/sda1'	# 512M		(boot)		(boot)
+		root='/dev/sda2'	# 25G		(root)		(lvm)
+		home='/dev/sda3';;	# 100%FREE	(home)		(x)
 	"2")
 		disk='/dev/nvme0n1'
 		boot='/dev/nvme0n1p1'
 		root='/dev/nvme0n1p2'
 		home='/dev/nvme0n1p3';;
 		
-	"3")	# GPT
+	"3")	# GPT					#no aes		# aes
 		disk='/dev/sda'		
-		uefi='/dev/sda1'	# 2M		(bootloader)
-		boot='/dev/sda2'	# 128M		(fat32 UEFI)
-		root='/dev/sda3'	# 25G		(root)
-		home='/dev/sda4';;	# 100%FREE	(home)
+		uefi='/dev/sda1'	# 2M		(bootloader)	(bootloader)
+		boot='/dev/sda2'	# 128M		(fat32 UEFI)	(fat32 UEFI)
+		root='/dev/sda3'	# 25G		(root)		(lvm)
+		home='/dev/sda4';;	# 100%FREE	(home)		(x)
 	"4")	# GPT
 		disk='/dev/nvme0n1'		
 		uefi='/dev/nvme0n1p1'	# 2M		(bootloader)
 		boot='/dev/nvme0n1p2'	# 128M		(fat32 UEFI)
 		root='/dev/nvme0n1p3'	# 25G		(root)
-		home='/dev/nvme0n1p4';;	# 100%FREE	(hme)
+		home='/dev/nvme0n1p4';;	# 100%FREE	(home)
 	*) exit;;
 esac
 
