@@ -61,7 +61,6 @@ banner(){
 	echo "###########################################################################"
 	echo ""
 }
-
 ################################	0
 makefs(){
 	cfdisk $disk
@@ -73,7 +72,6 @@ makefs(){
 	makefs_2
 
 }
-
 ################################	0.1
 makefs_aes(){
 	cd /mnt/gentoo
@@ -97,7 +95,6 @@ makefs_aes(){
 #	mount /dev/mapper/vg0-var /mnt/gentoo/var
 	makefs_2
 }
-
 makefs_2(){
 	cp /root/stage3.tar.xz /mnt/gentoo/stage3.tar.xz
 	cd /mnt/gentoo
@@ -123,7 +120,6 @@ makefs_2(){
 	cp ~/qdgentoo.sh /mnt/gentoo/qdgentoo.sh
 	chroot /mnt/gentoo /bin/bash
 }
-
 ################################	1
 do_in_chroot(){
 	source /etc/profile
@@ -137,12 +133,10 @@ do_in_chroot(){
 	echo "##########################################"
 	echo "eselect profile set X"		#skipt
 }
-
 ################################	2
 at_world(){
 	emerge --ask --verbose --update --deep --newuse @world			
 }
-
 ################################	3
 make_locale(){
 #	portageq envvar ACCEPT_LICENSE @FREE
@@ -157,13 +151,11 @@ make_locale(){
 	echo "##########################################"
 	echo "eselect locale set X"
 	}
-
 ################################	4
 env_update(){
 	env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
 	etc-update
 }
-
 ################################	5
 gentoo_sources(){
 	echo "$kernel"
@@ -171,28 +163,24 @@ gentoo_sources(){
 	emerge --ask sys-kernel/gentoo-sources
 	etc-update
 }
-
 ################################	6
 pci_utils(){
 	emerge --ask sys-apps/pciutils
 #	lspci
 	etc-update
 }
-
 ################################	7
 gentoo_genkernel(){
 	emerge --ask genkernel
 	etc-update
 	genkernel --menuconfig all
 }
-
 ################################	7.1
 gentoo_genkernel_aes(){
 	emerge --ask genkernel
 	etc-update
 	genkernel --luks --lvm --no-zfs --menuconfig all
 }
-
 ################################	8
 fstab_stuff(){
 	etc-update
@@ -205,7 +193,6 @@ fstab_stuff(){
 		
 	fstab_stuff_2
 }
-
 ################################	8.1
 fstab_stuff_aes(){
 	etc-update
@@ -219,7 +206,6 @@ fstab_stuff_aes(){
 
 	fstab_stuff_2
 }
-
 fstab_stuff_2(){
 	nano -w /etc/fstab
 	
@@ -237,14 +223,12 @@ fstab_stuff_2(){
 	rc-update add sysklogd default
 	emerge --ask net-misc/dhcpcd
 }
-
 ################################	9
 install_grub(){
 	emerge --ask --verbose sys-boot/grub:2
 	grub-install $disk
 	grub-mkconfig -o /boot/grub/grub.cfg
 }
-
 ################################	9.1
 install_grub_aes(){
 	echo "sys-boot/boot:2 device-mapper" >> /etc/portage/package.use/sys-boot
@@ -254,7 +238,6 @@ install_grub_aes(){
 	grub-install $disk
 	grub-mkconfig -o /boot/grub/grub.cfg
 }
-
 ################################	10
 reboot_now(){
 	cd
@@ -262,7 +245,6 @@ reboot_now(){
 	umount -R /mnt/gentoo
 	reboot
 }
-
 ################################	13
 genkernel_update(){
 	emerge --sync
@@ -272,7 +254,6 @@ genkernel_update(){
 	echo "eselect kernel set X"
 	echo "genkernel --menuconfig all"
 }
-
 ################################	14
 genkernel_aes_update(){
 	emerge --sync
@@ -303,7 +284,6 @@ cpupower_install(){
 	chmod +x /etc/local.d/powersave.start
 	rc-update add local default
 }
-
 
 case $1 in
 	"0")
