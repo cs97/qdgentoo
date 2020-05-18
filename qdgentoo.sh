@@ -10,6 +10,8 @@ virtualbox_modules='=app-emulation/virtualbox-modules-6.1.6 ~amd64'
 
 aes_yesno="0"	#0=no 1=yes 2=no+efi
 
+
+# 1=bios/sdx 2=bios/nvme0n1 3=efi/sdx
 case 2 in
 	"1")
 		disk='/dev/sda'
