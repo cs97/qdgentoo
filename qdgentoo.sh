@@ -8,8 +8,8 @@ kernel='=sys-kernel/gentoo-sources-5.6.13 ~amd64'
 virtualbox='=app-emulation/virtualbox-6.1.6 ~amd64'
 virtualbox_modules='=app-emulation/virtualbox-modules-6.1.6 ~amd64'
 
-aes_yesno=false	#0=noaes 1=aes
-efi_yesno=false
+aes_yesno=true
+efi_yesno=true
 
 if [ $efi_yesno = true ]; then
 	mk_boot_fs="mkfs.fat -F 32"
@@ -99,7 +99,7 @@ makefs_aes(){
 	cd /mnt/gentoo
 	cfdisk $disk
 	sleep 1
-	mkfs.ext4 $boot
+	$mk_boot_fs $boot
 	modprobe dm-crypt
 	cryptsetup luksFormat -c aes-xts-plain64:sha256 -s 256 $root
 	cryptsetup luksOpen $root lvm
