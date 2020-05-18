@@ -8,8 +8,14 @@ kernel='=sys-kernel/gentoo-sources-5.6.13 ~amd64'
 virtualbox='=app-emulation/virtualbox-6.1.6 ~amd64'
 virtualbox_modules='=app-emulation/virtualbox-modules-6.1.6 ~amd64'
 
-aes_yesno="0"	#0=noaes 1=aes 2=noaes+efi
+aes_yesno=false	#0=noaes 1=aes
+efi_yesno=false
 
+if [ $efi_yesno = true ]; then
+	mk_boot_fs="mkfs.fat -F 32"
+else
+	mk_boot_fs="mkfs.ext4"
+fi
 
 # 1=bios/sdx 2=bios/nvme0n1 3=efi/sdx
 case 2 in
@@ -81,7 +87,7 @@ banner(){
 makefs(){
 	cfdisk $disk
 	sleep 1
-	mkfs.ext4 $boot
+	$mk_boot_fs $boot
 	mkfs.ext4 $root
 	mkfs.ext4 $home
 	mount $root /mnt/gentoo
@@ -111,17 +117,7 @@ makefs_aes(){
 #	mount /dev/mapper/vg0-var /mnt/gentoo/var
 	makefs_2
 }
-################################	0.2
-makefs_efi(){
-	cfdisk $disk
-	sleep 1
-	mkfs.fat -F 32 $boot
-	mkfs.ext4 $root
-	mkfs.ext4 $home
-	mount $root /mnt/gentoo
-	makefs_2
 
-}
 makefs_2(){
 	cp /root/stage3.tar.xz /mnt/gentoo/stage3.tar.xz
 	cd /mnt/gentoo
@@ -274,6 +270,16 @@ install_grub_efi(){
 	grub-install --target=x86_64-efi --efi-directory=/boot
 	grub-mkconfig -o /boot/grub/grub.cfg
 }
+################################	9.3
+install_grub_aes_efi(){
+	echo 'GRUB_PLATFORMS="efi-64"' >> /etc/portage/make.conf
+	echo "sys-boot/boot:2 device-mapper" >> /etc/portage/package.use/sys-boot
+	emerge --ask --verbose sys-boot/grub:2
+	echo 'GRUB_CMDLINE_LINUX="dolvm crypt_root='$root' root=/dev/mapper/vg0-root"' >> /etc/default/grub
+	nano /etc/default/grub	
+	grub-install --target=x86_64-efi --efi-directory=/boot
+	grub-mkconfig -o /boot/grub/grub.cfg
+}
 ################################	10
 reboot_now(){
 	cd
@@ -323,10 +329,8 @@ cpupower_install(){
 
 case $1 in
 	"0")
-		if [ $aes_yesno = "0" ]; then
+		if [ $aes_yesno = false ]; then
 			makefs
-		elif [ $aes_yesno = "2" ]; then
-			makefs_efi
 		else
 			makefs_aes
 		fi;;
@@ -337,26 +341,24 @@ case $1 in
 	"5") gentoo_sources;;
 	"6") pci_utils;;
 	"7") 
-		if [ $aes_yesno = "0" ]; then
-			gentoo_genkernel
-		elif [ $aes_yesno = "2" ]; then
+		if [ $aes_yesno = false ]; then
 			gentoo_genkernel
 		else
 			gentoo_genkernel_aes
 		fi;;
 	"8")
-		if [ $aes_yesno = "0" ]; then
-			fstab_stuff
-		elif [ $aes_yesno = "2" ]; then
+		if [ $aes_yesno = false ]; then
 			fstab_stuff
 		else
 			fstab_stuff_aes
 		fi;;
 	"9")
-		if [ $aes_yesno = "0" ]; then
+		if [ $aes_yesno = false ] && [ $efi_yesno = false ]; then
 			install_grub
-		elif [ $aes_yesno = "2" ]; then
+		elif [ $aes_yesno = false ] && [ $efi_yesno = true ]; then
 			install_grub_efi
+		elif [ $aes_yesno = true ] && [ $efi_yesno = true ]; then
+			install_grub_aes_efi
 		else
 			install_grub_aes
 		fi;;
