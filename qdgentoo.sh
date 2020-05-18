@@ -282,12 +282,20 @@ genkernel_aes_update(){
 	echo "eselect kernel set X"
 	echo "genkernel --luks --lvm --no-zfs --menuconfig all"
 }
-
+################################	28
 virtualbox_install(){
 	echo "$virtualbox" >> /etc/portage/package.accept_keywords
 	echo "$virtualbox_modules" >> /etc/portage/package.accept_keywords
 	emerge --ask app-emulation/virtualbox
 	modprobe vboxdrv
+}
+################################	33
+cpupower_install(){
+	emerge sys-power/cpupower
+	echo '#!/bin/bash' > /etc/local.d/powersave.start
+	echo 'cpupower frequency-set -g powersave' >> /etc/local.d/powersave.start
+	chmod +x /etc/local.d/powersave.start
+	rc-update add local default
 }
 
 
@@ -358,12 +366,7 @@ case $1 in
 		mv ~/.config/i3/config ~/.config/i3/config.old
 		mv ~/config ~/.config/i3/config;;
 	"32")  emerge pulseaudio; emerge alsa-mixer; emerge alsa-utils;;
-	"33")
-		emerge sys-power/cpupower
-		echo '#!/bin/bash' > /etc/local.d/powersave.start
-		echo 'cpupower frequency-set -g powersave' >> /etc/local.d/powersave.start
-		chmod +x /etc/local.d/powersave.start
-		rc-update add local default;;
+	"33") cpupower_install;;
 	"35") emerge --ask thunar; ;;
 	"36") emerge --ask file-roller;;
 	"37") emerge --ask app-misc/mc;;
