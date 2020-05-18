@@ -314,7 +314,7 @@ cpupower_install(){
 
 case $1 in
 	"0")
-		if $aes_yesno; then
+		if [ $aes_yesno="1" ]; then
 			makefs
 		else
 			makefs_aes
@@ -326,19 +326,19 @@ case $1 in
 	"5") gentoo_sources;;
 	"6") pci_utils;;
 	"7") 
-		if $aes_yesno; then
+		if [ $aes_yesno="1" ]; then
 			gentoo_genkernel
 		else
 			gentoo_genkernel_aes
 		fi;;
 	"8")
-		if $aes_yesno; then
+		if [ $aes_yesno="1" ]; then
 			fstab_stuff
 		else
 			fstab_stuff_aes
 		fi;;
 	"9")
-		if $aes_yesno; then
+		if [ $aes_yesno="1" ]; then
 			install_grub
 		else
 			install_grub_aes
