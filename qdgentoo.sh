@@ -8,9 +8,7 @@ kernel='=sys-kernel/gentoo-sources-5.6.13 ~amd64'
 virtualbox='=app-emulation/virtualbox-6.1.6 ~amd64'
 virtualbox_modules='=app-emulation/virtualbox-modules-6.1.6 ~amd64'
 
-aes_yesno=false	#true=no flase=yes
-
-efi_yesno=false
+aes_yesno="0"	#0=no 1=yes 2=no+efi
 
 case 2 in
 	"1")
@@ -314,8 +312,10 @@ cpupower_install(){
 
 case $1 in
 	"0")
-		if [ $aes_yesno = "1" ]; then
+		if [ $aes_yesno = "0" ]; then
 			makefs
+		elif [ $aes_yesno = "2" ]; then
+			makefs_efi
 		else
 			makefs_aes
 		fi;;
@@ -326,20 +326,26 @@ case $1 in
 	"5") gentoo_sources;;
 	"6") pci_utils;;
 	"7") 
-		if [ $aes_yesno = "1" ]; then
+		if [ $aes_yesno = "0" ]; then
+			gentoo_genkernel
+		elif [ $aes_yesno = "2" ]; then
 			gentoo_genkernel
 		else
 			gentoo_genkernel_aes
 		fi;;
 	"8")
-		if [ $aes_yesno = "1" ]; then
+		if [ $aes_yesno = "0" ]; then
+			fstab_stuff
+		elif [ $aes_yesno = "2" ]; then
 			fstab_stuff
 		else
 			fstab_stuff_aes
 		fi;;
 	"9")
-		if [ $aes_yesno = "1" ]; then
+		if [ $aes_yesno = "0" ]; then
 			install_grub
+		elif [ $aes_yesno = "2" ]; then
+			install_grub_efi
 		else
 			install_grub_aes
 		fi;;
