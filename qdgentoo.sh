@@ -47,7 +47,7 @@ banner(){
 	echo "#                                 qdgentoo                                #"
 	echo "#                                                                         #"
 	echo "###########################################################################"
-	echo "run on" $([ -d /sys/firmware/efi ] && echo UEFI || echo BIOS
+	echo "run on" $([ -d /sys/firmware/efi ] && echo UEFI || echo BIOS)
 	echo "$kernel"
 	echo "$virtualbox"
 	echo "$virtualbox_modules"
