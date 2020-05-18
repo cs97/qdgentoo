@@ -32,10 +32,10 @@ case 2 in
 		home='/dev/sda4';;	# 100%FREE	(home)		(x)
 	"4")	# GPT
 		disk='/dev/nvme0n1'		
-		uefi='/dev/nvme0n1p1'	# 2M		(bootloader)
-		boot='/dev/nvme0n1p2'	# 128M		(fat32 UEFI)
-		root='/dev/nvme0n1p3'	# 25G		(root)
-		home='/dev/nvme0n1p4';;	# 100%FREE	(home)
+		uefi='/dev/nvme0n1p1'	# 2M		(bootloader)	(bootloader)
+		boot='/dev/nvme0n1p2'	# 128M		(fat32 UEFI)	(fat32 UEFI)
+		root='/dev/nvme0n1p3'	# 25G		(root)		(lvm)
+		home='/dev/nvme0n1p4';;	# 100%FREE	(home)		(x)
 	*) exit;;
 esac
 
