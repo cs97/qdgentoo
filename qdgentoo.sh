@@ -17,7 +17,7 @@ else
 	mk_boot_fs="mkfs.ext4"
 fi
 
-# 1=bios/sdx 2=bios/nvme0n1 3=efi/sdx
+# 1=bios/sdx 2=bios/nvme0n1 3=efi/sdx 4=efi/nvme0n1
 case 4 in
 	"1")	#DOS					#no aes		# aes
 		disk='/dev/sda'
