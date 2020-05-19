@@ -311,9 +311,10 @@ genkernel_aes_update(){
 }
 ################################	20
 xorg_install(){
-	emerge --ask x11-base/xorg-server --autounmask-write; source /etc/profile
-	etc-update
-	emerge --ask x11-base/xorg-server; source /etc/profile
+	emerge --ask x11-base/xorg-server
+	#emerge --ask x11-base/xorg-server --autounmask-write; source /etc/profile
+	#etc-update
+	#emerge --ask x11-base/xorg-server; source /etc/profile
 }
 ################################	28
 virtualbox_install(){
