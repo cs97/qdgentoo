@@ -102,7 +102,7 @@ makefs_aes(){
 	$mk_boot_fs $boot
 	modprobe dm-crypt
 	#cryptsetup luksFormat -c aes-xts-plain64:sha256 -s 256 $root
-	cryptsetup luksFormat --type1 $root
+	cryptsetup luksFormat --type luks1 $root
 	cryptsetup luksOpen $root lvm
 	lvm pvcreate /dev/mapper/lvm
 	vgcreate vg0 /dev/mapper/lvm
