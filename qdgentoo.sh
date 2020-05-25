@@ -94,10 +94,13 @@ makefs(){
 }
 ################################	0.1
 makefs_aes(){
-	cd /mnt/gentoo
 	cfdisk $disk
 	sleep 1
-	$mk_boot_fs $boot
+	if [ $efi_yesno = true ]; then
+		mkfs.fat -F 32 $boot
+	else
+		mkfs.ext4 $boot
+	fi
 	modprobe dm-crypt
 	#cryptsetup luksFormat -c aes-xts-plain64:sha256 -s 256 $root
 	cryptsetup luksFormat --type luks1 $root
