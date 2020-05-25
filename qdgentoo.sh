@@ -11,12 +11,6 @@ virtualbox_modules='=app-emulation/virtualbox-modules-6.1.6 ~amd64'
 aes_yesno=true
 efi_yesno=true
 
-if [ $efi_yesno = true ]; then
-	mk_boot_fs="mkfs.fat -F 32"
-else
-	mk_boot_fs="mkfs.ext4"
-fi
-
 # 1=bios/sdx 2=bios/nvme0n1 3=efi/sdx 4=efi/nvme0n1
 case 4 in
 	"1")	#DOS					#no aes		# aes
@@ -87,7 +81,11 @@ banner(){
 makefs(){
 	cfdisk $disk
 	sleep 1
-	$mk_boot_fs $boot
+	if [ $efi_yesno = true ]; then
+		mkfs.fat -F 32 $boot
+	else
+		mkfs.ext4 $boot
+	fi
 	mkfs.ext4 $root
 	mkfs.ext4 $home
 	mount $root /mnt/gentoo
