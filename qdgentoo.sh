@@ -4,7 +4,7 @@ USER='user'
 
 GITURL="https://raw.githubusercontent.com/l3f7s1d3/qdgentoo/master/"
 
-kernel='=sys-kernel/gentoo-sources-5.6.13 ~amd64'
+kernel='=sys-kernel/gentoo-sources-5.6.15 ~amd64'
 virtualbox='=app-emulation/virtualbox-6.1.6 ~amd64'
 virtualbox_modules='=app-emulation/virtualbox-modules-6.1.6 ~amd64'
 
@@ -49,8 +49,8 @@ banner(){
 	echo "###########################################################################"
 	echo "run on" $([ -d /sys/firmware/efi ] && echo UEFI || echo BIOS)
 	echo "$kernel"
-	echo "$virtualbox"
-	echo "$virtualbox_modules"
+#	echo "$virtualbox"
+#	echo "$virtualbox_modules"
 	echo "###########################################################################"
 	echo "#                                    #                                    #"
 	echo "#  0   makefs                        #  20 xorg-server                    #"
