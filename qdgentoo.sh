@@ -27,14 +27,14 @@ case 4 in
 	"3")	# GPT					#no aes		# aes
 		disk='/dev/sda'		
 		uefi='/dev/sda1'	# 2M		(bootloader)	(bootloader)
-		boot='/dev/sda2'	# 128M		(fat32 UEFI)	(fat32 UEFI)
-		root='/dev/sda3'	# 25G		(root)		(lvm)
+		boot='/dev/sda2'	# 256M		(fat32 UEFI)	(fat32 UEFI)
+		root='/dev/sda3'	# 30G		(root)		(lvm)
 		home='/dev/sda4';;	# 100%FREE	(home)		(x)
 	"4")	# GPT
 		disk='/dev/nvme0n1'		
 		uefi='/dev/nvme0n1p1'	# 2M		(bootloader)	(bootloader)
-		boot='/dev/nvme0n1p2'	# 128M		(fat32 UEFI)	(fat32 UEFI)
-		root='/dev/nvme0n1p3'	# 25G		(root)		(lvm)
+		boot='/dev/nvme0n1p2'	# 256M		(fat32 UEFI)	(fat32 UEFI)
+		root='/dev/nvme0n1p3'	# 30G		(root)		(lvm)
 		home='/dev/nvme0n1p4';;	# 100%FREE	(home)		(x)
 	*) exit;;
 esac
@@ -107,7 +107,7 @@ makefs_aes(){
 	cryptsetup luksOpen $root lvm
 	lvm pvcreate /dev/mapper/lvm
 	vgcreate vg0 /dev/mapper/lvm
-	lvcreate -L 25G -n root vg0
+	lvcreate -L 30G -n root vg0
 #	lvcreate -L 40G -n var vg0
 	lvcreate -l 100%FREE -n home vg0
 	mkfs.ext4 /dev/mapper/vg0-root
@@ -300,6 +300,7 @@ genkernel_update(){
 	eselect kernel list
 	echo "eselect kernel set X"
 	echo "genkernel --menuconfig all"
+	echo "grub-mkconfig -o /boot/grub/grub.cfg"
 }
 ################################	14
 genkernel_aes_update(){
@@ -309,6 +310,7 @@ genkernel_aes_update(){
 	eselect kernel list
 	echo "eselect kernel set X"
 	echo "genkernel --luks --lvm --no-zfs --menuconfig all"
+	echo "grub-mkconfig -o /boot/grub/grub.cfg"
 }
 ################################	20
 xorg_install(){
