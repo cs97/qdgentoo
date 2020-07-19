@@ -79,13 +79,7 @@ banner(){
 }
 ################################	0
 makefs(){
-	cfdisk $disk
-	sleep 1
-	if [ $efi_yesno = true ]; then
-		mkfs.fat -F 32 $boot
-	else
-		mkfs.ext4 $boot
-	fi
+	
 	mkfs.ext4 $root
 	mkfs.ext4 $home
 	mount $root /mnt/gentoo
@@ -94,13 +88,7 @@ makefs(){
 }
 ################################	0.1
 makefs_aes(){
-	cfdisk $disk
-	sleep 1
-	if [ $efi_yesno = true ]; then
-		mkfs.fat -F 32 $boot
-	else
-		mkfs.ext4 $boot
-	fi
+	
 	modprobe dm-crypt
 	#cryptsetup luksFormat -c aes-xts-plain64:sha256 -s 256 $root
 	cryptsetup luksFormat --type luks1 $root
@@ -338,8 +326,22 @@ cpupower_install(){
 case $1 in
 	"0")
 		if [ $aes_yesno = false ]; then
+			cfdisk $disk
+			sleep 1
+			if [ $efi_yesno = true ]; then
+				mkfs.fat -F 32 $boot
+			else
+				mkfs.ext4 $boot
+			fi
 			makefs
 		else
+			cfdisk $disk
+			sleep 1
+			if [ $efi_yesno = true ]; then
+				mkfs.fat -F 32 $boot
+			else
+				mkfs.ext4 $boot
+			fi
 			makefs_aes
 		fi;;
 	"1") do_in_chroot;;
