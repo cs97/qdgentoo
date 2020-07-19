@@ -452,6 +452,8 @@ case $1 in
 		mv qdgentoo.sh qdgentoo.old
 		wget $GITURL/qdgentoo.sh
 		chmod +x qdgentoo.sh;;
+	"666") nvme_efi_aes;;
+	"6662") nvme_efi_aes_2;;
 	*) banner;;
 esac
 exit
