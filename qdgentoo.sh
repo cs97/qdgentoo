@@ -402,7 +402,7 @@ case $1 in
 		wget $GITURL/config
 		mv ~/.config/i3/config ~/.config/i3/config.old
 		mv ~/config ~/.config/i3/config;;
-	"32")  emerge pulseaudio; emerge alsa-mixer; emerge alsa-utils;;
+	"32") emerge --ask pulseaudio alsa-mixer alsa-utils;;
 	"33") cpupower_install;;
 	"35") emerge --ask thunar; ;;
 	"36") emerge --ask file-roller;;
