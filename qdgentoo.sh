@@ -324,6 +324,11 @@ cpupower_install(){
 }
 ################################	666
 nvme_efi_aes(){
+	disk='/dev/nvme0n1'		
+	uefi='/dev/nvme0n1p1'	# 2M		(bootloader)
+	boot='/dev/nvme0n1p2'	# 512M		(fat32 UEFI)
+	root='/dev/nvme0n1p3'	# 100%FREE	(lvm)
+
 	cfdisk $disk
 	sleep 1
 	mkfs.fat -F 32 $boot
@@ -331,6 +336,11 @@ nvme_efi_aes(){
 }
 ################################	666_2
 nvme_efi_aes_2(){
+	disk='/dev/nvme0n1'		
+	uefi='/dev/nvme0n1p1'	# 2M		(bootloader)
+	boot='/dev/nvme0n1p2'	# 512M		(fat32 UEFI)
+	root='/dev/nvme0n1p3'	# 100%FREE	(lvm)
+
 	do_in_chroot		#1
 	at_world		#2
 	make_locale		#3
