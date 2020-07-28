@@ -71,15 +71,10 @@ makefs_aes(){
 	lvm pvcreate /dev/mapper/lvm
 	vgcreate vg0 /dev/mapper/lvm
 	lvcreate -L 30G -n root vg0
-#	lvcreate -L 40G -n var vg0
 	lvcreate -l 100%FREE -n home vg0
 	mkfs.ext4 /dev/mapper/vg0-root
-#	mkfs-ext4 /dev/mapper/vg0-var
 	mkfs.ext4 /dev/mapper/vg0-home
-#	mkdir /mnt/gentoo
 	mount /dev/mapper/vg0-root /mnt/gentoo
-#	mkdir /mnt/gentoo/var
-#	mount /dev/mapper/vg0-var /mnt/gentoo/var
 	makefs_2
 }
 
