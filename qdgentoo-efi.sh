@@ -6,7 +6,7 @@ aes_yesno=true
 
 kernel='=sys-kernel/gentoo-sources-5.7.10 ~amd64'
 
-GITURL="https://raw.githubusercontent.com/l3f7s1d3/qdgentoo/master/qdgentoo-efi.sh"
+
 
 disk='/dev/nvme0n1'		
 uefi='/dev/nvme0n1p1'	# 2M		
@@ -285,9 +285,9 @@ case $1 in
 	"15") nano -w /etc/portage/make.conf ;;
 
 	"99")
-		mv qdgentoo.sh qdgentoo.old
-		wget $GITURL
-		chmod +x qdgentoo.sh;;
+		mv qdgentoo-efi.sh qdgentoo-efi.old
+		wget https://raw.githubusercontent.com/l3f7s1d3/qdgentoo/master/qdgentoo-efi.sh
+		chmod +x qdgentoo-efi.sh;;
 
 	*) banner;;
 esac
