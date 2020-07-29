@@ -9,10 +9,19 @@ kernel='=sys-kernel/gentoo-sources-5.7.10 ~amd64'
 
 
 disk='/dev/nvme0n1'		
-uefi='/dev/nvme0n1p1'	# 2M		
-boot='/dev/nvme0n1p2'	# 1G		(fat32 UEFI)	(fat32 UEFI)
-root='/dev/nvme0n1p3'	# 30G		(root)		(lvm)
-home='/dev/nvme0n1p4'	# 100%FREE	(home)		(x)
+#uefi='/dev/nvme0n1p1'	# 2M		
+boot='/dev/nvme0n1p1'	# 1G		(fat32 UEFI)	(fat32 UEFI)
+root='/dev/nvme0n1p2'	# 30G		(root)		(lvm)
+home='/dev/nvme0n1p3'	# 100%FREE	(home)		(x)
+
+
+#disk='/dev/nvme0n1'		
+#uefi='/dev/nvme0n1p1'	# 2M		
+#boot='/dev/nvme0n1p2'	# 1G		(fat32 UEFI)	(fat32 UEFI)
+#root='/dev/nvme0n1p3'	# 30G		(root)		(lvm)
+#home='/dev/nvme0n1p4'	# 100%FREE	(home)		(x)
+
+
 
 banner(){
 	clear
