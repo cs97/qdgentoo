@@ -270,9 +270,9 @@ case $1 in
 		fi;;
 	"9")
 		if [ $aes_yesno = false ]; then
-			install_grub_aes_efi
+			install_grub_efi
 		else
-			install_grub_aes
+			install_grub_aes_efi
 		fi;;
 	"10") reboot_now;;
 	"13") genkernel_update ;;
