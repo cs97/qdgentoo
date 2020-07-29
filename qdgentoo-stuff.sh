@@ -68,37 +68,7 @@ cpupower_install(){
 	chmod +x /etc/local.d/powersave.start
 	rc-update add local default
 }
-################################	666
-nvme_efi_aes(){
-	disk='/dev/nvme0n1'		
-	uefi='/dev/nvme0n1p1'	# 2M		(bootloader)
-	boot='/dev/nvme0n1p2'	# 512M		(fat32 UEFI)
-	root='/dev/nvme0n1p3'	# 100%FREE	(lvm)
 
-	cfdisk $disk
-	sleep 1
-	mkfs.fat -F 32 $boot
-	makefs_aes		#0
-}
-################################	666_2
-nvme_efi_aes_2(){
-	disk='/dev/nvme0n1'		
-	uefi='/dev/nvme0n1p1'	# 2M		(bootloader)
-	boot='/dev/nvme0n1p2'	# 512M		(fat32 UEFI)
-	root='/dev/nvme0n1p3'	# 100%FREE	(lvm)
-
-	do_in_chroot		#1
-	at_world		#2
-	make_locale		#3
-	env_update		#4
-	gentoo_sources		#5
-	pci_utils		#6
-	gentoo_genkernel_aes	#7
-	etc-update
-	gentoo_genkernel_aes	#7
-	fstab_stuff_aes		#8
-	install_grub_aes_efi	#9
-}
 
 
 case $1 in
