@@ -50,7 +50,7 @@ banner(){
 	echo "#                                    #                                    #"
 	echo "#                                    #                                    #"
 	echo "#                                    #                                    #"
-	echo "#                                    #                                    #"
+	echo "#  12 gentoo-sources                 #                                    #"
 	echo "#  13  genkernel_update              #                                    #"
 	echo "#  14  grub-mkconfig                 #                                    #"
 	echo "#  15  nano make.conf                #                                    #"
@@ -238,7 +238,6 @@ genkernel_update(){
 	emerge --ask sys-kernel/gentoo-sources
 	eselect kernel list
 	echo "eselect kernel set X"
-	echo "genkernel --menuconfig all"
 }
 ################################	14
 genkernel_aes_update(){
@@ -247,7 +246,6 @@ genkernel_aes_update(){
 	emerge --ask sys-kernel/gentoo-sources
 	eselect kernel list
 	echo "eselect kernel set X"
-	echo "genkernel --luks --lvm --no-zfs --menuconfig all"
 }
 
 case $1 in
@@ -283,11 +281,17 @@ case $1 in
 		fi;;
 	"10") reboot_now;;
 	
-	"13") 
+	"12") 
 		if [ $aes_yesno = false ]; then
 			genkernel_update
 		else
 			genkernel_aes_update
+		fi;;
+	"13") 
+		if [ $aes_yesno = false ]; then
+			genkernel --menuconfig all
+		else
+			genkernel --luks --lvm --no-zfs --menuconfig all
 		fi;;
 	"14") grub-mkconfig -o /boot/grub/grub.cfg;;
 	"15") nano -w /etc/portage/make.conf ;;
