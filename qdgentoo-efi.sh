@@ -52,7 +52,7 @@ banner(){
 	echo "#                                    #                                    #"
 	echo "#                                    #                                    #"
 	echo "#  13  genkernel_update              #                                    #"
-	echo "#  14  genkernel_aes_update          #                                    #"
+	echo "#  14  grub-mkconfig                 #                                    #"
 	echo "#  15  nano make.conf                #                                    #"
 	echo "#  99. update                        #                                    #"
 	echo "###########################################################################"
@@ -239,7 +239,6 @@ genkernel_update(){
 	eselect kernel list
 	echo "eselect kernel set X"
 	echo "genkernel --menuconfig all"
-	echo "grub-mkconfig -o /boot/grub/grub.cfg"
 }
 ################################	14
 genkernel_aes_update(){
@@ -249,7 +248,6 @@ genkernel_aes_update(){
 	eselect kernel list
 	echo "eselect kernel set X"
 	echo "genkernel --luks --lvm --no-zfs --menuconfig all"
-	echo "grub-mkconfig -o /boot/grub/grub.cfg"
 }
 
 case $1 in
@@ -284,8 +282,14 @@ case $1 in
 			install_grub_aes_efi
 		fi;;
 	"10") reboot_now;;
-	"13") genkernel_update ;;
-	"14") genkernel_aes_update ;;
+	
+	"13") 
+		if [ $aes_yesno = false ]; then
+			genkernel_update
+		else
+			genkernel_aes_update
+		fi;;
+	"14") grub-mkconfig -o /boot/grub/grub.cfg;;
 	"15") nano -w /etc/portage/make.conf ;;
 
 	"99")
