@@ -4,7 +4,7 @@ USER='user'
 
 aes_yesno=true
 
-kernel='=sys-kernel/gentoo-sources-5.7.10 ~amd64'
+kernel='=sys-kernel/gentoo-sources-5.7.11 ~amd64'
 
 
 
