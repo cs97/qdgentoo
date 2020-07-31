@@ -88,7 +88,7 @@ case $1 in
 		echo "user:" $USER;;
 	"10") emerge --ask net-wireless/iw net-wireless/wpa_supplicant;;
 	"11")
-		wget $GITURL/config
+		wget https://raw.githubusercontent.com/l3f7s1d3/qdgentoo/master/config
 		mv ~/.config/i3/config ~/.config/i3/config.old
 		mv ~/config ~/.config/i3/config;;
 	"12") emerge --ask pulseaudio alsa-mixer alsa-utils;;
