@@ -43,7 +43,9 @@ banner(){
 
 ################################	20
 xorg_install(){
-	emerge --ask x11-base/xorg-server
+	USE="-suid" emerge --ask x11-base/xorg-server
+	echo 'SUBSYSTEM=="input", ACTION=="add", GROUP="input"' >> /etc/udev/rules.d/99-dev-input-group.rules
+
 	#emerge --ask x11-base/xorg-server --autounmask-write; source /etc/profile
 	#etc-update
 	#emerge --ask x11-base/xorg-server; source /etc/profile
@@ -86,7 +88,9 @@ case $1 in
 #		passwd -l root
 		cp qdgentoo.sh /home/$USER/qdgentoo.sh
 		emerge xrandr
-		echo "user:" $USER;;
+		echo "user:" $USER
+		usermod -a -G video $USER
+		usermod -a -G input $USER;;
 	"10") emerge --ask net-wireless/iw net-wireless/wpa_supplicant;;
 	"11")
 		wget https://raw.githubusercontent.com/l3f7s1d3/qdgentoo/master/config
