@@ -25,7 +25,7 @@ banner(){
 	echo "#  6  stuff                              #"
 	echo "#  7  firefox                            #"
 	echo "#  8  virtualbox                         #"
-	echo "#  9  makeuser                           #"
+	echo "#  9  makeuser (9 <username>)            #"
 	echo "#  10 wifi                               #"
 	echo "#  11 i3config                           #"
 	echo "#  12 audio                              #"
