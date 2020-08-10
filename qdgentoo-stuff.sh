@@ -1,6 +1,6 @@
 #! /bin/bash
 
-USER=$2
+USER='user'
 virtualbox='=app-emulation/virtualbox-6.1.6 ~amd64'
 virtualbox_modules='=app-emulation/virtualbox-modules-6.1.6 ~amd64'
 
@@ -25,7 +25,7 @@ banner(){
 	echo "#  6  stuff                              #"
 	echo "#  7  firefox                            #"
 	echo "#  8  virtualbox                         #"
-	echo "#  9  makeuser (9 <username>)            #"
+	echo "#  9  makeuser                           #"
 	echo "#  10 wifi                               #"
 	echo "#  11 i3config                           #"
 	echo "#  12 audio                              #"
