@@ -33,7 +33,7 @@ banner(){
 	echo "#  15 thunar                             #"
 	echo "#  16 file-roller                        #"
 	echo "#  17 mc                                 #"
-	echo "#  18 no root xorg-server                #"
+	echo "#  18 android-tools                      #"
 	echo "#  19 elogind                            #"
 	echo "#  20 cdrtools                           #"
 	echo "#  99 update                             #"
@@ -101,11 +101,11 @@ case $1 in
 	"15") emerge --ask thunar; ;;
 	"16") emerge --ask file-roller;;
 	"17") emerge --ask app-misc/mc;;
-	"18")
-		USE="-suid" emerge --update --deep --newuse --verbose --ask xorg-server
-		echo 'SUBSYSTEM=="input", ACTION=="add", GROUP="input"' >> /etc/udev/rules.d/99-dev-input-group.rules
-		usermod -a -G video $USER
-		usermod -a -G input $USER;;
+	"18") emerge --ask dev-util/android-tools;;
+		#USE="-suid" emerge --update --deep --newuse --verbose --ask xorg-server
+		#echo 'SUBSYSTEM=="input", ACTION=="add", GROUP="input"' >> /etc/udev/rules.d/99-dev-input-group.rules
+		#usermod -a -G video $USER
+		#usermod -a -G input $USER;;
 	"19") 
 		emerge --ask elogind
 		rc-update add elogind boot;;
