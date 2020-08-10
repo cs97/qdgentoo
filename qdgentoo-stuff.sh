@@ -1,6 +1,6 @@
 #! /bin/bash
 
-USER='user'
+USER=$2
 virtualbox='=app-emulation/virtualbox-6.1.6 ~amd64'
 virtualbox_modules='=app-emulation/virtualbox-modules-6.1.6 ~amd64'
 
@@ -11,6 +11,7 @@ banner(){
 	echo "#             qdgentoo-stuff             #"
 	echo "#                                        #"
 	echo "##########################################"
+	echo "user: $USER"
 	echo "$virtualbox"
 	echo "$virtualbox_modules"
 	echo "##########################################"
