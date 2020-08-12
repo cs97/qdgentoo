@@ -115,7 +115,7 @@ case $1 in
 
 	"99")
 		mv qdgentoo-stuff.sh qdgentoo-stuff.old
-		wget https://raw.githubusercontent.com/l3f7s1d3/qdgentoo/master/qdgentoo-stuff.sh
+		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/qdgentoo-stuff.sh
 		chmod +x qdgentoo-stuff.sh;;
 
 	*) banner;;
