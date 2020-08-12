@@ -298,7 +298,7 @@ case $1 in
 
 	"99")
 		mv qdgentoo-efi.sh qdgentoo-efi.old
-		wget https://raw.githubusercontent.com/l3f7s1d3/qdgentoo/master/qdgentoo-efi.sh
+		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/qdgentoo-efi.sh
 		chmod +x qdgentoo-efi.sh;;
 
 	*) banner;;
