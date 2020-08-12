@@ -2,7 +2,7 @@
 
 USER='user'
 
-GITURL="https://raw.githubusercontent.com/l3f7s1d3/qdgentoo/master/"
+GITURL="https://raw.githubusercontent.com/leftside97/qdgentoo/master/"
 
 kernel='=sys-kernel/gentoo-sources-5.7.10 ~amd64'
 virtualbox='=app-emulation/virtualbox-6.1.6 ~amd64'
