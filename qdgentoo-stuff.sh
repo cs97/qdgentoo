@@ -97,8 +97,7 @@ case $1 in
 		wget https://raw.githubusercontent.com/l3f7s1d3/qdgentoo/master/config
 		mv ~/.config/i3/config ~/.config/i3/config.old
 		mv ~/config ~/.config/i3/config;;
-	"12") emerge --ask pulseaudio;;
-#	"12") emerge --ask pulseaudio alsa-mixer alsa-utils;;
+	"12") emerge --ask pulseaudio alsa-mixer alsa-utils;;
 	"13") cpupower_install;;
 	"15") emerge --ask thunar; ;;
 	"16") emerge --ask file-roller;;
