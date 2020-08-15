@@ -31,6 +31,6 @@ x --> 1, 2, 3, 4, 5, 6, 7+(etc-update), 7, 8, 9
 
 
 nfs
-> emerge -ask net-fs/nfs-utils
-> echo "  x.x.x.x:/data /home/user/data	nfs	rw,noauto,user 0 0" >> /etc/fstab
+> emerge --ask net-fs/nfs-utils
+> x.x.x.x:/data   /home/user/data   nfs	  rw,noauto,user 0 0          #/etc/fstab
 
