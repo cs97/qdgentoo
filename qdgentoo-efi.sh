@@ -47,7 +47,7 @@ banner(){
 	echo "#  10  reboot                        #                                    #"
 	echo "#                                    #                                    #"
 	echo "#                                    #                                    #"
-	echo "#                                    #                                    #"
+	echo "#  11  wget qdgentoo-stuff           #                                    #"
 	echo "#                                    #                                    #"
 	echo "#                                    #                                    #"
 	echo "#  12  gentoo-sources                #                                    #"
@@ -280,6 +280,10 @@ case $1 in
 			install_grub_aes_efi
 		fi;;
 	"10") reboot_now;;
+	
+	"11") 
+		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/qdgentoo-stuff.sh
+		chmod +x qdgentoo-efi.sh;;
 	
 	"12") 
 		if [ $aes_yesno = false ]; then
