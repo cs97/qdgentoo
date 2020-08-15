@@ -303,7 +303,7 @@ case $1 in
 	"99")
 		mv qdgentoo-efi.sh qdgentoo-efi.old
 		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/qdgentoo-efi.sh
-		chmod +x qdgentoo-efi.sh;;
+		chmod +x qdgentoo-stuff.sh;;
 
 	*) banner;;
 esac
