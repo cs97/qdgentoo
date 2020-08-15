@@ -87,7 +87,7 @@ case $1 in
 		echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 		passwd $USER
 #		passwd -l root
-		cp qdgentoo.sh /home/$USER/qdgentoo.sh
+		cp qdgentoo-stuff.sh /home/$USER/qdgentoo-stuff.sh
 		emerge xrandr
 		echo "user:" $USER
 		usermod -a -G video $USER
