@@ -6,7 +6,7 @@ aes_yesno=true
 
 kernel='=sys-kernel/gentoo-sources-5.8.1 ~amd64'
 
-
+#echo 0 > /sys/devices/system/cpu/cpufreq/boost
 
 disk='/dev/nvme0n1'		
 #uefi='/dev/nvme0n1p1'	# 2M		
