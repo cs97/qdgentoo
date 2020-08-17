@@ -62,6 +62,7 @@ virtualbox_install(){
 cpupower_install(){
 	emerge sys-power/cpupower
 	echo '#!/bin/bash' > /etc/local.d/powersave.start
+	echo 'echo 0 > /sys/devices/system/cpu/cpufreq/boost' >> /etc/local.d/powersave.start
 	echo 'cpupower frequency-set -g powersave' >> /etc/local.d/powersave.start
 	chmod +x /etc/local.d/powersave.start
 	rc-update add local default
