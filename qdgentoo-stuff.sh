@@ -16,7 +16,6 @@ banner(){
 	echo "#  6  stuff                              #"
 	echo "#  7  firefox                            #"
 	echo "#  9  makeuser                           #"
-	echo "#  11 i3config                           #"
 	echo "#  12 audio                              #"
 	echo "#  15 thunar                             #"
 	echo "#  18 android-tools                      #"
@@ -37,7 +36,10 @@ case $1 in
 		;;
 	"1")
 		emerge --ask x11-wm/i3 x11-misc/i3status x11-misc/i3lock x11-terms/xterm edia-gfx/feh
-		echo "exec i3" > ~/.xinitrc;;
+		echo "exec i3" > ~/.xinitrc
+		mv ~/.config/i3/config ~/.config/i3/config.old
+		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/config
+		mv ~/config ~/.config/i3/config;;
 	
 
 	"6") emerge --ask app-misc/screenfetch sys-apps/lm-sensors x11-apps/xbacklight sys-process/htop app-misc/mc ;;
@@ -55,12 +57,9 @@ case $1 in
 		echo "user:" $USER
 		usermod -a -G video $USER
 		usermod -a -G input $USER;;
-	"11")
-		wget https://raw.githubusercontent.com/l3f7s1d3/qdgentoo/master/config
-		mv ~/.config/i3/config ~/.config/i3/config.old
-		mv ~/config ~/.config/i3/config;;
+		
 	"12") emerge --ask pulseaudio alsa-mixer alsa-utils;;
-	"15") emerge --ask thunarfile-roller;;
+	"15") emerge --ask thunar file-roller;;
 	
 	
 	"18") emerge --ask dev-util/android-tools;;
