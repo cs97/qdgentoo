@@ -38,8 +38,32 @@ grub
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
+### no cpu boot
 
+/etc/local.d/noboost.start
 
+```
+#!/bin/bashe
+echo 0 > /sys/devices/system/cpu/cpufreq/boost
+```
+```
+chmod +x /etc/local.d/noboost.start
+rc-update add local default```
+```
+### eco 
+```
+emerge sys-power/cpupower
+```
+/etc/local.d/powersave.start
+
+```
+#!/bin/bashe
+cpupower frequency-set -g powersave
+```
+```
+chmod +x /etc/local.d/powersave.start
+rc-update add local default```
+```
 
 nfs mount
 ```
