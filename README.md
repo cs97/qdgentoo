@@ -13,7 +13,7 @@ CPU_FLAGS_X86="aes avx avx2 f16c fma3 mmx mmxext pclmul popcnt sha sse sse2 sse3
 
 ### kernel update
 
-nanp /etc/portage/package.accept_keywords
+/etc/portage/package.accept_keywords
 ```    
 =sys-kernel/gentoo-sources-5.8.1 ~amd64
 ```
