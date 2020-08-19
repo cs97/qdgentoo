@@ -11,7 +11,6 @@ banner(){
 	echo "##########################################"
 	echo "user: $USER"
 	echo "##########################################"
-	echo "#                                        #"
 	echo "#  0  xorg-server                        #"
 	echo "#  1  i3                                 #"
 	echo "#  2  ~/.xinitrc                         #"
@@ -20,13 +19,9 @@ banner(){
 	echo "#  5  i3lock                             #"
 	echo "#  6  stuff                              #"
 	echo "#  7  firefox                            #"
-	echo "#  8                                     #"
 	echo "#  9  makeuser                           #"
-	echo "#  10                                    #"
 	echo "#  11 i3config                           #"
 	echo "#  12 audio                              #"
-	echo "#  13                                    #"
-	echo "#  14                                    #"
 	echo "#  15 thunar                             #"
 	echo "#  16 file-roller                        #"
 	echo "#  17 mc                                 #"
@@ -79,14 +74,9 @@ case $1 in
 	"16") emerge --ask file-roller;;
 	"17") emerge --ask app-misc/mc;;
 	"18") emerge --ask dev-util/android-tools;;
-		#USE="-suid" emerge --update --deep --newuse --verbose --ask xorg-server
-		#echo 'SUBSYSTEM=="input", ACTION=="add", GROUP="input"' >> /etc/udev/rules.d/99-dev-input-group.rules
-		#usermod -a -G video $USER
-		#usermod -a -G input $USER;;
 	"19") 
 		emerge --ask elogind
 		rc-update add elogind boot;;
-		
 	"20") emerge --ask cdrtools;;
 
 	"99")
