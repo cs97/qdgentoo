@@ -38,8 +38,12 @@ grub
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
-nfs
-> emerge --ask net-fs/nfs-utils
 
-> x.x.x.x:/data   /home/user/data   nfs	  rw,noauto,user 0 0          #/etc/fstab
 
+
+nfs mount
+```
+emerge --ask net-fs/nfs-utils
+mkdir /home/user/data
+x.x.x.x:/data   /home/user/data   nfs	  rw,noauto,user 0 0          #/etc/fstab
+```
