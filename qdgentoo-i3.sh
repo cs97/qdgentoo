@@ -6,7 +6,7 @@ banner(){
 	clear
 	echo "##########################################"
 	echo "#                                        #"
-	echo "#             qdgentoo-stuff             #"
+	echo "#              qdgentoo-i3               #"
 	echo "#                                        #"
 	echo "##########################################"
 	echo "user: $USER"
@@ -31,7 +31,7 @@ case $1 in
 		echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 		passwd $USER
 #		passwd -l root
-		cp qdgentoo-stuff.sh /home/$USER/qdgentoo-stuff.sh
+		cp qdgentoo-i3.sh /home/$USER/qdgentoo-i3.sh
 		emerge xrandr
 		echo "user:" $USER
 		usermod -a -G video $USER
@@ -60,10 +60,9 @@ case $1 in
 		rc-update add elogind boot;;
 
 	"99")
-		mv qdgentoo-stuff.sh qdgentoo-stuff.old
-		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/qdgentoo-stuff.sh
+		mv qdgentoo-i3.sh qdgentoo-i3.old
+		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/qdgentoo-i3.sh
 		chmod +x qdgentoo-stuff.sh;;
-
 	*) banner;;
 esac
 exit
