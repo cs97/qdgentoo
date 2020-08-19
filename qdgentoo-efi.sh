@@ -9,18 +9,9 @@ kernel='=sys-kernel/gentoo-sources-5.8.1 ~amd64'
 #echo 0 > /sys/devices/system/cpu/cpufreq/boost
 
 disk='/dev/nvme0n1'		
-#uefi='/dev/nvme0n1p1'	# 2M		
 boot='/dev/nvme0n1p1'	# 1G		(fat32 UEFI)	(fat32 UEFI)
 root='/dev/nvme0n1p2'	# 30G		(root)		(lvm)
 home='/dev/nvme0n1p3'	# 100%FREE	(home)		(x)
-
-
-#disk='/dev/nvme0n1'		
-#uefi='/dev/nvme0n1p1'	# 2M		
-#boot='/dev/nvme0n1p2'	# 1G		(fat32 UEFI)	(fat32 UEFI)
-#root='/dev/nvme0n1p3'	# 30G		(root)		(lvm)
-#home='/dev/nvme0n1p4'	# 100%FREE	(home)		(x)
-
 
 
 banner(){
@@ -117,10 +108,7 @@ do_in_chroot(){
 	emerge-webrsync
 	emerge --sync
 	clear
-
 	eselect profile list
-	echo "##########################################"
-	echo "eselect profile set X"		#skipt
 }
 ################################	2
 at_world(){
@@ -136,8 +124,6 @@ make_locale(){
 	clear
 	eselect locale set 6
 	eselect locale list
-	echo "##########################################"
-	echo "eselect locale set X"
 	}
 ################################	4
 env_update(){
@@ -267,13 +253,13 @@ case $1 in
 	"10") reboot_now;;
 	
 	"11") 
-		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/qdgentoo-stuff.sh
-		chmod +x qdgentoo-efi.sh;;
+		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/qdgentoo-i3.sh
+		chmod +x qdgentoo-i3.sh;;
 	
 	"99")
 		mv qdgentoo-efi.sh qdgentoo-efi.old
 		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/qdgentoo-efi.sh
-		chmod +x qdgentoo-stuff.sh;;
+		chmod +x qdgentoo-efi.sh;;
 
 	*) banner;;
 esac
