@@ -15,9 +15,6 @@ banner(){
 	echo "#  1  xorg-server                        #"
 	echo "#  2  i3                                 #"
 	echo "#  3  firefox                            #"
-	echo "#  4  stuff                              #"
-	echo "#  5  android-tools                      #"
-	echo "#  19 elogind                            #"
 	echo "#  99 update                             #"
 	echo "##########################################"
 	echo ""
@@ -51,18 +48,10 @@ case $1 in
 		mv ~/config ~/.config/i3/config;;
 	"3")
 		emerge --ask www-client/firefox;;
-	"4")
-		emerge --ask app-misc/screenfetch sys-apps/lm-sensors x11-apps/xbacklight app-misc/mc cdrtools thunar file-roller;;	
-	"5")
-		emerge --ask dev-util/android-tools;;
-	"6") 
-		emerge --ask elogind
-		rc-update add elogind boot;;
-
 	"99")
 		mv qdgentoo-i3.sh qdgentoo-i3.old
 		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/qdgentoo-i3.sh
-		chmod +x qdgentoo-stuff.sh;;
+		chmod +x qdgentoo-i3.sh;;
 	*) banner;;
 esac
 exit
