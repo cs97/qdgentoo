@@ -24,9 +24,9 @@ banner(){
 	echo "#  5  i3lock                             #"
 	echo "#  6  stuff                              #"
 	echo "#  7  firefox                            #"
-	echo "#  8  virtualbox                         #"
+	echo "#  8                                     #"
 	echo "#  9  makeuser                           #"
-	echo "#  10 wifi                               #"
+	echo "#  10                                    #"
 	echo "#  11 i3config                           #"
 	echo "#  12 audio                              #"
 	echo "#  13                                    #"
@@ -51,15 +51,6 @@ xorg_install(){
 	#etc-update
 	#emerge --ask x11-base/xorg-server; source /etc/profile
 }
-################################	28
-virtualbox_install(){
-	echo "$virtualbox" >> /etc/portage/package.accept_keywords
-	echo "$virtualbox_modules" >> /etc/portage/package.accept_keywords
-	emerge --ask app-emulation/virtualbox
-	modprobe vboxdrv
-}
-
-
 
 
 case $1 in
@@ -72,7 +63,6 @@ case $1 in
 	"5") emerge --ask x11-misc/i3lock;;
 	"6") emerge media-gfx/feh app-misc/screenfetch sys-apps/lm-sensors x11-apps/xbacklight sys-process/htop;;
 	"7") emerge --ask www-client/firefox;;
-	"8") virtualbox_install;;
 	"9") #user
 		emerge --ask app-admin/sudo
 		useradd -m -G users,wheel,audio -s /bin/bash $USER
@@ -85,7 +75,6 @@ case $1 in
 		echo "user:" $USER
 		usermod -a -G video $USER
 		usermod -a -G input $USER;;
-	"10") emerge --ask net-wireless/iw net-wireless/wpa_supplicant;;
 	"11")
 		wget https://raw.githubusercontent.com/l3f7s1d3/qdgentoo/master/config
 		mv ~/.config/i3/config ~/.config/i3/config.old
