@@ -1,8 +1,6 @@
 #! /bin/bash
 
 USER='user'
-virtualbox='=app-emulation/virtualbox-6.1.6 ~amd64'
-virtualbox_modules='=app-emulation/virtualbox-modules-6.1.6 ~amd64'
 
 banner(){
 	clear
@@ -12,8 +10,6 @@ banner(){
 	echo "#                                        #"
 	echo "##########################################"
 	echo "user: $USER"
-	echo "$virtualbox"
-	echo "$virtualbox_modules"
 	echo "##########################################"
 	echo "#                                        #"
 	echo "#  0  xorg-server                        #"
@@ -51,7 +47,6 @@ xorg_install(){
 	#etc-update
 	#emerge --ask x11-base/xorg-server; source /etc/profile
 }
-
 
 case $1 in
 
