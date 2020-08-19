@@ -85,8 +85,8 @@ rc-update add local default```
 =app-emulation/virtualbox-modules-6.1.12-r1 ~amd64
 ```
 ```
-	emerge --ask app-emulation/virtualbox
-	modprobe vboxdrv
+emerge --ask app-emulation/virtualbox
+modprobe vboxdrv
 ```
 
 ### nfs mount
