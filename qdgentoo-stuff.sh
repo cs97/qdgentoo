@@ -16,11 +16,9 @@ banner(){
 	echo "#  6  stuff                              #"
 	echo "#  7  firefox                            #"
 	echo "#  9  makeuser                           #"
-	echo "#  12 audio                              #"
 	echo "#  15 thunar                             #"
 	echo "#  18 android-tools                      #"
 	echo "#  19 elogind                            #"
-	echo "#  20 cdrtools                           #"
 	echo "#  99 update                             #"
 	echo "##########################################"
 	echo ""
@@ -29,8 +27,9 @@ banner(){
 case $1 in
 
 	"0") 
+		emerge --ask pulseaudio alsa-mixer alsa-utils
 		USE="-suid" emerge --ask x11-base/xorg-server
-		echo 'SUBSYSTEM=="input", ACTION=="add", GROUP="input"' >> /etc/udev/rules.d/99-dev-input-group.rules
+		echo 'SUBSYSTEM=="input", ACTION=="add", GROUP="input"' > /etc/udev/rules.d/99-dev-input-group.rules
 		#emerge --ask x11-base/xorg-server --autounmask-write; source /etc/profile
 		#emerge --ask x11-base/xorg-server; source /etc/profile
 		;;
@@ -42,7 +41,7 @@ case $1 in
 		mv ~/config ~/.config/i3/config;;
 	
 
-	"6") emerge --ask app-misc/screenfetch sys-apps/lm-sensors x11-apps/xbacklight sys-process/htop app-misc/mc ;;
+	"6") emerge --ask app-misc/screenfetch sys-apps/lm-sensors x11-apps/xbacklight sys-process/htop app-misc/mc cdrtools;;
 	
 	"7") emerge --ask www-client/firefox;;
 	"9") #user
@@ -58,15 +57,12 @@ case $1 in
 		usermod -a -G video $USER
 		usermod -a -G input $USER;;
 		
-	"12") emerge --ask pulseaudio alsa-mixer alsa-utils;;
 	"15") emerge --ask thunar file-roller;;
-	
 	
 	"18") emerge --ask dev-util/android-tools;;
 	"19") 
 		emerge --ask elogind
 		rc-update add elogind boot;;
-	"20") emerge --ask cdrtools;;
 
 	"99")
 		mv qdgentoo-stuff.sh qdgentoo-stuff.old
