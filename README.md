@@ -65,7 +65,7 @@ chmod +x /etc/local.d/powersave.start
 rc-update add local default```
 ```
 
-nfs mount
+### nfs mount
 ```
 emerge --ask net-fs/nfs-utils
 mkdir /home/user/data
