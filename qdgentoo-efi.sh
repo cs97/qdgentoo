@@ -50,10 +50,10 @@ banner(){
 	echo "#  11  wget qdgentoo-stuff           #                                    #"
 	echo "#                                    #                                    #"
 	echo "#                                    #                                    #"
-	echo "#  12  gentoo-sources                #                                    #"
-	echo "#  13  genkernel                     #                                    #"
-	echo "#  14  grub-mkconfig                 #                                    #"
-	echo "#  15  nano make.conf                #                                    #"
+	echo "#                                    #                                    #"
+	echo "#                                    #                                    #"
+	echo "#                                    #                                    #"
+	echo "#                                    #                                    #"
 	echo "#  99. update                        #                                    #"
 	echo "###########################################################################"
 	echo ""
@@ -231,22 +231,7 @@ reboot_now(){
 	umount -R /mnt/gentoo
 	reboot
 }
-################################	13
-genkernel_update(){
-	emerge --sync
-	echo "$kernel" >> /etc/portage/package.accept_keywords
-	emerge --ask sys-kernel/gentoo-sources
-	eselect kernel list
-	echo "eselect kernel set X"
-}
-################################	14
-genkernel_aes_update(){
-	emerge --sync
-	echo "$kernel" >> /etc/portage/package.accept_keywords
-	emerge --ask sys-kernel/gentoo-sources
-	eselect kernel list
-	echo "eselect kernel set X"
-}
+
 
 case $1 in
 	"0")
@@ -285,21 +270,6 @@ case $1 in
 		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/qdgentoo-stuff.sh
 		chmod +x qdgentoo-efi.sh;;
 	
-	"12") 
-		if [ $aes_yesno = false ]; then
-			genkernel_update
-		else
-			genkernel_aes_update
-		fi;;
-	"13") 
-		if [ $aes_yesno = false ]; then
-			genkernel --menuconfig all
-		else
-			genkernel --luks --lvm --no-zfs --menuconfig all
-		fi;;
-	"14") grub-mkconfig -o /boot/grub/grub.cfg;;
-	"15") nano -w /etc/portage/make.conf ;;
-
 	"99")
 		mv qdgentoo-efi.sh qdgentoo-efi.old
 		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/qdgentoo-efi.sh
