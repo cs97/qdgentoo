@@ -13,18 +13,12 @@ banner(){
 	echo "##########################################"
 	echo "#  0  xorg-server                        #"
 	echo "#  1  i3                                 #"
-	echo "#  2  ~/.xinitrc                         #"
-	echo "#  3  xterm                              #"
-	echo "#  4  i3status                           #"
-	echo "#  5  i3lock                             #"
 	echo "#  6  stuff                              #"
 	echo "#  7  firefox                            #"
 	echo "#  9  makeuser                           #"
 	echo "#  11 i3config                           #"
 	echo "#  12 audio                              #"
 	echo "#  15 thunar                             #"
-	echo "#  16 file-roller                        #"
-	echo "#  17 mc                                 #"
 	echo "#  18 android-tools                      #"
 	echo "#  19 elogind                            #"
 	echo "#  20 cdrtools                           #"
@@ -33,25 +27,21 @@ banner(){
 	echo ""
 }
 
-################################	20
-xorg_install(){
-	USE="-suid" emerge --ask x11-base/xorg-server
-	echo 'SUBSYSTEM=="input", ACTION=="add", GROUP="input"' >> /etc/udev/rules.d/99-dev-input-group.rules
-
-	#emerge --ask x11-base/xorg-server --autounmask-write; source /etc/profile
-	#etc-update
-	#emerge --ask x11-base/xorg-server; source /etc/profile
-}
-
 case $1 in
 
-	"0") xorg_install;;
-	"1") emerge --ask x11-wm/i3;;
-	"2") echo "exec i3" >> ~/.xinitrc;;
-	"3") emerge --ask x11-terms/xterm;;
-	"4") emerge --ask x11-misc/i3status;;
-	"5") emerge --ask x11-misc/i3lock;;
-	"6") emerge media-gfx/feh app-misc/screenfetch sys-apps/lm-sensors x11-apps/xbacklight sys-process/htop;;
+	"0") 
+		USE="-suid" emerge --ask x11-base/xorg-server
+		echo 'SUBSYSTEM=="input", ACTION=="add", GROUP="input"' >> /etc/udev/rules.d/99-dev-input-group.rules
+		#emerge --ask x11-base/xorg-server --autounmask-write; source /etc/profile
+		#emerge --ask x11-base/xorg-server; source /etc/profile
+		;;
+	"1")
+		emerge --ask x11-wm/i3 x11-misc/i3status x11-misc/i3lock x11-terms/xterm edia-gfx/feh
+		echo "exec i3" > ~/.xinitrc;;
+	
+
+	"6") emerge --ask app-misc/screenfetch sys-apps/lm-sensors x11-apps/xbacklight sys-process/htop app-misc/mc ;;
+	
 	"7") emerge --ask www-client/firefox;;
 	"9") #user
 		emerge --ask app-admin/sudo
@@ -70,9 +60,9 @@ case $1 in
 		mv ~/.config/i3/config ~/.config/i3/config.old
 		mv ~/config ~/.config/i3/config;;
 	"12") emerge --ask pulseaudio alsa-mixer alsa-utils;;
-	"15") emerge --ask thunar; ;;
-	"16") emerge --ask file-roller;;
-	"17") emerge --ask app-misc/mc;;
+	"15") emerge --ask thunarfile-roller;;
+	
+	
 	"18") emerge --ask dev-util/android-tools;;
 	"19") 
 		emerge --ask elogind
