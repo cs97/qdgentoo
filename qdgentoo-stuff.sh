@@ -29,7 +29,7 @@ banner(){
 	echo "#  10 wifi                               #"
 	echo "#  11 i3config                           #"
 	echo "#  12 audio                              #"
-	echo "#  13 powersave                          #"
+	echo "#  13                                    #"
 	echo "#  14                                    #"
 	echo "#  15 thunar                             #"
 	echo "#  16 file-roller                        #"
@@ -58,15 +58,7 @@ virtualbox_install(){
 	emerge --ask app-emulation/virtualbox
 	modprobe vboxdrv
 }
-################################	33
-cpupower_install(){
-	emerge sys-power/cpupower
-	echo '#!/bin/bash' > /etc/local.d/powersave.start
-	echo 'echo 0 > /sys/devices/system/cpu/cpufreq/boost' >> /etc/local.d/powersave.start
-	echo 'cpupower frequency-set -g powersave' >> /etc/local.d/powersave.start
-	chmod +x /etc/local.d/powersave.start
-	rc-update add local default
-}
+
 
 
 
@@ -99,7 +91,6 @@ case $1 in
 		mv ~/.config/i3/config ~/.config/i3/config.old
 		mv ~/config ~/.config/i3/config;;
 	"12") emerge --ask pulseaudio alsa-mixer alsa-utils;;
-	"13") cpupower_install;;
 	"15") emerge --ask thunar; ;;
 	"16") emerge --ask file-roller;;
 	"17") emerge --ask app-misc/mc;;
