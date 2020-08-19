@@ -95,3 +95,23 @@ emerge --ask net-fs/nfs-utils
 mkdir /home/user/data
 x.x.x.x:/data   /home/user/data   nfs	  rw,noauto,user 0 0          #/etc/fstab
 ```
+
+### stuff...
+```
+app-misc/screenfetch
+sys-apps/lm-sensors
+x11-apps/xbacklight
+app-misc/mc
+cdrtools
+thunar
+file-roller
+dev-util/android-tools
+
+emerge --ask elogind
+rc-update add elogind boot
+```
+
+
+
+
+
