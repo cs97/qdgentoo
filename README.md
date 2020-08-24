@@ -52,7 +52,7 @@ grub
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
-### no cpu boot
+### no cpu boost
 
 /etc/local.d/noboost.start
 
