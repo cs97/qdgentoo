@@ -4,7 +4,7 @@ USER='user'
 
 aes_yesno=true
 
-kernel='=sys-kernel/gentoo-sources-5.8.1 ~amd64'
+kernel='=sys-kernel/gentoo-sources-5.8.3 ~amd64'
 
 #echo 0 > /sys/devices/system/cpu/cpufreq/boost
 
@@ -22,6 +22,7 @@ banner(){
 	echo "#                                    #"
 	echo "######################################"
 	echo "run on" $([ -d /sys/firmware/efi ] && echo UEFI || echo BIOS)
+	echo "disk: $disk"
 	echo "$kernel"
 	echo "######################################"
 	echo "#                                    #"
