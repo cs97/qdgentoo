@@ -38,7 +38,7 @@ banner(){
 	echo "#  9   grub                          #"
 	echo "#  10  reboot                        #"
 	echo "#                                    #"
-	echo "#  11  wget qdgentoo-stuff           #"
+	echo "#  11  wget qdgentoo-i3.sh           #"
 	echo "#  99. update                        #"
 	echo "######################################"
 	echo ""
