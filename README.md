@@ -103,6 +103,7 @@ x.x.x.x:/data   /home/user/data   nfs	  rw,noauto,user 0 0
 
 ### stuff...
 ```
+app-crypt/gnupg
 app-misc/screenfetch
 sys-apps/lm-sensors
 x11-apps/xbacklight
