@@ -29,7 +29,7 @@ CPU_FLAGS_X86="aes avx avx2 f16c fma3 mmx mmxext pclmul popcnt sha sse sse2 sse3
 
 /etc/portage/package.accept_keywords
 ```    
-=sys-kernel/gentoo-sources-5.8.1 ~amd64
+=sys-kernel/gentoo-sources-5.8.6 ~amd64
 ```
 install sources:
 ```
@@ -106,6 +106,8 @@ x.x.x.x:/data   /home/user/data   nfs	  rw,noauto,user 0 0
 app-crypt/gnupg
 app-misc/screenfetch
 sys-apps/lm-sensors
+sys-apps/smartmontools
+sys-apps/hdparm
 x11-apps/xbacklight
 app-misc/mc
 cdrtools
