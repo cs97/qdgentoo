@@ -23,7 +23,7 @@ banner(){
 	echo "######################################"
 	echo "run on" $([ -d /sys/firmware/efi ] && echo UEFI || echo BIOS)
 	echo "disk: $disk"
-	echo "$kernel"
+#	echo "$kernel"
 	echo "######################################"
 	echo "#                                    #"
 	echo "#  0   makefs                        #"
@@ -128,8 +128,8 @@ env_update(){
 }
 ################################	5
 gentoo_sources(){
-	echo "$kernel"
-	echo "$kernel" > /etc/portage/package.accept_keywords
+#	echo "$kernel"
+#	echo "$kernel" > /etc/portage/package.accept_keywords
 	emerge --ask sys-kernel/gentoo-sources
 	etc-update
 }
