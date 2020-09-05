@@ -113,6 +113,8 @@ make_locale(){
 #	portageq envvar ACCEPT_LICENSE @FREE
 	echo "Europe/Berlin" > /etc/timezone
 	emerge --config sys-libs/timezone-data
+	echo "en_US ISO-8859-1" >> /etc/locale.gen
+	echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 	nano -w /etc/locale.gen
 	locale-gen
 	clear
