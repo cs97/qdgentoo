@@ -100,6 +100,13 @@ mkdir /home/user/data
 ```
 x.x.x.x:/data   /home/user/data   nfs	  rw,noauto,user 0 0
 ```
+### openvpn
+```
+cp myvpn.ovpn /etc/openvpn/myvpn.conf
+sudo ln -s /etc/init.d/openvpn /etc/init.d/openvpn.myvpn
+/etc/init.d/openvpn.myvpn start
+sudo rc-update add openvpn.myvpn default
+```
 
 ### stuff...
 ```
