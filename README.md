@@ -9,8 +9,8 @@ emerge --ask net-wireless/iw net-wireless/wpa_supplicant
 wpa_passphrase <WLAN> >> /etc/wpa_supplicant/wpa_supplicant.conf
 ```
 ```
-/etc/init.d/wpa_supplicant start;;
-rc-update add wpa_supplicant default;;
+/etc/init.d/wpa_supplicant start
+rc-update add wpa_supplicant default
 ```
 
 
