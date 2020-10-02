@@ -2,7 +2,7 @@
 
 USER='user'
 
-aes_yesno=true
+aes_yesno=false
 
 kernel='=sys-kernel/gentoo-sources-5.8.3 ~amd64'
 
@@ -23,6 +23,7 @@ banner(){
 	echo "######################################"
 	echo "run on" $([ -d /sys/firmware/efi ] && echo UEFI || echo BIOS)
 	echo "disk: $disk"
+	echo "aes: $aes_yesno"
 #	echo "$kernel"
 	echo "######################################"
 	echo "#                                    #"
