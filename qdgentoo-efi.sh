@@ -253,8 +253,6 @@ case $1 in
 	"11") 
 		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/qdgentoo-i3.sh
 		chmod +x qdgentoo-i3.sh;;
-	"22")
-		links https://www.gentoo.org/downloads/;;
 	
 	"99")
 		mv qdgentoo-efi.sh qdgentoo-efi.old
