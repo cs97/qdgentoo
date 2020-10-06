@@ -159,7 +159,7 @@ fstab_stuff(){
 	etc-update
 	
 	echo "$root		/root		ext4		defaults        0 0" >> /etc/fstab
-	echo "$boot		/boot		ext4		defaults        0 0" >> /etc/fstab
+	echo "$boot		/boot		vfat		defaults	0 0" >> /etc/fstab
 	echo "$home		/home		ext4		defaults	0 0" >> /etc/fstab
 	echo "tmpfs		/tmp		tmpfs		size=4G		0 0" >> /etc/fstab
 	echo "tmpfs		/run		tmpfs		size=100M	0 0" >> /etc/fstab
