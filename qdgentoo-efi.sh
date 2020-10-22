@@ -4,7 +4,7 @@ USER='user'
 
 aes_yesno=false
 
-kernel='=sys-kernel/gentoo-sources-5.8.13 ~amd64'
+kernel='=sys-kernel/gentoo-sources-5.9.1 ~amd64'
 
 #echo 0 > /sys/devices/system/cpu/cpufreq/boost
 
