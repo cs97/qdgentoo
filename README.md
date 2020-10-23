@@ -29,7 +29,7 @@ CPU_FLAGS_X86="aes avx avx2 f16c fma3 mmx mmxext pclmul popcnt sha sse sse2 sse3
 
 /etc/portage/package.accept_keywords
 ```    
-=sys-kernel/gentoo-sources-5.8.6 ~amd64
+=sys-kernel/gentoo-sources-5.9.1 ~amd64
 ```
 install sources:
 ```
@@ -81,8 +81,8 @@ rc-update add local default```
 ### virtualbox
 /etc/portage/package.accept_keywords
 ```
-=app-emulation/virtualbox-6.1.12a ~amd64
-=app-emulation/virtualbox-modules-6.1.12-r1 ~amd64
+=app-emulation/virtualbox-6.1.16 ~amd64
+=app-emulation/virtualbox-modules-6.1.16 ~amd64
 ```
 ```
 emerge --ask app-emulation/virtualbox
