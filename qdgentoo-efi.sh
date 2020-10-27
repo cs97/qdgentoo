@@ -222,12 +222,12 @@ reboot_now(){
 
 
 case $1 in
-	"0")
-		if [ $aes_yesno = false ]; then
-			makefs
-		else
-			makefs_aes
-		fi;;
+	"0") [ $aes_yesno = true ] && makefs_aes || makefs;;
+#		if [ $aes_yesno = false ]; then
+#			makefs
+#		else
+#			makefs_aes
+#		fi;;
 	"1") do_in_chroot;;
 	"2") at_world;;
 	"3") make_locale;;
