@@ -8,16 +8,11 @@ kernel='=sys-kernel/gentoo-sources-5.9.1 ~amd64'
 
 #echo 0 > /sys/devices/system/cpu/cpufreq/boost
 
+
 disk='/dev/nvme0n1'		
-boot='/dev/nvme0n1p1'	# 1G		(fat32 UEFI)	(fat32 UEFI)
-root='/dev/nvme0n1p2'	# 30G		(root)		(lvm)
-home='/dev/nvme0n1p3'	# 100%FREE	(home)		(x)
-
-#disk='/dev/sda'		
-#boot='/dev/sda1'
-#root='/dev/sda2'
-#home='/dev/sda3'
-
+boot=$disk'1'	# 1G		(fat32 UEFI)	(fat32 UEFI)
+root=$disk'2'	# 30G		(root)		(lvm)
+home=$disk'3'	# 100%FREE	(home)		(x)
 
 banner(){
 	clear
@@ -223,37 +218,16 @@ reboot_now(){
 
 case $1 in
 	"0") [ $aes_yesno = true ] && makefs_aes || makefs;;
-#		if [ $aes_yesno = false ]; then
-#			makefs
-#		else
-#			makefs_aes
-#		fi;;
 	"1") do_in_chroot;;
 	"2") at_world;;
 	"3") make_locale;;
 	"4") env_update;;
 	"5") gentoo_sources;;
 	"6") pci_utils;;
-	"7") 
-		if [ $aes_yesno = false ]; then
-			gentoo_genkernel
-		else
-			gentoo_genkernel_aes
-		fi;;
-	"8")
-		if [ $aes_yesno = false ]; then
-			fstab_stuff
-		else
-			fstab_stuff_aes
-		fi;;
-	"9")
-		if [ $aes_yesno = false ]; then
-			install_grub_efi
-		else
-			install_grub_aes_efi
-		fi;;
+	"7") [ $aes_yesno = true ] && gentoo_genkernel_aes || gentoo_genkernel;;
+	"8") [ $aes_yesno = true ] && fstab_stuff_aes || fstab_stuff;;
+	"9") [ $aes_yesno = true ] && install_grub_aes_efi || install_grub_efi;;
 	"10") reboot_now;;
-	
 	"11") 
 		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/qdgentoo-i3.sh
 		chmod +x qdgentoo-i3.sh;;
