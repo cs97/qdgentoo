@@ -194,6 +194,7 @@ fstab_stuff_2(){
 install_grub_efi(){
 	echo 'GRUB_PLATFORMS="efi-64"' >> /etc/portage/make.conf
 	emerge --ask --verbose sys-boot/grub:2
+	#grub-install $disk
 	grub-install --target=x86_64-efi --efi-directory=/boot
 	grub-mkconfig -o /boot/grub/grub.cfg
 }
@@ -203,7 +204,8 @@ install_grub_aes_efi(){
 	echo "sys-boot/boot:2 device-mapper" >> /etc/portage/package.use/sys-boot
 	emerge --ask --verbose sys-boot/grub:2
 	echo 'GRUB_CMDLINE_LINUX="dolvm crypt_root='$root' root=/dev/mapper/vg0-root"' >> /etc/default/grub
-	nano /etc/default/grub	
+	nano /etc/default/grub
+	#grub-install $disk
 	grub-install --target=x86_64-efi --efi-directory=/boot
 	grub-mkconfig -o /boot/grub/grub.cfg
 }
