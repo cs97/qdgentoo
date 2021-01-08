@@ -46,6 +46,7 @@ banner(){
 }
 ################################	0
 makefs(){
+	#(echo o; echo n; echo p; echo 1; echo ""; echo +64M; echo n; echo p; echo 2; echo ""; echo ""; echo w; echo q) | fdisk /dev/$disk
 	cfdisk $disk
 	sleep 1
 	mkfs.fat -F 32 $boot
@@ -57,6 +58,7 @@ makefs(){
 }
 ################################	0.1
 makefs_aes(){
+	#(echo o; echo n; echo p; echo 1; echo ""; echo +64M; echo n; echo p; echo 2; echo ""; echo ""; echo w; echo q) | fdisk /dev/$disk
 	cfdisk $disk
 	sleep 1
 	mkfs.fat -F 32 $boot
