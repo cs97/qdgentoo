@@ -54,13 +54,13 @@ makefs(){
 	
 	#parted /dev/$disk --script mklabel gpt
 	#parted /dev/$disk --script mkpart primary ext4 32MiB 100MiB
-	#parted /dev/$disk --script mkpart primary ext4 100MiB 1GiB
+	#parted /dev/$disk --script mkpart primary fat32 100MiB 1GiB
 	#parted /dev/$disk --script mkpart primary ext4 1GiB 30GiB
 	#parted /dev/$disk --script mkpart primary ext4 30GiB 100%
 	
 	#efi
 	#parted /dev/$disk --script mklabel gpt
-	#parted /dev/$disk --script mkpart primary ext4 1MiB 1GiB
+	#parted /dev/$disk --script mkpart primary fat32 1MiB 1GiB
 	#parted /dev/$disk --script mkpart primary ext4 1GiB 30GiB
 	#parted /dev/$disk --script mkpart primary ext4 30GiB 100%
 
