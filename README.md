@@ -29,7 +29,7 @@ CPU_FLAGS_X86="aes avx avx2 f16c fma3 mmx mmxext pclmul popcnt sha sse sse2 sse3
 
 /etc/portage/package.accept_keywords
 ```    
-=sys-kernel/gentoo-sources-5.9.1 ~amd64
+=sys-kernel/gentoo-sources-5.10.5 ~amd64
 ```
 install sources:
 ```
