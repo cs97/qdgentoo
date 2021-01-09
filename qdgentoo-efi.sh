@@ -47,11 +47,17 @@ banner(){
 ################################	0
 makefs(){
 	#bios
+	#parted /dev/$disk --script mklabel msdos
+	#parted /dev/$disk --script mkpart primary ext4 1MiB 1GiB
+	#parted /dev/$disk --script mkpart primary ext4 1GiB 30GiB
+	#parted /dev/$disk --script mkpart primary ext4 30GiB 100%
+	
 	#parted /dev/$disk --script mklabel gpt
 	#parted /dev/$disk --script mkpart primary ext4 32MiB 100MiB
 	#parted /dev/$disk --script mkpart primary ext4 100MiB 1GiB
 	#parted /dev/$disk --script mkpart primary ext4 1GiB 30GiB
 	#parted /dev/$disk --script mkpart primary ext4 30GiB 100%
+	
 	#efi
 	#parted /dev/$disk --script mklabel gpt
 	#parted /dev/$disk --script mkpart primary ext4 1MiB 1GiB
@@ -70,7 +76,16 @@ makefs(){
 }
 ################################	0.1
 makefs_aes(){
-	#(echo o; echo n; echo p; echo 1; echo ""; echo +64M; echo n; echo p; echo 2; echo ""; echo ""; echo w; echo q) | fdisk /dev/$disk
+	#bios
+	#parted /dev/$disk --script mklabel msdos
+	#parted /dev/$disk --script mkpart primary ext4 1MiB 1GiB
+	#parted /dev/$disk --script mkpart primary ext4 1GiB 100%
+	
+	#efi
+	#parted /dev/$disk --script mklabel gpt
+	#parted /dev/$disk --script mkpart primary ext4 1MiB 1GiB
+	#parted /dev/$disk --script mkpart primary ext4 1GiB 100%
+	
 	cfdisk $disk
 	sleep 1
 	mkfs.fat -F 32 $boot
