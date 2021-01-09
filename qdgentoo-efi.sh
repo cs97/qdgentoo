@@ -47,22 +47,22 @@ banner(){
 ################################	0
 makefs(){
 	#bios
-	#parted /dev/$disk --script mklabel msdos
-	#parted /dev/$disk --script mkpart primary ext4 1MiB 1GiB
-	#parted /dev/$disk --script mkpart primary ext4 1GiB 30GiB
-	#parted /dev/$disk --script mkpart primary ext4 30GiB 100%
+	#parted $disk --script mklabel msdos
+	#parted $disk --script mkpart primary ext4 1MiB 1GiB
+	#parted $disk --script mkpart primary ext4 1GiB 30GiB
+	#parted $disk --script mkpart primary ext4 30GiB 100%
 	
-	#parted /dev/$disk --script mklabel gpt
-	#parted /dev/$disk --script mkpart primary ext4 32MiB 100MiB
-	#parted /dev/$disk --script mkpart primary fat32 100MiB 1GiB
-	#parted /dev/$disk --script mkpart primary ext4 1GiB 30GiB
-	#parted /dev/$disk --script mkpart primary ext4 30GiB 100%
+	#parted $disk --script mklabel gpt
+	#parted $disk --script mkpart primary ext4 32MiB 100MiB
+	#parted $disk --script mkpart primary fat32 100MiB 1GiB
+	#parted $disk --script mkpart primary ext4 1GiB 30GiB
+	#parted $disk --script mkpart primary ext4 30GiB 100%
 	
 	#efi
-	#parted /dev/$disk --script mklabel gpt
-	#parted /dev/$disk --script mkpart primary fat32 1MiB 1GiB
-	#parted /dev/$disk --script mkpart primary ext4 1GiB 30GiB
-	#parted /dev/$disk --script mkpart primary ext4 30GiB 100%
+	#parted $disk --script mklabel gpt
+	#parted $disk --script mkpart primary fat32 1MiB 1GiB
+	#parted $disk --script mkpart primary ext4 1GiB 30GiB
+	#parted $disk --script mkpart primary ext4 30GiB 100%
 
 
 	cfdisk $disk
