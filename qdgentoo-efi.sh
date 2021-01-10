@@ -75,17 +75,18 @@ makefs(){
 }
 ################################	0.1
 makefs_aes(){
-	#bios
-	#parted /dev/$disk --script mklabel msdos
-	#parted /dev/$disk --script mkpart primary ext4 1MiB 1GiB
-	#parted /dev/$disk --script mkpart primary ext4 1GiB 100%
+
+	[ -d /sys/firmware/efi ] && {
+	parted /dev/$disk --script mklabel gpt
+	parted /dev/$disk --script mkpart primary ext4 1MiB 1GiB
+	parted /dev/$disk --script mkpart primary ext4 1GiB 100%
+	} || {
+	parted /dev/$disk --script mklabel msdos
+	parted /dev/$disk --script mkpart primary ext4 1MiB 1GiB
+	parted /dev/$disk --script mkpart primary ext4 1GiB 100%
+	}
 	
-	#efi
-	#parted /dev/$disk --script mklabel gpt
-	#parted /dev/$disk --script mkpart primary ext4 1MiB 1GiB
-	#parted /dev/$disk --script mkpart primary ext4 1GiB 100%
-	
-	cfdisk $disk
+	#cfdisk $disk
 	sleep 1
 	mkfs.fat -F 32 $boot
 	modprobe dm-crypt
