@@ -8,7 +8,6 @@ kernel='=sys-kernel/gentoo-sources-5.10.5 ~amd64'
 
 #echo 0 > /sys/devices/system/cpu/cpufreq/boost
 
-
 disk='/dev/nvme0n1'		
 boot=$disk'1'	# 1G		(fat32 UEFI)	(fat32 UEFI)
 root=$disk'2'	# 30G		(root)		(lvm)
@@ -223,8 +222,6 @@ fstab_stuff_2(){
 install_grub_efi(){
 	[ -d /sys/firmware/efi ] && echo 'GRUB_PLATFORMS="efi-64"' >> /etc/portage/make.conf
 	emerge --ask --verbose sys-boot/grub:2
-	#grub-install $disk
-	#grub-install --target=x86_64-efi --efi-directory=/boot
 	[ -d /sys/firmware/efi ] && grub-install --target=x86_64-efi --efi-directory=/boot || grub-install $disk
 	grub-mkconfig -o /boot/grub/grub.cfg
 }
@@ -235,8 +232,6 @@ install_grub_aes_efi(){
 	emerge --ask --verbose sys-boot/grub:2
 	echo 'GRUB_CMDLINE_LINUX="dolvm crypt_root='$root' root=/dev/mapper/vg0-root"' >> /etc/default/grub
 	nano /etc/default/grub
-	#grub-install $disk
-	#grub-install --target=x86_64-efi --efi-directory=/boot
 	[ -d /sys/firmware/efi ] && grub-install --target=x86_64-efi --efi-directory=/boot || grub-install $disk
 	grub-mkconfig -o /boot/grub/grub.cfg
 }
