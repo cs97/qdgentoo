@@ -6,6 +6,10 @@ aes_yesno=false
 
 kernel='=sys-kernel/gentoo-sources-5.10.5 ~amd64'
 
+part1="1GiB"
+part2="30GiB"
+part3="100%"
+
 #echo 0 > /sys/devices/system/cpu/cpufreq/boost
 
 disk='/dev/nvme0n1'		
@@ -53,14 +57,14 @@ makefs(){
 	
 	[ -d /sys/firmware/efi ] && {
 	parted $disk --script mklabel gpt
-	parted $disk --script mkpart primary fat32 1MiB 1GiB
-	parted $disk --script mkpart primary ext4 1GiB 30GiB
-	parted $disk --script mkpart primary ext4 30GiB 100%
+	parted $disk --script mkpart primary fat32 1MiB $part1
+	parted $disk --script mkpart primary ext4 $part1 $part2
+	parted $disk --script mkpart primary ext4 $part2 $part3
 	} || {
 	parted $disk --script mklabel msdos
-	parted $disk --script mkpart primary ext4 1MiB 1GiB
-	parted $disk --script mkpart primary ext4 1GiB 30GiB
-	parted $disk --script mkpart primary ext4 30GiB 100%
+	parted $disk --script mkpart primary ext4 1MiB $part1
+	parted $disk --script mkpart primary ext4 $part1 $part2
+	parted $disk --script mkpart primary ext4 $part2 $part3
 	}
 	
 	#cfdisk $disk
@@ -77,12 +81,12 @@ makefs_aes(){
 
 	[ -d /sys/firmware/efi ] && {
 	parted /dev/$disk --script mklabel gpt
-	parted /dev/$disk --script mkpart primary ext4 1MiB 1GiB
-	parted /dev/$disk --script mkpart primary ext4 1GiB 100%
+	parted /dev/$disk --script mkpart primary ext4 1MiB $part1
+	parted /dev/$disk --script mkpart primary ext4 $part1 $part2
 	} || {
 	parted /dev/$disk --script mklabel msdos
-	parted /dev/$disk --script mkpart primary ext4 1MiB 1GiB
-	parted /dev/$disk --script mkpart primary ext4 1GiB 100%
+	parted /dev/$disk --script mkpart primary ext4 1MiB $part1
+	parted /dev/$disk --script mkpart primary ext4 $part1 $part2
 	}
 	
 	#cfdisk $disk
