@@ -5,17 +5,17 @@ USER='user'
 aes_yesno=false
 
 kernel='=sys-kernel/gentoo-sources-5.10.5 ~amd64'
-
-part1="1GiB"
-part2="30GiB"
-part3="100%"
+		# no aes	aes
+part1="1GiB"	# (boot)	(boot)
+part2="30GiB"	# (root)	(lvm)
+part3="100%"	# (home)
 
 #echo 0 > /sys/devices/system/cpu/cpufreq/boost
 
-disk='/dev/nvme0n1'		
-boot=$disk'1'	# 1G		(fat32 UEFI)	(fat32 UEFI)
-root=$disk'2'	# 30G		(root)		(lvm)
-home=$disk'3'	# 100%FREE	(home)		(x)
+disk='/dev/nvme0n1'
+boot=$disk'1'
+root=$disk'2'
+home=$disk'3'
 
 banner(){
 	clear
