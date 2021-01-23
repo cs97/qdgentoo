@@ -4,7 +4,7 @@ USER='user'
 
 aes_yesno=false
 
-kernel='=sys-kernel/gentoo-sources-5.10.5 ~amd64'
+kernel='=sys-kernel/gentoo-sources-5.10.10 ~amd64'
 		# no aes	aes
 part1="1GiB"	# (boot)	(boot)
 part2="30GiB"	# (root)	(lvm)
