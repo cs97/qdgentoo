@@ -4,7 +4,7 @@ USER='user'
 
 aes_yesno=false
 
-kernel='=sys-kernel/gentoo-sources-5.10.10 ~amd64'
+kernel='=sys-kernel/gentoo-sources-5.10.27 ~amd64'
 		# no aes	aes
 part1="1GiB"	# (boot)	(boot)
 part2="30GiB"	# (root)	(lvm)
@@ -12,6 +12,7 @@ part3="100%"	# (home)
 
 #echo 0 > /sys/devices/system/cpu/cpufreq/boost
 
+#disk='/dev/sda'
 disk='/dev/nvme0n1'
 boot=$disk'1'
 root=$disk'2'
@@ -218,7 +219,7 @@ fstab_stuff_2(){
 	emerge --ask --noreplace net-misc/netifrc
 	passwd
 	emerge --ask app-admin/sysklogd
-	rc-update add sysklogd default
+	#rc-update add sysklogd default
 	emerge --ask net-misc/dhcpcd
 }
 
