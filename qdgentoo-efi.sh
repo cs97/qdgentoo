@@ -176,12 +176,6 @@ gentoo_genkernel(){
 	etc-update
 	[ $aes_yesno = true ] && genkernel --luks --lvm --no-zfs --menuconfig all || genkernel --menuconfig all
 }
-################################	7.1
-gentoo_genkernel_aes(){
-	emerge --ask genkernel
-	etc-update
-	genkernel --luks --lvm --no-zfs --menuconfig all
-}
 ################################	8
 fstab_stuff(){
 	etc-update
