@@ -57,15 +57,15 @@ makefs(){
 	#parted $disk --script mkpart primary ext4 30GiB 100%
 	
 	[ -d /sys/firmware/efi ] && {
-	parted $disk --script mklabel gpt
-	parted $disk --script mkpart primary fat32 1MiB $part1
-	parted $disk --script mkpart primary ext4 $part1 $part2
-	parted $disk --script mkpart primary ext4 $part2 $part3
+		parted $disk --script mklabel gpt
+		parted $disk --script mkpart primary fat32 1MiB $part1
+		parted $disk --script mkpart primary ext4 $part1 $part2
+		parted $disk --script mkpart primary ext4 $part2 $part3
 	} || {
-	parted $disk --script mklabel msdos
-	parted $disk --script mkpart primary ext4 1MiB $part1
-	parted $disk --script mkpart primary ext4 $part1 $part2
-	parted $disk --script mkpart primary ext4 $part2 $part3
+		parted $disk --script mklabel msdos
+		parted $disk --script mkpart primary ext4 1MiB $part1
+		parted $disk --script mkpart primary ext4 $part1 $part2
+		parted $disk --script mkpart primary ext4 $part2 $part3
 	}
 	
 	#cfdisk $disk
@@ -81,13 +81,13 @@ makefs(){
 makefs_aes(){
 
 	[ -d /sys/firmware/efi ] && {
-	parted /dev/$disk --script mklabel gpt
-	parted /dev/$disk --script mkpart primary ext4 1MiB $part1
-	parted /dev/$disk --script mkpart primary ext4 $part1 $part2
+		parted /dev/$disk --script mklabel gpt
+		parted /dev/$disk --script mkpart primary ext4 1MiB $part1
+		parted /dev/$disk --script mkpart primary ext4 $part1 $part2
 	} || {
-	parted /dev/$disk --script mklabel msdos
-	parted /dev/$disk --script mkpart primary ext4 1MiB $part1
-	parted /dev/$disk --script mkpart primary ext4 $part1 $part2
+		parted /dev/$disk --script mklabel msdos
+		parted /dev/$disk --script mkpart primary ext4 1MiB $part1
+		parted /dev/$disk --script mkpart primary ext4 $part1 $part2
 	}
 	
 	#cfdisk $disk
