@@ -203,23 +203,8 @@ fstab_stuff(){
 	echo "tmpfs		/tmp		tmpfs		size=4G		0 0" >> /etc/fstab
 	echo "tmpfs		/run		tmpfs		size=100M	0 0" >> /etc/fstab
 	
-	fstab_stuff_2
-}
-################################	8.1
-fstab_stuff_aes(){
-	etc-update
-	emerge --ask sys-kernel/linux-firmware
-	etc-update
 	
-	echo "/dev/mapper/vg0-root		/		ext4		defaults	0 0" >> /etc/fstab
-	echo "$boot		/boot		vfat		defaults        0 0" >> /etc/fstab
-	echo "/dev/mapper/vg0-home		/home		ext4		defaults	0 0" >> /etc/fstab
-	echo "tmpfs		/tmp		tmpfs		size=4G		0 0" >> /etc/fstab
-	echo "tmpfs		/run		tmpfs		size=100M	0 0" >> /etc/fstab
-
-	fstab_stuff_2
-}
-fstab_stuff_2(){
+	
 	nano -w /etc/fstab
 	
 	echo 'hostname="gentoo-pc"' >> /etc/conf.d/hostname
@@ -264,8 +249,8 @@ case $1 in
 	"4") env_update;;
 	"5") gentoo_sources;;
 	"6") pci_utils;;
-	"7") [ $aes_yesno = true ] && gentoo_genkernel_aes || gentoo_genkernel;;
-	"8") [ $aes_yesno = true ] && fstab_stuff_aes || fstab_stuff;;
+	"7") gentoo_genkernel;;
+	"8") fstab_stuff;;
 	"9") [ $aes_yesno = true ] && install_grub_aes_efi || install_grub_efi;;
 	"10") reboot_now;;
 	"11") 
