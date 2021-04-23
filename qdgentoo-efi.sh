@@ -1,7 +1,5 @@
 #! /bin/bash
 
-USER='user'
-
 aes_yesno=false
 
 kernel='=sys-kernel/gentoo-sources-5.10.27 ~amd64'
@@ -218,20 +216,14 @@ fstab_stuff(){
 ################################	9.2
 install_grub_efi(){
 	[ -d /sys/firmware/efi ] && echo 'GRUB_PLATFORMS="efi-64"' >> /etc/portage/make.conf
+	[ $aes_yesno = true ] && echo "sys-boot/boot:2 device-mapper" >> /etc/portage/package.use/sys-boot
 	emerge --ask --verbose sys-boot/grub:2
-	[ -d /sys/firmware/efi ] && grub-install --target=x86_64-efi --efi-directory=/boot || grub-install $disk
-	grub-mkconfig -o /boot/grub/grub.cfg
-}
-################################	9.3
-install_grub_aes_efi(){
-	[ -d /sys/firmware/efi ] && echo 'GRUB_PLATFORMS="efi-64"' >> /etc/portage/make.conf
-	echo "sys-boot/boot:2 device-mapper" >> /etc/portage/package.use/sys-boot
-	emerge --ask --verbose sys-boot/grub:2
-	echo 'GRUB_CMDLINE_LINUX="dolvm crypt_root='$root' root=/dev/mapper/vg0-root"' >> /etc/default/grub
+	[ $aes_yesno = true ] && echo 'GRUB_CMDLINE_LINUX="dolvm crypt_root='$root' root=/dev/mapper/vg0-root"' >> /etc/default/grub
 	nano /etc/default/grub
 	[ -d /sys/firmware/efi ] && grub-install --target=x86_64-efi --efi-directory=/boot || grub-install $disk
 	grub-mkconfig -o /boot/grub/grub.cfg
 }
+
 ################################	10
 reboot_now(){
 	cd
@@ -251,7 +243,7 @@ case $1 in
 	"6") pci_utils;;
 	"7") gentoo_genkernel;;
 	"8") fstab_stuff;;
-	"9") [ $aes_yesno = true ] && install_grub_aes_efi || install_grub_efi;;
+	"9") install_grub_efi;;
 	"10") reboot_now;;
 	"11") 
 		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/qdgentoo-i3.sh
