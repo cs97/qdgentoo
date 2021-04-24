@@ -243,7 +243,11 @@ case $1 in
 		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/qdgentoo-efi.sh
 		chmod +x qdgentoo-efi.sh
 		chmod -x qdgentoo-efi.old;;
-
+	"-m")
+		banner
+		read option
+		$0 option;;
+		
 	*) banner;;
 esac
 exit
