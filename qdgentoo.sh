@@ -240,10 +240,10 @@ case $1 in
 		chmod +x qdgentoo-i3.sh;;
 	
 	"99")
-		mv qdgentoo-efi.sh qdgentoo-efi.old
+		mv qdgentoo.sh qdgentoo.old
 		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/qdgentoo.sh
-		chmod +x qdgentoo-efi.sh
-		chmod -x qdgentoo-efi.old;;
+		chmod +x qdgentoo.sh
+		chmod -x qdgentoo.old;;
 	"-m")
 		banner
 		echo -en "\tEnter option: "
