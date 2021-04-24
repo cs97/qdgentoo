@@ -246,7 +246,7 @@ case $1 in
 	"-m")
 		banner
 		read option
-		$0 option;;
+		$0 $option;;
 		
 	*) banner;;
 esac
