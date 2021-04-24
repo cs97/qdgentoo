@@ -104,6 +104,7 @@ makefs_2(){
 	cd /mnt/gentoo
 	links https://www.gentoo.org/downloads/
 	tar xpvf stage3.tar.xz --xattrs-include='*.*' --numeric-owner
+	#wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/conf/make.conf -O /mnt/gentoo/etc/portage/make.conf
 	nano -w /mnt/gentoo/etc/portage/make.conf		
 	mirrorselect -i -o >> /mnt/gentoo/etc/portage/make.conf
 	mkdir --parents /mnt/gentoo/etc/portage/repos.conf
