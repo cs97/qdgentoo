@@ -18,33 +18,28 @@ home=$disk'3'
 
 banner(){
 	clear
-	echo "#######################################"
-	echo "#                                    #"
-	echo "#             qdgentoo-efi           #"
-	echo "#                                    #"
-	echo "######################################"
-	echo "run on" $([ -d /sys/firmware/efi ] && echo UEFI || echo BIOS)
-	echo "disk: $disk"
-	echo "aes: $aes_yesno"
-	echo "install: $kernel"
-	echo "######################################"
-	echo "#                                    #"
-	echo "#  0   makefs                        #"
-	echo "#  1   do in chroot                  #"
-	echo "#  2   @world                        #"
-	echo "#  3   locale                        #"
-	echo "#  4   env-update                    #"
-	echo "#  5   gentoo-sources                #"
-	echo "#  6   pciutils                      #"
-	echo "#  7   genkernel                     #"
-	echo "#  8   fstab & Stuff                 #"
-	echo "#  9   grub                          #"
-	echo "#  10  reboot                        #"
-	echo "#                                    #"
-	echo "#  11  wget qdgentoo-i3.sh           #"
-	echo "#  99. update                        #"
-	echo "######################################"
+	echo
 	echo ""
+	echo -e "\t\tqdgentoo-efi\n"
+
+	echo -e "\trun on" $([ -d /sys/firmware/efi ] && echo UEFI || echo BIOS)
+	echo -e "\tdisk: $disk"
+	echo -e "\taes: $aes_yesno"
+	echo -e "\tinstall: $kernel\n"
+	echo "0   makefs"
+	echo "1. do in chroot"
+	echo "2. @world"
+	echo "3. locale"
+	echo "4. env-update"
+	echo "5. gentoo-sources"
+	echo "6. pciutils"
+	echo "7. genkernel"
+	echo "8. fstab & Stuff"
+	echo "9. grub"
+	echo "10.reboot\n"
+	echo "11.  wget qdgentoo-i3.sh"
+	echo "99. update\n"
+
 }
 ################################	0
 makefs(){
