@@ -246,6 +246,7 @@ case $1 in
 		chmod -x qdgentoo-efi.old;;
 	"-m")
 		banner
+		echo -e "\tEnter option: "
 		read option
 		$0 $option;;
 		
