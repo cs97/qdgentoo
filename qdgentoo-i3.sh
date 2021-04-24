@@ -4,18 +4,16 @@ USER='user'
 
 banner(){
 	clear
-	echo "##########################################"
-	echo "#                                        #"
-	echo "#              qdgentoo-i3               #"
-	echo "#                                        #"
-	echo "##########################################"
-	echo "user: $USER"
-	echo "##########################################"
-	echo "#  0  add user                           #"
-	echo "#  1  xorg-server                        #"
-	echo "#  2  i3                                 #"
-	echo "#  99 update                             #"
-	echo "##########################################"
+	echo ""
+	echo ""
+	echo -e "\t\tqdgentoo-i3"
+	echo ""
+	echo -e "\tuser: $USER"
+	echo ""
+	echo -e "\t0. add user"
+	echo -e "\t1. xorg-server"
+	echo -e "\t2. i3"
+	echo -e "\t99. update"
 	echo ""
 }
 
