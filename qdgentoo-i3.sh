@@ -33,7 +33,7 @@ case $1 in
 	"1") 
 		USE="-suid" emerge --ask x11-base/xorg-server
 		#echo 'SUBSYSTEM=="input", ACTION=="add", GROUP="input"' > /etc/udev/rules.d/99-dev-input-group.rules
-		emerge --ask pulseaudio alsa-mixer alsa-utils
+		#emerge --ask pulseaudio alsa-mixer alsa-utils
 		#emerge --ask x11-base/xorg-server --autounmask-write; source /etc/profile
 		#emerge --ask x11-base/xorg-server; source /etc/profile
 		;;
