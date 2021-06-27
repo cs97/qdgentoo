@@ -168,6 +168,8 @@ pci_utils(){
 }
 ################################	7
 gentoo_genkernel(){
+	mkdir /etc/portage/package.license
+	echo "sys-kernel/linux-firmware @BINARY-REDISTRIBUTABLE" > /etc/portage/package.license/kernel
 	emerge --ask genkernel
 	etc-update
 	[ $aes_yesno = true ] && genkernel --luks --lvm --no-zfs --menuconfig all || genkernel --menuconfig all
