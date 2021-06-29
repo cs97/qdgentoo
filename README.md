@@ -107,7 +107,10 @@ sudo ln -s /etc/init.d/openvpn /etc/init.d/openvpn.myvpn
 /etc/init.d/openvpn.myvpn start
 sudo rc-update add openvpn.myvpn default
 ```
-
+### xrandr
+```
+xrandr --output HDMI-1 --mode 1920x1200
+```
 ### stuff...
 ```
 app-crypt/gnupg
