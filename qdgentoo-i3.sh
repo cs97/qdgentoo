@@ -41,11 +41,13 @@ case $1 in
 	"2")
 		emerge --ask x11-wm/i3 x11-misc/i3status x11-misc/i3lock x11-terms/xterm sys-process/htop #edia-gfx/feh
 		echo "exec i3" > ~/.xinitrc
+		;;
 		
 	"3")
 		mv ~/.config/i3/config ~/.config/i3/config.old
 		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/conf/config
-		mv ~/config ~/.config/i3/config;;
+		mv ~/config ~/.config/i3/config
+		;;
 	"99")
 		mv qdgentoo-i3.sh qdgentoo-i3.old
 		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/qdgentoo-i3.sh
