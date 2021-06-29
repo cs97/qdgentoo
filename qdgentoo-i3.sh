@@ -14,6 +14,7 @@ banner(){
 	echo -e "\t1. xorg-server"
 	echo -e "\t2. i3"
 	echo -e "\t3. i3 new config"
+	echo -e "\t4. audio"
 	echo -e "\t99. update"
 	echo ""
 }
@@ -34,7 +35,6 @@ case $1 in
 	"1") 
 		USE="-suid" emerge --ask x11-base/xorg-server
 		#echo 'SUBSYSTEM=="input", ACTION=="add", GROUP="input"' > /etc/udev/rules.d/99-dev-input-group.rules
-		#emerge --ask pulseaudio alsa-mixer alsa-utils
 		#emerge --ask x11-base/xorg-server --autounmask-write; source /etc/profile
 		#emerge --ask x11-base/xorg-server; source /etc/profile
 		;;
@@ -47,6 +47,9 @@ case $1 in
 		mv ~/.config/i3/config ~/.config/i3/config.old
 		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/conf/config
 		mv ~/config ~/.config/i3/config
+		;;
+	"4")
+		emerge --ask pulseaudio alsa-mixer alsa-utils
 		;;
 	"99")
 		mv qdgentoo-i3.sh qdgentoo-i3.old
