@@ -13,6 +13,7 @@ banner(){
 	echo -e "\t0. add user"
 	echo -e "\t1. xorg-server"
 	echo -e "\t2. i3"
+	echo -e "\t3. i3 new config"
 	echo -e "\t99. update"
 	echo ""
 }
@@ -40,6 +41,8 @@ case $1 in
 	"2")
 		emerge --ask x11-wm/i3 x11-misc/i3status x11-misc/i3lock x11-terms/xterm sys-process/htop #edia-gfx/feh
 		echo "exec i3" > ~/.xinitrc
+		
+	"3")
 		mv ~/.config/i3/config ~/.config/i3/config.old
 		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/conf/config
 		mv ~/config ~/.config/i3/config;;
