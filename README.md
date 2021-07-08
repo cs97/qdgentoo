@@ -111,6 +111,12 @@ sudo rc-update add openvpn.myvpn default
 ```
 xrandr --output HDMI-1 --mode 1920x1200
 ```
+### feh
+```
+feh --bg-scale ~/gentoo.png
+OR
+feh --bg-center ~/gentoo.png
+```
 ### stuff...
 ```
 app-crypt/gnupg
