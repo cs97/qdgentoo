@@ -68,9 +68,9 @@ case $1 in
 		emerge --ask pulseaudio alsa-mixer alsa-utils
 		;;
 	"99")
-		mv qdgentoo-i3.sh qdgentoo-i3.old
-		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/qdgentoo-i3.sh
-		chmod +x qdgentoo-i3.sh;;
+		mv qdgentoo-x.sh qdgentoo-x.old
+		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/qdgentoo-x.sh
+		chmod +x qdgentoo-x.sh;;
 	*) banner;;
 esac
 exit
