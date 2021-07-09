@@ -1,6 +1,8 @@
 #! /bin/bash
 
 USER='user'
+BACKGROUND='~/pic.png'
+
 
 banner(){
 	clear
@@ -14,7 +16,8 @@ banner(){
 	echo -e "\t1. xorg-server"
 	echo -e "\t2. i3"
 	echo -e "\t3. i3 new config"
-	echo -e "\t4. audio"
+	echo -e "\t4. dwm"
+	echo -e "\t5. audio"
 	echo -e "\t99. update"
 	echo ""
 }
@@ -49,6 +52,19 @@ case $1 in
 		mv ~/config ~/.config/i3/config
 		;;
 	"4")
+		emerge --ask dwm
+		emerge --ask dmenu
+		emerge --ask feh
+		#emerge --ask conky
+		#conky --print-config > ~/.config/conky.conf
+		echo "feh --bg-center $BACKGROUND" > ~/.xinitrc
+		#echo "conky -c ~/.config/conky.conf" >> ~/.xinitrc
+		echo "exec dwm" >> ~/.xinitrc
+		#conky.conf
+		#background = true,
+		#own_window = false,
+		;;
+	"5")
 		emerge --ask pulseaudio alsa-mixer alsa-utils
 		;;
 	"99")
