@@ -239,8 +239,8 @@ case $1 in
 	"9") install_grub_efi;;
 	"10") reboot_now;;
 	"11") 
-		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/qdgentoo-i3.sh
-		chmod +x qdgentoo-i3.sh;;
+		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/qdgentoo-x.sh
+		chmod +x qdgentoo-x.sh;;
 	
 	"99")
 		mv qdgentoo.sh qdgentoo.old
