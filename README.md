@@ -56,8 +56,8 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 /etc/local.d/noboost.start
 
-```
-#!/bin/bashe
+```sh
+#!/bin/bash
 echo 0 > /sys/devices/system/cpu/cpufreq/boost
 ```
 ```
@@ -70,7 +70,7 @@ emerge sys-power/cpupower
 ```
 /etc/local.d/powersave.start
 
-```
+```sh
 #!/bin/bashe
 cpupower frequency-set -g powersave
 ```
@@ -93,7 +93,7 @@ modprobe vboxdrv
 ```
 emerge --ask net-fs/nfs-utils
 ```
-```
+```sh
 mkdir /home/user/data
 ```
 /etc/fstab
