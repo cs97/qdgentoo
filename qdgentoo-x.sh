@@ -18,6 +18,7 @@ banner(){
 	echo -e "\t3. i3 new config"
 	echo -e "\t4. dwm"
 	echo -e "\t5. audio"
+	echo -e "\t6. xfce4"
 	echo -e "\t99. update"
 	echo ""
 }
@@ -66,6 +67,11 @@ case $1 in
 		;;
 	"5")
 		emerge --ask pulseaudio alsa-mixer alsa-utils
+		;;
+	"6")
+		emerge --ask --oneshot xfce-extra/xfce4-notifyd
+		emerge --ask xfce-base/xfce4-meta
+		echo "exec startxfce4" >> ~/.xinitrc
 		;;
 	"99")
 		mv qdgentoo-x.sh qdgentoo-x.old
