@@ -39,7 +39,7 @@ banner(){
 	echo -e "\t8. fstab & Stuff"
 	echo -e "\t9. grub"
 	echo -e "\t10.reboot\n"
-	echo -e "\t11.  wget qdgentoo-i3.sh"
+	echo -e "\t11.  wget qdgentoo-x.sh"
 	echo -e "\t99. update\n"
 
 }
