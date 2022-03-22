@@ -4,10 +4,9 @@ aes_yesno=false
 load_makeconf=false
 
 kernel='=sys-kernel/gentoo-sources-5.10.52 ~amd64'
-		# no aes	aes
-part1="1GiB"	# (boot)	(boot)
-part2="30GiB"	# (root)	(lvm)
-part3="100%"	# (home)
+part1="1MiB 1024MiB"
+part2="1025MiB 32768MiB"
+part3="32769MiB 100%"
 
 #echo 0 > /sys/devices/system/cpu/cpufreq/boost
 
@@ -53,15 +52,18 @@ makefs(){
 	
 	[ -d /sys/firmware/efi ] && {
 		parted $disk --script mklabel gpt
-		parted $disk --script mkpart primary fat32 1MiB $part1
-		parted $disk --script mkpart primary ext4 $part1 $part2
-		parted $disk --script mkpart primary ext4 $part2 $part3
+		#parted $disk --script mkpart primary fat32 1MiB $part1
+		#parted $disk --script mkpart primary ext4 $part1 $part2
+		#parted $disk --script mkpart primary ext4 $part2 $part3
 	} || {
 		parted $disk --script mklabel msdos
-		parted $disk --script mkpart primary ext4 1MiB $part1
-		parted $disk --script mkpart primary ext4 $part1 $part2
-		parted $disk --script mkpart primary ext4 $part2 $part3
+		#parted $disk --script mkpart primary ext4 1MiB $part1
+		#parted $disk --script mkpart primary ext4 $part1 $part2
+		#parted $disk --script mkpart primary ext4 $part2 $part3
 	}
+	parted $disk --script mkpart primary fat32 $part1
+	parted $disk --script mkpart primary ext4 $part2
+	parted $disk --script mkpart primary ext4 $part3
 	
 	#cfdisk $disk
 	sleep 1
