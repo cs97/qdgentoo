@@ -3,7 +3,8 @@
 aes_yesno=false
 load_makeconf=false
 
-kernel='=sys-kernel/gentoo-sources-5.10.52 ~amd64'
+kernel='=sys-kernel/gentoo-sources-5.16.16 ~amd64'
+
 part1="1MiB 1024MiB"
 part2="1025MiB 32768MiB"
 part3="32769MiB 100%"
