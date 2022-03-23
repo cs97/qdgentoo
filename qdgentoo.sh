@@ -154,6 +154,7 @@ make_locale(){
 	clear
 	eselect locale set 6
 	eselect locale list
+	#localectl set-keymap de
 	}
 ################################	4
 env_update(){
