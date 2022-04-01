@@ -93,8 +93,13 @@ makefs_aes(){
 		#parted /dev/$disk --script mkpart primary ext4 $part1
 		#parted /dev/$disk --script mkpart primary ext4 $partlvm
 	}
-	parted /dev/$disk --script mkpart primary ext4 $part1
-	parted /dev/$disk --script mkpart primary ext4 $partlvm
+	
+	[ $use_cfdisk = true ] && {
+		cfdisk $disk
+	} || {
+		parted /dev/$disk --script mkpart primary ext4 $part1
+		parted /dev/$disk --script mkpart primary ext4 $partlvm
+	}
 		
 	#cfdisk $disk
 	sleep 1
