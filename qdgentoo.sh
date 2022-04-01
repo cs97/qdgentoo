@@ -102,7 +102,6 @@ makefs_aes(){
 		parted /dev/$disk --script mkpart primary ext4 $partlvm
 	}
 		
-	#cfdisk $disk
 	sleep 1
 	mkfs.fat -F 32 $boot
 	modprobe dm-crypt
