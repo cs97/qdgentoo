@@ -15,6 +15,7 @@ partlvm="1025MiB 100%"
 disk='/dev/vda'
 #disk='/dev/sda'
 #disk='/dev/nvme0n1'
+
 boot=$disk'1'
 root=$disk'2'
 home=$disk'3'
@@ -64,11 +65,14 @@ makefs(){
 		#parted $disk --script mkpart primary ext4 $part1 $part2
 		#parted $disk --script mkpart primary ext4 $part2 $part3
 	}
-	parted $disk --script mkpart primary fat32 $part1
-	parted $disk --script mkpart primary ext4 $part2
-	parted $disk --script mkpart primary ext4 $part3
 	
-	#cfdisk $disk
+	[ $use_cfdisk = true ] && {
+		cfdisk $disk
+	} || {
+		parted $disk --script mkpart primary fat32 $part1
+		parted $disk --script mkpart primary ext4 $part2
+		parted $disk --script mkpart primary ext4 $part3	
+	}
 	sleep 1
 	mkfs.fat -F 32 $boot
 	mkfs.ext4 $root
