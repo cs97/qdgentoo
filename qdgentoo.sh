@@ -2,6 +2,7 @@
 
 aes_yesno=false
 load_makeconf=false
+use_cfdisk=false
 
 kernel='=sys-kernel/gentoo-sources-5.17.1 ~amd64'
 
