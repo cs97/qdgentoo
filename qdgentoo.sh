@@ -32,7 +32,7 @@ banner(){
 	echo -e "\taes: $aes_yesno"
 	echo -e "\tload_makeconf: $load_makeconf"
 	echo -e "\tinstall: $kernel\n"
-	echo -e "\t0   makefs"
+	echo -e "\t0  makefs"
 	echo -e "\t1. do in chroot"
 	echo -e "\t2. @world"
 	echo -e "\t3. locale"
