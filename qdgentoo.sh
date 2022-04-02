@@ -179,7 +179,7 @@ env_update(){
 }
 ################################	5
 gentoo_sources(){
-	echo "$kernel" > /etc/portage/package.accept_keywords
+	echo "$kernel" > /etc/portage/package.accept_keywords/kernel
 	emerge --ask sys-kernel/gentoo-sources
 	etc-update
 }
@@ -244,7 +244,7 @@ reboot_now(){
 	cd
 	umount -l /mnt/gentoo/dev{/shm,/pts,}
 	umount -R /mnt/gentoo
-	reboot
+	#reboot
 }
 
 
