@@ -221,7 +221,7 @@ fstab_stuff(){
 	nano -w /etc/fstab
 	
 	echo 'hostname="gentoo-pc"' >> /etc/conf.d/hostname
-	emerge --ask --noreplace net-misc/netifrc
+	#emerge --ask --noreplace net-misc/netifrc
 	passwd
 	emerge --ask app-admin/sysklogd
 	#rc-update add sysklogd default
