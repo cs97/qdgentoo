@@ -1,8 +1,8 @@
 #! /bin/bash
 
 aes_yesno=false
-load_makeconf=false
-use_cfdisk=false
+load_makeconf=true
+use_cfdisk=true
 
 kernel='=sys-kernel/gentoo-sources-5.17.1 ~amd64'
 
@@ -13,8 +13,8 @@ partlvm="1025MiB 100%"
 
 #echo 0 > /sys/devices/system/cpu/cpufreq/boost
 
-disk='/dev/vda'
-#disk='/dev/sda'
+#disk='/dev/vda'
+disk='/dev/sda'
 #disk='/dev/nvme0n1'
 
 boot=$disk'1'
