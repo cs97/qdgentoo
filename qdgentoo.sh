@@ -230,7 +230,6 @@ fstab_stuff(){
 	#rc-update add sysklogd default
 	emerge --ask net-misc/dhcpcd
 }
-
 ################################	9.2
 install_grub_efi(){
 	[ -d /sys/firmware/efi ] && echo 'GRUB_PLATFORMS="efi-64"' >> /etc/portage/make.conf
@@ -241,7 +240,6 @@ install_grub_efi(){
 	[ -d /sys/firmware/efi ] && grub-install --target=x86_64-efi --efi-directory=/boot || grub-install $disk
 	grub-mkconfig -o /boot/grub/grub.cfg
 }
-
 ################################	10
 reboot_now(){
 	cd
@@ -249,7 +247,6 @@ reboot_now(){
 	umount -R /mnt/gentoo
 	#reboot
 }
-
 ################################	11
 add_user(){
 	emerge --ask app-admin/sudo
@@ -264,18 +261,16 @@ add_user(){
 	usermod -a -G video $USER
 	usermod -a -G input $USER;;
 }
-
 ################################	12
 install_xorg(){
 	USE="-suid" emerge --ask x11-base/xorg-server
 }
-
 ################################	13
 install_i3wm(){
 	emerge --ask x11-wm/i3 x11-misc/i3status x11-misc/i3lock x11-terms/xterm edia-gfx/feh
 	echo "exec i3" > ~/.xinitrc
 }
-
+################################	switch
 case $1 in
 	"0") [ $aes_yesno = true ] && makefs_aes || makefs;;
 	"1") do_in_chroot;;
@@ -309,4 +304,3 @@ case $1 in
 	*) banner;;
 esac
 exit
-
