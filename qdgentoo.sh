@@ -31,6 +31,7 @@ banner(){
 	echo -e "\tdisk: $disk"
 	echo -e "\taes: $aes_yesno"
 	echo -e "\tload_makeconf: $load_makeconf"
+	echo -e "\tuse cfdisk: $use_cfdisk"
 	echo -e "\tinstall: $kernel\n"
 	echo -e "\t0  makefs"
 	echo -e "\t1. do in chroot"
@@ -42,8 +43,11 @@ banner(){
 	echo -e "\t7. genkernel"
 	echo -e "\t8. fstab & Stuff"
 	echo -e "\t9. grub"
-	echo -e "\t10.reboot\n"
-	echo -e "\t11.  wget qdgentoo-x.sh"
+	echo -e "\t10.umount all\n"
+	echo -e "\t11.add user\n"	
+	echo -e "\t12.xorg\n"
+	echo -e "\t13.i3wm\n"
+	echo -e "\t55.  wget qdgentoo-x.sh"
 	echo -e "\t99. update\n"
 
 }
@@ -247,6 +251,31 @@ reboot_now(){
 	#reboot
 }
 
+################################	11
+add_user(){
+	emerge --ask app-admin/sudo
+	useradd -m -G users,wheel,audio -s /bin/bash $USER
+	echo "exec i3" >> /home/$USER/.xinitrc
+	echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
+	passwd $USER
+#	passwd -l root
+	cp qdgentoo-i3.sh /home/$USER/qdgentoo-i3.sh
+	emerge xrandr
+	echo "user:" $USER
+	usermod -a -G video $USER
+	usermod -a -G input $USER;;
+}
+
+################################	12
+install_xorg(){
+	USE="-suid" emerge --ask x11-base/xorg-server
+}
+
+################################	13
+install_i3wm(){
+	emerge --ask x11-wm/i3 x11-misc/i3status x11-misc/i3lock x11-terms/xterm edia-gfx/feh
+	echo "exec i3" > ~/.xinitrc
+}
 
 case $1 in
 	"0") [ $aes_yesno = true ] && makefs_aes || makefs;;
@@ -259,8 +288,11 @@ case $1 in
 	"7") gentoo_genkernel;;
 	"8") fstab_stuff;;
 	"9") install_grub_efi;;
-	"10") reboot_now;;
-	"11") 
+	"10") umount_all;;
+	"11") add_user;;
+	"12") install_xorg;;
+	"13") install_i3wm;;
+	"55") 
 		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/qdgentoo-x.sh
 		chmod +x qdgentoo-x.sh;;
 	
