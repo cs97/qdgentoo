@@ -222,10 +222,7 @@ fstab_stuff(){
 	echo "tmpfs		/tmp		tmpfs		size=4G		0 0" >> /etc/fstab
 	echo "tmpfs		/run		tmpfs		size=100M	0 0" >> /etc/fstab
 	
-	
-	
 	nano -w /etc/fstab
-	
 	echo 'hostname="gentoo-pc"' >> /etc/conf.d/hostname
 	#emerge --ask --noreplace net-misc/netifrc
 	passwd
