@@ -1,5 +1,7 @@
 #! /bin/bash
 
+USER='user'
+
 aes_yesno=false
 load_makeconf=true
 use_cfdisk=true
@@ -26,8 +28,8 @@ banner(){
 	echo
 	echo ""
 	echo -e "\t\tqdgentoo-efi\n"
-
 	echo -e "\trun on" $([ -d /sys/firmware/efi ] && echo UEFI || echo BIOS)
+	echo -e "\tuser: $USER"
 	echo -e "\tdisk: $disk"
 	echo -e "\taes: $aes_yesno"
 	echo -e "\tload_makeconf: $load_makeconf"
