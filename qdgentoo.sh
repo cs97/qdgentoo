@@ -241,7 +241,7 @@ install_grub_efi(){
 	grub-mkconfig -o /boot/grub/grub.cfg
 }
 ################################	10
-reboot_now(){
+umount_all(){
 	cd
 	umount -l /mnt/gentoo/dev{/shm,/pts,}
 	umount -R /mnt/gentoo
