@@ -295,7 +295,7 @@ install_wifi(){
 	emerge --ask networkmanager
 	emerge --ask nm-applet
 	systemctl enable NetworkManager
-	
+	systemctl start NetworkManager
 	}
 ################################	switch
 case $1 in
@@ -314,6 +314,7 @@ case $1 in
 	"12") install_xorg;;
 	"13") install_i3wm;;
 	"14") mount_again;;
+	"15") install_wifi;;
 	"55") 
 		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/qdgentoo-x.sh
 		chmod +x qdgentoo-x.sh;;
