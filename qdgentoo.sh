@@ -270,8 +270,7 @@ install_i3wm(){
 	emerge --ask x11-wm/i3 x11-misc/i3status x11-misc/i3lock x11-terms/xterm edia-gfx/feh
 	echo "exec i3" > ~/.xinitrc
 }
-
-
+################################	14
 mount_again(){
 	mkdir /mnt/gentoo
 	sleep 1
@@ -291,6 +290,13 @@ mount_again(){
 	sleep 1
 	chroot /mnt/gentoo /bin/bash
 }
+################################	15
+install_wifi(){
+	emerge --ask networkmanager
+	emerge --ask nm-applet
+	systemctl enable NetworkManager
+	
+	}
 ################################	switch
 case $1 in
 	"0") [ $aes_yesno = true ] && makefs_aes || makefs;;
