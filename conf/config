@@ -11,6 +11,7 @@ floating_modifier $mod
 #feh --bg-scale ~/gentoo.png
 #exec feh --bg-center ~/gentoo.png
 #exec conky -c ~/conky.conf
+#exec_always --no-startup-id nm-applet
 
 font pango:awesome 7
 #font pango:DejaVu Sans Mono 7
