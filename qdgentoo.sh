@@ -270,6 +270,27 @@ install_i3wm(){
 	emerge --ask x11-wm/i3 x11-misc/i3status x11-misc/i3lock x11-terms/xterm edia-gfx/feh
 	echo "exec i3" > ~/.xinitrc
 }
+
+
+mount_again(){
+	mkdir /mnt/gentoo
+	sleep 1
+	mount $root /mnt/gentoo
+	sleep 1
+	mount $boot /mnt/gentoo/boot
+	sleep 1
+	mount --types proc /proc /mnt/gentoo/proc
+	sleep 1
+	mount --rbind /sys /mnt/gentoo/sys
+	sleep 1
+	mount --make-rslave /mnt/gentoo/sys
+	sleep 1
+	mount --rbind /dev /mnt/gentoo/dev
+	sleep 1
+	mount --make-rslave /mnt/gentoo/dev
+	sleep 1
+	chroot /mnt/gentoo /bin/bash
+}
 ################################	switch
 case $1 in
 	"0") [ $aes_yesno = true ] && makefs_aes || makefs;;
@@ -286,6 +307,7 @@ case $1 in
 	"11") add_user;;
 	"12") install_xorg;;
 	"13") install_i3wm;;
+	"14") mount_again;;
 	"55") 
 		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/qdgentoo-x.sh
 		chmod +x qdgentoo-x.sh;;
