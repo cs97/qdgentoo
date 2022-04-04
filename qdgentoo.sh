@@ -259,7 +259,7 @@ add_user(){
 	emerge xrandr
 	echo "user:" $USER
 	usermod -a -G video $USER
-	usermod -a -G input $USER;;
+	usermod -a -G input $USER
 }
 ################################	12
 install_xorg(){
