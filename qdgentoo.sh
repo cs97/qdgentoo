@@ -124,7 +124,7 @@ makefs_aes(){
 }
 
 makefs_2(){
-	#cp /root/stage3.tar.xz /mnt/gentoo/stage3.tar.xz
+	#cp stage3* /mnt/gentoo/stage3.tar.xz
 	cd /mnt/gentoo
 	links https://www.gentoo.org/downloads/
 	tar xpvf stage3.tar.xz --xattrs-include='*.*' --numeric-owner
