@@ -238,6 +238,7 @@ install_grub_efi(){
 	[ $aes_yesno = true ] && echo 'GRUB_CMDLINE_LINUX="dolvm crypt_root='$root' root=/dev/mapper/vg0-root"' >> /etc/default/grub
 	nano /etc/default/grub
 	[ -d /sys/firmware/efi ] && grub-install --target=x86_64-efi --efi-directory=/boot || grub-install $disk
+	#echo 'GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"' >> /etc/default/grub
 	grub-mkconfig -o /boot/grub/grub.cfg
 }
 ################################	10
