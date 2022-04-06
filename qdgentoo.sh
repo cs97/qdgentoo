@@ -251,7 +251,7 @@ umount_all(){
 add_user(){
 	emerge --ask app-admin/sudo
 	useradd -m -G users,wheel,audio -s /bin/bash $USER
-	echo "exec i3" >> /home/$USER/.xinitrc
+#	echo "exec i3" >> /home/$USER/.xinitrc
 	echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 	passwd $USER
 #	passwd -l root
