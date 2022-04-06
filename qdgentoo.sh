@@ -34,7 +34,7 @@ banner(){
 	echo -e "\taes: $aes_yesno"
 	echo -e "\tload_makeconf: $load_makeconf"
 	echo -e "\tuse cfdisk: $use_cfdisk"
-	echo -e "\tinstall: $kernel\n"
+#	echo -e "\tinstall: $kernel\n"
 	echo -e "\t0  makefs"
 	echo -e "\t1. do in chroot"
 	echo -e "\t2. @world"
@@ -47,9 +47,8 @@ banner(){
 	echo -e "\t9. grub"
 	echo -e "\t10.umount all\n"
 	echo -e "\t11.add user\n"	
-	echo -e "\t12.xorg\n"
-	echo -e "\t13.i3wm\n"
-	echo -e "\t55.  wget qdgentoo-x.sh"
+	echo -e "\t12.wayland\n"
+	echo -e "\t13.sway\n"
 	echo -e "\t99. update\n"
 
 }
