@@ -27,13 +27,13 @@ banner(){
 	clear
 	echo
 	echo ""
-	echo -e "\t\tqdgentoo-efi\n"
+	echo -e "\t\tqdgentoo\n"
 	echo -e "\trun on" $([ -d /sys/firmware/efi ] && echo UEFI || echo BIOS)
 	echo -e "\tuser: $USER"
 	echo -e "\tdisk: $disk"
 	echo -e "\taes: $aes_yesno"
 	echo -e "\tload_makeconf: $load_makeconf"
-	echo -e "\tuse cfdisk: $use_cfdisk"
+	echo -e "\tuse cfdisk: $use_cfdisk\n"
 #	echo -e "\tinstall: $kernel\n"
 	echo -e "\t0  makefs"
 	echo -e "\t1. do in chroot"
