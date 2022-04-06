@@ -256,20 +256,19 @@ add_user(){
 	echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 	passwd $USER
 #	passwd -l root
-	cp qdgentoo-i3.sh /home/$USER/qdgentoo-i3.sh
-	emerge xrandr
-	echo "user:" $USER
+	cp qdgentoo.sh /home/$USER/
+	#emerge xrandr
+	#echo "user:" $USER
 	usermod -a -G video $USER
 	usermod -a -G input $USER
 }
 ################################	12
-install_xorg(){
-	USE="-suid" emerge --ask x11-base/xorg-server
+install_wayland(){
+	emerge --ask dev-libs/wayland
 }
 ################################	13
-install_i3wm(){
-	emerge --ask x11-wm/i3 x11-misc/i3status x11-misc/i3lock x11-terms/xterm edia-gfx/feh
-	echo "exec i3" > ~/.xinitrc
+install_sway(){
+	USE="wallpapers" emerge --ask gui-wm/sway
 }
 ################################	14
 mount_again(){
@@ -312,8 +311,8 @@ case $1 in
 	"9") install_grub_efi;;
 	"10") umount_all;;
 	"11") add_user;;
-	"12") install_xorg;;
-	"13") install_i3wm;;
+	"12") install_wayland;;
+	"13") install_sway;;
 	"14") mount_again;;
 	"15") install_wifi;;
 	"55") 
