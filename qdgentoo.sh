@@ -6,7 +6,7 @@ aes_yesno=false
 load_makeconf=true
 use_cfdisk=true
 
-kernel='=sys-kernel/gentoo-sources-5.17.1 ~amd64'
+#kernel='=sys-kernel/gentoo-sources-5.17.1 ~amd64'
 
 part1="1MiB 1024MiB"
 part2="1025MiB 32768MiB"
@@ -197,9 +197,9 @@ pci_utils(){
 ################################	7
 gentoo_genkernel(){
 	mkdir /etc/portage/package.license
-	echo "sys-kernel/linux-firmware @BINARY-REDISTRIBUTABLE" > /etc/portage/package.license/kernel
+	#echo "sys-kernel/linux-firmware @BINARY-REDISTRIBUTABLE" > /etc/portage/package.license/kernel
 	emerge --ask genkernel
-	eselect kernel set 1
+	#eselect kernel set 1
 	etc-update
 	[ $aes_yesno = true ] && genkernel --luks --lvm --no-zfs --menuconfig all || genkernel --menuconfig all
 }
