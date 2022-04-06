@@ -314,11 +314,7 @@ case $1 in
 	"12") install_wayland;;
 	"13") install_sway;;
 	"14") mount_again;;
-	"15") install_wifi;;
-	"55") 
-		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/qdgentoo-x.sh
-		chmod +x qdgentoo-x.sh;;
-	
+	"15") install_wifi;;	
 	"99")
 		mv qdgentoo.sh qdgentoo.old
 		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/qdgentoo.sh
