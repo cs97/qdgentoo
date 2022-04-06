@@ -13,23 +13,11 @@ wpa_passphrase <WLAN> >> /etc/wpa_supplicant/wpa_supplicant.conf
 rc-update add wpa_supplicant default
 ```
 
-
-### make.conf
-/etc/portage/make.conf #my e495
-```
-COMMON_FLAGS="-march=native -O2 -pipe"
-MAKEOPTS="-j8"
-USE="experimental elogind alsa pulseaudio"
-CPU_FLAGS_X86="aes avx avx2 f16c fma3 mmx mmxext pclmul popcnt sha sse sse2 sse3 sse4_1 sse4_2 sse4a ssse3"
-
-```
-
-
 ### kernel update
 
 /etc/portage/package.accept_keywords
 ```    
-=sys-kernel/gentoo-sources-5.11.16 ~amd64
+=sys-kernel/gentoo-sources-5.17.1 ~amd64
 ```
 install sources:
 ```
@@ -38,6 +26,7 @@ emerge --ask sys-kernel/gentoo-sources
 select the new kernel:
 ```
 eselect kernel list
+eselect kernel set <x>
 ```
 
 genkernel:
@@ -64,30 +53,6 @@ echo 0 > /sys/devices/system/cpu/cpufreq/boost
 chmod +x /etc/local.d/noboost.start
 rc-update add local default```
 ```
-### eco 
-```
-emerge sys-power/cpupower
-```
-/etc/local.d/powersave.start
-
-```sh
-#!/bin/bashe
-cpupower frequency-set -g powersave
-```
-```
-chmod +x /etc/local.d/powersave.start
-rc-update add local default```
-```
-### virtualbox
-/etc/portage/package.accept_keywords
-```
-=app-emulation/virtualbox-6.1.16 ~amd64
-=app-emulation/virtualbox-modules-6.1.16 ~amd64
-```
-```
-emerge --ask app-emulation/virtualbox
-modprobe vboxdrv
-```
 
 ### nfs mount
 ```
@@ -107,16 +72,8 @@ sudo ln -s /etc/init.d/openvpn /etc/init.d/openvpn.myvpn
 /etc/init.d/openvpn.myvpn start
 sudo rc-update add openvpn.myvpn default
 ```
-### xrandr
-```
-xrandr --output HDMI-1 --mode 1920x1200
-```
-### feh
-```
-feh --bg-scale ~/gentoo.png
-OR
-feh --bg-center ~/gentoo.png
-```
+
+
 ### stuff...
 ```
 app-crypt/gnupg
