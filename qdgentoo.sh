@@ -46,8 +46,8 @@ banner(){
 	echo -e "\t8. fstab & Stuff"
 	echo -e "\t9. grub"
 	echo -e "\t10.umount all\n"
-	echo -e "\t11.add user\n"	
-	echo -e "\t12.wayland\n"
+	echo -e "\t11.add user"	
+	echo -e "\t12.wayland"
 	echo -e "\t13.sway\n"
 	echo -e "\t99. update\n"
 
