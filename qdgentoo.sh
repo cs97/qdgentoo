@@ -272,12 +272,16 @@ install_sway(){
 	emerge --ask dev-libs/light
 }
 ################################	14
+install_audio(){
+	emerge --ask alsa-utils pipewire
+}
+################################	15
 sway_config(){
 	mv ~/.config/i3/config ~/.config/sway/config.old
 	wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/conf/config
 	mv ~/config ~/.config/sway/config
 }
-################################	15
+################################	16
 mount_again(){
 	mkdir /mnt/gentoo
 	sleep 1
@@ -297,7 +301,7 @@ mount_again(){
 	sleep 1
 	chroot /mnt/gentoo /bin/bash
 }
-################################	16
+################################	17
 install_wifi(){
 	emerge --ask networkmanager
 	emerge --ask nm-applet
@@ -322,9 +326,10 @@ case $1 in
 	"11") add_user;;
 	"12") install_wayland;;
 	"13") install_sway;;
-	"14") sway_config;;
-	"15") mount_again;;
-	"16") install_wifi;;	
+	"14") install_audio;;
+	"15") sway_config;;
+	"16") mount_again;;
+	"17") install_wifi;;	
 	"99")
 		mv qdgentoo.sh qdgentoo.old
 		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/qdgentoo.sh
