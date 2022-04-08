@@ -39,8 +39,9 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     # dev-libs/light
     bindsym XF86MonBrightnessDown exec light -U 2
     bindsym XF86MonBrightnessUp exec light -A 4
-
-
+    
+    # Firefox
+    bindsym $mod+f exec firefox
 #
 # Moving around:
 #
@@ -107,7 +108,7 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
-    bindsym $mod+f fullscreen
+    bindsym $mod+Shift+f fullscreen
 
     # Toggle the current focus between tiling and floating mode
     bindsym $mod+Shift+space floating toggle
