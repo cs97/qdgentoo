@@ -40,6 +40,11 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
     bindsym XF86MonBrightnessDown exec light -U 2
     bindsym XF86MonBrightnessUp exec light -A 4
     
+    #volume
+    bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+    bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+    bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+    
     # Firefox
     bindsym $mod+f exec firefox
 #
