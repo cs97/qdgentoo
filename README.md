@@ -1,4 +1,7 @@
-
+### audio
+```
+emerge --ask alsa pipewire
+```
 
 ### wlan
 
