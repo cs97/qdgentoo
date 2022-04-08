@@ -272,9 +272,9 @@ install_sway(){
 }
 ################################	14
 sway_config(){
-	mv ~/.config/i3/config ~/.config/i3/config.old
+	mv ~/.config/i3/config ~/.config/sway/config.old
 	wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/conf/config
-	mv ~/config ~/.config/i3/config
+	mv ~/config ~/.config/sway/config
 }
 ################################	15
 mount_again(){
