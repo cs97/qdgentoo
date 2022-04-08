@@ -269,6 +269,7 @@ install_wayland(){
 ################################	13
 install_sway(){
 	USE="wallpapers" emerge --ask gui-wm/sway
+	emerge --ask dev-libs/light
 }
 ################################	14
 sway_config(){
