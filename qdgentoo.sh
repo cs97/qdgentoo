@@ -48,7 +48,7 @@ banner(){
 	echo -e "\t10.umount all\n"
 	echo -e "\t11.add user"	
 	echo -e "\t12.wayland"
-	echo -e "\t13.sway\n"
+	echo -e "\t13.sway"
 	echo -e "\t14.sway_config\n"
 	echo -e "\t99. update\n"
 
