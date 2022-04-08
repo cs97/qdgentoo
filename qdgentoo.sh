@@ -223,7 +223,8 @@ fstab_stuff(){
 	echo "tmpfs		/run		tmpfs		size=100M	0 0" >> /etc/fstab
 	
 	nano -w /etc/fstab
-	echo 'hostname="gentoo-pc"' >> /etc/conf.d/hostname
+	#echo 'hostname="gentoo-pc"' >> /etc/conf.d/hostname
+	hostnamectl hostname gentoo-pc
 	#emerge --ask --noreplace net-misc/netifrc
 	passwd
 	emerge --ask app-admin/sysklogd
