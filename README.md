@@ -1,6 +1,6 @@
 ### audio
 ```
-emerge --ask alsa pipewire
+emerge --ask alsa-utils pipewire
 ```
 
 ### wlan
