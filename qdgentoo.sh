@@ -304,7 +304,7 @@ install_wifi(){
 	systemctl start NetworkManager
 	}
 ################################	switch
-[ "$EUID" -ne 0 ] && echo "Please run as root" && exit
+[ "$EUID" -ne 0 ] && echo "Please run as root" #&& exit
 
 case $1 in
 	"0") [ $aes_yesno = true ] && makefs_aes || makefs;;
