@@ -278,7 +278,7 @@ install_audio(){
 }
 ################################	15
 sway_config(){
-	mv ~/.config/i3/config ~/.config/sway/config.old
+	mv ~/.config/sway/config ~/.config/sway/config.old
 	wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/conf/config
 	mv ~/config ~/.config/sway/config
 }
