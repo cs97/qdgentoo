@@ -199,7 +199,7 @@ gentoo_genkernel(){
 	mkdir /etc/portage/package.license
 	echo "sys-kernel/linux-firmware @BINARY-REDISTRIBUTABLE" > /etc/portage/package.license/firmware
 	emerge --ask genkernel
-	#eselect kernel set 1
+	eselect kernel set 1
 	etc-update
 	[ $aes_yesno = true ] && genkernel --luks --lvm --no-zfs --menuconfig all || genkernel --menuconfig all
 }
