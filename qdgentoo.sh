@@ -197,7 +197,7 @@ pci_utils(){
 ################################	7
 gentoo_genkernel(){
 	mkdir /etc/portage/package.license
-	#echo "sys-kernel/linux-firmware @BINARY-REDISTRIBUTABLE" > /etc/portage/package.license/kernel
+	echo "sys-kernel/linux-firmware @BINARY-REDISTRIBUTABLE" > /etc/portage/package.license/firmware
 	emerge --ask genkernel
 	#eselect kernel set 1
 	etc-update
