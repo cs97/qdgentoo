@@ -144,7 +144,7 @@ makefs_2(){
 	sleep 1
 	mount --make-rslave /mnt/gentoo/dev
 	sleep 1
-	cp ~/qdgentoo.sh /mnt/gentoo/qdgentoo.sh
+	cp ~/qdgentoo.sh /mnt/gentoo/root/qdgentoo.sh
 	chroot /mnt/gentoo /bin/bash
 }
 ################################	1
