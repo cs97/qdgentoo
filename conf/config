@@ -14,6 +14,12 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec --
 # Default wallpaper
 output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
+output * scale 1.10
+
+#output eDP-1 mode 2560x1440@60.002Hz
+#output eDP-1 mode 2560x1440@120.000Hz
+#output eDP-1 mode 2560x1440@165.001Hz
+
 ### Key bindings
 #
 # Basics:
