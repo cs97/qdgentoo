@@ -7,7 +7,7 @@ load_makeconf=true
 use_cfdisk=true
 
 #kernel='=sys-kernel/gentoo-sources-5.17.1 ~amd64'
-GRUB_CMDLINE_LINUX_DEFAULT='GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"'
+GRUB_CMDLINE_LINUX_DEFAULT='GRUB_CMDLINE_LINUX_DEFAULT="modprobe.blacklist=nouveau quiet splash"'
 
 part1="1MiB 1024MiB"
 part2="1025MiB 32768MiB"
