@@ -16,6 +16,7 @@ output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 
 output * scale 1.10
 
+#   swaymsg -t get_outputs
 #output eDP-1 mode 2560x1440@60.002Hz
 #output eDP-1 mode 2560x1440@120.000Hz
 #output eDP-1 mode 2560x1440@165.001Hz
