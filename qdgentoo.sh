@@ -7,6 +7,7 @@ load_makeconf=true
 use_cfdisk=true
 
 #kernel='=sys-kernel/gentoo-sources-5.17.1 ~amd64'
+GRUB_CMDLINE_LINUX_DEFAULT='GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"'
 
 part1="1MiB 1024MiB"
 part2="1025MiB 32768MiB"
@@ -242,9 +243,10 @@ install_grub_efi(){
 	[ $aes_yesno = true ] && echo "sys-boot/boot:2 device-mapper" >> /etc/portage/package.use/sys-boot
 	emerge --ask --verbose sys-boot/grub:2
 	[ $aes_yesno = true ] && echo 'GRUB_CMDLINE_LINUX="dolvm crypt_root='$root' root=/dev/mapper/vg0-root"' >> /etc/default/grub
+	echo "$GRUB_CMDLINE_LINUX_DEFAULT" >> /etc/default/grub
 	nano /etc/default/grub
 	[ -d /sys/firmware/efi ] && grub-install --target=x86_64-efi --efi-directory=/boot || grub-install $disk
-	#echo 'GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"' >> /etc/default/grub
+
 	grub-mkconfig -o /boot/grub/grub.cfg
 }
 ################################	10
