@@ -161,9 +161,8 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 input * {
-       	xkb_layout "de"
-#       xkb_layout "de,us"
-#       xkb_options "grp:win_space_toggle"
+    #xkb_layout "de"
+    xkb_layout "us"
 }
 
 
