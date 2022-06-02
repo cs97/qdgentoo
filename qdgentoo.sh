@@ -316,6 +316,16 @@ install_wifi(){
 	systemctl enable NetworkManager
 	systemctl start NetworkManager
 	}
+################################	18
+install_amdgpu(){
+	emerge --ask xf86-video-amdgpu
+}
+################################	19
+install_nvidia(){
+	echo "x11-drivers/nvidia-drivers NVIDIA-r2 ~amd64" >> /etc/portage/package.license/firmware
+	echo "dev-util/nvidia-cuda-toolkit NVIDIA-CUDA" >> /etc/portage/package.license/firmware
+	emerge --ask x11-drivers/nvidia-drivers
+}
 ################################	switch
 [ "$EUID" -ne 0 ] && echo "Please run as root" #&& exit
 
