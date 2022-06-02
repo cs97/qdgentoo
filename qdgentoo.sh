@@ -278,10 +278,12 @@ install_wayland(){
 }
 ################################	13
 install_sway(){
-	echo "gui-wm/sway wallpapers" >> /etc/portage/package.accept_keywords/sway
+	echo "gui-wm/sway wallpapers" >> /etc/portage/package.accept_keywords/wm
+	echo "xfce-base/thunar udisks" >> /etc/portage/package.accept_keywords/wm
 	emerge --ask gui-wm/sway
 	emerge --ask dev-libs/light
 	emerge --ask x11-terms/alacritty
+	emerge --ask xfce-base/thunar
 }
 ################################	14
 install_audio(){
