@@ -56,7 +56,8 @@ banner(){
 	echo -e "\t16.mount_again"
 	echo -e "\t17.install_wifi"
 	echo -e "\t18.install_amdgpu"
-	echo -e "\t19.install_nvidia\n"
+	echo -e "\t19.install_nvidia"
+	echo -e "\t19.install_thunar\n"
 	
 	echo -e "\t99. update\n"
 
@@ -279,11 +280,9 @@ install_wayland(){
 ################################	13
 install_sway(){
 	echo "gui-wm/sway wallpapers" >> /etc/portage/package.accept_keywords/wm
-	echo "xfce-base/thunar udisks" >> /etc/portage/package.accept_keywords/wm
 	emerge --ask gui-wm/sway
 	emerge --ask dev-libs/light
 	emerge --ask x11-terms/alacritty
-	emerge --ask xfce-base/thunar
 }
 ################################	14
 install_audio(){
@@ -333,6 +332,11 @@ install_nvidia(){
 	echo ">=x11-drivers/nvidia-drivers-515.48.07" >> /etc/portage/package.accept_keywords/nvidia
 	emerge --ask x11-drivers/nvidia-drivers
 }
+################################	19
+install_thunar(){
+	echo "xfce-base/thunar udisks" >> /etc/portage/package.accept_keywords/wm
+	emerge --ask xfce-base/thunar
+}
 ################################	switch
 [ "$EUID" -ne 0 ] && echo "Please run as root" #&& exit
 
@@ -357,6 +361,7 @@ case $1 in
 	"17") install_wifi;;
 	"18") install_amdgpu;;
 	"19") install_nvidia;;
+	"20") install_thunar;;
 	"99")
 		mv qdgentoo.sh qdgentoo.old
 		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/qdgentoo.sh
