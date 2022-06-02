@@ -278,8 +278,10 @@ install_wayland(){
 }
 ################################	13
 install_sway(){
-	USE="wallpapers" emerge --ask gui-wm/sway
+	echo "gui-wm/sway wallpapers" >> /etc/portage/package.accept_keywords/sway
+	emerge --ask gui-wm/sway
 	emerge --ask dev-libs/light
+	emerge --ask x11-terms/alacritty
 }
 ################################	14
 install_audio(){
