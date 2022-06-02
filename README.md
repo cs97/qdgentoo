@@ -49,7 +49,7 @@ echo 0 > /sys/devices/system/cpu/cpufreq/boost
 ```
 ```
 chmod +x /etc/local.d/noboost.start
-rc-update add local default```
+rc-update add local default
 ```
 
 ### nfs mount
