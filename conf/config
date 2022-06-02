@@ -30,7 +30,10 @@ output * scale 1.10
 
     # Kill focused window
     bindsym $mod+Shift+q kill
-
+    
+    # thunar
+    bindsym $mod+t exec thunar
+    
     # Start your launcher
     bindsym $mod+d exec $menu
 
