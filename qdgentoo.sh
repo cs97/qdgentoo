@@ -51,10 +51,12 @@ banner(){
 	echo -e "\t12.wayland"
 	echo -e "\t13.sway"
 	echo -e "\t14.sway_config"
-	echo -e "14.install_audio"
-	echo -e "15.sway_config"
-	echo -e "16.mount_again"
-	echo -e "17.install_wifi\n"
+	echo -e "\t14.install_audio"
+	echo -e "\t15.sway_config"
+	echo -e "\t16.mount_again"
+	echo -e "\t17.install_wifi"
+	echo -e "\t18.install_amdgpu"
+	echo -e "\t19.install_nvidia\n"
 	
 	echo -e "\t99. update\n"
 
@@ -348,7 +350,9 @@ case $1 in
 	"14") install_audio;;
 	"15") sway_config;;
 	"16") mount_again;;
-	"17") install_wifi;;	
+	"17") install_wifi;;
+	"18") install_amdgpu;;
+	"19") install_nvidia;;
 	"99")
 		mv qdgentoo.sh qdgentoo.old
 		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/qdgentoo.sh
