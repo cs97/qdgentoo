@@ -293,6 +293,9 @@ sway_config(){
 	mv ~/.config/sway/config ~/.config/sway/config.old
 	wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/conf/config
 	mv ~/config ~/.config/sway/config
+	wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/conf/status.sh
+	mv ~/status.sh ~/.config/sway/status.sh
+	chmod +x ~/.config/sway/status.sh
 }
 ################################	16
 mount_again(){
