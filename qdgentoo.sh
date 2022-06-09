@@ -367,7 +367,7 @@ case $1 in
 	"20") install_thunar;;
 	"99")
 		mv qdgentoo.sh qdgentoo.old
-		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/qdgentoo.sh
+		wget https://raw.githubusercontent.com/cs97/qdgentoo/master/qdgentoo.sh
 		chmod +x qdgentoo.sh
 		chmod -x qdgentoo.old;;
 	"-m")
