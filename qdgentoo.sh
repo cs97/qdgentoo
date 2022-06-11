@@ -332,7 +332,8 @@ install_amdgpu(){
 install_nvidia(){
 	echo "x11-drivers/nvidia-drivers NVIDIA-r2 ~amd64" >> /etc/portage/package.license/firmware
 	echo "dev-util/nvidia-cuda-toolkit NVIDIA-CUDA" >> /etc/portage/package.license/firmware
-	echo ">=x11-drivers/nvidia-drivers-515.48.07" >> /etc/portage/package.accept_keywords/nvidia
+	#echo ">=x11-drivers/nvidia-drivers-515.48.07" >> /etc/portage/package.accept_keywords/nvidia
+	echo "=x11-drivers/nvidia-drivers-510.73.05-r1" >> /etc/portage/package.accept_keywords/nvidia
 	emerge --ask x11-drivers/nvidia-drivers
 }
 ################################	19
