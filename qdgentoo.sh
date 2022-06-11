@@ -336,12 +336,14 @@ install_nvidia(){
 	echo "dev-util/nvidia-cuda-toolkit NVIDIA-CUDA" >> /etc/portage/package.license/firmware
 	#echo ">=x11-drivers/nvidia-drivers-515.48.07" >> /etc/portage/package.accept_keywords/nvidia
 	echo "=x11-drivers/nvidia-drivers-510.73.05-r1" >> /etc/portage/package.accept_keywords/nvidia
-	emerge --ask x11-drivers/nvidia-drivers
+	#emerge --ask x11-drivers/nvidia-drivers
+	emerge --ask --verbose --update --newuse --deep @world
 }
 ################################	19
 install_thunar(){
 	echo "xfce-base/thunar udisks" >> /etc/portage/package.accept_keywords/wm
-	emerge --ask xfce-base/thunar
+	emerge --ask --verbose --update --newuse --deep @world
+	#emerge --ask xfce-base/thunar
 }
 ################################	switch
 [ "$EUID" -ne 0 ] && echo "Please run as root" #&& exit
