@@ -291,6 +291,7 @@ install_sway(){
 }
 ################################	14
 install_audio(){
+	echo "media-video/pipewire pipewire-alsa" >> /etc/portage/package.use/pipewire
 	emerge --ask alsa-utils pipewire
 }
 ################################	15
