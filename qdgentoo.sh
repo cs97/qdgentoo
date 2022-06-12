@@ -16,13 +16,16 @@ partlvm="1025MiB 100%"
 
 #echo 0 > /sys/devices/system/cpu/cpufreq/boost
 
-#disk='/dev/vda'
-disk='/dev/sda'
-#disk='/dev/nvme0n1'
+disk='/dev/nvme0n1'
+boot=$disk'p1'
+root=$disk'p2'
+home=$disk'p3'
 
-boot=$disk'1'
-root=$disk'2'
-home=$disk'3'
+#disk='/dev/sda'
+#boot=$disk'1'
+#root=$disk'2'
+#home=$disk'3'
+
 
 banner(){
 	clear
