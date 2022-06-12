@@ -198,7 +198,7 @@ env_update(){
 ################################	5
 gentoo_sources(){
 	echo "$kernel" > /etc/portage/package.accept_keywords/kernel
-	echo "sys-kernel/gentoo-sources experimental" >> /etc/portage/package.accept_keywords/kernel
+	echo "sys-kernel/gentoo-sources experimental" >> /etc/portage/package.use/kernel
 	emerge --ask sys-kernel/gentoo-sources
 	etc-update
 }
