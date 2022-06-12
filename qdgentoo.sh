@@ -251,7 +251,7 @@ install_grub_efi(){
 	emerge --ask --verbose sys-boot/grub:2
 	[ $aes_yesno = true ] && echo 'GRUB_CMDLINE_LINUX="dolvm crypt_root='$root' root=/dev/mapper/vg0-root"' >> /etc/default/grub
 	echo "$GRUB_CMDLINE_LINUX_DEFAULT" >> /etc/default/grub
-	echo "#GRUB_GFXMODE=1600x1200x32" >> /etc/default/grub
+	echo "#GRUB_GFXMODE=1920x1080x32" >> /etc/default/grub
 	nano /etc/default/grub
 	[ -d /sys/firmware/efi ] && grub-install --target=x86_64-efi --efi-directory=/boot || grub-install $disk
 
