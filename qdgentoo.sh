@@ -59,7 +59,8 @@ banner(){
 	echo -e "\t17.install_wifi"
 	echo -e "\t18.install_amdgpu"
 	echo -e "\t19.install_nvidia"
-	echo -e "\t20.install_thunar\n"
+	echo -e "\t20.install_thunar"
+	echo -e "\t21.install_ecomode\n"
 	
 	echo -e "\t99. update\n"
 
@@ -346,11 +347,33 @@ install_nvidia(){
 	emerge --ask x11-drivers/nvidia-drivers
 	#emerge --ask --verbose --update --newuse --deep @world
 }
-################################	19
+################################	20
 install_thunar(){
 	echo "xfce-base/thunar udisks" >> /etc/portage/package.accept_keywords/wm
 	#emerge --ask --verbose --update --newuse --deep @world
 	emerge --ask xfce-base/thunar
+}
+################################	21
+install_ecomode(){
+	emerge --ask cpupower
+	touch /etc/systemd/system/lowturbo.service
+	echo "[Unit]" >> /etc/systemd/system/lowturbo.service
+	echo "Description=LowTurbo" >> /etc/systemd/system/lowturbo.service
+	echo "" >> /etc/systemd/system/lowturbo.service
+	echo "[Service]" >> /etc/systemd/system/lowturbo.service
+	echo "Type=oneshot" >> /etc/systemd/system/lowturbo.service
+	echo "" >> /etc/systemd/system/lowturbo.service
+	echo "ExecStart=/bin/sh -c "/usr/bin/cpupower frequency-set --max 3300MHz"" >> /etc/systemd/system/lowturbo.service
+	echo "" >> /etc/systemd/system/lowturbo.service
+	echo "ExecStop=/bin/sh -c "/usr/bin/cpupower frequency-set --max 5000MHz"" >> /etc/systemd/system/lowturbo.service
+	echo "" >> /etc/systemd/system/lowturbo.service
+	echo "RemainAfterExit=yes" >> /etc/systemd/system/lowturbo.service
+	echo "" >> /etc/systemd/system/lowturbo.service
+	echo "[Install]" >> /etc/systemd/system/lowturbo.service
+	echo "WantedBy=multi-user.target" >> /etc/systemd/system/lowturbo.service
+	
+	systemctl start lowturbo
+	systemctl enable lowturbo
 }
 ################################	switch
 [ "$EUID" -ne 0 ] && echo "Please run as root" #&& exit
@@ -377,6 +400,7 @@ case $1 in
 	"18") install_amdgpu;;
 	"19") install_nvidia;;
 	"20") install_thunar;;
+	"21") install_ecomode;;
 	"99")
 		mv qdgentoo.sh qdgentoo.old
 		wget https://raw.githubusercontent.com/cs97/qdgentoo/master/qdgentoo.sh
