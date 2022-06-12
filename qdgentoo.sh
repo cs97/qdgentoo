@@ -57,7 +57,7 @@ banner(){
 	echo -e "\t17.install_wifi"
 	echo -e "\t18.install_amdgpu"
 	echo -e "\t19.install_nvidia"
-	echo -e "\t19.install_thunar\n"
+	echo -e "\t20.install_thunar\n"
 	
 	echo -e "\t99. update\n"
 
@@ -247,6 +247,7 @@ install_grub_efi(){
 	emerge --ask --verbose sys-boot/grub:2
 	[ $aes_yesno = true ] && echo 'GRUB_CMDLINE_LINUX="dolvm crypt_root='$root' root=/dev/mapper/vg0-root"' >> /etc/default/grub
 	echo "$GRUB_CMDLINE_LINUX_DEFAULT" >> /etc/default/grub
+	echo "#GRUB_GFXMODE=1600x1200x32" >> /etc/default/grub
 	nano /etc/default/grub
 	[ -d /sys/firmware/efi ] && grub-install --target=x86_64-efi --efi-directory=/boot || grub-install $disk
 
@@ -279,7 +280,7 @@ install_wayland(){
 }
 ################################	13
 install_sway(){
-	echo "gui-wm/sway wallpapers" >> /etc/portage/package.accept_keywords/wm
+	echo "gui-wm/sway wallpapers" >> /etc/portage/package.use/wm
 	emerge --ask gui-wm/sway
 	emerge --ask dev-libs/light
 	emerge --ask x11-terms/alacritty
@@ -294,10 +295,12 @@ sway_config(){
 	wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/conf/config
 	mv ~/config ~/.config/sway/config
 	wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/conf/status.sh
+	chmod +x status.sh
 	mv ~/status.sh ~/.config/sway/status.sh
 	chmod +x ~/.config/sway/status.sh
 	echo '#!/bin/sh' > ~/runwm.sh
 	echo '"WLR_DRM_DEVICES="/dev/dri/card1" sway --unsupported-gpu' >> ~/runwm.sh
+	chmod +x runwm.sh
 }
 ################################	16
 mount_again(){
@@ -336,14 +339,15 @@ install_nvidia(){
 	echo "dev-util/nvidia-cuda-toolkit NVIDIA-CUDA" >> /etc/portage/package.license/firmware
 	#echo ">=x11-drivers/nvidia-drivers-515.48.07" >> /etc/portage/package.accept_keywords/nvidia
 	echo "=x11-drivers/nvidia-drivers-510.73.05-r1" >> /etc/portage/package.accept_keywords/nvidia
-	#emerge --ask x11-drivers/nvidia-drivers
-	emerge --ask --verbose --update --newuse --deep @world
+	echo "x11-drivers/nvidia-drivers -tools" >> /etc/portage/package.use/nvidia
+	emerge --ask x11-drivers/nvidia-drivers
+	#emerge --ask --verbose --update --newuse --deep @world
 }
 ################################	19
 install_thunar(){
 	echo "xfce-base/thunar udisks" >> /etc/portage/package.accept_keywords/wm
-	emerge --ask --verbose --update --newuse --deep @world
-	#emerge --ask xfce-base/thunar
+	#emerge --ask --verbose --update --newuse --deep @world
+	emerge --ask xfce-base/thunar
 }
 ################################	switch
 [ "$EUID" -ne 0 ] && echo "Please run as root" #&& exit
