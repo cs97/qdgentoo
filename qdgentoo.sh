@@ -50,7 +50,6 @@ banner(){
 	echo -e "\t11.add user"	
 	echo -e "\t12.wayland"
 	echo -e "\t13.sway"
-	echo -e "\t14.sway_config"
 	echo -e "\t14.install_audio"
 	echo -e "\t15.sway_config"
 	echo -e "\t16.mount_again"
