@@ -6,7 +6,7 @@ aes_yesno=false
 load_makeconf=true
 use_cfdisk=true
 
-#kernel='=sys-kernel/gentoo-sources-5.17.1 ~amd64'
+kernel='=sys-kernel/gentoo-sources-5.18.3 ~amd64'
 GRUB_CMDLINE_LINUX_DEFAULT='GRUB_CMDLINE_LINUX_DEFAULT="modprobe.blacklist=nouveau quiet splash"'
 
 part1="1MiB 1024MiB"
@@ -195,6 +195,7 @@ env_update(){
 ################################	5
 gentoo_sources(){
 	echo "$kernel" > /etc/portage/package.accept_keywords/kernel
+	echo "sys-kernel/gentoo-sources experimental" >> /etc/portage/package.accept_keywords/kernel
 	emerge --ask sys-kernel/gentoo-sources
 	etc-update
 }
