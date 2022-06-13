@@ -15,7 +15,7 @@ rc-update add wpa_supplicant default
 
 /etc/portage/package.accept_keywords
 ```    
-=sys-kernel/gentoo-sources-5.17.1 ~amd64
+=sys-kernel/gentoo-sources-5.18.3 ~amd64
 ```
 install sources:
 ```
@@ -75,19 +75,14 @@ sudo rc-update add openvpn.myvpn default
 ### stuff...
 ```
 app-crypt/gnupg
-app-misc/screenfetch
+app-misc/neofetch
 sys-apps/lm-sensors
 sys-apps/smartmontools
 sys-apps/hdparm
-x11-apps/xbacklight
-app-misc/mc
-cdrtools
-thunar
 file-roller
-dev-util/android-tools
-
-emerge --ask elogind
-rc-update add elogind boot
+sys-apps/bat
+xfce-base/thunar
+app-arch/file-roller
 ```
 
 
