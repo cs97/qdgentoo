@@ -88,9 +88,10 @@ makefs(){
 	[ $use_cfdisk = true ] && {
 		cfdisk $disk
 	} || {
-		parted $disk --script mkpart primary fat32 $part1
-		parted $disk --script mkpart primary ext4 $part2
-		parted $disk --script mkpart primary ext4 $part3	
+		#EFI
+		parted $disk --script mkpart primary fat32 1MiB 1024MiB
+		parted $disk --script mkpart primary ext4 1024MiB 100GiB
+		parted $disk --script mkpart primary ext4 100GiB 100%
 	}
 	sleep 1
 	mkfs.fat -F 32 $boot
@@ -237,7 +238,7 @@ fstab_stuff(){
 	
 	nano -w /etc/fstab
 	#echo 'hostname="gentoo-pc"' >> /etc/conf.d/hostname
-	hostnamectl hostname gentoo-pc
+	#hostnamectl hostname gentoo-pc
 	#emerge --ask --noreplace net-misc/netifrc
 	passwd
 	emerge --ask app-admin/sysklogd
