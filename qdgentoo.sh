@@ -336,8 +336,10 @@ mount_again(){
 }
 ################################	17
 install_wifi(){
+	echo ">=net-wireless/wpa_supplicant-2.10-r1 dbus" >> /etc/portage/package.use/wifi
+	#emerge --ask net-wireless/wpa_supplicant
 	emerge --ask networkmanager
-	emerge --ask nm-applet
+	#emerge --ask nm-applet
 	systemctl enable NetworkManager
 	systemctl start NetworkManager
 	}
