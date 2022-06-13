@@ -9,10 +9,10 @@ use_cfdisk=true
 kernel='=sys-kernel/gentoo-sources-5.18.3 ~amd64'
 GRUB_CMDLINE_LINUX_DEFAULT='GRUB_CMDLINE_LINUX_DEFAULT="modprobe.blacklist=nouveau quiet splash"'
 
-part1="1MiB 1024MiB"
-part2="1025MiB 32768MiB"
-part3="32769MiB 100%"
-partlvm="1025MiB 100%"
+#part1=""
+#part2=""
+#part3=""
+#partlvm=""
 
 #echo 0 > /sys/devices/system/cpu/cpufreq/boost
 
