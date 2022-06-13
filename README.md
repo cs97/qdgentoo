@@ -32,19 +32,6 @@ grub
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
-### no cpu boost
-
-/etc/local.d/noboost.start
-
-```sh
-#!/bin/bash
-echo 0 > /sys/devices/system/cpu/cpufreq/boost
-```
-```
-chmod +x /etc/local.d/noboost.start
-rc-update add local default
-```
-
 ### nfs mount
 ```
 emerge --ask net-fs/nfs-utils
