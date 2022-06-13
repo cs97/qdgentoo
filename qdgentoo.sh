@@ -293,6 +293,11 @@ install_sway(){
 install_audio(){
 	echo "media-video/pipewire pipewire-alsa" >> /etc/portage/package.use/pipewire
 	emerge --ask alsa-utils pipewire
+	systemctl --user enable --now pipewire.socket
+   	systemctl --user enable --now pipewire.service
+   	systemctl --user enable --now wireplumber.service
+   	systemctl --user mask pulseaudio.socket pulseaudio.service
+	systemctl --user enable --now pipewire-pulse.service
 }
 ################################	15
 sway_config(){
