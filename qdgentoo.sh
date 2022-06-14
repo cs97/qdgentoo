@@ -359,7 +359,7 @@ install_nvidia(){
 }
 ################################	20
 install_thunar(){
-	echo "xfce-base/thunar udisks" >> /etc/portage/package.accept_keywords/wm
+	echo "xfce-base/thunar udisks" > /etc/portage/package.use/thunar
 	#emerge --ask --verbose --update --newuse --deep @world
 	emerge --ask xfce-base/thunar
 }
