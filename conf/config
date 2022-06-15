@@ -176,6 +176,7 @@ bindsym $mod+r mode "resize"
 input * {
     #xkb_layout "de"
     xkb_layout "us"
+    tap enabled
 }
 
 
