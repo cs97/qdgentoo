@@ -61,6 +61,7 @@ output * scale 1.10
     
     # Firefox
     bindsym $mod+f exec firefox
+    for_window [app_id="firefox"] default_border pixel 2
 #
 # Moving around:
 #
