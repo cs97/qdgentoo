@@ -52,7 +52,18 @@ sudo ln -s /etc/init.d/openvpn /etc/init.d/openvpn.myvpn
 /etc/init.d/openvpn.myvpn start
 sudo rc-update add openvpn.myvpn default
 ```
-
+### thunar
+/etc/portage/package.use/thunar
+```
+xfce-base/thunar udisks
+```
+```
+sudo USE="xfce" emerge --ask x11-themes/arc-theme
+sudo emerge --ask xfce4-settings
+```
+```
+-> xfce4-appearance-settings -> arc-dark
+```
 
 ### stuff...
 ```
