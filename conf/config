@@ -33,7 +33,7 @@ output * scale 1.10
     
     # thunar
     bindsym $mod+t exec thunar
-    for_window [app_id="thunar"] floating enable, resize set 900 600
+    for_window [app_id="thunar"] floating enable, resize set 900 600, border pixel 2
     
     # Start your launcher
     bindsym $mod+d exec $menu
@@ -61,7 +61,7 @@ output * scale 1.10
     
     # Firefox
     bindsym $mod+f exec firefox
-    for_window [app_id="firefox"] default_border pixel 2
+    for_window [app_id="firefox"] border pixel 2
 #
 # Moving around:
 #
