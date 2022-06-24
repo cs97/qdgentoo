@@ -74,6 +74,15 @@ sudo emerge --ask xfce4-settings
 -> xfce4-appearance-settings -> arc-dark
 ```
 
+### video Player
+/etc/portage/package.use/mpv
+```
+media-video/mpv X wayland
+```
+```
+sudo emerge --ask mpv
+```
+
 ### stuff...
 ```
 app-crypt/gnupg
