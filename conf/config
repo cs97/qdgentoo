@@ -33,6 +33,7 @@ output * scale 1.10
     
     # thunar
     bindsym $mod+t exec thunar
+    for_window [app_id="thunar"] floating enable, resize set 900 600
     
     # Start your launcher
     bindsym $mod+d exec $menu
