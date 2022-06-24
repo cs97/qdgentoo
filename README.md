@@ -56,9 +56,18 @@ sudo rc-update add openvpn.myvpn default
 /etc/portage/package.use/thunar
 ```
 xfce-base/thunar udisks
+media-libs/libopenraw gtk
+xfce-extra/tumbler ffmpeg jpeg raw pdf
+app-text/poppler cairo
+```
+/etc/portage/package.use/arc-dark
+```
+x11-themes/arc-theme xfce
 ```
 ```
-sudo USE="xfce" emerge --ask x11-themes/arc-theme
+sudo emerge --ask x11-themes/arc-theme
+sudo emerge --ask thunar
+sudo emerge --ask xfce-extra/tumbler
 sudo emerge --ask xfce4-settings
 ```
 ```
