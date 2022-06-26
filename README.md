@@ -83,6 +83,22 @@ media-video/mpv X wayland
 sudo emerge --ask mpv
 ```
 
+### discord
+nano /etc/portage/package.license/discord
+```
+net-im/discord-bin all-rights-reserved
+```
+/etc/portage/package.accept_keywords/discord
+```
+net-im/discord-bin ~amd64
+```
+/etc/portage/package.use/discord
+```
+app-text/ghostscript-gpl cups
+```
+```
+emerge --ask net-im/discord-bin
+```
 ### stuff...
 ```
 app-crypt/gnupg
