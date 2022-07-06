@@ -6,11 +6,10 @@ fn main() {
 
   //MHz
   // /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq
-  let mut cpu_freq = return_string("/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq".to_string());
-  cpu_freq.pop();
-  cpu_freq.pop();
-  cpu_freq.pop();
-  let cpu = format!("CPU:[{}MHz]", cpu_freq);
+  let cpu_khz = return_string("/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq".to_string());
+
+  let cpu_mhz = cpu_khz.split_at(cpu_khz.len() - 3);
+  let cpu = format!("CPU:[{}MHz]", cpu_mhz.0);
 
 
   //BAT
