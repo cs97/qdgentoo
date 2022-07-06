@@ -4,6 +4,8 @@ use std::process::Command;
 
 fn main() {
 
+  let cpu_cores = 7;
+  
   //MHz
   // /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq
   let (core_num, max_freq) = return_max_cpu_freq(cpu_cores);
