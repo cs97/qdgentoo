@@ -33,11 +33,13 @@ fn main() {
   //let vol = return_vol();
   let cmd = "amixer".to_string();
   let output = Command::new(cmd).output().expect("failed to execute process");
-  let vol = str::from_utf8(&output.stdout).unwrap();
+  let vol_str = str::from_utf8(&output.stdout).unwrap();
 
-  let vol_left = &vol[191..196];
-  let vol_rigth = &vol[232..242];
-  let vol = format!("VOL: {}{}", vol_left, vol_rigth);
+  let vol_vec: Vec<String> = vol_str.split(&[' ', '\n'][..]).map(|s| s.to_string()).collect();
+  let vol_left = vol_vec[35].to_string();
+  let vol_rigth = vol_vec[43].to_string();
+  let vol_status = vol_vec[36].to_string();
+  let vol = format!("{}{}{}", vol_left, vol_rigth, vol_status);
 
 
   //status
