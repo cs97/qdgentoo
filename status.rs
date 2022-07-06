@@ -45,7 +45,7 @@ fn return_vol() -> String {
   let vol_left = vol_vec[35].to_string();
   let vol_rigth = vol_vec[43].to_string();
   let vol_status = vol_vec[36].to_string();
-  let vol = format!("{}{}{}", vol_left, vol_rigth, vol_status);
+  let vol = format!("VOL:{}{}{}", vol_left, vol_rigth, vol_status);
   return vol
 }
 
