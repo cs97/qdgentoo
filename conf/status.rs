@@ -6,10 +6,22 @@ fn main() {
 
   //MHz
   // /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq
-  let cpu_khz = return_string("/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq".to_string());
+  let mut max_freq = 0;
+  let mut core_num = 0;
+  let mut cur_freq;
 
-  let cpu_mhz = cpu_khz.split_at(cpu_khz.len() - 3);
-  let cpu = format!("CPU:[{}MHz]", cpu_mhz.0);
+  for n in 0..=7 {
+    cur_freq = return_cpu_freq(n);
+
+    if cur_freq > max_freq {
+      max_freq = cur_freq;
+      core_num = n;  
+    }
+  }
+
+  let cpu_string = format!("{}", max_freq);
+  let cpu_mhz = cpu_string.split_at(cpu_string.len() - 3);
+  let cpu = format!("CPU{}:[{}MHz]", core_num.to_string(), cpu_mhz.0);
 
 
   //BAT
@@ -43,6 +55,12 @@ fn main() {
 
 }
 
+fn return_cpu_freq(core: usize) -> usize {
+  let core = "/sys/devices/system/cpu/cpu".to_string() + &core.to_string() + "/cpufreq/scaling_cur_freq";
+  let core_freq = return_string(core).to_string();
+  let u64freq = core_freq.parse::<usize>().unwrap();
+  return u64freq
+}
 
 fn return_string(filename: String) -> String {
   let mut s = fs::read_to_string(filename).expect("File not found");
