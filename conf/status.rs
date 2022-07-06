@@ -24,7 +24,7 @@ fn main() {
   //date
   let output = Command::new("date").args(["+%a %F %H:%M"]).output().expect("failed to execute process");
   let date = format!("{:?}", String::from_utf8_lossy(&output.stdout));
-  let date = format!("DATE:[{}]", &date[0..20]);
+  let date = format!("DATE:[{}]", &date[1..20]);
 
 
   //vol
