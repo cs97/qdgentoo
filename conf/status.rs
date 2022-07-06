@@ -6,18 +6,7 @@ fn main() {
 
   //MHz
   // /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq
-  let mut max_freq = 0;
-  let mut core_num = 0;
-  let mut cur_freq;
-
-  for n in 0..=7 {
-    cur_freq = return_cpu_freq(n);
-
-    if cur_freq > max_freq {
-      max_freq = cur_freq;
-      core_num = n;  
-    }
-  }
+  let (core_num, max_freq) = return_max_cpu_freq(cpu_cores);
 
   let cpu_string = format!("{}", max_freq);
   let cpu_mhz = cpu_string.split_at(cpu_string.len() - 3);
@@ -53,6 +42,22 @@ fn main() {
   let stat = format!("{} {} {} {}", cpu, vol, bat, date);
   println!("{}", stat);
 
+}
+
+fn return_max_cpu_freq(cores: usize) -> (usize, usize) {
+  let mut max_freq = 0;
+  let mut core_num = 0;
+  let mut cur_freq;
+
+  for n in 0..=cores {
+    cur_freq = return_cpu_freq(n);
+
+    if cur_freq > max_freq {
+      max_freq = cur_freq;
+      core_num = n;  
+    }
+  }
+  return (core_num, max_freq)
 }
 
 fn return_cpu_freq(core: usize) -> usize {
