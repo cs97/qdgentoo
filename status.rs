@@ -14,7 +14,6 @@ fn main() {
   let cpu_mhz = cpu_string.split_at(cpu_string.len() - 3);
   let cpu = format!("CPU{}:[{}MHz]", core_num.to_string(), cpu_mhz.0);
 
-
   //BAT
   // /sys/class/power_supply/BAT0/capacity
   let bat_cap = return_string("/sys/class/power_supply/BAT0/capacity".to_string());
@@ -22,7 +21,6 @@ fn main() {
   let bat_stat = return_string("/sys/class/power_supply/BAT0/status".to_string());
   let bat = format!("BAT:[{}% {}]", bat_cap, bat_stat);
  
-
   //date
   let output = Command::new("date").args(["+%a %F %H:%M"]).output().expect("failed to execute process");
   let date = format!("{:?}", String::from_utf8_lossy(&output.stdout));
@@ -30,8 +28,7 @@ fn main() {
 
   //vol
   let volume = return_vol();
-
-  
+ 
   //status
   let stat = format!("{} {} {} {}", cpu, volume, bat, date);
   println!("{}", stat);
