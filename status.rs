@@ -40,7 +40,10 @@ fn return_vol() -> String {
   let cmd = "amixer".to_string();
   let output = Command::new(cmd).output().expect("failed to execute process");
   let vol_str = str::from_utf8(&output.stdout).unwrap();
-  
+  if vol_str.len() < 2 {
+    return "[failed to execute amixer]".to_string();
+  }
+
   let vol_vec: Vec<String> = vol_str.split(&[' ', '\n'][..]).map(|s| s.to_string()).collect();
   let vol_left = vol_vec[35].to_string();
   let vol_rigth = vol_vec[43].to_string();
