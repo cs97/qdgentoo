@@ -6,7 +6,7 @@ aes_yesno=false
 load_makeconf=true
 use_cfdisk=true
 
-kernel='=sys-kernel/gentoo-sources-5.18.3 ~amd64'
+kernel='=sys-kernel/gentoo-sources-5.18.10 ~amd64'
 GRUB_CMDLINE_LINUX_DEFAULT='GRUB_CMDLINE_LINUX_DEFAULT="modprobe.blacklist=nouveau quiet splash"'
 
 #part1=""
@@ -38,7 +38,6 @@ banner(){
 	echo -e "\taes: $aes_yesno"
 	echo -e "\tload_makeconf: $load_makeconf"
 	echo -e "\tuse cfdisk: $use_cfdisk\n"
-#	echo -e "\tinstall: $kernel\n"
 	echo -e "\t0  makefs"
 	echo -e "\t1. do in chroot"
 	echo -e "\t2. @world"
@@ -59,30 +58,18 @@ banner(){
 	echo -e "\t17.install_wifi"
 	echo -e "\t18.install_amdgpu"
 	echo -e "\t19.install_nvidia"
-	echo -e "\t20.install_thunar"
-	echo -e "\t21.install_ecomode\n"
+	echo -e "\t20.install_thunar\n"
+
 	
 	echo -e "\t99. update\n"
 
 }
 ################################	0
 makefs(){
-	#parted $disk --script mklabel gpt
-	#parted $disk --script mkpart primary ext4 32MiB 100MiB
-	#parted $disk --script mkpart primary fat32 100MiB 1GiB
-	#parted $disk --script mkpart primary ext4 1GiB 30GiB
-	#parted $disk --script mkpart primary ext4 30GiB 100%
-	
 	[ -d /sys/firmware/efi ] && {
 		parted $disk --script mklabel gpt
-		#parted $disk --script mkpart primary fat32 1MiB $part1
-		#parted $disk --script mkpart primary ext4 $part1 $part2
-		#parted $disk --script mkpart primary ext4 $part2 $part3
 	} || {
 		parted $disk --script mklabel msdos
-		#parted $disk --script mkpart primary ext4 1MiB $part1
-		#parted $disk --script mkpart primary ext4 $part1 $part2
-		#parted $disk --script mkpart primary ext4 $part2 $part3
 	}
 	
 	[ $use_cfdisk = true ] && {
@@ -238,7 +225,6 @@ fstab_stuff(){
 	
 	nano -w /etc/fstab
 	#echo 'hostname="gentoo-pc"' >> /etc/conf.d/hostname
-	#hostnamectl hostname gentoo-pc
 	#emerge --ask --noreplace net-misc/netifrc
 	passwd
 	emerge --ask app-admin/sysklogd
@@ -264,10 +250,11 @@ umount_all(){
 	cd
 	umount -l /mnt/gentoo/dev{/shm,/pts,}
 	umount -R /mnt/gentoo
-	#reboot
+	echo "pls reboot"
 }
 ################################	11
 add_user(){
+	hostnamectl hostname gentoo-pc
 	emerge --ask app-admin/sudo
 	useradd -m -G users,wheel,audio -s /bin/bash $USER
 #	echo "exec i3" >> /home/$USER/.xinitrc
@@ -275,8 +262,6 @@ add_user(){
 	passwd $USER
 #	passwd -l root
 	cp qdgentoo.sh /home/$USER/
-	#emerge xrandr
-	#echo "user:" $USER
 	usermod -a -G video $USER
 	usermod -a -G input $USER
 }
@@ -351,40 +336,16 @@ install_amdgpu(){
 install_nvidia(){
 	echo "x11-drivers/nvidia-drivers NVIDIA-r2 ~amd64" >> /etc/portage/package.license/firmware
 	echo "dev-util/nvidia-cuda-toolkit NVIDIA-CUDA" >> /etc/portage/package.license/firmware
-	#echo ">=x11-drivers/nvidia-drivers-515.48.07" >> /etc/portage/package.accept_keywords/nvidia
-	echo "=x11-drivers/nvidia-drivers-510.73.05-r1" >> /etc/portage/package.accept_keywords/nvidia
+	echo ">=x11-drivers/nvidia-drivers-515.49.06" >> /etc/portage/package.accept_keywords/nvidia
 	echo "x11-drivers/nvidia-drivers -tools" >> /etc/portage/package.use/nvidia
 	emerge --ask x11-drivers/nvidia-drivers
-	#emerge --ask --verbose --update --newuse --deep @world
 }
 ################################	20
 install_thunar(){
 	echo "xfce-base/thunar udisks" > /etc/portage/package.use/thunar
-	#emerge --ask --verbose --update --newuse --deep @world
 	emerge --ask xfce-base/thunar
 }
-################################	21
-install_ecomode(){
-	emerge --ask cpupower
-	touch /etc/systemd/system/lowturbo.service
-	echo "[Unit]" >> /etc/systemd/system/lowturbo.service
-	echo "Description=LowTurbo" >> /etc/systemd/system/lowturbo.service
-	echo "" >> /etc/systemd/system/lowturbo.service
-	echo "[Service]" >> /etc/systemd/system/lowturbo.service
-	echo "Type=oneshot" >> /etc/systemd/system/lowturbo.service
-	echo "" >> /etc/systemd/system/lowturbo.service
-	echo "ExecStart=/bin/sh -c "/usr/bin/cpupower frequency-set --max 3300MHz"" >> /etc/systemd/system/lowturbo.service
-	echo "" >> /etc/systemd/system/lowturbo.service
-	echo "ExecStop=/bin/sh -c "/usr/bin/cpupower frequency-set --max 5000MHz"" >> /etc/systemd/system/lowturbo.service
-	echo "" >> /etc/systemd/system/lowturbo.service
-	echo "RemainAfterExit=yes" >> /etc/systemd/system/lowturbo.service
-	echo "" >> /etc/systemd/system/lowturbo.service
-	echo "[Install]" >> /etc/systemd/system/lowturbo.service
-	echo "WantedBy=multi-user.target" >> /etc/systemd/system/lowturbo.service
-	
-	systemctl start lowturbo
-	systemctl enable lowturbo
-}
+
 ################################	switch
 [ "$EUID" -ne 0 ] && echo "Please run as root" #&& exit
 
@@ -410,18 +371,11 @@ case $1 in
 	"18") install_amdgpu;;
 	"19") install_nvidia;;
 	"20") install_thunar;;
-	"21") install_ecomode;;
 	"99")
 		mv qdgentoo.sh qdgentoo.old
 		wget https://raw.githubusercontent.com/cs97/qdgentoo/master/qdgentoo.sh
 		chmod +x qdgentoo.sh
 		chmod -x qdgentoo.old;;
-	"-m")
-		banner
-		echo -en "\tEnter option: "
-		read option
-		$0 $option;;
-		
 	*) banner;;
 esac
 exit
