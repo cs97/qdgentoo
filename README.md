@@ -1,5 +1,10 @@
 # Gentoo Linux Installer
 
+### Install
+```
+./qdgentoo.sh
+```
+
 ### wlan
 
 ```
