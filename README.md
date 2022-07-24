@@ -4,6 +4,11 @@
 ```
 ./qdgentoo.sh
 ```
+```
+./qdgentoo.sh 0
+...
+./qdgentoo.sh 10
+```
 
 ### wlan
 
