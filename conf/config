@@ -45,7 +45,7 @@ output * scale 1.10
     bindsym $mod+Shift+c reload
 
     # swaylock
-    bindsym $mod+Shift+s exec swaylock -i Downloads/gentoo.png
+    bindsym $mod+Shift+s exec light -S 0, exec swaylock -i /home/rax/gentoo.png && exec light -S 60
     
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
