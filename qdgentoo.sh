@@ -223,11 +223,8 @@ fstab_stuff(){
 	echo "tmpfs		/run		tmpfs		size=100M	0 0" >> /etc/fstab
 	
 	nano -w /etc/fstab
-	#echo 'hostname="gentoo-pc"' >> /etc/conf.d/hostname
-	#emerge --ask --noreplace net-misc/netifrc
 	passwd
 	emerge --ask app-admin/sysklogd
-	#rc-update add sysklogd default
 	emerge --ask net-misc/dhcpcd
 }
 ################################	9.2
@@ -259,7 +256,6 @@ add_user(){
 	hostnamectl hostname gentoo-pc
 	emerge --ask app-admin/sudo
 	useradd -m -G users,wheel,audio -s /bin/bash $USER
-#	echo "exec i3" >> /home/$USER/.xinitrc
 	echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 	passwd $USER
 #	passwd -l root
