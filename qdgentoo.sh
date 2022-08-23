@@ -6,6 +6,8 @@ aes_yesno=false
 load_makeconf=true
 use_cfdisk=true
 
+german=false
+
 kernel='=sys-kernel/gentoo-sources-5.18.17 ~amd64'
 GRUB_CMDLINE_LINUX_DEFAULT='GRUB_CMDLINE_LINUX_DEFAULT="modprobe.blacklist=nouveau quiet splash"'
 
@@ -164,9 +166,11 @@ make_locale(){
 	emerge --config sys-libs/timezone-data
 	echo "en_US ISO-8859-1" >> /etc/locale.gen
 	echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
-	#echo "de_DE ISO-8859-1" >> /etc/locale.gen
-	#echo "de_DE@euro ISO-8859-15" >> /etc/locale.gen
-	#echo "de_DE.UTF-8 UTF-8" >> /etc/locale.gen
+	[ $german = true ] && {
+		echo "de_DE ISO-8859-1" >> /etc/locale.gen
+		echo "de_DE@euro ISO-8859-15" >> /etc/locale.gen
+		echo "de_DE.UTF-8 UTF-8" >> /etc/locale.gen
+	}
 	nano -w /etc/locale.gen
 	locale-gen
 	clear
