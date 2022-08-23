@@ -6,7 +6,7 @@ aes_yesno=false
 load_makeconf=true
 use_cfdisk=true
 
-kernel='=sys-kernel/gentoo-sources-5.18.10 ~amd64'
+kernel='=sys-kernel/gentoo-sources-5.18.17 ~amd64'
 GRUB_CMDLINE_LINUX_DEFAULT='GRUB_CMDLINE_LINUX_DEFAULT="modprobe.blacklist=nouveau quiet splash"'
 
 #part1=""
