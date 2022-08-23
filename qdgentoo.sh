@@ -176,7 +176,6 @@ make_locale(){
 	clear
 	eselect locale set 6
 	eselect locale list
-	#localectl set-keymap de
 	}
 ################################	4
 env_update(){
@@ -254,6 +253,9 @@ umount_all(){
 }
 ################################	11
 add_user(){
+	[ $german = true ] && {
+		localectl set-locale LC_MESSAGES=de_DE.utf8 LANG=de_DE.UTF-8 
+	}
 	hostnamectl hostname gentoo-pc
 	emerge --ask app-admin/sudo
 	useradd -m -G users,wheel,audio -s /bin/bash $USER
