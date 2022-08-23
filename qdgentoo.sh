@@ -93,19 +93,15 @@ makefs_aes(){
 
 	[ -d /sys/firmware/efi ] && {
 		parted /dev/$disk --script mklabel gpt
-		#parted /dev/$disk --script mkpart primary ext4 $part1
-		#parted /dev/$disk --script mkpart primary ext4 $partlvm
 	} || {
 		parted /dev/$disk --script mklabel msdos
-		#parted /dev/$disk --script mkpart primary ext4 $part1
-		#parted /dev/$disk --script mkpart primary ext4 $partlvm
 	}
 	
 	[ $use_cfdisk = true ] && {
 		cfdisk $disk
 	} || {
-		parted /dev/$disk --script mkpart primary ext4 $part1
-		parted /dev/$disk --script mkpart primary ext4 $partlvm
+		parted $disk --script mkpart primary fat32 1MiB 1024MiB
+		parted $disk --script mkpart primary ext4 1024MiB 100%
 	}
 		
 	sleep 1
