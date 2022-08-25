@@ -244,7 +244,7 @@ install_grub_efi(){
 }
 ################################	10
 umount_all(){
-	cd
+	cd /
 	umount -l /mnt/gentoo/dev{/shm,/pts,}
 	umount -R /mnt/gentoo
 	echo "pls reboot"
