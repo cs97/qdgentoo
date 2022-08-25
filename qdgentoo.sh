@@ -12,11 +12,6 @@ german=false
 kernel='=sys-kernel/gentoo-sources-5.18.17 ~amd64'
 GRUB_CMDLINE_LINUX_DEFAULT='GRUB_CMDLINE_LINUX_DEFAULT="modprobe.blacklist=nouveau quiet splash"'
 
-#part1=""
-#part2=""
-#part3=""
-#partlvm=""
-
 #echo 0 > /sys/devices/system/cpu/cpufreq/boost
 
 disk='/dev/nvme0n1'
