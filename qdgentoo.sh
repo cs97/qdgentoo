@@ -273,9 +273,8 @@ install_wayland_sway(){
 		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/conf/config
 		mv ~/config ~/.config/sway/config
 		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/conf/status.sh
-		chmod +x status.sh
-		mv ~/status.sh ~/.config/sway/status.sh
-		chmod +x ~/.config/sway/status.sh
+		mv ~/status.sh ~/usr/bin/status.sh
+		chmod +x /usr/bin/status.sh
 		echo '#!/bin/sh' > ~/runwm.sh
 		echo '"WLR_DRM_DEVICES="/dev/dri/card1" sway --unsupported-gpu' >> ~/runwm.sh
 		chmod +x runwm.sh
