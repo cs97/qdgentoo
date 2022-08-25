@@ -48,12 +48,11 @@ banner(){
 	echo -e "\t8. fstab & Stuff"
 	echo -e "\t9. grub"
 	echo -e "\t10.umount all\n"
-	echo -e "\t11.add user"	
-	echo -e "\t12.wayland + sway"
+	echo -e "\t11.mount_again"
 	echo -e ""
-	echo -e "\t14.install_audio"
-	echo -e ""
-	echo -e "\t16.mount_again"
+	echo -e "\t14.add user"	
+	echo -e "\t15.wayland + sway"
+	echo -e "\t16.install_audio"
 	echo -e "\t17.install_wifi"
 	echo -e "\t18.install_amdgpu"
 	echo -e "\t19.install_nvidia"
@@ -245,7 +244,7 @@ umount_all(){
 	umount -R /mnt/gentoo
 	echo "pls reboot"
 }
-################################	11
+################################	14
 add_user(){
 	[ $german = true ] && {
 		localectl set-locale LC_MESSAGES=de_DE.utf8 LANG=de_DE.UTF-8 
@@ -260,7 +259,7 @@ add_user(){
 	usermod -a -G video $USER
 	usermod -a -G input $USER
 }
-################################	12
+################################	15
 install_wayland_sway(){
 	emerge --ask dev-libs/wayland
 
@@ -282,7 +281,7 @@ install_wayland_sway(){
 		chmod +x runwm.sh
 	}
 }
-################################	14
+################################	16
 install_audio(){
 	echo "media-video/pipewire pipewire-alsa sound-server" >> /etc/portage/package.use/pipewire
 	emerge --ask alsa-utils pipewire
@@ -292,7 +291,7 @@ install_audio(){
    	systemctl --user mask pulseaudio.socket pulseaudio.service
 	systemctl --user enable --now pipewire-pulse.service
 }
-################################	16
+################################	11
 mount_again(){
 	mkdir /mnt/gentoo
 	sleep 1
@@ -354,12 +353,11 @@ case $1 in
 	"8") fstab_stuff;;
 	"9") install_grub_efi;;
 	"10") umount_all;;
-	"11") add_user;;
-	"12") install_wayland_sway;;
+	"11") mount_again;;
 
-	"14") install_audio;;
-
-	"16") mount_again;;
+	"14") add_user;;
+	"15") install_wayland_sway;;
+	"16") install_audio;;
 	"17") install_wifi;;
 	"18") install_amdgpu;;
 	"19") install_nvidia;;
