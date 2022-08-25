@@ -4,6 +4,7 @@ USER='user'
 
 aes_yesno=false
 load_makeconf=true
+load_swayconfig=true
 use_cfdisk=true
 
 german=false
@@ -264,15 +265,26 @@ add_user(){
 	usermod -a -G input $USER
 }
 ################################	12
-install_wayland(){
+install_wayland_sway(){
 	emerge --ask dev-libs/wayland
-}
-################################	13
-install_sway(){
+
 	echo "gui-wm/sway wallpapers" >> /etc/portage/package.use/wm
 	emerge --ask gui-wm/sway
 	emerge --ask dev-libs/light
 	emerge --ask x11-terms/alacritty
+
+	[ $load_makeconf = true ] && {
+		mv ~/.config/sway/config ~/.config/sway/config.old
+		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/conf/config
+		mv ~/config ~/.config/sway/config
+		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/conf/status.sh
+		chmod +x status.sh
+		mv ~/status.sh ~/.config/sway/status.sh
+		chmod +x ~/.config/sway/status.sh
+		echo '#!/bin/sh' > ~/runwm.sh
+		echo '"WLR_DRM_DEVICES="/dev/dri/card1" sway --unsupported-gpu' >> ~/runwm.sh
+		chmod +x runwm.sh
+	}
 }
 ################################	14
 install_audio(){
@@ -283,19 +295,6 @@ install_audio(){
    	systemctl --user enable --now wireplumber.service
    	systemctl --user mask pulseaudio.socket pulseaudio.service
 	systemctl --user enable --now pipewire-pulse.service
-}
-################################	15
-sway_config(){
-	mv ~/.config/sway/config ~/.config/sway/config.old
-	wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/conf/config
-	mv ~/config ~/.config/sway/config
-	wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/conf/status.sh
-	chmod +x status.sh
-	mv ~/status.sh ~/.config/sway/status.sh
-	chmod +x ~/.config/sway/status.sh
-	echo '#!/bin/sh' > ~/runwm.sh
-	echo '"WLR_DRM_DEVICES="/dev/dri/card1" sway --unsupported-gpu' >> ~/runwm.sh
-	chmod +x runwm.sh
 }
 ################################	16
 mount_again(){
@@ -360,10 +359,10 @@ case $1 in
 	"9") install_grub_efi;;
 	"10") umount_all;;
 	"11") add_user;;
-	"12") install_wayland;;
-	"13") install_sway;;
+	"12") install_wayland_sway;;
+
 	"14") install_audio;;
-	"15") sway_config;;
+
 	"16") mount_again;;
 	"17") install_wifi;;
 	"18") install_amdgpu;;
