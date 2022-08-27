@@ -344,6 +344,7 @@ install_tools(){
 	emerge --ask sys-process/htop
 	emerge --ask app-arch/file-roller
 	emerge --ask app-misc/neofetch
+	emerge --ask dev-lang/rust
 }
 
 ################################	switch
