@@ -49,6 +49,7 @@ banner(){
 	echo -e "\t9. grub"
 	echo -e "\t10.umount all\n"
 	echo -e "\t11.mount_again"
+	echo -e "\t12.first_boot"
 	echo -e ""
 	echo -e "\t14.add user"	
 	echo -e "\t15.wayland + sway"
@@ -56,7 +57,7 @@ banner(){
 	echo -e "\t17.install_wifi"
 	echo -e "\t18.install_amdgpu"
 	echo -e "\t19.install_nvidia"
-	echo -e "\t20.install_thunar\n"
+	echo -e "\t20.install_tools\n"
 
 	
 	echo -e "\t99. update\n"
@@ -244,11 +245,35 @@ umount_all(){
 	umount -R /mnt/gentoo
 	echo "pls reboot"
 }
-################################	14
-add_user(){
+################################	11
+mount_again(){
+	mkdir /mnt/gentoo
+	sleep 1
+	mount $root /mnt/gentoo
+	sleep 1
+	mount $boot /mnt/gentoo/boot
+	sleep 1
+	mount --types proc /proc /mnt/gentoo/proc
+	sleep 1
+	mount --rbind /sys /mnt/gentoo/sys
+	sleep 1
+	mount --make-rslave /mnt/gentoo/sys
+	sleep 1
+	mount --rbind /dev /mnt/gentoo/dev
+	sleep 1
+	mount --make-rslave /mnt/gentoo/dev
+	sleep 1
+	chroot /mnt/gentoo /bin/bash
+}
+################################	12
+first_boot(){
 	[ $german = true ] && {
 		localectl set-locale LC_MESSAGES=de_DE.utf8 LANG=de_DE.UTF-8 
 	}
+	systemctl enable dhcpcd
+}
+################################	14
+add_user(){
 	hostnamectl hostname gentoo-pc
 	emerge --ask app-admin/sudo
 	useradd -m -G users,wheel,audio -s /bin/bash $USER
@@ -290,26 +315,7 @@ install_audio(){
    	systemctl --user mask pulseaudio.socket pulseaudio.service
 	systemctl --user enable --now pipewire-pulse.service
 }
-################################	11
-mount_again(){
-	mkdir /mnt/gentoo
-	sleep 1
-	mount $root /mnt/gentoo
-	sleep 1
-	mount $boot /mnt/gentoo/boot
-	sleep 1
-	mount --types proc /proc /mnt/gentoo/proc
-	sleep 1
-	mount --rbind /sys /mnt/gentoo/sys
-	sleep 1
-	mount --make-rslave /mnt/gentoo/sys
-	sleep 1
-	mount --rbind /dev /mnt/gentoo/dev
-	sleep 1
-	mount --make-rslave /mnt/gentoo/dev
-	sleep 1
-	chroot /mnt/gentoo /bin/bash
-}
+
 ################################	17
 install_wifi(){
 	echo ">=net-wireless/wpa_supplicant-2.10-r1 dbus" >> /etc/portage/package.use/wifi
@@ -332,9 +338,12 @@ install_nvidia(){
 	emerge --ask x11-drivers/nvidia-drivers
 }
 ################################	20
-install_thunar(){
+install_tools(){
 	echo "xfce-base/thunar udisks" > /etc/portage/package.use/thunar
 	emerge --ask xfce-base/thunar
+	emerge --ask sys-process/htop
+	emerge --ask app-arch/file-roller
+	emerge --ask app-misc/neofetch
 }
 
 ################################	switch
@@ -353,6 +362,7 @@ case $1 in
 	"9") install_grub_efi;;
 	"10") umount_all;;
 	"11") mount_again;;
+	"12") first_boot;;
 
 	"14") add_user;;
 	"15") install_wayland_sway;;
@@ -360,7 +370,7 @@ case $1 in
 	"17") install_wifi;;
 	"18") install_amdgpu;;
 	"19") install_nvidia;;
-	"20") install_thunar;;
+	"20") install_tools;;
 	"99")
 		mv qdgentoo.sh qdgentoo.old
 		wget https://raw.githubusercontent.com/cs97/qdgentoo/master/qdgentoo.sh
