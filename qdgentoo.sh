@@ -286,12 +286,8 @@ add_user(){
 }
 ################################	15
 install_wayland_sway(){
-	emerge --ask dev-libs/wayland
-
 	echo "gui-wm/sway wallpapers" >> /etc/portage/package.use/wm
-	emerge --ask gui-wm/sway
-	emerge --ask dev-libs/light
-	emerge --ask x11-terms/alacritty
+	emerge --ask dev-libs/wayland gui-wm/sway dev-libs/light x11-terms/alacritty
 
 	[ $load_swayconfig = true ] && {
 		mv ~/.config/sway/config ~/.config/sway/config.old
