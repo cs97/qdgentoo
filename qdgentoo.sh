@@ -9,7 +9,7 @@ use_cfdisk=true
 
 german=false
 
-kernel='=sys-kernel/gentoo-sources-5.18.17 ~amd64'
+kernel='=sys-kernel/gentoo-sources-5.19.9 ~amd64'
 GRUB_CMDLINE_LINUX_DEFAULT='GRUB_CMDLINE_LINUX_DEFAULT="modprobe.blacklist=nouveau quiet splash"'
 
 #echo 0 > /sys/devices/system/cpu/cpufreq/boost
@@ -298,7 +298,7 @@ install_wayland_sway(){
 		mv ~/status.sh ~/usr/bin/status.sh
 		chmod +x /usr/bin/status.sh
 		echo '#!/bin/sh' > ~/runwm.sh
-		echo '"WLR_DRM_DEVICES="/dev/dri/card1" sway --unsupported-gpu' >> ~/runwm.sh
+		echo 'sway --unsupported-gpu' >> ~/runwm.sh
 		chmod +x runwm.sh
 	}
 }
@@ -337,9 +337,8 @@ install_nvidia(){
 ################################	20
 install_tools(){
 	echo "xfce-base/thunar udisks" > /etc/portage/package.use/thunar
-	emerge --ask xfce-base/thunar
+	emerge --ask xfce-base/thunar app-arch/file-roller
 	emerge --ask sys-process/htop
-	emerge --ask app-arch/file-roller
 	emerge --ask app-misc/neofetch
 	emerge --ask dev-lang/rust
 }
