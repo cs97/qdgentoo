@@ -290,6 +290,7 @@ install_wayland_sway(){
 	emerge --ask dev-libs/wayland gui-wm/sway dev-libs/light x11-terms/alacritty
 
 	[ $load_swayconfig = true ] && {
+		mkdir .config && mkdir .config/sway
 		mv ~/.config/sway/config ~/.config/sway/config.old
 		wget https://raw.githubusercontent.com/cs97/qdgentoo/master/conf/config
 		mv ~/config ~/.config/sway/config
