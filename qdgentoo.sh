@@ -270,11 +270,11 @@ first_boot(){
 	[ $german = true ] && {
 		localectl set-locale LC_MESSAGES=de_DE.utf8 LANG=de_DE.UTF-8 
 	}
+	hostnamectl hostname gentoo-pc
 	systemctl enable dhcpcd
 }
 ################################	14
 add_user(){
-	hostnamectl hostname gentoo-pc
 	emerge --ask app-admin/sudo
 	useradd -m -G users,wheel,audio -s /bin/bash $USER
 	echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
