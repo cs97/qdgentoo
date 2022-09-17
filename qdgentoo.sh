@@ -295,9 +295,9 @@ install_wayland_sway(){
 
 	[ $load_swayconfig = true ] && {
 		mv ~/.config/sway/config ~/.config/sway/config.old
-		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/conf/config
+		wget https://raw.githubusercontent.com/cs97/qdgentoo/master/conf/config
 		mv ~/config ~/.config/sway/config
-		wget https://raw.githubusercontent.com/leftside97/qdgentoo/master/conf/status.sh
+		wget https://raw.githubusercontent.com/cs97/qdgentoo/master/conf/status.sh
 		mv ~/status.sh ~/usr/bin/status.sh
 		chmod +x /usr/bin/status.sh
 		echo '#!/bin/sh' > ~/runwm.sh
