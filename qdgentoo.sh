@@ -350,6 +350,7 @@ my_config(){
 	cd rusty-sway-status
 	cargo build --release
 	cp target/release/status /usr/bin/status
+	cd ..
 
 	#my .bashrc
 	wget https://raw.githubusercontent.com/cs97/My-Razer-Blade-14-2021/main/.bashrc
