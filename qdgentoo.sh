@@ -277,6 +277,7 @@ first_boot(){
 	} || {
 		hostnamectl hostname gentoo-pc
 		systemctl enable --now dhcpcd
+	}
 }
 ################################	14
 add_user(){
