@@ -271,12 +271,12 @@ first_boot(){
 	}
 
 	[ -d /run/systemd/system ]] && {
+		hostnamectl hostname gentoo-pc
+		systemctl enable --now dhcpcd
+	} || {
 		echo 'hostname="gentoo-pc' > /etc/conf.d/hostname
 		rc-update add dhcpcd default
 		rc-service dhcpcd start
-	} || {
-		hostnamectl hostname gentoo-pc
-		systemctl enable --now dhcpcd
 	}
 }
 ################################	14
