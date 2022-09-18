@@ -4,7 +4,6 @@ USER='user'
 
 aes_yesno=false
 load_makeconf=true
-load_swayconfig=true
 use_cfdisk=true
 
 german=false
@@ -35,7 +34,6 @@ banner(){
 	echo -e "\tdisk: $disk"
 	echo -e "\taes: $aes_yesno"
 	echo -e "\tload_makeconf: $load_makeconf"
-	echo -e "\tload_swayconfig: $load_swayconfig"
 	echo -e "\tuse cfdisk: $use_cfdisk\n"
 	echo -e "\t0  makefs"
 	echo -e "\t1. do in chroot"
