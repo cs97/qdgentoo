@@ -270,8 +270,15 @@ first_boot(){
 	[ $german = true ] && {
 		localectl set-locale LC_MESSAGES=de_DE.utf8 LANG=de_DE.UTF-8 
 	}
-	hostnamectl hostname gentoo-pc
-	systemctl enable dhcpcd
+	
+	[ -d /run/systemd/system ]] && {
+		hostnamectl hostname gentoo-pc
+		systemctl enable --now dhcpcd
+	} || {
+		echo 'hostname="gentoo-pc' > /etc/conf.d/hostname
+		rc-update add dhcpcd default
+		rc-service dhcpcd start
+	}
 }
 ################################	14
 add_user(){
