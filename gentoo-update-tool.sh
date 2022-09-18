@@ -8,6 +8,7 @@ banner(){
 	echo -e "Gentoo-Update-Tool\n"
 	echo -e "usage: $0 [OPTION]\n"
 	echo -e "\t--update\t\temerge --sync;\n\t\t\t\temerge --ask --verbose --update --newuse --deep @world\n"
+	echo -e "\t--kernel-add <5.19.9>\t\techo >> /etc/portage/package.accept_keywords/kernel\n"
 	echo -e "\t--kernel-list\t\teselect kernel list\n"
 	echo -e "\t--kernel-set <?>\teselect kernel set x\n"
 	echo -e "\t--genkernel\t\tgenkernel --menuconfig all\n"
@@ -19,6 +20,7 @@ case $1 in
 			emerge --sync
 			emerge --ask --verbose --update --newuse --deep @world;;
 
+	"--add-kernel") echo "=sys-kernel/gentoo-sources-$2 ~amd64" > /etc/portage/package.accept_keywords/kernel;;
 	"--kernel-list") eselect kernel list;;
 
 	"--kernel-set") eselect kernel set $2;;
