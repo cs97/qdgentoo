@@ -58,6 +58,7 @@ banner(){
 	echo -e "\t18.install_amdgpu"
 	echo -e "\t19.install_nvidia"
 	echo -e "\t20.install_tools\n"
+	echo -e "\t21.my_config\n"
 
 	
 	echo -e "\t99. update\n"
@@ -270,7 +271,7 @@ first_boot(){
 	[ $german = true ] && {
 		localectl set-locale LC_MESSAGES=de_DE.utf8 LANG=de_DE.UTF-8 
 	}
-	
+
 	[ -d /run/systemd/system ]] && {
 		hostnamectl hostname gentoo-pc
 		systemctl enable --now dhcpcd
@@ -295,19 +296,6 @@ add_user(){
 install_wayland_sway(){
 	echo "gui-wm/sway wallpapers" >> /etc/portage/package.use/wm
 	emerge --ask dev-libs/wayland gui-wm/sway dev-libs/light x11-terms/alacritty
-
-	[ $load_swayconfig = true ] && {
-		mkdir .config && mkdir .config/sway
-		mv ~/.config/sway/config ~/.config/sway/config.old
-		wget https://raw.githubusercontent.com/cs97/qdgentoo/master/conf/config
-		mv ~/config ~/.config/sway/config
-		wget https://raw.githubusercontent.com/cs97/qdgentoo/master/conf/status.sh
-		mv ~/status.sh ~/usr/bin/status.sh
-		chmod +x /usr/bin/status.sh
-		echo '#!/bin/sh' > ~/runwm.sh
-		echo 'sway --unsupported-gpu' >> ~/runwm.sh
-		chmod +x runwm.sh
-	}
 }
 ################################	16
 install_audio(){
@@ -349,6 +337,36 @@ install_tools(){
 	emerge --ask app-misc/neofetch
 	emerge --ask dev-lang/rust
 }
+################################	20
+my_config(){
+
+	mkdir .config && mkdir .config/sway
+	mv ~/.config/sway/config ~/.config/sway/config.old
+
+	#sway .config
+	wget https://raw.githubusercontent.com/cs97/My-Razer-Blade-14-2021/main/.config/sway/config
+	mv config ~/.config/sway/config
+
+	#sway status
+	git clone https://github.com/cs97/rusty-sway-status
+	cd rusty-sway-status
+	cargo build --release
+	cp target/release/status /usr/bin/status
+
+	#my .bashrc
+	wget https://raw.githubusercontent.com/cs97/My-Razer-Blade-14-2021/main/.bashrc
+	mv .bashrc ~/.bashrc
+
+	#runsway
+	wget https://raw.githubusercontent.com/cs97/My-Razer-Blade-14-2021/main/runsway
+	mv runsway /usr/bin/runsway
+	chmod +x /usr/bin/runsway
+
+	#powermode
+	wget https://raw.githubusercontent.com/cs97/My-Razer-Blade-14-2021/main/powermode.sh
+	mc powermode.sh /usr/bin/powermode
+	chmod +x /usr/bin/powermode
+}
 
 ################################	switch
 [ "$EUID" -ne 0 ] && echo "Please run as root" #&& exit
@@ -375,6 +393,7 @@ case $1 in
 	"18") install_amdgpu;;
 	"19") install_nvidia;;
 	"20") install_tools;;
+	"21") my_config;;
 	"99")
 		mv qdgentoo.sh qdgentoo.old
 		wget https://raw.githubusercontent.com/cs97/qdgentoo/master/qdgentoo.sh
