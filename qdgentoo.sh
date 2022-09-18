@@ -271,13 +271,12 @@ first_boot(){
 	}
 
 	[ -d /run/systemd/system ]] && {
-		hostnamectl hostname gentoo-pc
-		systemctl enable --now dhcpcd
-	} || {
 		echo 'hostname="gentoo-pc' > /etc/conf.d/hostname
 		rc-update add dhcpcd default
 		rc-service dhcpcd start
-	}
+	} || {
+		hostnamectl hostname gentoo-pc
+		systemctl enable --now dhcpcd
 }
 ################################	14
 add_user(){
@@ -363,8 +362,13 @@ my_config(){
 
 	#powermode
 	wget https://raw.githubusercontent.com/cs97/My-Razer-Blade-14-2021/main/powermode.sh
-	mc powermode.sh /usr/bin/powermode
+	mv powermode.sh /usr/bin/powermode
 	chmod +x /usr/bin/powermode
+
+	#gut
+	wget https://raw.githubusercontent.com/cs97/qdgentoo/master/gentoo-update-tool.sh
+	mv gentoo-update-tool.sh /usr/bin/gut
+	chmod +x /usr/bin/gut
 }
 
 ################################	switch
