@@ -334,6 +334,7 @@ install_tools(){
 	emerge --ask sys-process/htop
 	emerge --ask app-misc/neofetch
 	emerge --ask dev-lang/rust
+	emerge --ask dev-vcs/git
 }
 ################################	20
 my_config(){
