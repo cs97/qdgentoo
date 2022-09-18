@@ -270,7 +270,7 @@ first_boot(){
 		localectl set-locale LC_MESSAGES=de_DE.utf8 LANG=de_DE.UTF-8 
 	}
 
-	[ -d /run/systemd/system ]] && {
+	[ -d /run/systemd/system ] && {
 		hostnamectl hostname gentoo-pc
 		systemctl enable --now dhcpcd
 	} || {
