@@ -222,7 +222,7 @@ fstab_stuff(){
 	passwd
 	emerge --ask app-admin/sysklogd
 	emerge --ask net-misc/dhcpcd
-	emerge --ask sys-fs/lvm2
+	[ $aes_yesno = true ] && emerge --ask sys-fs/lvm2
 }
 ################################	9.2
 install_grub_efi(){
