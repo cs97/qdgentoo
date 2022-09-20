@@ -6,8 +6,13 @@
 ```
 ```
 ./qdgentoo.sh 0
+cd /root
+./qdgentoo.sh 1
 ...
+./qdgentoo.sh 9
+exit
 ./qdgentoo.sh 10
+reboot
 ```
 
 ### wlan
