@@ -332,6 +332,8 @@ install_tools(){
 	emerge --ask app-misc/neofetch
 	emerge --ask dev-lang/rust
 	emerge --ask dev-vcs/git
+	emerge --ask sys-apps/lm-sensors
+	emerge --ask sys-power/cpupower
 }
 ################################	20
 my_config(){
