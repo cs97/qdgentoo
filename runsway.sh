@@ -18,6 +18,6 @@ some_stuff(){
 case $1 in
 	"--igpu") [ -d /dev/dri/card1 ] && WLR_DRM_DEVICES="/dev/dri/card1" sway --unsupported-gpu || WLR_DRM_DEVICES="/dev/dri/card0" sway --unsupported-gpu;;
 	"--dgpu") sway --unsupported-gpu;;
-    "--stuff" some_stuff;
+    "--stuff") some_stuff;
 	*) echo "usage: $0 [--igpu|--dgpu]";;
 esac
