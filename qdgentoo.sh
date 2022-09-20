@@ -338,7 +338,7 @@ install_tools(){
 
 	#runsway
 	wget https://raw.githubusercontent.com/cs97/qdgentoo/master/runsway.sh
-	mv runsway /usr/bin/runsway
+	mv runsway.sh /usr/bin/runsway
 	chmod +x /usr/bin/runsway
 
 	#powermode
