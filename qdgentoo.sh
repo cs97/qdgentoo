@@ -290,7 +290,7 @@ add_user(){
 ################################	15
 install_wayland_sway(){
 	echo "gui-wm/sway wallpapers" >> /etc/portage/package.use/wm
-	emerge --ask dev-libs/wayland gui-wm/sway dev-libs/light
+	emerge --ask dev-libs/wayland gui-wm/sway dev-libs/light gui-apps/foot
 }
 ################################	16
 install_audio(){
@@ -334,7 +334,6 @@ install_tools(){
 	emerge --ask dev-vcs/git
 	emerge --ask sys-apps/lm-sensors
 	emerge --ask sys-power/cpupower
-	emerge --ask x11-terms/alacritty
 
 	#runsway
 	wget https://raw.githubusercontent.com/cs97/qdgentoo/master/runsway.sh
@@ -354,6 +353,7 @@ install_tools(){
 }
 ################################	20
 my_config(){
+	emerge --ask x11-terms/alacritty
 
 	mkdir .config && mkdir .config/sway
 	mv ~/.config/sway/config ~/.config/sway/config.old
