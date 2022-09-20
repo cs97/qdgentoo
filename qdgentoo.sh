@@ -290,7 +290,7 @@ add_user(){
 ################################	15
 install_wayland_sway(){
 	echo "gui-wm/sway wallpapers" >> /etc/portage/package.use/wm
-	emerge --ask dev-libs/wayland gui-wm/sway dev-libs/light x11-terms/alacritty
+	emerge --ask dev-libs/wayland gui-wm/sway dev-libs/light
 }
 ################################	16
 install_audio(){
@@ -334,6 +334,7 @@ install_tools(){
 	emerge --ask dev-vcs/git
 	emerge --ask sys-apps/lm-sensors
 	emerge --ask sys-power/cpupower
+	emerge --ask x11-terms/alacritty
 }
 ################################	20
 my_config(){
