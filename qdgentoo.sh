@@ -201,10 +201,6 @@ gentoo_genkernel(){
 }
 ################################	8
 fstab_stuff(){
-	etc-update
-	emerge --ask sys-kernel/linux-firmware
-	etc-update
-	
 	[ $aes_yesno = true ] && {
 		echo "/dev/mapper/vg0-root		/		ext4		defaults	0 0" >> /etc/fstab
 		echo "$boot		/boot		vfat		defaults        0 0" >> /etc/fstab
