@@ -335,6 +335,22 @@ install_tools(){
 	emerge --ask sys-apps/lm-sensors
 	emerge --ask sys-power/cpupower
 	emerge --ask x11-terms/alacritty
+
+	#runsway
+	wget https://raw.githubusercontent.com/cs97/qdgentoo/master/runsway.sh
+	mv runsway /usr/bin/runsway
+	chmod +x /usr/bin/runsway
+
+	#powermode
+	wget https://raw.githubusercontent.com/cs97/qdgentoo/master/powermode.sh
+	mv powermode.sh /usr/bin/powermode
+	chmod +x /usr/bin/powermode
+
+	#gut
+	wget https://raw.githubusercontent.com/cs97/qdgentoo/master/gentoo-update-tool.sh
+	mv gentoo-update-tool.sh /usr/bin/gut
+	chmod +x /usr/bin/gut
+
 }
 ################################	20
 my_config(){
@@ -357,20 +373,6 @@ my_config(){
 	wget https://raw.githubusercontent.com/cs97/My-Razer-Blade-14-2021/main/.bashrc
 	mv .bashrc ~/.bashrc
 
-	#runsway
-	wget https://raw.githubusercontent.com/cs97/My-Razer-Blade-14-2021/main/runsway
-	mv runsway /usr/bin/runsway
-	chmod +x /usr/bin/runsway
-
-	#powermode
-	wget https://raw.githubusercontent.com/cs97/My-Razer-Blade-14-2021/main/powermode.sh
-	mv powermode.sh /usr/bin/powermode
-	chmod +x /usr/bin/powermode
-
-	#gut
-	wget https://raw.githubusercontent.com/cs97/qdgentoo/master/gentoo-update-tool.sh
-	mv gentoo-update-tool.sh /usr/bin/gut
-	chmod +x /usr/bin/gut
 }
 
 ################################	switch
