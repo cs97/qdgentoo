@@ -355,12 +355,13 @@ install_tools(){
 my_config(){
 	emerge --ask x11-terms/alacritty
 
-	mkdir .config && mkdir .config/sway
-	mv ~/.config/sway/config ~/.config/sway/config.old
+	mkdir .config
+	mkdir .config/sway
+	mv .config/sway/config .config/sway/config.old
 
 	#sway .config
 	wget https://raw.githubusercontent.com/cs97/My-Razer-Blade-14-2021/main/.config/sway/config
-	mv config ~/.config/sway/config
+	mv config .config/sway/config
 
 	#sway status
 	git clone https://github.com/cs97/rusty-sway-status
@@ -371,7 +372,7 @@ my_config(){
 
 	#my .bashrc
 	wget https://raw.githubusercontent.com/cs97/My-Razer-Blade-14-2021/main/.bashrc
-	mv .bashrc ~/.bashrc
+	#mv .bashrc ~/.bashrc
 
 }
 
