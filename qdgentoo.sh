@@ -371,8 +371,8 @@ my_config(){
 	cd ..
 
 	#my .bashrc
+	#mv .bashrc .bashrc.old
 	wget https://raw.githubusercontent.com/cs97/My-Razer-Blade-14-2021/main/.bashrc
-	#mv .bashrc ~/.bashrc
 
 }
 
