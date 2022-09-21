@@ -350,6 +350,10 @@ install_tools(){
 	mv gentoo-update-tool.sh /usr/bin/gut
 	chmod +x /usr/bin/gut
 
+	#.bashrc
+	mv .bashrc .bashrc.old
+	wget https://raw.githubusercontent.com/cs97/My-Razer-Blade-14-2021/main/.bashrc
+	
 }
 ################################	20
 my_config(){
@@ -369,10 +373,6 @@ my_config(){
 	cargo build --release
 	cp target/release/status /usr/bin/status
 	cd ..
-
-	#my .bashrc
-	mv .bashrc .bashrc.old
-	wget https://raw.githubusercontent.com/cs97/My-Razer-Blade-14-2021/main/.bashrc
 
 }
 
