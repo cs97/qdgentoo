@@ -352,8 +352,7 @@ install_tools(){
 
 	#.bashrc
 	mv .bashrc .bashrc.old
-	wget https://raw.githubusercontent.com/cs97/My-Razer-Blade-14-2021/main/.bashrc
-	
+	https://raw.githubusercontent.com/cs97/qdgentoo/master/.bashrc	
 }
 ################################	20
 my_config(){
