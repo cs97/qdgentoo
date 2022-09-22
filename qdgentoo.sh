@@ -326,8 +326,8 @@ install_nvidia(){
 }
 ################################	20
 install_tools(){
-	echo "xfce-base/thunar udisks" > /etc/portage/package.use/thunar
-	emerge --ask xfce-base/thunar app-arch/file-roller
+	#echo "xfce-base/thunar udisks" > /etc/portage/package.use/thunar
+	#emerge --ask xfce-base/thunar app-arch/file-roller
 	emerge --ask sys-process/htop
 	emerge --ask app-misc/neofetch
 	emerge --ask dev-lang/rust
@@ -352,7 +352,7 @@ install_tools(){
 
 	#.bashrc
 	mv .bashrc .bashrc.old
-	https://raw.githubusercontent.com/cs97/qdgentoo/master/.bashrc	
+	wget https://raw.githubusercontent.com/cs97/qdgentoo/master/.bashrc	
 }
 ################################	20
 my_config(){
