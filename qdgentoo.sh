@@ -304,7 +304,7 @@ install_audio(){
    	systemctl --user mask pulseaudio.socket pulseaudio.service
 	systemctl --user enable --now pipewire-pulse.service
 	} || {
-		rc-update add alsasound
+		rc-update add alsasound boot
 	}
 }
 
