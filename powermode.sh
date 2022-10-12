@@ -6,9 +6,10 @@
 }
 
 performance(){
-	cpupower frequency-set --max 3800MHz
-	cpupower frequency-set --min 1000MHz
-	cpupower frequency-set --governor performance
+	echo 1 > /sys/devices/system/cpu/cpufreq/boost
+	cpupower frequency-set --max 3300MHz
+	cpupower frequency-set --min 2000MHz
+	cpupower frequency-set --governor schedutil
 	[ -f /opt/bin/nvidia-smi ] && {
 		nvidia-smi -lgc 210,1200
 		nvidia-smi -lmc 400,5800
@@ -16,6 +17,7 @@ performance(){
 }
 
 balanced(){
+	echo 0 > /sys/devices/system/cpu/cpufreq/boost
 	cpupower frequency-set --max 3300MHz
 	cpupower frequency-set --min 1000MHz
 	cpupower frequency-set --governor schedutil
@@ -26,6 +28,7 @@ balanced(){
 }
 
 powersave(){
+	echo 0 > /sys/devices/system/cpu/cpufreq/boost
 	cpupower frequency-set --max 3000MHz
 	cpupower frequency-set --min 500MHz
 	cpupower frequency-set --governor schedutil
