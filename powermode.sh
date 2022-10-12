@@ -45,7 +45,3 @@ case $1 in
 	"powersave") powersave;;
 	*) echo "usage: $0 [performance|balanced|powersave]";;
 esac
-Footer
-© 2022 GitHub, Inc.
-Footer navigation
-
