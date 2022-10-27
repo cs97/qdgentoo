@@ -1,10 +1,5 @@
 #! /bin/bash
 
-cat <<EOF >> /etc/portage/package.use/wm
-gui-libs/wlroots X
-gui-wm/sway X
-EOF
-
 cat <<EOF >> /etc/portage/package.accept_keywords/steam
 */*::steam-overlay
 EOF
