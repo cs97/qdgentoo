@@ -51,6 +51,8 @@ cat <<EOF >> /etc/portage/package.use/steam
 >=app-arch/bzip2-1.0.8-r3 abi_x86_32
 EOF
 
+emerge --ask --verbose --update --changed-use --deep @world
+
 emerge --ask games-util/steam-launcher
 
 
