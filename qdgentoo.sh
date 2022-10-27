@@ -289,7 +289,8 @@ add_user(){
 }
 ################################	15
 install_wayland_sway(){
-	echo "gui-wm/sway wallpapers" >> /etc/portage/package.use/wm
+	echo "gui-libs/wlroots X" >> /etc/portage/package.use/wm
+	echo "gui-wm/sway X wallpapers" >> /etc/portage/package.use/wm
 	emerge --ask dev-libs/wayland gui-wm/sway dev-libs/light gui-apps/foot
 	[ -d /run/systemd/system ] || rc-update add seatd default
 }
