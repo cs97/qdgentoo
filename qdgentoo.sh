@@ -362,17 +362,17 @@ my_config(){
 	wget https://raw.githubusercontent.com/cs97/My-Razer-Blade-14-2021/main/.config/sway/config
 	mv config .config/sway/config
 
-	#runsway
-	wget https://raw.githubusercontent.com/cs97/My-Razer-Blade-14-2021/main/runsway
-	mv runsway.sh /usr/bin/runsway
-	chmod +x /usr/bin/runsway
-
 	#sway status
 	git clone https://github.com/cs97/rusty-sway-status
 	cd rusty-sway-status
 	cargo build --release
 	cp target/release/status /usr/bin/status
 	cd ..
+
+	#runsway
+	wget https://raw.githubusercontent.com/cs97/My-Razer-Blade-14-2021/main/runsway
+	mv runsway.sh /usr/bin/runsway
+	chmod +x /usr/bin/runsway
 
 	#powermode
 	#wget https://raw.githubusercontent.com/cs97/qdgentoo/master/powermode.sh
