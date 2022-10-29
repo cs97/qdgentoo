@@ -30,7 +30,7 @@ sudo emerge --ask --verbose --update --newuse --deep @world
 
 /etc/portage/package.accept_keywords
 ```    
-=sys-kernel/gentoo-sources-5.18.16 ~amd64
+=sys-kernel/gentoo-sources-5.15.75 ~amd64
 ```
 install sources:
 ```
