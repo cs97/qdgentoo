@@ -350,7 +350,7 @@ install_tools(){
 	mv .bashrc .bashrc.old
 	wget https://raw.githubusercontent.com/cs97/qdgentoo/master/.bashrc	
 }
-################################	20
+################################	21
 my_config(){
 	emerge --ask x11-terms/alacritty
 
@@ -359,8 +359,8 @@ my_config(){
 	mv .config/sway/config .config/sway/config.old
 
 	#sway .config
-	wget https://raw.githubusercontent.com/cs97/My-Razer-Blade-14-2021/main/.config/sway/config
-	mv config .config/sway/config
+	wget https://raw.githubusercontent.com/cs97/qdgentoo/master/conf/sway-config
+	mv sway-config .config/sway/config
 
 	#sway status
 	git clone https://github.com/cs97/rusty-sway-status
@@ -368,17 +368,20 @@ my_config(){
 	cargo build --release
 	cp target/release/status /usr/bin/status
 	cd ..
+}
 
+################################	22
+#razer_blade_14(){
 	#runsway
-	wget https://raw.githubusercontent.com/cs97/My-Razer-Blade-14-2021/main/runsway
-	mv runsway.sh /usr/bin/runsway
-	chmod +x /usr/bin/runsway
+	#wget https://raw.githubusercontent.com/cs97/My-Razer-Blade-14-2021/main/runsway
+	#mv runsway.sh /usr/bin/runsway
+	#chmod +x /usr/bin/runsway
 
 	#powermode
 	#wget https://raw.githubusercontent.com/cs97/qdgentoo/master/powermode.sh
 	#mv powermode.sh /usr/bin/powermode
 	#chmod +x /usr/bin/powermode
-}
+#}
 
 ################################	switch
 [ "$EUID" -ne 0 ] && echo "Please run as root" #&& exit
