@@ -342,13 +342,10 @@ install_tools(){
 	#emerge --ask sys-power/cpupower
 
 	#gut
-	wget https://raw.githubusercontent.com/cs97/qdgentoo/master/gentoo-update-tool.sh
-	mv gentoo-update-tool.sh /usr/bin/gut
-	chmod +x /usr/bin/gut
+	#wget https://raw.githubusercontent.com/cs97/qdgentoo/master/shell-script/gentoo-update-tool.sh
+	#mv gentoo-update-tool.sh /usr/bin/gut
+	#chmod +x /usr/bin/gut
 
-	#.bashrc
-	mv .bashrc .bashrc.old
-	wget https://raw.githubusercontent.com/cs97/qdgentoo/master/conf/.bashrc	
 }
 ################################	21
 my_config(){
@@ -368,6 +365,10 @@ my_config(){
 	cargo build --release
 	cp target/release/status /usr/bin/status
 	cd ..
+
+	#.bashrc
+	mv .bashrc .bashrc.old
+	wget https://raw.githubusercontent.com/cs97/qdgentoo/master/conf/.bashrc
 }
 
 ################################	22
@@ -378,7 +379,7 @@ my_config(){
 	#chmod +x /usr/bin/runsway
 
 	#powermode
-	#wget https://raw.githubusercontent.com/cs97/qdgentoo/master/powermode.sh
+	#wget https://raw.githubusercontent.com/cs97/qdgentoo/master/shell-script/powermode.sh
 	#mv powermode.sh /usr/bin/powermode
 	#chmod +x /usr/bin/powermode
 #}
