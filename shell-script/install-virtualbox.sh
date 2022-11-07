@@ -1,7 +1,9 @@
 #! /bin/bash
 
-echo ">=app-emulation/virtualbox X egl" > /etc/portage/package.use/vbox
-
-echo ">=dev-qt/qtgui X egl" >> /etc/portage/package.use/vbox
+cat <<EOF >> /etc/portage/package.use/vbox
+app-emulation/virtualbox X egl
+dev-qt/qtgui X egl
+x11-libs/libxkbcommon X
+EOF
 
 emerge --ask --verbose app-emulation/virtualbox
