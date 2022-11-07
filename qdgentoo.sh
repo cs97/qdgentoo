@@ -348,7 +348,7 @@ install_tools(){
 
 	#.bashrc
 	mv .bashrc .bashrc.old
-	wget https://raw.githubusercontent.com/cs97/qdgentoo/master/.bashrc	
+	wget https://raw.githubusercontent.com/cs97/qdgentoo/master/conf/.bashrc	
 }
 ################################	21
 my_config(){
