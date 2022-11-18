@@ -218,6 +218,7 @@ fstab_stuff(){
 	passwd
 	emerge --ask app-admin/sysklogd
 	emerge --ask net-misc/dhcpcd
+	emerge --ask net-misc/chrony
 	[ $aes_yesno = true ] && emerge --ask sys-fs/lvm2
 }
 ################################	9.2
@@ -270,10 +271,13 @@ first_boot(){
 	[ -d /run/systemd/system ] && {
 		hostnamectl hostname gentoo-pc
 		systemctl enable --now dhcpcd
+		#systemctl enable chronyd.service
+		systemctl enable --now systemd-timesyncd.service
 	} || {
 		echo 'hostname="gentoo-pc"' > /etc/conf.d/hostname
 		rc-update add dhcpcd default
 		rc-service dhcpcd start
+		rc-update add chronyd default
 	}
 }
 ################################	14
