@@ -8,3 +8,5 @@ media-libs/libsdl X
 EOF
 
 emerge --ask --verbose app-emulation/virtualbox
+
+gpasswd -a $USER vboxusers
