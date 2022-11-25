@@ -83,6 +83,7 @@ app-text/poppler cairo
 /etc/portage/package.use/arc-dark
 ```
 x11-themes/arc-theme xfce
+x11-libs/cairo X
 ```
 ```
 sudo emerge --ask x11-themes/arc-theme
