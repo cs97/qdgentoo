@@ -79,6 +79,11 @@ xfce-base/thunar udisks
 media-libs/libopenraw gtk
 xfce-extra/tumbler ffmpeg jpeg raw pdf
 app-text/poppler cairo
+gnome-base/gvfs udisks
+sys-apps/systemd policykit
+dev-libs/libdbusmenu gtk3
+x11-libs/gtk+ X
+app-crypt/gcr gtk
 ```
 /etc/portage/package.use/arc-dark
 ```
