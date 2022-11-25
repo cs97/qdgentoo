@@ -113,14 +113,9 @@ sudo emerge --ask mpv
 ### stuff...
 ```
 app-crypt/gnupg
-app-misc/neofetch
-sys-apps/lm-sensors
 sys-apps/smartmontools
 sys-apps/hdparm
-file-roller
 sys-apps/bat
-xfce-base/thunar
-app-arch/file-roller
 ```
 
 
