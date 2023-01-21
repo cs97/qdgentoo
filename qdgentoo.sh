@@ -425,7 +425,13 @@ my_config(){
 	#mv powermode.sh /usr/bin/powermode
 	#chmod +x /usr/bin/powermode
 #}
-
+################################	99
+update_installer(){
+	mv qdgentoo.sh qdgentoo.old
+	wget https://raw.githubusercontent.com/cs97/qdgentoo/master/qdgentoo.sh
+	chmod +x qdgentoo.sh
+	chmod -x qdgentoo.old;;
+}
 
 ################################	switch
 [ "$EUID" -ne 0 ] && echo "Please run as root" #&& exit
@@ -435,6 +441,7 @@ my_config(){
 	case $1 in
 		"install") install_base_system;;	#base system install
 		"1to9") do_1_to_9;;
+		"99") update_installer;;
 		*) simple_banner;;
 	esac
 } || {
@@ -461,11 +468,7 @@ my_config(){
 		"19") install_nvidia;;
 		"20") install_tools;;
 		"21") my_config;;
-		"99")
-			mv qdgentoo.sh qdgentoo.old
-			wget https://raw.githubusercontent.com/cs97/qdgentoo/master/qdgentoo.sh
-			chmod +x qdgentoo.sh
-			chmod -x qdgentoo.old;;
+		"99") update_installer;;
 		*) banner;;
 	esac
 }
