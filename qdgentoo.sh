@@ -34,7 +34,7 @@ banner_head(){
 	echo -e "\tuser: $USER"
 	echo -e "\tdisk: $disk"
 	echo -e "\taes: $aes_yesno"
-	echo -e "\tload_makeconf: $load_makeconf"
+	echo -e "\tload_makeconf: $make_conf"
 	echo -e "\tuse cfdisk: $use_cfdisk\n"
 
 }
