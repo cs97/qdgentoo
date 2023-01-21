@@ -6,7 +6,7 @@ aes_yesno=false
 use_cfdisk=true
 simple_mode=true
 german=false
-make_conf='https://github.com/cs97/qdgentoo/blob/master/etc/portage/make.conf'
+make_conf='https://raw.githubusercontent.com/cs97/qdgentoo/master/etc/portage/make.conf'
 
 kernel='=sys-kernel/gentoo-sources-6.1.7 ~amd64'
 #GRUB_CMDLINE_LINUX_DEFAULT='GRUB_CMDLINE_LINUX_DEFAULT="modprobe.blacklist=nouveau quiet splash"'
