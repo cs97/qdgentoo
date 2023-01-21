@@ -153,7 +153,9 @@ do_in_chroot(){
 }
 ################################	2
 at_world(){
-	emerge --ask --verbose --update --deep --newuse @world			
+	#emerge --ask --verbose --update --deep --newuse @world
+	emerge --verbose --update --deep --newuse @world			
+
 }
 ################################	3
 make_locale(){
@@ -182,7 +184,8 @@ env_update(){
 gentoo_sources(){
 	echo "$kernel" > /etc/portage/package.accept_keywords/kernel
 	echo "sys-kernel/gentoo-sources experimental" >> /etc/portage/package.use/kernel
-	emerge --ask sys-kernel/gentoo-sources
+	#emerge --ask sys-kernel/gentoo-sources
+	emerge sys-kernel/gentoo-sources
 	etc-update
 }
 ################################	6
@@ -194,10 +197,13 @@ pci_utils(){
 gentoo_genkernel(){
 	mkdir /etc/portage/package.license
 	echo "sys-kernel/linux-firmware @BINARY-REDISTRIBUTABLE" > /etc/portage/package.license/firmware
-	emerge --ask genkernel
+	#emerge --ask genkernel
+	emerge genkernel
 	eselect kernel set 1
 	etc-update
 	[ $aes_yesno = true ] && genkernel --luks --lvm --no-zfs --menuconfig all || genkernel --menuconfig all
+	[ $aes_yesno = true ] && genkernel --luks --lvm --no-zfs all || genkernel all
+
 }
 ################################	8
 fstab_stuff(){
@@ -219,13 +225,16 @@ fstab_stuff(){
 	emerge --ask app-admin/sysklogd
 	emerge --ask net-misc/dhcpcd
 	emerge --ask net-misc/chrony
-	[ $aes_yesno = true ] && emerge --ask sys-fs/lvm2
+	#[ $aes_yesno = true ] && emerge --ask sys-fs/lvm2
+	[ $aes_yesno = true ] && emerge sys-fs/lvm2
+
 }
 ################################	9.2
 install_grub_efi(){
 	[ -d /sys/firmware/efi ] && echo 'GRUB_PLATFORMS="efi-64"' >> /etc/portage/make.conf
 	[ $aes_yesno = true ] && echo "sys-boot/boot:2 device-mapper" >> /etc/portage/package.use/sys-boot
-	emerge --ask --verbose sys-boot/grub:2
+	#emerge --ask --verbose sys-boot/grub:2
+	emerge --verbose sys-boot/grub:2
 	[ $aes_yesno = true ] && echo 'GRUB_CMDLINE_LINUX="dolvm crypt_root='$root' root=/dev/mapper/vg0-root"' >> /etc/default/grub
 	echo "$GRUB_CMDLINE_LINUX_DEFAULT" >> /etc/default/grub
 	echo "#GRUB_GFXMODE=1920x1080x32" >> /etc/default/grub
