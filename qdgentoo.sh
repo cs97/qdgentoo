@@ -70,6 +70,7 @@ simple_banner(){
 	echo -e "\tinstall \t\tinstall base system"
 	echo -e "\tfirst_boot \t\trun on first boot"
 	echo -e "\tadd_user \t\tadd user"
+	echo -e "\tinstall_desktop \t\tinstall sway desktop"
 	echo -e "\tupdate \t\tupdate installer"
 
 }
@@ -181,7 +182,7 @@ make_locale(){
 		echo "de_DE@euro ISO-8859-15" >> /etc/locale.gen
 		echo "de_DE.UTF-8 UTF-8" >> /etc/locale.gen
 	}
-	nano -w /etc/locale.gen
+	[ $simple_mode = true ] || nano -w /etc/locale.gen
 	locale-gen
 	clear
 	eselect locale set 6
@@ -232,7 +233,7 @@ fstab_stuff(){
 	echo "tmpfs		/tmp		tmpfs		size=4G		0 0" >> /etc/fstab
 	echo "tmpfs		/run		tmpfs		size=100M	0 0" >> /etc/fstab
 	
-	nano -w /etc/fstab
+	[ $simple_mode = true ] || nano -w /etc/fstab
 	passwd
 	emerge --ask app-admin/sysklogd
 	emerge --ask net-misc/dhcpcd
@@ -251,7 +252,7 @@ install_grub_efi(){
 	echo "$GRUB_CMDLINE_LINUX_DEFAULT" >> /etc/default/grub
 	echo "#GRUB_GFXMODE=1920x1080x32" >> /etc/default/grub
 	echo '#GRUB_BACKGROUND="/boot/grub/wow.png"' >> /etc/default/grub
-	nano /etc/default/grub
+	[ $simple_mode = true ] || nano /etc/default/grub
 	[ -d /sys/firmware/efi ] && grub-install --target=x86_64-efi --efi-directory=/boot || grub-install $disk
 
 	grub-mkconfig -o /boot/grub/grub.cfg
@@ -379,6 +380,7 @@ install_nvidia(){
 install_tools(){
 	#echo "xfce-base/thunar udisks" > /etc/portage/package.use/thunar
 	#emerge --ask xfce-base/thunar app-arch/file-roller
+	emerge --ask app-editors/vim
 	emerge --ask sys-process/htop
 	emerge --ask app-misc/neofetch
 	emerge --ask dev-lang/rust
@@ -428,6 +430,12 @@ my_config(){
 	#mv powermode.sh /usr/bin/powermode
 	#chmod +x /usr/bin/powermode
 #}
+################################	install desktop
+install_desktop(){
+	install_wayland_sway
+	emerge app-editors/vim dev-vcs/git dev-lang/rust sys-process/htop sys-apps/lm-sensors
+
+}
 ################################	99
 update_installer(){
 	mv qdgentoo.sh qdgentoo.old
@@ -445,7 +453,7 @@ update_installer(){
 		"install") install_base_system;;	#base system install
 		"first_boot") first_boot;;
 		"add_user") add_user;;
-		#"install_desktop") install_desktop;;
+		"install_desktop") install_desktop;;
 		"1to9") do_1_to_9;;
 		"update") update_installer;;
 		*) simple_banner;;
