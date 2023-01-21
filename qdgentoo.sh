@@ -71,6 +71,8 @@ simple_banner(){
 	echo -e "\tfirst_boot \t\trun on first boot"
 	echo -e "\tadd_user \t\tadd user"
 	echo -e "\tinstall_desktop \tinstall sway desktop"
+	echo -e "\tinstall_wifi"
+	echo -e "\tinstall_audio"
 	echo -e "\tupdate \t\t\tupdate installer"
 
 }
@@ -433,8 +435,7 @@ my_config(){
 ################################	install desktop
 install_desktop(){
 	install_wayland_sway
-	emerge app-editors/vim dev-vcs/git dev-lang/rust sys-process/htop sys-apps/lm-sensors
-
+	emerge app-editors/vim dev-vcs/git dev-lang/rust sys-process/htop sys-apps/lm-sensors	
 }
 ################################	99
 update_installer(){
@@ -454,6 +455,9 @@ update_installer(){
 		"first_boot") first_boot;;
 		"add_user") add_user;;
 		"install_desktop") install_desktop;;
+		"install_wifi") install_wifi;;
+		"install_audio") install_audio;;
+
 		"1to9") do_1_to_9;;
 		"update") update_installer;;
 		*) simple_banner;;
@@ -486,7 +490,5 @@ update_installer(){
 		*) banner;;
 	esac
 }
-
-
 
 exit
