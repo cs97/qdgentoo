@@ -3,12 +3,12 @@
 USER='user'
 
 aes_yesno=false
-load_makeconf=true
 use_cfdisk=true
-
+simple_mode=true
 german=false
+make_conf='https://github.com/cs97/qdgentoo/blob/master/etc/portage/make.conf'
 
-kernel='=sys-kernel/gentoo-sources-6.1.4 ~amd64'
+kernel='=sys-kernel/gentoo-sources-6.1.7 ~amd64'
 GRUB_CMDLINE_LINUX_DEFAULT='GRUB_CMDLINE_LINUX_DEFAULT="modprobe.blacklist=nouveau quiet splash"'
 
 #echo 0 > /sys/devices/system/cpu/cpufreq/boost
@@ -24,7 +24,8 @@ home=$disk'p3'
 #home=$disk'3'
 
 
-banner(){
+
+banner_head(){
 	clear
 	echo
 	echo ""
@@ -35,6 +36,11 @@ banner(){
 	echo -e "\taes: $aes_yesno"
 	echo -e "\tload_makeconf: $load_makeconf"
 	echo -e "\tuse cfdisk: $use_cfdisk\n"
+
+}
+
+banner(){
+	banner_head
 	echo -e "\t0  makefs"
 	echo -e "\t1. do in chroot"
 	echo -e "\t2. @world"
@@ -57,9 +63,11 @@ banner(){
 	echo -e "\t19.install_nvidia"
 	echo -e "\t20.install_tools\n"
 	echo -e "\t21.my_config\n"
-
-	
 	echo -e "\t99. update\n"
+}
+simple_banner(){
+	banner_head
+	echo -e "\t0  install base system"
 
 }
 ################################	0
@@ -122,7 +130,8 @@ makefs_2(){
 	cd /mnt/gentoo
 	links https://www.gentoo.org/downloads/
 	tar xpvf stage3*.tar.xz --xattrs-include='*.*' --numeric-owner
-	[ $load_makeconf = true ] && wget https://raw.githubusercontent.com/cs97/qdgentoo/master/conf/make.conf -O /mnt/gentoo/etc/portage/make.conf
+	#[ $load_makeconf = true ] && wget https://raw.githubusercontent.com/cs97/qdgentoo/master/conf/make.conf -O /mnt/gentoo/etc/portage/make.conf
+	wget $make_conf -O /mnt/gentoo/etc/portage/make.conf
 	nano -w /mnt/gentoo/etc/portage/make.conf		
 	mirrorselect -i -o >> /mnt/gentoo/etc/portage/make.conf
 	mkdir --parents /mnt/gentoo/etc/portage/repos.conf
@@ -289,6 +298,26 @@ first_boot(){
 		rc-update add chronyd default
 	}
 }
+
+################################  install base system
+install_base_system(){
+	makefs
+	chroot /mnt/gentoo /bin/bash -c "/root/qdgentoo.sh 1to9"
+	umount_all
+	reboot
+}
+do_1_to_9(){
+	do_in_chroot
+	at_world
+	make_locale
+	env_update
+	gentoo_sources
+	pci_utils
+	gentoo_genkernel
+	fstab_stuff
+	install_grub_efi
+}
+
 ################################	14
 add_user(){
 	emerge --ask app-admin/sudo
@@ -397,37 +426,53 @@ my_config(){
 	#chmod +x /usr/bin/powermode
 #}
 
+
 ################################	switch
 [ "$EUID" -ne 0 ] && echo "Please run as root" #&& exit
 
-case $1 in
-	"0") [ $aes_yesno = true ] && makefs_aes || makefs;;
-	"1") do_in_chroot;;
-	"2") at_world;;
-	"3") make_locale;;
-	"4") env_update;;
-	"5") gentoo_sources;;
-	"6") pci_utils;;
-	"7") gentoo_genkernel;;
-	"8") fstab_stuff;;
-	"9") install_grub_efi;;
-	"10") umount_all;;
-	"11") mount_again;;
-	"12") first_boot;;
 
-	"14") add_user;;
-	"15") install_wayland_sway;;
-	"16") install_audio;;
-	"17") install_wifi;;
-	"18") install_amdgpu;;
-	"19") install_nvidia;;
-	"20") install_tools;;
-	"21") my_config;;
-	"99")
-		mv qdgentoo.sh qdgentoo.old
-		wget https://raw.githubusercontent.com/cs97/qdgentoo/master/qdgentoo.sh
-		chmod +x qdgentoo.sh
-		chmod -x qdgentoo.old;;
-	*) banner;;
-esac
+[ $simple_mode = true ] && {
+	case $1 in
+		"0") install_base_system;;	#base system install
+		"1to9") do_1_to_9;;
+		*) simple_banner;;
+	esac
+} || {
+	case $1 in
+		"0") [ $aes_yesno = true ] && makefs_aes || makefs;;
+		"1") do_in_chroot;;
+		"2") at_world;;
+		"3") make_locale;;
+		"4") env_update;;
+		"5") gentoo_sources;;
+		"6") pci_utils;;
+		"7") gentoo_genkernel;;
+		"8") fstab_stuff;;
+		"9") install_grub_efi;;
+		"10") umount_all;;
+		"11") mount_again;;
+		"12") first_boot;;
+
+		"14") add_user;;
+		"15") install_wayland_sway;;
+		"16") install_audio;;
+		"17") install_wifi;;
+		"18") install_amdgpu;;
+		"19") install_nvidia;;
+		"20") install_tools;;
+		"21") my_config;;
+		"99")
+			mv qdgentoo.sh qdgentoo.old
+			wget https://raw.githubusercontent.com/cs97/qdgentoo/master/qdgentoo.sh
+			chmod +x qdgentoo.sh
+			chmod -x qdgentoo.old;;
+		*) banner;;
+	esac
+}
+
+
+
+
+
+
 exit
