@@ -29,7 +29,7 @@ banner_head(){
 	clear
 	echo
 	echo ""
-	echo -e "\t\tqdgentoo\n"
+	echo -e "\t\tqdgentoo installer\n"
 	echo -e "\trun on" $([ -d /sys/firmware/efi ] && echo UEFI || echo BIOS)
 	echo -e "\tuser: $USER"
 	echo -e "\tdisk: $disk"
