@@ -68,6 +68,8 @@ banner(){
 simple_banner(){
 	banner_head
 	echo -e "\tinstall \t\tinstall base system"
+	echo -e "\tfirst_boot \t\t run on first boot"
+	echo -e "\tadd_user \t\tadd user"
 
 }
 ################################	0
@@ -442,7 +444,7 @@ update_installer(){
 		"install") install_base_system;;	#base system install
 		"first_boot") first_boot;;
 		"add_user") add_user;;
-
+		#"install_desktop") install_desktop;;
 		"1to9") do_1_to_9;;
 		"99") update_installer;;
 		*) simple_banner;;
