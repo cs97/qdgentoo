@@ -440,6 +440,9 @@ update_installer(){
 [ $simple_mode = true ] && {
 	case $1 in
 		"install") install_base_system;;	#base system install
+		"first_boot") first_boot;;
+		"add_user") add_user;;
+
 		"1to9") do_1_to_9;;
 		"99") update_installer;;
 		*) simple_banner;;
