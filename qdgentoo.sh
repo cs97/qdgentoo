@@ -433,7 +433,7 @@ my_config(){
 	#chmod +x /usr/bin/powermode
 #}
 ################################	install desktop
-install_desktop(){
+install_sway(){
 	install_wayland_sway
 	emerge app-editors/vim dev-vcs/git dev-lang/rust sys-process/htop sys-apps/lm-sensors	
 }
@@ -454,7 +454,7 @@ update_installer(){
 		"install") install_base_system;;	#base system install
 		"first_boot") first_boot;;
 		"add_user") add_user;;
-		"install_desktop") install_desktop;;
+		"install_sway") install_sway;;
 		"install_wifi") install_wifi;;
 		"install_audio") install_audio;;
 
