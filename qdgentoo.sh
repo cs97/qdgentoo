@@ -67,7 +67,7 @@ banner(){
 }
 simple_banner(){
 	banner_head
-	echo -e "\t0  install base system"
+	echo -e "\tinstall \t\tinstall base system"
 
 }
 ################################	0
@@ -433,7 +433,7 @@ my_config(){
 
 [ $simple_mode = true ] && {
 	case $1 in
-		"0") install_base_system;;	#base system install
+		"install") install_base_system;;	#base system install
 		"1to9") do_1_to_9;;
 		*) simple_banner;;
 	esac
@@ -469,9 +469,6 @@ my_config(){
 		*) banner;;
 	esac
 }
-
-
-
 
 
 
