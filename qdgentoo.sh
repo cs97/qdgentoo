@@ -430,7 +430,7 @@ update_installer(){
 	mv qdgentoo.sh qdgentoo.old
 	wget https://raw.githubusercontent.com/cs97/qdgentoo/master/qdgentoo.sh
 	chmod +x qdgentoo.sh
-	chmod -x qdgentoo.old;;
+	chmod -x qdgentoo.old
 }
 
 ################################	switch
