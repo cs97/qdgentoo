@@ -126,7 +126,7 @@ makefs_aes(){
 	cryptsetup luksOpen $root lvm
 	lvm pvcreate /dev/mapper/lvm
 	vgcreate vg0 /dev/mapper/lvm
-	lvcreate -L 30G -n root vg0
+	lvcreate -L $root_size'G' -n root vg0
 	lvcreate -l 100%FREE -n home vg0
 	mkfs.ext4 /dev/mapper/vg0-root
 	mkfs.ext4 /dev/mapper/vg0-home
