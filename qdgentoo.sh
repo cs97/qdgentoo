@@ -185,7 +185,7 @@ make_locale(){
 		echo "de_DE@euro ISO-8859-15" >> /etc/locale.gen
 		echo "de_DE.UTF-8 UTF-8" >> /etc/locale.gen
 	}
-	[ $simple_mode = true ] || nano -w /etc/locale.gen
+	[ $simple_mode = false ] && nano -w /etc/locale.gen
 	locale-gen
 	clear
 	eselect locale set 6
@@ -238,7 +238,7 @@ fstab_stuff(){
 	echo "tmpfs		/tmp		tmpfs		size=4G		0 0" >> /etc/fstab
 	echo "tmpfs		/run		tmpfs		size=100M	0 0" >> /etc/fstab
 	
-	[ $simple_mode = true ] || nano -w /etc/fstab
+	[ $simple_mode = false ] && nano -w /etc/fstab
 	passwd
 	emerge --ask app-admin/sysklogd
 	emerge --ask net-misc/dhcpcd
@@ -257,7 +257,7 @@ install_grub_efi(){
 	echo "$GRUB_CMDLINE_LINUX_DEFAULT" >> /etc/default/grub
 	echo "#GRUB_GFXMODE=1920x1080x32" >> /etc/default/grub
 	echo '#GRUB_BACKGROUND="/boot/grub/wow.png"' >> /etc/default/grub
-	[ $simple_mode = true ] || nano /etc/default/grub
+	[ $simple_mode = false ] && nano /etc/default/grub
 	[ -d /sys/firmware/efi ] && grub-install --target=x86_64-efi --efi-directory=/boot || grub-install $disk
 
 	grub-mkconfig -o /boot/grub/grub.cfg
