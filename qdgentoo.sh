@@ -40,7 +40,7 @@ home=$disk'p3'
 #home=$disk'3'
 
 # root in GiB -1GiB
-root_size=30
+root_size=100
 
 
 banner_head(){
