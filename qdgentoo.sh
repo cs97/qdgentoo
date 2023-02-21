@@ -133,9 +133,9 @@ makefs_aes(){
 }
 
 makefs_2(){
-	#cp stage3* /mnt/gentoo/stage3.tar.xz
+	[ -d stage3* ] || cp stage3* /mnt/gentoo/stage3.tar.xz
 	cd /mnt/gentoo
-	links https://www.gentoo.org/downloads/
+	[ -d stage3* ] || links https://www.gentoo.org/downloads/
 	tar xpvf stage3*.tar.xz --xattrs-include='*.*' --numeric-owner
 	#[ $load_makeconf = true ] && wget https://raw.githubusercontent.com/cs97/qdgentoo/master/conf/make.conf -O /mnt/gentoo/etc/portage/make.conf
 	wget $make_conf -O /mnt/gentoo/etc/portage/make.conf
