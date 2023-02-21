@@ -24,6 +24,8 @@ home=$disk'p3'
 #root=$disk'2'
 #home=$disk'3'
 
+# root in GiB -1GiB
+root_size=30
 
 
 banner_head(){
@@ -90,8 +92,8 @@ makefs(){
 	} || {
 		#EFI
 		parted $disk --script mkpart primary fat32 1MiB 1024MiB
-		parted $disk --script mkpart primary ext4 1024MiB 100GiB
-		parted $disk --script mkpart primary ext4 100GiB 100%
+		parted $disk --script mkpart primary ext4 1024MiB $root_size'GiB'
+		parted $disk --script mkpart primary ext4 $root_size'GiB' 100%
 	}
 	sleep 1
 	mkfs.fat -F 32 $boot
