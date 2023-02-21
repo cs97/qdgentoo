@@ -2,6 +2,8 @@
 
 USER='user'
 
+hostname='gentoo-pc'
+
 timezone='Europe/Berlin'
 
 locale='
@@ -309,12 +311,12 @@ first_boot(){
 	}
 
 	[ -d /run/systemd/system ] && {
-		hostnamectl hostname gentoo-pc
+		hostnamectl hostname $hostname	
 		systemctl enable --now dhcpcd
 		#systemctl enable chronyd.service
 		systemctl enable --now systemd-timesyncd.service
 	} || {
-		echo 'hostname="gentoo-pc"' > /etc/conf.d/hostname
+		echo 'hostname="' > /etc/conf.d/hostname
 		rc-update add dhcpcd default
 		rc-service dhcpcd start
 		rc-update add chronyd default
