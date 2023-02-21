@@ -14,6 +14,8 @@ de_DE ISO-8859-1
 de_DE@euro ISO-8859-15
 de_DE.UTF-8 UTF-8'
 
+german = true
+
 aes_yesno=false
 
 use_cfdisk=false
