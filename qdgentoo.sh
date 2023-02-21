@@ -2,6 +2,15 @@
 
 USER='user'
 
+timezone='Europe/Berlin'
+
+locale='
+#en_US ISO-8859-1
+#en_US.UTF-8 UTF-8
+de_DE ISO-8859-1
+de_DE@euro ISO-8859-15
+de_DE.UTF-8 UTF-8'
+
 aes_yesno=false
 use_cfdisk=true
 simple_mode=true
@@ -178,15 +187,18 @@ at_world(){
 ################################	3
 make_locale(){
 #	portageq envvar ACCEPT_LICENSE @FREE
-	echo "Europe/Berlin" > /etc/timezone
+	#echo "Europe/Berlin" > /etc/timezone
+	echo $timezone > /etc/timezone	
 	emerge --config sys-libs/timezone-data
-	echo "en_US ISO-8859-1" >> /etc/locale.gen
-	echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
-	[ $german = true ] && {
-		echo "de_DE ISO-8859-1" >> /etc/locale.gen
-		echo "de_DE@euro ISO-8859-15" >> /etc/locale.gen
-		echo "de_DE.UTF-8 UTF-8" >> /etc/locale.gen
-	}
+	#echo "en_US ISO-8859-1" >> /etc/locale.gen
+	#echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+	#[ $german = true ] && {
+	#	echo "de_DE ISO-8859-1" >> /etc/locale.gen
+	#	echo "de_DE@euro ISO-8859-15" >> /etc/locale.gen
+	#	echo "de_DE.UTF-8 UTF-8" >> /etc/locale.gen
+	#}
+	echo $locale >> /etc/locale.gen	
+
 	[ $simple_mode = false ] && nano -w /etc/locale.gen
 	locale-gen
 	clear
@@ -208,7 +220,7 @@ gentoo_sources(){
 }
 ################################	6
 pci_utils(){
-	emerge --ask sys-apps/pciutils
+	emerge sys-apps/pciutils
 	etc-update
 }
 ################################	7
@@ -242,9 +254,7 @@ fstab_stuff(){
 	
 	[ $simple_mode = false ] && nano -w /etc/fstab
 	passwd
-	emerge --ask app-admin/sysklogd
-	emerge --ask net-misc/dhcpcd
-	emerge --ask net-misc/chrony
+	emerge app-admin/sysklogd net-misc/dhcpcd net-misc/chrony
 	#[ $aes_yesno = true ] && emerge --ask sys-fs/lvm2
 	[ $aes_yesno = true ] && emerge sys-fs/lvm2
 
