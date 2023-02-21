@@ -15,9 +15,12 @@ de_DE@euro ISO-8859-15
 de_DE.UTF-8 UTF-8'
 
 aes_yesno=false
+
 use_cfdisk=false
+
 simple_mode=true
-german=false
+
+#german=false
 make_conf='https://raw.githubusercontent.com/cs97/qdgentoo/master/etc/portage/make.conf'
 
 kernel='=sys-kernel/gentoo-sources-6.2.0 ~amd64'
