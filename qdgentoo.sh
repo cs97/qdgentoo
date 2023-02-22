@@ -16,8 +16,10 @@ locale='
 
 german=true
 
+# disk encryption
 aes_yesno=false
 
+# false=automode true=cfdsik
 use_cfdisk=false
 
 simple_mode=true
@@ -25,11 +27,13 @@ simple_mode=true
 make_conf='https://raw.githubusercontent.com/cs97/qdgentoo/master/etc/portage/make.conf'
 
 kernel='=sys-kernel/gentoo-sources-6.2.0 ~amd64'
+
 #GRUB_CMDLINE_LINUX_DEFAULT='GRUB_CMDLINE_LINUX_DEFAULT="modprobe.blacklist=nouveau quiet splash"'
 GRUB_CMDLINE_LINUX_DEFAULT='GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"'
 
 #echo 0 > /sys/devices/system/cpu/cpufreq/boost
 
+# disk layout
 disk='/dev/nvme0n1'
 boot=$disk'p1'
 root=$disk'p2'
@@ -52,7 +56,7 @@ banner_head(){
 	echo -e "\trun on" $([ -d /sys/firmware/efi ] && echo UEFI || echo BIOS)
 	echo -e "\tuser: $USER"
 	echo -e "\tdisk: $disk"
-	echo -e "\taes: $aes_yesno"
+	echo -e "\tdisk encryption: $aes_yesno"
 	echo -e "\tload_makeconf: $make_conf"
 	echo -e "\tuse cfdisk: $use_cfdisk\n"
 
