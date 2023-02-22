@@ -312,6 +312,7 @@ mount_again(){
 first_boot(){
 	[ $german = true ] && {
 		localectl set-locale LC_MESSAGES=de_DE.utf8 LANG=de_DE.UTF-8 
+		localectl set-keymap de
 	}
 
 	[ -d /run/systemd/system ] && {
