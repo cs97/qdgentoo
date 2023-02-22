@@ -218,7 +218,7 @@ make_locale(){
 ################################	4
 env_update(){
 	env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
-	echo "### etc-update ###"
+	echo -e "\n### etc-update ###\n"
 	etc-update
 }
 ################################	5
