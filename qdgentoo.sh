@@ -22,7 +22,8 @@ use_cfdisk=false
 
 simple_mode=true
 
-#german=false
+german=false
+
 make_conf='https://raw.githubusercontent.com/cs97/qdgentoo/master/etc/portage/make.conf'
 
 kernel='=sys-kernel/gentoo-sources-6.2.0 ~amd64'
