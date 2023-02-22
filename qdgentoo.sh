@@ -53,9 +53,12 @@ banner_head(){
 	echo
 	echo ""
 	echo -e "\t\tqdgentoo installer\n"
-	echo -e "\trun on" $([ -d /sys/firmware/efi ] && echo UEFI || echo BIOS)
+	echo -e "\trun on:" $([ -d /sys/firmware/efi ] && echo UEFI || echo BIOS)
+
 	echo -e "\tuser: $USER"
+	echo -e "\timezone: $timezone"
 	echo -e "\tdisk: $disk"
+	echo -e "\nroot partition: $root_size"
 	echo -e "\tdisk encryption: $aes_yesno"
 	echo -e "\tload_makeconf: $make_conf"
 	echo -e "\tuse cfdisk: $use_cfdisk\n"
