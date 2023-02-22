@@ -7,12 +7,12 @@ hostname='gentoo-pc'
 timezone='Europe/Berlin'
 
 locale='
-#en_US ISO-8859-1\n
-#en_US.UTF-8 UTF-8\n
+#en_US ISO-8859-1
+\n#en_US.UTF-8 UTF-8
 \n
-de_DE ISO-8859-1\n
-de_DE@euro ISO-8859-15\n
-de_DE.UTF-8 UTF-8'
+\nde_DE ISO-8859-1
+\nde_DE@euro ISO-8859-15
+\nde_DE.UTF-8 UTF-8'
 
 german=true
 
