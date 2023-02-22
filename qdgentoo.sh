@@ -365,7 +365,7 @@ add_user(){
 install_wayland_sway(){
 	echo "gui-libs/wlroots X" >> /etc/portage/package.use/wm
 	echo "gui-wm/sway X wallpapers" >> /etc/portage/package.use/wm
-	emerge --ask dev-libs/wayland gui-wm/sway dev-libs/light gui-apps/foot gui-apps/swaylock
+	emerge --ask dev-libs/wayland gui-wm/sway dev-libs/light gui-apps/swaylock x11-terms/alacritty
 	[ -d /run/systemd/system ] || rc-update add seatd default
 	[ $simple_mode = true ] && install_audio
 }
