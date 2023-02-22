@@ -4,8 +4,13 @@
 ```
 ./qdgentoo.sh install
 ```
+### add user
 ```
 ./qdgentoo.sh add_user
+```
+### install sway
+```
+./qdgentoo.sh install_sway
 ```
 
 ### wlan
