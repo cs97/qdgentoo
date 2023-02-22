@@ -6,11 +6,6 @@
 ```
 ```
 ./qdgentoo.sh add_user
-...
-./qdgentoo.sh 9
-exit
-./qdgentoo.sh 10
-reboot
 ```
 
 ### wlan
