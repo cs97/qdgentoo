@@ -91,7 +91,6 @@ simple_banner(){
 	echo -e "\tadd_user \t\tadd user"
 	echo -e "\tinstall_sway \tinstall sway desktop"
 	echo -e "\tinstall_wifi"
-	echo -e "\tinstall_audio"
 	echo -e "\tupdate \t\t\tupdate installer"
 
 }
@@ -485,7 +484,7 @@ update_installer(){
 		"add_user") add_user;;
 		"install_sway") install_sway;;
 		"install_wifi") install_wifi;;
-		"install_audio") install_audio;;
+		#"install_audio") install_audio;;
 
 		"1to9") do_1_to_9;;
 		"update") update_installer;;
