@@ -364,19 +364,25 @@ install_wayland_sway(){
 	echo "gui-wm/sway X wallpapers" >> /etc/portage/package.use/wm
 	emerge --ask dev-libs/wayland gui-wm/sway dev-libs/light gui-apps/foot gui-apps/swaylock
 	[ -d /run/systemd/system ] || rc-update add seatd default
+	[ $simple_mode = true ] && install_audio
 }
 ################################	16
 install_audio(){
-	echo "media-video/pipewire pipewire-alsa sound-server" >> /etc/portage/package.use/pipewire
-	emerge --ask alsa-utils pipewire
-	[ -d /run/systemd/system ] && {
-		systemctl --user enable --now pipewire.socket
-   		systemctl --user enable --now pipewire.service
-   		systemctl --user enable --now wireplumber.service
-   		systemctl --user mask pulseaudio.socket pulseaudio.service
-		systemctl --user enable --now pipewire-pulse.service
+
+	[ whoami == root ] && {
+		echo "media-video/pipewire pipewire-alsa sound-server" >> /etc/portage/package.use/pipewire
+		emerge --ask alsa-utils pipewire
+		sudo -u $USER /bin/bash -c "qdgentoo.sh install_audio"
 	} || {
-		rc-update add alsasound boot
+		[ -d /run/systemd/system ] && {
+			systemctl --user enable --now pipewire.socket
+			systemctl --user enable --now pipewire.service
+			systemctl --user enable --now wireplumber.service
+			systemctl --user mask pulseaudio.socket pulseaudio.service
+			systemctl --user enable --now pipewire-pulse.service
+		} || {
+			rc-update add alsasound boot
+		}
 	}
 }
 
