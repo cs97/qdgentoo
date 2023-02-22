@@ -7,11 +7,11 @@ hostname='gentoo-pc'
 timezone='Europe/Berlin'
 
 locale='
-#en_US ISO-8859-1
-#en_US.UTF-8 UTF-8
-
-de_DE ISO-8859-1
-de_DE@euro ISO-8859-15
+#en_US ISO-8859-1\n
+#en_US.UTF-8 UTF-8\n
+\n
+de_DE ISO-8859-1\n
+de_DE@euro ISO-8859-15\n
 de_DE.UTF-8 UTF-8'
 
 german = true
@@ -204,7 +204,7 @@ make_locale(){
 	#	echo "de_DE@euro ISO-8859-15" >> /etc/locale.gen
 	#	echo "de_DE.UTF-8 UTF-8" >> /etc/locale.gen
 	#}
-	echo $locale >> /etc/locale.gen	
+	echo -e $locale >> /etc/locale.gen	
 
 	[ $simple_mode = false ] && nano -w /etc/locale.gen
 	locale-gen
