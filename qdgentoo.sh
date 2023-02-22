@@ -486,7 +486,7 @@ update_installer(){
 		"install") install_base_system;;	#base system install
 		"first_boot") first_boot;;
 		"add_user") add_user;;
-		"install_sway") install_sway;;
+		"install_sway") install_wayland_sway;;
 		"install_wifi") install_wifi;;
 		#"install_audio") install_audio;;
 
