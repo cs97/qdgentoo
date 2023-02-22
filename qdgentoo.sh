@@ -345,8 +345,6 @@ do_1_to_9(){
 	gentoo_genkernel
 	fstab_stuff
 	install_grub_efi
-
-	add_user
 }
 
 ################################	14
