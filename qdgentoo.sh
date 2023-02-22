@@ -14,7 +14,7 @@ de_DE ISO-8859-1\n
 de_DE@euro ISO-8859-15\n
 de_DE.UTF-8 UTF-8'
 
-german = true
+german=true
 
 aes_yesno=false
 
