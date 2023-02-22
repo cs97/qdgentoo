@@ -2,12 +2,10 @@
 
 ### Install
 ```
-./qdgentoo.sh
+./qdgentoo.sh install
 ```
 ```
-./qdgentoo.sh 0
-cd /root
-./qdgentoo.sh 1
+./qdgentoo.sh add_user
 ...
 ./qdgentoo.sh 9
 exit
