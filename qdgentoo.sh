@@ -89,7 +89,7 @@ simple_banner(){
 	echo -e "\tinstall \t\tinstall base system"
 	echo -e "\tfirst_boot \t\trun on first boot"
 	echo -e "\tadd_user \t\tadd user"
-	echo -e "\tinstall_sway \tinstall sway desktop"
+	echo -e "\tinstall_sway \t\tinstall sway desktop"
 	echo -e "\tinstall_wifi"
 	echo -e "\tupdate \t\t\tupdate installer"
 
