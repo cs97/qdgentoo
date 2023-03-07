@@ -39,11 +39,6 @@ select the new kernel:
 eselect kernel list
 eselect kernel set <x>
 ```
-### kernel removal
-```
-sudo emerge --ask --depclean gentoo-sources
-rm -r /usr/src/linux-5.*
-```
 
 genkernel:
 ```
@@ -57,6 +52,12 @@ sudo genkernel --luks --lvm --no-zfs --menuconfig all
 grub
 ```
 sudo grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+### kernel removal
+```
+sudo emerge --ask --depclean gentoo-sources
+rm -r /usr/src/linux-5.*
 ```
 
 ### nfs mount
