@@ -26,7 +26,7 @@ simple_mode=true
 
 make_conf='https://raw.githubusercontent.com/cs97/qdgentoo/master/etc/portage/make.conf'
 
-kernel='=sys-kernel/gentoo-sources-6.2.0 ~amd64'
+kernel='=sys-kernel/gentoo-sources-6.3.5 ~amd64'
 
 #GRUB_CMDLINE_LINUX_DEFAULT='GRUB_CMDLINE_LINUX_DEFAULT="modprobe.blacklist=nouveau quiet splash"'
 GRUB_CMDLINE_LINUX_DEFAULT='GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"'
