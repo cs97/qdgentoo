@@ -58,7 +58,7 @@ banner_head(){
 	echo -e "\tuser: $USER"
 	echo -e "\timezone: $timezone"
 	echo -e "\tdisk: $disk"
-	echo -e "\nroot partition: $root_size"
+	echo -e "\troot partition: $root_size"
 	echo -e "\tdisk encryption: $aes_yesno"
 	echo -e "\tload_makeconf: $make_conf"
 	echo -e "\tuse cfdisk: $use_cfdisk\n"
@@ -337,7 +337,10 @@ first_boot(){
 
 ################################  install base system
 install_base_system(){
-	makefs
+	#makefs
+ 	[ $aes_yesno = true ] && makefs_aes
+	[ $aes_yesno = false ] && makefs
+ 
 	chroot /mnt/gentoo /bin/bash -c "/root/qdgentoo.sh 1to9"
 	umount_all
 	reboot
