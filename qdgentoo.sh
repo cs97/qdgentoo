@@ -201,9 +201,7 @@ do_in_chroot(){
 }
 ################################	2
 at_world(){
-	#emerge --ask --verbose --update --deep --newuse @world
 	emerge --verbose --update --deep --newuse @world			
-
 }
 ################################	3
 make_locale(){
@@ -252,7 +250,6 @@ pci_utils(){
 gentoo_genkernel(){
 	mkdir /etc/portage/package.license
 	echo "sys-kernel/linux-firmware @BINARY-REDISTRIBUTABLE" > /etc/portage/package.license/firmware
-	#emerge --ask genkernel
 	emerge genkernel
 	eselect kernel set 1
 	etc-update
@@ -293,9 +290,10 @@ fstab_stuff(){
 	if [ $simple_mode = false ]; then
 		nano -w /etc/fstab
 	fi
+
 	passwd
 	emerge app-admin/sysklogd net-misc/dhcpcd net-misc/chrony
-	#[ $aes_yesno = true ] && emerge --ask sys-fs/lvm2
+
 	if [ $aes_yesno = true ]; then
 		emerge sys-fs/lvm2
 	fi
@@ -311,7 +309,6 @@ install_grub_efi(){
 		echo "sys-boot/boot:2 device-mapper" >> /etc/portage/package.use/sys-boot
 	fi
 
-	#emerge --ask --verbose sys-boot/grub:2
 	emerge --verbose sys-boot/grub:2
 
 	if [ $aes_yesno = true ]; then
