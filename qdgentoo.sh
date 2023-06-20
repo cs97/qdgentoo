@@ -158,9 +158,16 @@ makefs_aes(){
 }
 
 makefs_2(){
-	[ -d stage3* ] || cp stage3* /mnt/gentoo/stage3.tar.xz
+	[ -f stage3* ]; then
+		cp stage3* /mnt/gentoo/stage3.tar.xz
+	fi
+
 	cd /mnt/gentoo
-	[ -d stage3* ] && links https://www.gentoo.org/downloads/
+
+	if [ ! -f stage3* ]; then
+		links https://www.gentoo.org/downloads/
+	fi
+
 	tar xpvf stage3*.tar.xz --xattrs-include='*.*' --numeric-owner
 	#[ $load_makeconf = true ] && wget https://raw.githubusercontent.com/cs97/qdgentoo/master/conf/make.conf -O /mnt/gentoo/etc/portage/make.conf
 	wget $make_conf -O /mnt/gentoo/etc/portage/make.conf
@@ -213,7 +220,10 @@ make_locale(){
 	#}
 	echo -e $locale >> /etc/locale.gen	
 
-	[ $simple_mode = false ] && nano -w /etc/locale.gen
+	if [ $simple_mode = false ]; then
+		nano -w /etc/locale.gen
+	fi
+
 	locale-gen
 	clear
 	eselect locale set 6
@@ -267,38 +277,60 @@ gentoo_genkernel(){
 }
 ################################	8
 fstab_stuff(){
-	[ $aes_yesno = true ] && {
+	if [ $aes_yesno = true ]; then
 		echo "/dev/mapper/vg0-root		/		ext4		defaults	0 0" >> /etc/fstab
 		echo "$boot		/boot		vfat		defaults        0 0" >> /etc/fstab
 		echo "/dev/mapper/vg0-home		/home		ext4		defaults	0 0" >> /etc/fstab
-	} || {
+	else
 		echo "$root		/		ext4		defaults        0 0" >> /etc/fstab
 		echo "$boot		/boot		vfat		defaults	0 0" >> /etc/fstab
 		echo "$home		/home		ext4		defaults	0 0" >> /etc/fstab
-	}
+	fi
 	
 	echo "tmpfs		/tmp		tmpfs		size=4G		0 0" >> /etc/fstab
 	echo "tmpfs		/run		tmpfs		size=100M	0 0" >> /etc/fstab
 	
-	[ $simple_mode = false ] && nano -w /etc/fstab
+	if [ $simple_mode = false ];then
+		nano -w /etc/fstab
+	fi
 	passwd
 	emerge app-admin/sysklogd net-misc/dhcpcd net-misc/chrony
 	#[ $aes_yesno = true ] && emerge --ask sys-fs/lvm2
-	[ $aes_yesno = true ] && emerge sys-fs/lvm2
+	if [ $aes_yesno = true ];then
+		emerge sys-fs/lvm2
+	fi
 
 }
 ################################	9.2
 install_grub_efi(){
-	[ -d /sys/firmware/efi ] && echo 'GRUB_PLATFORMS="efi-64"' >> /etc/portage/make.conf
-	[ $aes_yesno = true ] && echo "sys-boot/boot:2 device-mapper" >> /etc/portage/package.use/sys-boot
+	if [ -d /sys/firmware/efi ]; then
+		echo 'GRUB_PLATFORMS="efi-64"' >> /etc/portage/make.conf
+	fi
+
+	if [ $aes_yesno = true ]; then
+		echo "sys-boot/boot:2 device-mapper" >> /etc/portage/package.use/sys-boot
+	fi
+
 	#emerge --ask --verbose sys-boot/grub:2
 	emerge --verbose sys-boot/grub:2
-	[ $aes_yesno = true ] && echo 'GRUB_CMDLINE_LINUX="dolvm crypt_root='$root' root=/dev/mapper/vg0-root"' >> /etc/default/grub
+
+	if [ $aes_yesno = true ]; then
+		echo 'GRUB_CMDLINE_LINUX="dolvm crypt_root='$root' root=/dev/mapper/vg0-root"' >> /etc/default/grub
+	fi
+
 	echo "$GRUB_CMDLINE_LINUX_DEFAULT" >> /etc/default/grub
 	echo "#GRUB_GFXMODE=1920x1080x32" >> /etc/default/grub
 	echo '#GRUB_BACKGROUND="/boot/grub/wow.png"' >> /etc/default/grub
-	[ $simple_mode = false ] && nano /etc/default/grub
-	[ -d /sys/firmware/efi ] && grub-install --target=x86_64-efi --efi-directory=/boot || grub-install $disk
+
+	if [ $simple_mode = false ]; then
+		nano /etc/default/grub
+	fi
+
+	if [ -d /sys/firmware/efi ]; then
+		grub-install --target=x86_64-efi --efi-directory=/boot
+	else
+		grub-install $disk
+	fi
 
 	grub-mkconfig -o /boot/grub/grub.cfg
 }
