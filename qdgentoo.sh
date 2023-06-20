@@ -290,13 +290,13 @@ fstab_stuff(){
 	echo "tmpfs		/tmp		tmpfs		size=4G		0 0" >> /etc/fstab
 	echo "tmpfs		/run		tmpfs		size=100M	0 0" >> /etc/fstab
 	
-	if [ $simple_mode = false ];then
+	if [ $simple_mode = false ]; then
 		nano -w /etc/fstab
 	fi
 	passwd
 	emerge app-admin/sysklogd net-misc/dhcpcd net-misc/chrony
 	#[ $aes_yesno = true ] && emerge --ask sys-fs/lvm2
-	if [ $aes_yesno = true ];then
+	if [ $aes_yesno = true ]; then
 		emerge sys-fs/lvm2
 	fi
 
@@ -363,30 +363,33 @@ mount_again(){
 }
 ################################	12
 first_boot(){
-	[ $german = true ] && {
+	if $german; then
 		localectl set-locale LC_MESSAGES=de_DE.utf8 LANG=de_DE.UTF-8 
 		localectl set-keymap de
-	}
+	fi
 
-	[ -d /run/systemd/system ] && {
+	if [ -d /run/systemd/system ]; then
 		hostnamectl hostname $hostname	
 		systemctl enable --now dhcpcd
 		#systemctl enable chronyd.service
 		systemctl enable --now systemd-timesyncd.service
-	} || {
+	else
 		echo 'hostname="'$hostname'"' > /etc/conf.d/hostname
 		rc-update add dhcpcd default
 		rc-service dhcpcd start
 		rc-update add chronyd default
-	}
+	fi
 }
 
 ################################  install base system
 install_base_system(){
 	#makefs
- 	[ $aes_yesno = true ] && makefs_aes
-	[ $aes_yesno = false ] && makefs
- 
+ 	if $aes_yesno; then
+		makefs_aes
+	else
+		makefs
+	fi
+
 	chroot /mnt/gentoo /bin/bash -c "/root/qdgentoo.sh 1to9"
 	umount_all
 	reboot
@@ -419,7 +422,10 @@ install_wayland_sway(){
 	echo "gui-libs/wlroots X" >> /etc/portage/package.use/wm
 	echo "gui-wm/sway X wallpapers" >> /etc/portage/package.use/wm
 	emerge --ask dev-libs/wayland gui-wm/sway dev-libs/light gui-apps/swaylock x11-terms/alacritty
-	[ -d /run/systemd/system ] || rc-update add seatd default
+	if [ ! -d /run/systemd/system ]; then
+		rc-update add seatd default
+	fi
+	
 	[ $simple_mode = true ] && install_audio
 }
 ################################	16
