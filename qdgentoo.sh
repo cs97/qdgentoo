@@ -135,7 +135,7 @@ makefs_aes(){
 		parted $disk --script mklabel msdos
 	fi
 	
-	if [ $use_cfdisk = true ]; then
+	if $use_cfdisk; then
 		cfdisk $disk
 	else
 		parted $disk --script mkpart primary fat32 1MiB 1024MiB
@@ -425,7 +425,7 @@ install_wayland_sway(){
 	if [ ! -d /run/systemd/system ]; then
 		rc-update add seatd default
 	fi
-	
+
 	[ $simple_mode = true ] && install_audio
 }
 ################################	16
