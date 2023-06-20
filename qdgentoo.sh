@@ -291,12 +291,14 @@ fstab_stuff(){
 		nano -w /etc/fstab
 	fi
 
-	passwd
 	emerge app-admin/sysklogd net-misc/dhcpcd net-misc/chrony
 
 	if [ $aes_yesno = true ]; then
 		emerge sys-fs/lvm2
 	fi
+		
+	passwd
+
 
 }
 ################################	9.2
