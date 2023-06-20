@@ -245,11 +245,24 @@ gentoo_genkernel(){
 	emerge genkernel
 	eselect kernel set 1
 	etc-update
-	[ $simple_mode = true ] && {
-		[ $aes_yesno = true ] && genkernel --luks --lvm --no-zfs all || genkernel all
-	} || {
-		[ $aes_yesno = true ] && genkernel --luks --lvm --no-zfs --menuconfig all || genkernel --menuconfig all
-	}
+ 
+	if [ $simple_mode = true ]; then
+ 
+		if [ $aes_yesno = true ]; then
+  			genkernel --luks --lvm --no-zfs all
+     		else
+     			genkernel all
+		fi
+  
+	else
+ 
+		if [ $aes_yesno = true ]; then
+  			genkernel --luks --lvm --no-zfs --menuconfig all
+     		else
+       			genkernel --menuconfig all
+	  	fi
+    
+	fi
 }
 ################################	8
 fstab_stuff(){
