@@ -501,7 +501,7 @@ update_installer(){
 [ "$EUID" -ne 0 ] && echo "Please run as root" #&& exit
 
 
-[ $simple_mode = true ] && {
+if [ $simple_mode = true ]; then
 	case $1 in
 		"install") install_base_system;;	#base system install
 		"first_boot") first_boot;;
@@ -514,7 +514,7 @@ update_installer(){
 		"update") update_installer;;
 		*) simple_banner;;
 	esac
-} || {
+else
 	case $1 in
 		"0") [ $aes_yesno = true ] && makefs_aes || makefs;;
 		"1") do_in_chroot;;
@@ -541,6 +541,6 @@ update_installer(){
 		"99") update_installer;;
 		*) banner;;
 	esac
-}
+fi
 
 exit
