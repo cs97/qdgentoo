@@ -258,16 +258,16 @@ gentoo_genkernel(){
  
 		if [ $aes_yesno = true ]; then
   			genkernel --luks --lvm --no-zfs all
-     		else
-     			genkernel all
+     	else
+     		genkernel all
 		fi
   
 	else
  
 		if [ $aes_yesno = true ]; then
   			genkernel --luks --lvm --no-zfs --menuconfig all
-     		else
-       			genkernel --menuconfig all
+     	else
+       		genkernel --menuconfig all
 	  	fi
     
 	fi
