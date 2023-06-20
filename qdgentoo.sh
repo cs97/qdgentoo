@@ -129,9 +129,9 @@ makefs(){
 makefs_aes(){
 
 	[ -d /sys/firmware/efi ] && {
-		parted /dev/$disk --script mklabel gpt
+		parted $disk --script mklabel gpt
 	} || {
-		parted /dev/$disk --script mklabel msdos
+		parted $disk --script mklabel msdos
 	}
 	
 	[ $use_cfdisk = true ] && {
