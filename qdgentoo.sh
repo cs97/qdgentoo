@@ -117,7 +117,7 @@ makefs(){
 		parted $disk --script mkpart primary ext4 1024MiB $root_size'GiB'
 		parted $disk --script mkpart primary ext4 $root_size'GiB' 100%
 	fi
-	
+
 	sleep 1
 	mkfs.fat -F 32 $boot
 	mkfs.ext4 $root
@@ -129,18 +129,18 @@ makefs(){
 ################################	0.1
 makefs_aes(){
 
-	[ -d /sys/firmware/efi ] && {
+	if [ -d /sys/firmware/efi ]; then
 		parted $disk --script mklabel gpt
-	} || {
+	else
 		parted $disk --script mklabel msdos
-	}
+	fi
 	
-	[ $use_cfdisk = true ] && {
+	if [ $use_cfdisk = true ]; then
 		cfdisk $disk
-	} || {
+	else
 		parted $disk --script mkpart primary fat32 1MiB 1024MiB
 		parted $disk --script mkpart primary ext4 1024MiB 100%
-	}
+	fi
 		
 	sleep 1
 	mkfs.fat -F 32 $boot
