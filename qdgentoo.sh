@@ -158,7 +158,7 @@ makefs_aes(){
 }
 
 makefs_2(){
-	[ -f stage3* ]; then
+	if [ -f stage3* ]; then
 		cp stage3* /mnt/gentoo/stage3.tar.xz
 	fi
 
