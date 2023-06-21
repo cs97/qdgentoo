@@ -430,21 +430,21 @@ install_wayland_sway(){
 ################################	16
 install_audio(){
 
-	[ whoami == root ] && {
+	if [ whoami == root ]; then
 		echo "media-video/pipewire pipewire-alsa sound-server" >> /etc/portage/package.use/pipewire
 		emerge --ask alsa-utils pipewire
 		sudo -u $USER /bin/bash -c "qdgentoo.sh install_audio"
-	} || {
-		[ -d /run/systemd/system ] && {
+	else
+		if [ -d /run/systemd/system ]; then
 			systemctl --user enable --now pipewire.socket
 			systemctl --user enable --now pipewire.service
 			systemctl --user enable --now wireplumber.service
 			systemctl --user mask pulseaudio.socket pulseaudio.service
 			systemctl --user enable --now pipewire-pulse.service
-		} || {
+		else
 			rc-update add alsasound boot
-		}
-	}
+		fi
+	fi
 }
 
 ################################	17
@@ -536,7 +536,9 @@ update_installer(){
 }
 
 ################################	switch
-[ "$EUID" -ne 0 ] && echo "Please run as root" #&& exit
+if [ "$EUID" -ne 0 ]; then
+	echo "Please run as root" #&& exit
+fi
 
 
 if [ $simple_mode = true ]; then
