@@ -407,7 +407,7 @@ do_1_to_9(){
 
 ################################	14
 add_user(){
-	emerge --ask app-admin/sudo
+	emerge app-admin/sudo
 	useradd -m -G users,wheel,audio -s /bin/bash $USER
 	echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
 	passwd $USER
