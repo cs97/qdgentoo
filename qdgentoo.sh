@@ -425,7 +425,7 @@ install_wayland_sway(){
 		rc-update add seatd default
 	fi
 
-	[ $simple_mode = true ] && install_audio
+	#[ $simple_mode = true ] && install_audio
 }
 ################################	16
 install_audio(){
