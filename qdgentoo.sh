@@ -420,7 +420,12 @@ add_user(){
 install_wayland_sway(){
 	echo "gui-libs/wlroots X" >> /etc/portage/package.use/wm
 	echo "gui-wm/sway X wallpapers" >> /etc/portage/package.use/wm
-	emerge --ask dev-libs/wayland gui-wm/sway dev-libs/light gui-apps/swaylock x11-terms/alacritty
+	echo "gui-apps/swaybg gdk-pixbuf"
+	echo "media-libs/libepoxy X"
+	echo "media-libs/libglvnd X"
+ 	echo "media-libs/mesa X"
+  
+	emerge --ask dev-libs/wayland gui-wm/sway dev-libs/light gui-apps/swaylock
 	if [ ! -d /run/systemd/system ]; then
 		rc-update add seatd default
 	fi
@@ -471,7 +476,7 @@ install_nvidia(){
 ################################	20
 install_tools(){
 	#echo "xfce-base/thunar udisks" > /etc/portage/package.use/thunar
-	#emerge --ask xfce-base/thunar app-arch/file-roller
+	emerge --ask xfce-base/thunar app-arch/file-roller
 	emerge --ask app-editors/vim
 	emerge --ask sys-process/htop
 	emerge --ask app-misc/neofetch
