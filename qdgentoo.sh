@@ -169,7 +169,6 @@ makefs_2(){
 	fi
 
 	tar xpvf stage3*.tar.xz --xattrs-include='*.*' --numeric-owner
-	#[ $load_makeconf = true ] && wget https://raw.githubusercontent.com/cs97/qdgentoo/master/conf/make.conf -O /mnt/gentoo/etc/portage/make.conf
 	wget $make_conf -O /mnt/gentoo/etc/portage/make.conf
 	nano -w /mnt/gentoo/etc/portage/make.conf		
 	mirrorselect -i -o >> /mnt/gentoo/etc/portage/make.conf
@@ -237,7 +236,6 @@ env_update(){
 gentoo_sources(){
 	echo "$kernel" > /etc/portage/package.accept_keywords/kernel
 	echo "sys-kernel/gentoo-sources experimental" >> /etc/portage/package.use/kernel
-	#emerge --ask sys-kernel/gentoo-sources
 	emerge sys-kernel/gentoo-sources
 	etc-update
 }
@@ -514,23 +512,19 @@ my_config(){
 	mv .bashrc .bashrc.old
 	wget https://raw.githubusercontent.com/cs97/qdgentoo/master/conf/.bashrc
 }
+################################	install virtualbox-guest-additions
+install_virtualbox-guest-additions(){
+	emerge app-emulation/virtualbox-guest-additions
 
-################################	22
-#razer_blade_14(){
-	#runsway
-	#wget https://raw.githubusercontent.com/cs97/My-Razer-Blade-14-2021/main/runsway
-	#mv runsway.sh /usr/bin/runsway
-	#chmod +x /usr/bin/runsway
+	if [ -d /run/systemd/system ]; then
 
-	#powermode
-	#wget https://raw.githubusercontent.com/cs97/qdgentoo/master/shell-script/powermode.sh
-	#mv powermode.sh /usr/bin/powermode
-	#chmod +x /usr/bin/powermode
-#}
-################################	install desktop
-install_sway(){
-	install_wayland_sway
-	emerge app-editors/vim dev-vcs/git dev-lang/rust sys-process/htop sys-apps/lm-sensors	
+		systemctl enable --now virtualbox-guest-additions
+	else
+		rc-update add virtualbox-guest-additions default
+		rc-update add dbus default
+	fi
+
+	gpasswd -a $USER vboxguest
 }
 ################################	99
 update_installer(){
