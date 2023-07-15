@@ -552,6 +552,7 @@ if [ $simple_mode = true ]; then
 		"install_sway") install_wayland_sway;;
 		"install_wifi") install_wifi;;
 		"install_audio") install_audio;;
+		"install_virtualbox-guest-additions") install_virtualbox-guest-additions;;
 
 		"1to9") do_1_to_9;;
 		"update") update_installer;;
