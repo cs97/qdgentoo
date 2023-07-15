@@ -367,7 +367,9 @@ first_boot(){
    		else
      			echo 'LANG="de_DE.UTF-8"' >> /etc/env.d/02locale
 			echo 'LC_COLLATE="C.UTF-8"' >> /etc/env.d/02locale
+   			echo 'keymap="de"' >> /etc/conf.d/keymaps
    			env-update && source /etc/profile
+      			
    		fi
 	fi
 
