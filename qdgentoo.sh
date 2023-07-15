@@ -380,7 +380,6 @@ first_boot(){
 
 ################################  install base system
 install_base_system(){
-	#makefs
  	if $aes_yesno; then
 		makefs_aes
 	else
@@ -427,8 +426,6 @@ install_wayland_sway(){
 	if [ ! -d /run/systemd/system ]; then
 		rc-update add seatd default
 	fi
-
-	#[ $simple_mode = true ] && install_audio
 }
 ################################	16
 install_audio(){
