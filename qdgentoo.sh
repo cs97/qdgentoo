@@ -24,6 +24,9 @@ use_cfdisk=false
 
 simple_mode=true
 
+#install_virtualbox-guest-additions
+vbox=false
+
 make_conf='https://raw.githubusercontent.com/cs97/qdgentoo/master/etc/portage/make.conf'
 
 kernel='=sys-kernel/gentoo-sources-6.3.5 ~amd64'
@@ -407,6 +410,9 @@ do_1_to_9(){
 	gentoo_genkernel
 	fstab_stuff
 	install_grub_efi
+ 	if $vbox then
+		install_virtualbox-guest-additions
+  	fi
 }
 
 ################################	14
