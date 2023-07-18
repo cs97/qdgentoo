@@ -410,7 +410,7 @@ do_1_to_9(){
 	gentoo_genkernel
 	fstab_stuff
 	install_grub_efi
- 	if $vbox then
+ 	if $vbox; then
 		install_virtualbox-guest-additions
   	fi
 }
