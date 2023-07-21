@@ -125,6 +125,7 @@ makefs(){
 	mkfs.fat -F 32 $boot
 	mkfs.ext4 $root
 	mkfs.ext4 $home
+ 	mkdir /mnt/gentoo
 	mount $root /mnt/gentoo
 	makefs_2
 
@@ -156,6 +157,7 @@ makefs_aes(){
 	lvcreate -l 100%FREE -n home vg0
 	mkfs.ext4 /dev/mapper/vg0-root
 	mkfs.ext4 /dev/mapper/vg0-home
+ 	mkdir /mnt/gentoo
 	mount /dev/mapper/vg0-root /mnt/gentoo
 	makefs_2
 }
