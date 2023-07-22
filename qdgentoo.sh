@@ -190,8 +190,11 @@ makefs_2(){
 	sleep 1
 	mount --make-rslave /mnt/gentoo/dev
 	sleep 1
-	cp qdgentoo.sh /mnt/gentoo/root/qdgentoo.sh
-	[ $simple_mode = false ] && chroot /mnt/gentoo /bin/bash
+	
+	if [ $simple_mode = false ]; then 
+ 		cp qdgentoo.sh /mnt/gentoo/root/qdgentoo.sh
+ 		chroot /mnt/gentoo /bin/bash
+   	fi
 }
 ################################	1
 do_in_chroot(){
@@ -397,7 +400,7 @@ install_base_system(){
 	else
 		makefs
 	fi
-
+	cp /root/qdgentoo.sh /mnt/gentoo/root/qdgentoo.sh
 	chroot /mnt/gentoo /bin/bash -c "/root/qdgentoo.sh 1to9"
 	umount_all
 	reboot
