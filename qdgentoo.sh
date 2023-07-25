@@ -418,6 +418,9 @@ do_1_to_9(){
  	if $vbox; then
 		install_virtualbox-guest-additions
   	fi
+   	echo "installation complete!"
+   	echo "exit for reboot"
+   	bash
 }
 
 ################################	14
