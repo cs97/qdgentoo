@@ -404,6 +404,8 @@ add_user(){
 	emerge app-admin/sudo
 	useradd -m -G users,wheel,audio -s /bin/bash $USER
 	echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
+ 	echo "## user is allowed to execute halt and reboot" >> /etc/sudoers
+ 	echo "$USER ALL=NOPASSWD: /sbin/halt, /sbin/reboot, /sbin/poweroff" >> /etc/sudoers
 	passwd $USER
 #	passwd -l root
 	cp qdgentoo.sh /home/$USER/
