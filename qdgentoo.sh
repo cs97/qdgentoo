@@ -419,7 +419,7 @@ install_wayland_sway(){
 	echo "media-libs/libglvnd X" >> /etc/portage/package.use/wm
  	echo "media-libs/mesa X" >> /etc/portage/package.use/wm
   
-	emerge --ask dev-libs/wayland gui-wm/sway dev-libs/light gui-apps/swaylock
+	emerge --ask dev-libs/wayland gui-wm/sway dev-libs/light gui-apps/swaylock gui-apps/foot
 	if [ ! -d /run/systemd/system ]; then
 		rc-update add seatd default
 	fi
