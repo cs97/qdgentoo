@@ -17,11 +17,6 @@
 ./qdgentoo.sh install_sway
 ```
 
-### wlan
-
-```
-nmtui
-```
 ### update
 ```  
 sudo emerge --sync
@@ -62,6 +57,12 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 ```
 sudo emerge --ask --depclean gentoo-sources
 rm -r /usr/src/linux-5.*
+```
+
+### wlan
+
+```
+nmtui
 ```
 
 ### nfs mount
