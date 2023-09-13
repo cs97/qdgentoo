@@ -19,4 +19,4 @@ EOF
 
 sudo emerge --ask thunar xfce-extra/tumbler xfce4-settings x11-themes/arc-theme app-arch/file-roller
 
-
+echo "-> xfce4-appearance-settings -> arc-dark"
