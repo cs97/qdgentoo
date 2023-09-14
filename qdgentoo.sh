@@ -174,7 +174,7 @@ makefs_2(){
 	fi
 
 	tar xpvf stage3*.tar.xz --xattrs-include='*.*' --numeric-owner
-	if [ -z "$make_conf" ]; then
+	if [ ! -z "$make_conf" ]; then
 		wget $make_conf -O /mnt/gentoo/etc/portage/make.conf
 	fi
 	nano -w /mnt/gentoo/etc/portage/make.conf		
@@ -235,7 +235,7 @@ do_in_chroot(){
 	echo -e "\n### etc-update ###\n"
 	etc-update
 
-	if [ -z "$kernel" ]; then
+	if [ ! -z "$kernel" ]; then
 		echo "$kernel" > /etc/portage/package.accept_keywords/kernel
 	fi
 	echo "sys-kernel/gentoo-sources experimental" >> /etc/portage/package.use/kernel
