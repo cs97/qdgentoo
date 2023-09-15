@@ -1,6 +1,6 @@
 #!/bin/sh
 
-emerge --ask dev-lang/rust dev-vcs/git x11-terms/alacritty
+emerge --ask dev-lang/rust dev-vcs/git x11-terms/alacritty www-client/firefox
 
 mkdir .config
 mkdir .config/sway
