@@ -17,6 +17,6 @@ x11-themes/arc-theme xfce
 x11-libs/cairo X
 EOF
 
-sudo emerge --ask thunar xfce-extra/tumbler xfce4-settings x11-themes/arc-theme app-arch/file-roller
+sudo emerge --ask thunar xfce4-settings x11-themes/arc-theme app-arch/file-roller
 
 echo "-> xfce4-appearance-settings -> arc-dark"
