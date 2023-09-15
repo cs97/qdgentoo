@@ -22,7 +22,7 @@ aes_yesno=false
 # false=automode true=cfdsik
 use_cfdisk=false
 
-simple_mode=false
+simple_mode=true
 
 #install_virtualbox-guest-additions
 vbox=false
@@ -47,7 +47,12 @@ home=$disk'p3'
 #root=$disk'2'
 #home=$disk'3'
 
-# root in GiB -1GiB
+# boot in MiB
+# boot = boot_size - 1MiB
+boot_size=512
+
+# root in GiB 
+# root = root_size - boot_size
 root_size=100
 
 
@@ -116,8 +121,8 @@ makefs(){
 		cfdisk $disk
 	else
 		#EFI
-		parted $disk --script mkpart primary fat32 1MiB 1024MiB
-		parted $disk --script mkpart primary ext4 1024MiB $root_size'GiB'
+		parted $disk --script mkpart primary fat32 1MiB $boot_size'MiB'
+		parted $disk --script mkpart primary ext4 $boot_size'MiB' $root_size'GiB'
 		parted $disk --script mkpart primary ext4 $root_size'GiB' 100%
 	fi
 
@@ -142,8 +147,8 @@ makefs_aes(){
 	if $use_cfdisk; then
 		cfdisk $disk
 	else
-		parted $disk --script mkpart primary fat32 1MiB 1024MiB
-		parted $disk --script mkpart primary ext4 1024MiB 100%
+		parted $disk --script mkpart primary fat32 1MiB $boot_size'MiB'
+		parted $disk --script mkpart primary ext4 $boot_size'MiB' 100%
 	fi
 		
 	sleep 1
@@ -392,7 +397,7 @@ install_base_system(){
 	cp /root/qdgentoo.sh /mnt/gentoo/root/qdgentoo.sh
 	chroot /mnt/gentoo /bin/bash -c "/root/qdgentoo.sh 1to9"
 	umount_all
-	reboot
+	poweroff
 }
 do_1_to_9(){
 	do_in_chroot
@@ -458,42 +463,6 @@ install_wifi(){
 	systemctl enable NetworkManager
 	systemctl start NetworkManager
 	}
-################################	18
-install_amdgpu(){
-	emerge --ask xf86-video-amdgpu
-}
-################################	19
-install_nvidia(){
-	echo "x11-drivers/nvidia-drivers NVIDIA-r2 ~amd64" >> /etc/portage/package.license/firmware
-	echo "dev-util/nvidia-cuda-toolkit NVIDIA-CUDA" >> /etc/portage/package.license/firmware
-	echo ">=x11-drivers/nvidia-drivers-515.49.06" >> /etc/portage/package.accept_keywords/nvidia
-	echo "x11-drivers/nvidia-drivers -tools" >> /etc/portage/package.use/nvidia
-	emerge --ask x11-drivers/nvidia-drivers
-}
-
-################################	21
-my_config(){
-	emerge --ask dev-lang/rust dev-vcs/git x11-terms/alacritty
-
-	mkdir .config
-	mkdir .config/sway
-	mv .config/sway/config .config/sway/config.old
-
-	#sway .config
-	wget https://raw.githubusercontent.com/cs97/qdgentoo/master/conf/sway-config
-	mv sway-config .config/sway/config
-
-	#sway status
-	git clone https://github.com/cs97/rusty-sway-status
-	cd rusty-sway-status
-	cargo build --release
-	cp target/release/status /usr/bin/status
-	cd ..
-
-	#.bashrc
-	mv .bashrc .bashrc.old
-	wget https://raw.githubusercontent.com/cs97/qdgentoo/master/conf/.bashrc
-}
 
 ################################	99
 update_installer(){
