@@ -13,7 +13,7 @@ app-crypt/gcr gtk
 EOF
 
 cat <<EOF >> /etc/portage/package.use/arc-dark
-x11-themes/arc-theme xfce
+x11-themes/arc-theme xfce -gtk2
 x11-libs/cairo X
 EOF
 
