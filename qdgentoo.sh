@@ -422,12 +422,14 @@ add_user(){
 }
 ################################	15
 install_wayland_sway(){
-	echo "gui-libs/wlroots X" >> /etc/portage/package.use/wm
-	echo "gui-wm/sway X wallpapers" >> /etc/portage/package.use/wm
-	echo "gui-apps/swaybg gdk-pixbuf" >> /etc/portage/package.use/wm
-	echo "media-libs/libepoxy X" >> /etc/portage/package.use/wm
-	echo "media-libs/libglvnd X" >> /etc/portage/package.use/wm
- 	echo "media-libs/mesa X" >> /etc/portage/package.use/wm
+	cat <<EOF >> /etc/portage/package.use/wm
+	gui-libs/wlroots X
+	gui-wm/sway X wallpapers
+	gui-apps/swaybg gdk-pixbuf
+	media-libs/libepoxy X
+	media-libs/libglvnd X
+ 	media-libs/mesa X
+	EOF
   
 	emerge --ask dev-libs/wayland gui-wm/sway dev-libs/light gui-apps/swaylock gui-apps/foot
 	if [ ! -d /run/systemd/system ]; then
