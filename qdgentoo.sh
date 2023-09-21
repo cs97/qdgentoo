@@ -429,7 +429,7 @@ install_wayland_sway(){
 	media-libs/libepoxy X
 	media-libs/libglvnd X
  	media-libs/mesa X
-	EOF
+EOF
   
 	emerge --ask dev-libs/wayland gui-wm/sway dev-libs/light gui-apps/swaylock gui-apps/foot
 	if [ ! -d /run/systemd/system ]; then
