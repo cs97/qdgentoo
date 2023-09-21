@@ -1,6 +1,7 @@
 #!/bin/sh
 
-emerge --ask dev-lang/rust dev-vcs/git x11-terms/alacritty www-client/firefox
+#emerge --ask dev-lang/rust dev-vcs/git x11-terms/alacritty www-client/firefox
+emerge --ask dev-lang/rust dev-vcs/git www-client/firefox
 
 mkdir .config
 mkdir .config/sway
@@ -18,5 +19,5 @@ wget https://raw.githubusercontent.com/cs97/qdgentoo/master/conf/sway-config
 mv sway-config .config/sway/config
 
 #.bashrc
-mv .bashrc .bashrc.old
-wget https://raw.githubusercontent.com/cs97/qdgentoo/master/conf/.bashrc
+#mv .bashrc .bashrc.old
+#wget https://raw.githubusercontent.com/cs97/qdgentoo/master/conf/.bashrc
