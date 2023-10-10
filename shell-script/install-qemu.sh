@@ -8,3 +8,4 @@ dev-libs/libclc spirv
 EOF
 
 emerge --ask --verbose app-emulation/qemu sys-firmware/edk2-ovmf-bin
+gpasswd -a $USER kvm
