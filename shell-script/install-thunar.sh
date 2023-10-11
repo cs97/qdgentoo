@@ -19,4 +19,5 @@ EOF
 
 sudo emerge --ask thunar xfce4-settings x11-themes/arc-theme app-arch/file-roller
 
-echo "-> xfce4-appearance-settings -> arc-dark"
+#echo "-> xfce4-appearance-settings -> arc-dark"
+echo "gsettings set org.gnome.desktop.interface gtk-theme 'Arc-Dark'"
