@@ -47,7 +47,12 @@ home=$disk'p3'
 #root=$disk'2'
 #home=$disk'3'
 
-# root in GiB -1GiB
+# boot in MiB
+# boot = boot_size - 1MiB
+boot_size=512
+
+# root in GiB 
+# root = root_size - boot_size
 root_size=100
 
 
@@ -116,8 +121,8 @@ makefs(){
 		cfdisk $disk
 	else
 		#EFI
-		parted $disk --script mkpart primary fat32 1MiB 1024MiB
-		parted $disk --script mkpart primary ext4 1024MiB $root_size'GiB'
+		parted $disk --script mkpart primary fat32 1MiB $boot_size'MiB'
+		parted $disk --script mkpart primary ext4 $boot_size'MiB' $root_size'GiB'
 		parted $disk --script mkpart primary ext4 $root_size'GiB' 100%
 	fi
 
@@ -142,8 +147,8 @@ makefs_aes(){
 	if $use_cfdisk; then
 		cfdisk $disk
 	else
-		parted $disk --script mkpart primary fat32 1MiB 1024MiB
-		parted $disk --script mkpart primary ext4 1024MiB 100%
+		parted $disk --script mkpart primary fat32 1MiB $boot_size'MiB'
+		parted $disk --script mkpart primary ext4 $boot_size'MiB' 100%
 	fi
 		
 	sleep 1
@@ -174,7 +179,9 @@ makefs_2(){
 	fi
 
 	tar xpvf stage3*.tar.xz --xattrs-include='*.*' --numeric-owner
-	wget $make_conf -O /mnt/gentoo/etc/portage/make.conf
+	if [ ! -z "$make_conf" ]; then
+		wget $make_conf -O /mnt/gentoo/etc/portage/make.conf
+	fi
 	nano -w /mnt/gentoo/etc/portage/make.conf		
 	mirrorselect -i -o >> /mnt/gentoo/etc/portage/make.conf
 	mkdir --parents /mnt/gentoo/etc/portage/repos.conf
@@ -191,10 +198,6 @@ makefs_2(){
 	mount --make-rslave /mnt/gentoo/dev
 	sleep 1
 	
-	if [ $simple_mode = false ]; then 
- 		cp qdgentoo.sh /mnt/gentoo/root/qdgentoo.sh
- 		chroot /mnt/gentoo /bin/bash
-   	fi
 }
 ################################	1
 do_in_chroot(){
@@ -205,13 +208,11 @@ do_in_chroot(){
 	emerge --sync
 	clear
 	eselect profile list
-}
-################################	2
-at_world(){
+
+
 	emerge --verbose --update --deep --newuse @world			
-}
-################################	3
-make_locale(){
+
+
 #	portageq envvar ACCEPT_LICENSE @FREE
 	#echo "Europe/Berlin" > /etc/timezone
 	echo $timezone > /etc/timezone	
@@ -233,27 +234,24 @@ make_locale(){
 	clear
 	eselect locale set 6
 	eselect locale list
-	}
-################################	4
-env_update(){
+
+
 	env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
 	echo -e "\n### etc-update ###\n"
 	etc-update
-}
-################################	5
-gentoo_sources(){
-	echo "$kernel" > /etc/portage/package.accept_keywords/kernel
+
+	if [ ! -z "$kernel" ]; then
+		echo "$kernel" > /etc/portage/package.accept_keywords/kernel
+	fi
 	echo "sys-kernel/gentoo-sources experimental" >> /etc/portage/package.use/kernel
 	emerge sys-kernel/gentoo-sources
 	etc-update
-}
-################################	6
-pci_utils(){
+
+
 	emerge sys-apps/pciutils
 	etc-update
-}
-################################	7
-gentoo_genkernel(){
+
+
 	mkdir /etc/portage/package.license
 	echo "sys-kernel/linux-firmware @BINARY-REDISTRIBUTABLE" > /etc/portage/package.license/firmware
 	emerge genkernel
@@ -277,9 +275,8 @@ gentoo_genkernel(){
 	  	fi
     
 	fi
-}
-################################	8
-fstab_stuff(){
+
+
 	if [ $aes_yesno = true ]; then
 		echo "/dev/mapper/vg0-root		/		ext4		defaults	0 0" >> /etc/fstab
 		echo "$boot		/boot		vfat		defaults        0 0" >> /etc/fstab
@@ -306,9 +303,6 @@ fstab_stuff(){
 	passwd
 
 
-}
-################################	9.2
-install_grub_efi(){
 	if [ -d /sys/firmware/efi ]; then
 		echo 'GRUB_PLATFORMS="efi-64"' >> /etc/portage/make.conf
 	fi
@@ -403,21 +397,11 @@ install_base_system(){
 	cp /root/qdgentoo.sh /mnt/gentoo/root/qdgentoo.sh
 	chroot /mnt/gentoo /bin/bash -c "/root/qdgentoo.sh 1to9"
 	umount_all
-	reboot
+	poweroff
 }
 do_1_to_9(){
 	do_in_chroot
-	at_world
-	make_locale
-	env_update
-	gentoo_sources
-	pci_utils
-	gentoo_genkernel
-	fstab_stuff
-	install_grub_efi
- 	if $vbox; then
-		install_virtualbox-guest-additions
-  	fi
+
    	echo "installation complete!"
    	echo "exit for reboot"
    	bash
@@ -428,6 +412,8 @@ add_user(){
 	emerge app-admin/sudo
 	useradd -m -G users,wheel,audio -s /bin/bash $USER
 	echo "%wheel ALL=(ALL) ALL" >> /etc/sudoers
+ 	echo "## user is allowed to execute halt and reboot" >> /etc/sudoers
+ 	echo "$USER ALL=NOPASSWD: /sbin/halt, /sbin/reboot, /sbin/poweroff" >> /etc/sudoers
 	passwd $USER
 #	passwd -l root
 	cp qdgentoo.sh /home/$USER/
@@ -443,7 +429,11 @@ install_wayland_sway(){
 	echo "media-libs/libglvnd X" >> /etc/portage/package.use/wm
  	echo "media-libs/mesa X" >> /etc/portage/package.use/wm
   
-	emerge --ask dev-libs/wayland gui-wm/sway dev-libs/light gui-apps/swaylock
+	emerge --ask dev-libs/wayland gui-wm/sway dev-libs/light gui-apps/swaylock gui-apps/foot
+	mkdir /home/$USER/.config/
+ 	mkdir /home/$USER/.config/foot
+ 	echo "font=Inconsolata:size=11" >> /home/$USER/.config/foot/foot.ini
+
 	if [ ! -d /run/systemd/system ]; then
 		rc-update add seatd default
 	fi
@@ -477,77 +467,11 @@ install_wifi(){
 	systemctl enable NetworkManager
 	systemctl start NetworkManager
 	}
-################################	18
-install_amdgpu(){
-	emerge --ask xf86-video-amdgpu
-}
-################################	19
-install_nvidia(){
-	echo "x11-drivers/nvidia-drivers NVIDIA-r2 ~amd64" >> /etc/portage/package.license/firmware
-	echo "dev-util/nvidia-cuda-toolkit NVIDIA-CUDA" >> /etc/portage/package.license/firmware
-	echo ">=x11-drivers/nvidia-drivers-515.49.06" >> /etc/portage/package.accept_keywords/nvidia
-	echo "x11-drivers/nvidia-drivers -tools" >> /etc/portage/package.use/nvidia
-	emerge --ask x11-drivers/nvidia-drivers
-}
-################################	20
-install_tools(){
-	#echo "xfce-base/thunar udisks" > /etc/portage/package.use/thunar
-	emerge --ask xfce-base/thunar app-arch/file-roller
-	emerge --ask app-editors/vim
-	emerge --ask sys-process/htop
-	emerge --ask app-misc/neofetch
-	emerge --ask dev-lang/rust
-	emerge --ask dev-vcs/git
-	emerge --ask sys-apps/lm-sensors
-	#emerge --ask sys-power/cpupower
 
-	#gut
-	#wget https://raw.githubusercontent.com/cs97/qdgentoo/master/shell-script/gentoo-update-tool.sh
-	#mv gentoo-update-tool.sh /usr/bin/gut
-	#chmod +x /usr/bin/gut
-
-}
-################################	21
-my_config(){
-	emerge --ask x11-terms/alacritty
-
-	mkdir .config
-	mkdir .config/sway
-	mv .config/sway/config .config/sway/config.old
-
-	#sway .config
-	wget https://raw.githubusercontent.com/cs97/qdgentoo/master/conf/sway-config
-	mv sway-config .config/sway/config
-
-	#sway status
-	git clone https://github.com/cs97/rusty-sway-status
-	cd rusty-sway-status
-	cargo build --release
-	cp target/release/status /usr/bin/status
-	cd ..
-
-	#.bashrc
-	mv .bashrc .bashrc.old
-	wget https://raw.githubusercontent.com/cs97/qdgentoo/master/conf/.bashrc
-}
-################################	install virtualbox-guest-additions
-install_virtualbox-guest-additions(){
-	emerge app-emulation/virtualbox-guest-additions
-
-	if [ -d /run/systemd/system ]; then
-
-		systemctl enable --now virtualbox-guest-additions
-	else
-		rc-update add virtualbox-guest-additions default
-		rc-update add dbus default
-	fi
-
-	gpasswd -a $USER vboxguest
-}
 ################################	99
 update_installer(){
 	mv qdgentoo.sh qdgentoo.old
-	wget https://raw.githubusercontent.com/cs97/qdgentoo/master/qdgentoo.sh
+	wget https://raw.githubusercontent.com/cs97/qdgentoo/simplified-2.x/qdgentoo.sh
 	chmod +x qdgentoo.sh
 	chmod -x qdgentoo.old
 }
@@ -558,47 +482,18 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 
-if [ $simple_mode = true ]; then
-	case $1 in
-		"install") install_base_system;;	#base system install
-		"first_boot") first_boot;;
-		"add_user") add_user;;
-		"install_sway") install_wayland_sway;;
-		"install_wifi") install_wifi;;
-		"install_audio") install_audio;;
-		"install_virtualbox-guest-additions") install_virtualbox-guest-additions;;
+case $1 in
+	"install") install_base_system;;	#base system install
+	"first_boot") first_boot;;
+	"add_user") add_user;;
+	"install_sway") install_wayland_sway;;
+	"install_wifi") install_wifi;;
+	"install_audio") install_audio;;
 
-		"1to9") do_1_to_9;;
-		"update") update_installer;;
-		*) simple_banner;;
-	esac
-else
-	case $1 in
-		"0") [ $aes_yesno = true ] && makefs_aes || makefs;;
-		"1") do_in_chroot;;
-		"2") at_world;;
-		"3") make_locale;;
-		"4") env_update;;
-		"5") gentoo_sources;;
-		"6") pci_utils;;
-		"7") gentoo_genkernel;;
-		"8") fstab_stuff;;
-		"9") install_grub_efi;;
-		"10") umount_all;;
-		"11") mount_again;;
-		"12") first_boot;;
+	"1to9") do_1_to_9;;
+	"update") update_installer;;
+	*) simple_banner;;
+esac
 
-		"14") add_user;;
-		"15") install_wayland_sway;;
-		"16") install_audio;;
-		"17") install_wifi;;
-		"18") install_amdgpu;;
-		"19") install_nvidia;;
-		"20") install_tools;;
-		"21") my_config;;
-		"99") update_installer;;
-		*) banner;;
-	esac
-fi
 
 exit

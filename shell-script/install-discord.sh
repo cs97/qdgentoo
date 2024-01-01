@@ -6,4 +6,4 @@ echo "net-im/discord-bin ~amd64" > /etc/portage/package.accept_keywords/discord
 
 echo "app-text/ghostscript-gpl cups" > /etc/portage/package.use/discord
 
-emerge --ask net-im/discord-bin
+emerge --ask net-im/discord-bin media-libs/libpulse

@@ -1,23 +1,22 @@
 # Gentoo Linux Installer
 
-### Install
+### 1. Install
 ```
 ./qdgentoo.sh install
 ```
-### add user
+### 2. first_boot
+```
+./qdgentoo.sh first_boot
+```
+### 3. add user
 ```
 ./qdgentoo.sh add_user
 ```
-### install sway
+### 4. install sway
 ```
 ./qdgentoo.sh install_sway
 ```
 
-### wlan
-
-```
-nmtui
-```
 ### update
 ```  
 sudo emerge --sync
@@ -28,7 +27,7 @@ sudo emerge --ask --verbose --update --newuse --deep @world
 
 /etc/portage/package.accept_keywords
 ```    
-=sys-kernel/gentoo-sources-6.1.3 ~amd64
+=sys-kernel/gentoo-sources-6.5.3 ~amd64
 ```
 install sources:
 ```
@@ -60,6 +59,12 @@ sudo emerge --ask --depclean gentoo-sources
 rm -r /usr/src/linux-5.*
 ```
 
+### wlan
+
+```
+nmtui
+```
+
 ### nfs mount
 ```
 emerge --ask net-fs/nfs-utils
@@ -71,39 +76,13 @@ mkdir /home/user/data
 ```
 x.x.x.x:/data   /home/user/data   nfs	  rw,noauto,user 0 0
 ```
+
 ### openvpn
 ```
 cp myvpn.ovpn /etc/openvpn/myvpn.conf
 sudo ln -s /etc/init.d/openvpn /etc/init.d/openvpn.myvpn
 /etc/init.d/openvpn.myvpn start
 sudo rc-update add openvpn.myvpn default
-```
-### thunar
-/etc/portage/package.use/thunar
-```
-xfce-base/thunar udisks
-media-libs/libopenraw gtk
-xfce-extra/tumbler ffmpeg jpeg raw pdf
-app-text/poppler cairo
-gnome-base/gvfs udisks
-sys-apps/systemd policykit
-dev-libs/libdbusmenu gtk3
-x11-libs/gtk+ X
-app-crypt/gcr gtk
-```
-/etc/portage/package.use/arc-dark
-```
-x11-themes/arc-theme xfce
-x11-libs/cairo X
-```
-```
-sudo emerge --ask x11-themes/arc-theme
-sudo emerge --ask thunar
-sudo emerge --ask xfce-extra/tumbler
-sudo emerge --ask xfce4-settings
-```
-```
--> xfce4-appearance-settings -> arc-dark
 ```
 
 ### video Player
