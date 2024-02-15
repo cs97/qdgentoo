@@ -70,32 +70,6 @@ banner_head(){
 
 }
 
-banner(){
-	banner_head
-	echo -e "\t0  makefs"
-	echo -e "\t1. do in chroot"
-	echo -e "\t2. @world"
-	echo -e "\t3. locale"
-	echo -e "\t4. env-update"
-	echo -e "\t5. gentoo-sources"
-	echo -e "\t6. pciutils"
-	echo -e "\t7. genkernel"
-	echo -e "\t8. fstab & Stuff"
-	echo -e "\t9. grub"
-	echo -e "\t10.umount all\n"
-	echo -e "\t11.mount_again"
-	echo -e "\t12.first_boot"
-	echo -e ""
-	echo -e "\t14.add user"	
-	echo -e "\t15.wayland + sway"
-	echo -e "\t16.install_audio"
-	echo -e "\t17.install_wifi"
-	echo -e "\t18.install_amdgpu"
-	echo -e "\t19.install_nvidia"
-	echo -e "\t20.install_tools\n"
-	echo -e "\t21.my_config\n"
-	echo -e "\t99. update\n"
-}
 simple_banner(){
 	banner_head
 	echo -e "\tinstall \t\tinstall base system"
