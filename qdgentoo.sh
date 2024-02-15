@@ -24,9 +24,6 @@ use_cfdisk=false
 
 simple_mode=true
 
-#install_virtualbox-guest-additions
-vbox=false
-
 make_conf='https://raw.githubusercontent.com/cs97/qdgentoo/master/etc/portage/make.conf'
 
 kernel='=sys-kernel/gentoo-sources-6.6.9 ~amd64'
