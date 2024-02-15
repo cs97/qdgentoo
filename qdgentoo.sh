@@ -26,7 +26,7 @@ simple_mode=true
 
 make_conf='https://raw.githubusercontent.com/cs97/qdgentoo/master/etc/portage/make.conf'
 
-kernel='=sys-kernel/gentoo-sources-6.6.9 ~amd64'
+kernel='=sys-kernel/gentoo-sources-6.6.13'
 
 #GRUB_CMDLINE_LINUX_DEFAULT='GRUB_CMDLINE_LINUX_DEFAULT="modprobe.blacklist=nouveau quiet splash"'
 GRUB_CMDLINE_LINUX_DEFAULT='GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"'
@@ -239,10 +239,10 @@ do_in_chroot(){
 	etc-update
 
 	if [ ! -z "$kernel" ]; then
-		echo "$kernel" > /etc/portage/package.accept_keywords/kernel
+		echo "$kernel ~amd64" > /etc/portage/package.accept_keywords/kernel
 	fi
 	echo "sys-kernel/gentoo-sources experimental" >> /etc/portage/package.use/kernel
-	emerge sys-kernel/gentoo-sources
+	emerge $kernel
 	etc-update
 
 
@@ -469,7 +469,7 @@ install_wifi(){
 ################################	99
 update_installer(){
 	mv qdgentoo.sh qdgentoo.old
-	wget https://raw.githubusercontent.com/cs97/qdgentoo/simplified-2.x/qdgentoo.sh
+	wget https://raw.githubusercontent.com/cs97/qdgentoo/master/qdgentoo.sh
 	chmod +x qdgentoo.sh
 	chmod -x qdgentoo.old
 }
