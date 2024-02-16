@@ -339,7 +339,7 @@ first_boot(){
 			localectl set-locale LC_MESSAGES=de_DE.utf8 LANG=de_DE.UTF-8 
 			localectl set-keymap de
    		else
-     		echo 'LANG="de_DE.UTF-8"' >> /etc/env.d/02locale
+     			echo 'LANG="de_DE.UTF-8"' >> /etc/env.d/02locale
 			echo 'LC_COLLATE="C.UTF-8"' >> /etc/env.d/02locale
    			echo 'keymap="de"' >> /etc/conf.d/keymaps
    			env-update && source /etc/profile
