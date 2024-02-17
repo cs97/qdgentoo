@@ -406,8 +406,10 @@ install_wayland_sway(){
  	mkdir /home/$USER/.config/foot
  	echo "font=Inconsolata:size=11" >> /home/$USER/.config/foot/foot.ini
 
+	# openrc
 	if [ ! -d /run/systemd/system ]; then
 		rc-update add seatd default
+  		wget https://github.com/cs97/qdgentoo/blob/master/conf/.bashrc
 	fi
 }
 ################################	16
