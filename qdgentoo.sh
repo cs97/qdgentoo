@@ -414,7 +414,7 @@ install_wayland_sway(){
 	fi
  
  	if [ ! -f .bashrc ]; then
- 		wget https://github.com/cs97/qdgentoo/blob/master/conf/.bashrc
+ 		wget https://raw.githubusercontent.com/cs97/qdgentoo/master/conf/.bashrc
    fi
 }
 ################################	16
