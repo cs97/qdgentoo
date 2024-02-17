@@ -19,14 +19,16 @@ fi
 
 # Put your fun stuff here.
 
-[ -z ${XDG_RUNTIME_DIR} ] && {
-  export XDG_RUNTIME_DIR=/tmp/${UID}-runtime-dir
-  [ -d ${XDG_RUNTIME_DIR} ] || {
-    mkdir ${XDG_RUNTIME_DIR}
-    chmod 0700 ${XDG_RUNTIME_DIR}
-  }
-}
+if [ ! -d /run/systemd/system ]; then
+	[ -z ${XDG_RUNTIME_DIR} ] && {
+	  export XDG_RUNTIME_DIR=/tmp/${UID}-runtime-dir
+	  [ -d ${XDG_RUNTIME_DIR} ] || {
+	    mkdir ${XDG_RUNTIME_DIR}
+	    chmod 0700 ${XDG_RUNTIME_DIR}
+	  }
+	}
+fi
 
 if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-    dbus-run-session sway
+	dbus-run-session sway
 fi
