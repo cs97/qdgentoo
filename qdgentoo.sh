@@ -205,6 +205,8 @@ do_in_chroot(){
 	locale-gen
 	clear
 	eselect locale set 6
+ 	#german
+ 	#eselect locale set 7
 	eselect locale list
 
 
