@@ -409,8 +409,11 @@ install_wayland_sway(){
 	# openrc
 	if [ ! -d /run/systemd/system ]; then
 		rc-update add seatd default
-  		wget https://github.com/cs97/qdgentoo/blob/master/conf/.bashrc
 	fi
+ 
+ 	if [ ! -f .bashrc ]; then
+ 		wget https://github.com/cs97/qdgentoo/blob/master/conf/.bashrc
+   fi
 }
 ################################	16
 install_audio(){
