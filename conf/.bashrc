@@ -29,6 +29,6 @@ if [ ! -d /run/systemd/system ]; then
 	}
 fi
 
-if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
+#if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
 	dbus-run-session sway
-fi
+#fi
