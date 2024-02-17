@@ -268,7 +268,13 @@ do_in_chroot(){
 		nano -w /etc/fstab
 	fi
 
-	emerge app-admin/sysklogd net-misc/dhcpcd net-misc/chrony
+	emerge app-admin/sysklogd net-misc/chrony
+	
+ 	if [ -d /run/systemd/system ]; then
+		emerge net-misc/dhcpcd
+	else
+		emerge --noreplace net-misc/netifrc
+	fi
 
 	if [ $aes_yesno = true ]; then
 		emerge sys-fs/lvm2
