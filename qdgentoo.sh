@@ -204,10 +204,14 @@ do_in_chroot(){
 
 	locale-gen
 	clear
-	eselect locale set 6
- 	#german
- 	#eselect locale set 7
-	eselect locale list
+ 
+	if [ $german = true ]; then
+ 		eselect locale set de_DE.utf8
+   	else
+    		eselect locale set en_US.utf8
+ 	fi
+
+	#eselect locale list
 
 
 	env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
