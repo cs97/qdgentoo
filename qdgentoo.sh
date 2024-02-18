@@ -185,7 +185,7 @@ do_in_chroot(){
 	clear
 	eselect profile list
 
-	emerge --ask app-portage/cpuid2cpuflags
+	emerge app-portage/cpuid2cpuflags
  	echo "*/* $(cpuid2cpuflags)" > /etc/portage/package.use/00cpu-flags
 
 	emerge --verbose --update --deep --newuse @world			
