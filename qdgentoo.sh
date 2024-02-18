@@ -371,8 +371,8 @@ first_boot(){
 		systemctl enable --now systemd-timesyncd.service
 	else
 		echo 'hostname="'$hostname'"' > /etc/conf.d/hostname
-		rc-update add dhcpcd default
-		rc-service dhcpcd start
+		#rc-update add dhcpcd default
+		#rc-service dhcpcd start
 		rc-update add chronyd default
 	fi
 }
