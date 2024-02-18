@@ -186,16 +186,10 @@ do_in_chroot(){
 
 
 #	portageq envvar ACCEPT_LICENSE @FREE
-	#echo "Europe/Berlin" > /etc/timezone
-	echo $timezone > /etc/timezone	
+
+ 	echo $timezone > /etc/timezone	
 	emerge --config sys-libs/timezone-data
-	#echo "en_US ISO-8859-1" >> /etc/locale.gen
-	#echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
-	#[ $german = true ] && {
-	#	echo "de_DE ISO-8859-1" >> /etc/locale.gen
-	#	echo "de_DE@euro ISO-8859-15" >> /etc/locale.gen
-	#	echo "de_DE.UTF-8 UTF-8" >> /etc/locale.gen
-	#}
+
 	echo -e $locale >> /etc/locale.gen	
 
 	if [ $simple_mode = false ]; then
