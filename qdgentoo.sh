@@ -151,11 +151,15 @@ makefs_2(){
 	fi
 
 	tar xpvf stage3*.tar.xz --xattrs-include='*.*' --numeric-owner
+ 
 	if [ ! -z "$make_conf" ]; then
 		wget $make_conf -O /mnt/gentoo/etc/portage/make.conf
 	fi
-	nano -w /mnt/gentoo/etc/portage/make.conf		
+ 
+	nano -w /mnt/gentoo/etc/portage/make.conf	
+ 
 	mirrorselect -i -o >> /mnt/gentoo/etc/portage/make.conf
+ 
 	mkdir --parents /mnt/gentoo/etc/portage/repos.conf
 	cp /mnt/gentoo/usr/share/portage/config/repos.conf /mnt/gentoo/etc/portage/repos.conf/gentoo.conf
 	cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
@@ -181,9 +185,10 @@ do_in_chroot(){
 	clear
 	eselect profile list
 
+	emerge --ask app-portage/cpuid2cpuflags
+ 	echo "*/* $(cpuid2cpuflags)" > /etc/portage/package.use/00cpu-flags
 
 	emerge --verbose --update --deep --newuse @world			
-
 
 #	portageq envvar ACCEPT_LICENSE @FREE
 
@@ -204,9 +209,6 @@ do_in_chroot(){
    	else
 		eselect locale set en_US.utf8
  	fi
-
-	#eselect locale list
-
 
 	env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
 	echo -e "\n### etc-update ###\n"
