@@ -206,9 +206,9 @@ do_in_chroot(){
 	clear
  
 	if [ $german = true ]; then
- 		eselect locale set de_DE.utf8
+		eselect locale set de_DE.utf8
    	else
-    		eselect locale set en_US.utf8
+		eselect locale set en_US.utf8
  	fi
 
 	#eselect locale list
