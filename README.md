@@ -58,6 +58,17 @@ sudo grub-mkconfig -o /boot/grub/grub.cfg
 sudo emerge --ask --depclean gentoo-sources
 rm -r /usr/src/linux-5.*
 ```
+### Ooen-rc Network
+/etc/conf.d/net.your-network-card
+```
+config_your-network-card="dhcp"
+```
+```
+ln -s /etc/init.d/net.{lo,your-network-card}
+```
+```
+rc-update add net.your-network-card default
+```
 
 ### wlan
 
