@@ -14,6 +14,13 @@ locale='
 \nde_DE@euro ISO-8859-15
 \nde_DE.UTF-8 UTF-8'
 
+#eselect_locale_set='en_US.utf8'
+eselect_locale_set='de_DE.utf8'
+
+LANG="de_DE.UTF-8"
+LC_COLLATE="C.UTF-8"
+
+
 german=true
 
 # disk encryption
@@ -204,11 +211,7 @@ do_in_chroot(){
 	locale-gen
 	clear
  
-	if [ $german = true ]; then
-		eselect locale set de_DE.utf8
-   	else
-		eselect locale set en_US.utf8
- 	fi
+	eselect locale set $eselect_locale_set
 
 	env-update && source /etc/profile && export PS1="(chroot) ${PS1}"
 	echo -e "\n### etc-update ###\n"
@@ -342,17 +345,24 @@ mount_again(){
 }
 ################################	12
 first_boot(){
-	if $german; then
- 		if [ -d /run/systemd/system ]; then
-			localectl set-locale LC_MESSAGES=de_DE.utf8 LANG=de_DE.UTF-8 
-			localectl set-keymap de
-   		else
-			echo 'LANG="de_DE.UTF-8"' >> /etc/env.d/02locale
-			echo 'LC_COLLATE="C.UTF-8"' >> /etc/env.d/02locale
-   			echo 'keymap="de"' >> /etc/conf.d/keymaps
-   			env-update && source /etc/profile
-   		fi
-	fi
+	#if $german; then
+ 	#	if [ -d /run/systemd/system ]; then
+	#		localectl set-locale LC_MESSAGES=de_DE.utf8 LANG=de_DE.UTF-8 
+	#		localectl set-keymap de
+   	#	else
+	#		echo 'LANG="de_DE.UTF-8"' >> /etc/env.d/02locale
+	#		echo 'LC_COLLATE="C.UTF-8"' >> /etc/env.d/02locale
+   	#		echo 'keymap="de"' >> /etc/conf.d/keymaps
+   	#		env-update && source /etc/profile
+   	#	fi
+	#fi
+	if [ -d /run/systemd/system ]; then
+		echo 'LANG="$LANG"' >> /etc/locale.conf
+ 		echo 'LC_COLLATE="$LC_COLLATE"' >> /etc/locale.conf
+ 	else
+		echo 'LANG="$LANG"' >> /etc/env.d/02locale
+ 		echo 'LC_COLLATE="$LC_COLLATE"' >> /etc/env.d/02locale
+  	fi 
 
 	if [ -d /run/systemd/system ]; then
 		hostnamectl hostname $hostname	
