@@ -107,7 +107,7 @@ sudo emerge --ask mpv
 
 ### check pipewire
 ```
-systemctl --user status pipewire.socket pipewire-pulse.socket pipewire.service pipewire-pulse.service wireplumber.service wireplumber.socket
+systemctl --user status pipewire.socket pipewire-pulse.socket pipewire.service pipewire-pulse.service wireplumber.service
 ```
 
 ### stuff...
