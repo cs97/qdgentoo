@@ -23,8 +23,6 @@ LC_COLLATE="C.UTF-8"
 #keymap="us"
 keymap="de"
 
-german=true
-
 # disk encryption
 aes_yesno=false
 
@@ -347,17 +345,8 @@ mount_again(){
 }
 ################################	12
 first_boot(){
-	#if $german; then
- 	#	if [ -d /run/systemd/system ]; then
-	#		localectl set-locale LC_MESSAGES=de_DE.utf8 LANG=de_DE.UTF-8 
-	#		localectl set-keymap de
-   	#	else
-	#		echo 'LANG="de_DE.UTF-8"' >> /etc/env.d/02locale
-	#		echo 'LC_COLLATE="C.UTF-8"' >> /etc/env.d/02locale
-   	#		echo 'keymap="de"' >> /etc/conf.d/keymaps
    	#		env-update && source /etc/profile
-   	#	fi
-	#fi
+	
 	if [ -d /run/systemd/system ]; then
 		echo 'LANG="$LANG"' >> /etc/locale.conf
  		echo 'LC_COLLATE="$LC_COLLATE"' >> /etc/locale.conf
