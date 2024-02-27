@@ -419,6 +419,7 @@ install_wayland_sway(){
 
 	# openrc
 	if [ ! -d /run/systemd/system ]; then
+		echo "sys-auth/seatd server" >> /etc/portage/package.use/seatd
 		rc-update add seatd default
 	fi
  
