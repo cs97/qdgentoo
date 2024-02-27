@@ -348,13 +348,13 @@ first_boot(){
    	#		env-update && source /etc/profile
 	
 	if [ -d /run/systemd/system ]; then
-		echo 'LANG="$LANG"' >> /etc/locale.conf
- 		echo 'LC_COLLATE="$LC_COLLATE"' >> /etc/locale.conf
+		echo 'LANG="'$LANG'"' >> /etc/locale.conf
+ 		echo 'LC_COLLATE="'$LC_COLLATE'"' >> /etc/locale.conf
    		localectl set-keymap $keymap
  	else
-		echo 'LANG="$LANG"' >> /etc/env.d/02locale
- 		echo 'LC_COLLATE="$LC_COLLATE"' >> /etc/env.d/02locale
-   		echo 'keymap="$keymap"' >> /etc/conf.d/keymaps
+		echo 'LANG="'$LANG'"' >> /etc/env.d/02locale
+ 		echo 'LC_COLLATE="'$LC_COLLATE'"' >> /etc/env.d/02locale
+   		echo 'keymap="'$keymap'"' >> /etc/conf.d/keymaps
   	fi 
 
 	if [ -d /run/systemd/system ]; then
