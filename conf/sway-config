@@ -74,6 +74,7 @@ exec --no-startup-id dbus-update-activation-environment --all
     bindsym XF86AudioRaiseVolume exec amixer -D pipewire sset Master 5%+
     bindsym XF86AudioLowerVolume exec amixer -D pipewire sset Master 5%-
 
+    bindsym $mod+v exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 
     
     # Firefox
