@@ -1,5 +1,8 @@
 # Gentoo Linux Installer
-
+### 0. Download
+```
+wget https://raw.githubusercontent.com/cs97/qdgentoo/master/qdgentoo.sh && chmod +x qdgentoo.sh
+```
 ### 1. Install
 ```
 ./qdgentoo.sh install
