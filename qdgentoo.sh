@@ -282,7 +282,8 @@ do_in_chroot(){
 	if [ $aes_yesno = true ]; then
 		emerge sys-fs/lvm2
 	fi
-		
+
+  	nano /etc/security/passwdqc.conf
 	passwd
 
 
