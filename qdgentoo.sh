@@ -17,6 +17,8 @@ de_DE.UTF-8 UTF-8'
 #eselect_locale_set='en_US.utf8'
 eselect_locale_set='de_DE.utf8'
 
+eselect_profile_set='default/linux/amd64/23.0/systemd'
+
 LANG="de_DE.UTF-8"
 LC_COLLATE="C.UTF-8"
 
@@ -190,6 +192,8 @@ do_in_chroot(){
 	emerge-webrsync
 	emerge --sync
 	clear
+
+	eselect profile set $eselect_profile_set
 	eselect profile list
 
 	emerge app-portage/cpuid2cpuflags
