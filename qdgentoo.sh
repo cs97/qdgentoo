@@ -382,7 +382,7 @@ install_base_system(){
 	else
 		makefs
 	fi
-	cp /root/qdgentoo.sh /mnt/gentoo/root/qdgentoo.sh
+	cp qdgentoo.sh /mnt/gentoo/root/qdgentoo.sh
 	chroot /mnt/gentoo /bin/bash -c "/root/qdgentoo.sh 1to9"
 	umount_all
 	poweroff
