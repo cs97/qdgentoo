@@ -1,4 +1,8 @@
 # Gentoo Linux Installer
+```
+cd /root
+sudo su
+```
 ### 0. Download
 ```
 wget https://raw.githubusercontent.com/cs97/qdgentoo/master/qdgentoo.sh && chmod +x qdgentoo.sh
