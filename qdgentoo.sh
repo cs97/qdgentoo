@@ -484,6 +484,7 @@ case $1 in
 	"install_wifi") install_wifi;;
 	"install_audio") install_audio;;
 
+	"mount_again") mount_again;;
 	"1to9") do_1_to_9;;
 	"update") update_installer;;
 	*) simple_banner;;
