@@ -35,7 +35,7 @@ simple_mode=true
 
 make_conf='https://raw.githubusercontent.com/cs97/qdgentoo/master/etc/portage/make.conf'
 
-kernel='=sys-kernel/gentoo-sources-6.6.30'
+kernel='=sys-kernel/gentoo-sources-6.6.62'
 
 #GRUB_CMDLINE_LINUX_DEFAULT='GRUB_CMDLINE_LINUX_DEFAULT="modprobe.blacklist=nouveau quiet splash"'
 GRUB_CMDLINE_LINUX_DEFAULT='GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"'
@@ -235,7 +235,7 @@ do_in_chroot(){
 
 	mkdir /etc/portage/package.license
 	echo "sys-kernel/linux-firmware @BINARY-REDISTRIBUTABLE" > /etc/portage/package.license/firmware
-	emerge genkernel
+	emerge genkernel gentoo-sources
 	eselect kernel set 1
 	etc-update
  
