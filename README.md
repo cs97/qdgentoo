@@ -1,8 +1,13 @@
 # Gentoo Linux Installer
+
+LiveGUI iso
 ```
-cd /root
 sudo su
 ```
+```
+cd /root
+```
+
 ### 0. Download
 ```
 wget https://raw.githubusercontent.com/cs97/qdgentoo/master/qdgentoo.sh && chmod +x qdgentoo.sh
