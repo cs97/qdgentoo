@@ -35,7 +35,8 @@ simple_mode=true
 
 make_conf='https://raw.githubusercontent.com/cs97/qdgentoo/master/etc/portage/make.conf'
 
-kernel='=sys-kernel/gentoo-sources-6.12.1'
+#kernel='=sys-kernel/gentoo-sources-6.12.1'
+kernel='sys-kernel/gentoo-sources'
 
 #GRUB_CMDLINE_LINUX_DEFAULT='GRUB_CMDLINE_LINUX_DEFAULT="modprobe.blacklist=nouveau quiet splash"'
 GRUB_CMDLINE_LINUX_DEFAULT='GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"'
@@ -235,7 +236,7 @@ do_in_chroot(){
 
 	mkdir /etc/portage/package.license
 	echo "sys-kernel/linux-firmware @BINARY-REDISTRIBUTABLE" > /etc/portage/package.license/firmware
-	emerge genkernel gentoo-sources
+	emerge genkernel
 	eselect kernel set 1
 	etc-update
  
@@ -356,23 +357,23 @@ first_boot(){
 		echo 'LANG="'$LANG'"' >> /etc/locale.conf
  		echo 'LC_COLLATE="'$LC_COLLATE'"' >> /etc/locale.conf
    		localectl set-keymap $keymap
- 	else
-		echo 'LANG="'$LANG'"' >> /etc/env.d/02locale
- 		echo 'LC_COLLATE="'$LC_COLLATE'"' >> /etc/env.d/02locale
-   		echo 'keymap="'$keymap'"' >> /etc/conf.d/keymaps
-  	fi 
 
-	if [ -d /run/systemd/system ]; then
 		hostnamectl hostname $hostname	
 		systemctl enable --now dhcpcd
 		#systemctl enable chronyd.service
 		systemctl enable --now systemd-timesyncd.service
-	else
-		echo 'hostname="'$hostname'"' > /etc/conf.d/hostname
+     
+ 	else
+		echo 'LANG="'$LANG'"' >> /etc/env.d/02locale
+ 		echo 'LC_COLLATE="'$LC_COLLATE'"' >> /etc/env.d/02locale
+   		echo 'keymap="'$keymap'"' >> /etc/conf.d/keymaps
+
+     		echo 'hostname="'$hostname'"' > /etc/conf.d/hostname
 		#rc-update add dhcpcd default
 		#rc-service dhcpcd start
 		rc-update add chronyd default
-	fi
+  	fi 
+
 }
 
 ################################  install base system
