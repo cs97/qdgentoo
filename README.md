@@ -130,6 +130,11 @@ sys-apps/hdparm
 sys-apps/bat
 ```
 
+### efibootmgr
+```
+sudo efibootmgr -c -d /dev/nvme0n1 -p 1 -L "Grub" -l '\EFI\gentoo\grubx64.efi'
+```
+
 
 
 
